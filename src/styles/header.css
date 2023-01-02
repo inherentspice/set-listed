@@ -1,0 +1,24 @@
+.header-cont {
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    border: solid black 1px;
+}
+
+.header-nav-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: pink;
+    border-right: solid black 1px;
+}
+
+.header-nav-right {
+    display: flex;
+    flex-direction: row;
+}
+
+.header-nav-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    text-align: center;
+}

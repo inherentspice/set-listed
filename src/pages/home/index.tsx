@@ -1,8 +1,13 @@
 import Post from "../../components/home/post";
 import "./index.css";
+import Header from "../../components/header";
 
 export default function Home() {
   return (
-    <Post />
+    <div>
+      <Header />
+      <Post />
+    </div>
+    
   )
 }
