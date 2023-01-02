@@ -12,6 +12,7 @@
               0 1px 3px 0 rgba(0,0,0,0.2);
   width: 500px;
   padding: 8px;
+  padding-bottom: 0;
 }
 
 .post-button-cont {
@@ -19,6 +20,7 @@
   align-items: center;
   width: 100%;
   padding: 8px;
+  gap: 0.5rem;
 }
 
 .profile-picture-small {
@@ -64,6 +66,7 @@
   margin: 8px;
   width: 20%;
   padding: 8px;
+  border-radius: 10px;
 }
 
 .post-option-btn:hover {
