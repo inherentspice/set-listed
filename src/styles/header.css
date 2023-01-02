@@ -2,14 +2,32 @@
     display: grid;
     grid-template-columns: 6fr 1fr;
     border: solid black 1px;
+    height: 4rem;
+    padding: 0 2rem 0 2rem;
+    align-items: center;
 }
 
 .header-nav-left {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: pink;
     border-right: solid black 1px;
+}
+
+.header-nav-search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.header-cont-logo {
+    background-color: darkred;
+    color: white;
+    padding: .25rem;
+    border-radius: 15%;
+    font-size: 1.25rem;
+    font-weight: bold;
 }
 
 .header-nav-right {
@@ -21,4 +39,17 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     text-align: center;
+}
+
+.header-nav-btn {
+    font-size: .75rem;
+}
+
+.header-nav-img {
+    height: 2rem;
+}
+
+.header-nav-profile-pic {
+    height: 2rem;
+    border-radius: 50%;
 }

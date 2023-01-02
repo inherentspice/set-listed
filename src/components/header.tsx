@@ -1,4 +1,10 @@
 import '../styles/header.css';
+import Home from '../media/header/home.png';
+import MyNetwork from '../media/header/my-network.png';
+import Gigs from '../media/header/gigs.png';
+import Messaging from '../media/header/messaging.png';
+import Notifications from '../media/header/notifications.png';
+import ProfilePic from '../media/home/profile-picture.png';
 
 export default function Header() {
     return(
@@ -6,7 +12,7 @@ export default function Header() {
             <div className="header-cont">
                 <div className="header-nav-left">
                     <div className='header-nav-search'>
-                        <div className="header-cont-logo">SetListed</div>
+                        <div className="header-cont-logo">SL</div>
                         <div className="header-cont-search">
                             <input></input>
                         </div>
@@ -15,42 +21,42 @@ export default function Header() {
                     <div className="header-nav-btns">
                         <div className="header-nav-btn">
                             <a href='/' >
-                                <img></img>
+                                <img className='header-nav-img' src={Home}/>
                                 <div className="header-nav-btn-name">Home</div>
                             </a>
                         </div>
 
                         <div className="header-nav-btn">
                             <a href='/my-network'>
-                                <img></img>
+                                <img className='header-nav-img' src={MyNetwork} />
                                 <div className="header-nav-btn-name">My Network</div>
                             </a>
                         </div>
 
                         <div className="header-nav-btn">
                             <a href='/gigs'>
-                                <img></img>
+                                <img className='header-nav-img' src={Gigs} />
                                 <div className="header-nav-btn-name">Gigs</div>
                             </a>
                         </div>
 
                         <div className="header-nav-btn">
                             <a href='/messaging' >
-                                <img></img>
+                                <img className='header-nav-img' src={Messaging} />
                                 <div className="header-nav-btn-name">Messaging</div>
                             </a>
                         </div>
 
                         <div className="header-nav-btn">
                             <a href='notifications'>
-                                <img></img>
+                                <img className='header-nav-img' src={Notifications} />
                                 <div className="header-nav-btn-name">Notifications</div>
                             </a>
                         </div>
 
                         <div className="header-nav-btn">
                             <a href='my-profile'>
-                                <img></img>
+                                <img className='header-nav-profile-pic' src={ProfilePic} />
                                 <div className="header-nav-btn-name">My Profile</div>
                             </a>
                         </div>
