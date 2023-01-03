@@ -75,9 +75,10 @@
     color: black;
 }
 
-.header-nav-btn:hover {
+.header-nav-btn:hover, .header-nav-menu:hover  {
     background-color: lightgray;
-    border-radius: 15px;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .header-nav-img {
@@ -87,4 +88,31 @@
 .header-nav-profile-pic {
     height: 1.5rem;
     border-radius: 50%;
+}
+
+.header-nav-right {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    padding: 0 1rem 0 1rem;
+    gap: 1rem;
+}
+
+.header-nav-menu {
+    display: flex;
+    flex-direction: column;
+    font-size: .5rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+}
+
+.header-nav-menu>img {
+    height: 1.5rem;
+    
+}
+
+.header-nav-right-cta {
+    font-size: 0.75rem;
+    text-align: center;
 }

@@ -6,6 +6,7 @@ import Messaging from '../media/header/messaging.png';
 import Notifications from '../media/header/notifications.png';
 import ProfilePic from '../media/home/profile-picture.png';
 import Search from '../media/header/search.png';
+import Services from '../media/header/services.png';
 
 export default function Header() {
     return(
@@ -69,8 +70,10 @@ export default function Header() {
                 <div className="header-nav-right">
 
                     <div className="header-nav-menu">
-
+                        <img src={Services}/>
+                        <div>Services</div>
                     </div>
+                    <div className='header-nav-right-cta'><a href=''>Try Premium for Free you Brokie</a></div>
 
                 </div>
             </div>
