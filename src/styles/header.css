@@ -30,6 +30,30 @@
     font-weight: bold;
 }
 
+.header-cont-search {
+    display: flex;
+    background-color: lightgray;
+    align-items: center;
+    height: 2rem;
+    padding: 0 1rem 0 1rem;
+    border-radius: 1rem;
+}
+
+.header-cont-search>img {
+    height: 1rem;
+}
+
+.header-cont-search>input {
+    text-decoration: none;
+    background-color: unset;
+    border: none;
+    color: black;
+}
+
+.header-cont-search>input {
+    outline: none;
+}
+
 .header-nav-right {
     display: flex;
     flex-direction: row;
@@ -42,14 +66,25 @@
 }
 
 .header-nav-btn {
-    font-size: .75rem;
+    font-size: .5rem;
+    padding: 0.25rem;
+}
+
+.header-nav-btn>a {
+    text-decoration: none;
+    color: black;
+}
+
+.header-nav-btn:hover {
+    background-color: lightgray;
+    border-radius: 15px;
 }
 
 .header-nav-img {
-    height: 2rem;
+    height: 1.5rem;
 }
 
 .header-nav-profile-pic {
-    height: 2rem;
+    height: 1.5rem;
     border-radius: 50%;
 }

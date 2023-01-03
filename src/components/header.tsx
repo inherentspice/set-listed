@@ -5,6 +5,7 @@ import Gigs from '../media/header/gigs.png';
 import Messaging from '../media/header/messaging.png';
 import Notifications from '../media/header/notifications.png';
 import ProfilePic from '../media/home/profile-picture.png';
+import Search from '../media/header/search.png';
 
 export default function Header() {
     return(
@@ -14,7 +15,8 @@ export default function Header() {
                     <div className='header-nav-search'>
                         <div className="header-cont-logo">SL</div>
                         <div className="header-cont-search">
-                            <input></input>
+                            <img src={Search}/>
+                            <input placeholder='Search'></input>
                         </div>
                     </div>
 
