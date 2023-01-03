@@ -1,6 +1,12 @@
 export default function News() {
 
-  const newsData = [
+  interface newsDataObject {
+    title: string,
+    posted: Date,
+    readCount: number,
+  }
+
+  const newsData: newsDataObject[] = [
     {
       title: "What is the deal with...?",
       posted: new Date("December 12, 2022"),
@@ -22,7 +28,7 @@ export default function News() {
       readCount: 1,
     },
     {
-      title: "What's happening to 'woke' comedy in the UK",
+      title: "What's happening to 'woke' comedy in the UK?",
       posted: new Date("January 3, 2023"),
       readCount: 41
     }
