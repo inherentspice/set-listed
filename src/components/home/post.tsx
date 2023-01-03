@@ -3,7 +3,7 @@ import Profile from "../../media/home/profile-picture.png";
 
 export default function Post() {
   return (
-    <div className="home-post-cont">
+    <div className="home-post-cont home-comp">
       <div className="post-button-cont">
         <img src={Profile} alt="" className="profile-picture-small"/>
         <button className="start-post-btn">Start a post</button>
