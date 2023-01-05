@@ -6,12 +6,25 @@
   justify-content: center;
   background-color: #ffffff;
   border: 1px solid #dddddd;
-  border-radius: 4px;
+  border-radius: 9px;
   box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14),
               0 2px 1px -1px rgba(0,0,0,0.12),
               0 1px 3px 0 rgba(0,0,0,0.2);
   padding: 8px;
-  padding-bottom: 0;
+}
+
+.profile-picture-small {
+  border-radius: 124px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+}
+
+.profile-picture-medium {
+  border-radius: 124px;
+  height: 80px;
+  width: 80px;
+  cursor: pointer;
 }
 
 h2 {
@@ -32,13 +45,6 @@ h2 {
   width: 100%;
   padding: 8px;
   gap: 0.5rem;
-}
-
-.profile-picture-small {
-  border-radius: 124px;
-  height: 50px;
-  width: 50px;
-  cursor: pointer;
 }
 
 .start-post-btn {
@@ -109,4 +115,43 @@ h2 {
   margin-top: 0;
   color: rgb(145, 145, 145);
   font-size: 0.7rem;
+}
+
+/* advertisement */
+.home-ad-cont {
+  width: fit-content;
+  align-items: center;
+}
+
+.ad-info-cont {
+  font-size: 0.8rem;
+  font-weight: 300;
+  align-self: flex-end;
+}
+
+.ad-sub-heading {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color:rgb(64, 64, 64);
+}
+
+.ad-content-cont {
+  display: flex;
+  gap: 1rem;
+}
+
+.ad-cta {
+  width: 80%;
+}
+
+.home-ad-cont>button {
+  border-radius: 124px;
+  border: 2px solid #0077b5;
+  color:#0077b5;
+  background-color: #ffffff;
+  width: 30%;
+  height: 2rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  cursor: pointer;
 }
