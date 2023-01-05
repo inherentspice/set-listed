@@ -155,3 +155,8 @@ h2 {
   font-size: 1.25rem;
   cursor: pointer;
 }
+
+.home-ad-cont>button:hover {
+  border: 4px solid #046599;
+  background-color: #e8f6fd;
+}
