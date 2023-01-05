@@ -16,8 +16,14 @@
     border-radius: 15px 15px 0px 0px;
     height: 6rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    
+}
+
+.profile-card-background-img {
+    height: 3rem;
 }
 
 .profile-card-user-img {
