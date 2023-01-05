@@ -1,7 +1,6 @@
 .profile-card-cont {
-    background-color: aliceblue;
     border: lightgray solid 2px;
-    width: 20vw;
+    width: 13rem;
     border-radius: 15px;
     text-align: center;
 }
@@ -9,26 +8,93 @@
 .profile-card-user-cont {
     display: flex;
     flex-direction: column;
+    border-bottom: solid 1px lightgray;
 }
 
 .profile-card-user-img-cont {
     background-color: white;
     border-radius: 15px 15px 0px 0px;
     height: 6rem;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     align-items: center;
-    justify-content: center;
+    justify-items: center;
     
 }
 
 .profile-card-background-img {
-    height: 3rem;
+    height: 4rem;
+    width: 100%;
+    background-image: url(../media/home/profile-background.jpg);
+    background-size: cover;
+    border-radius: 15px 15px 0 0;
 }
 
 .profile-card-user-img {
     height: 4rem;
-    border: lightgray solid 2px;
+    border: white solid 2px;
     border-radius: 50%;
-    
+    position: relative;
+    bottom: 2rem;
+}
+
+.profile-card-user-img:hover {
+    cursor: pointer;
+}
+
+.profile-card-user-info-cont {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.profile-card-user-name {
+    font-weight: bold;
+}
+
+.profile-card-user-name:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.profile-card-user-tagline {
+    color: gray;
+    font-size: .75rem;
+}
+
+.profile-card-interaction-stats-cont {
+    padding: 0.5rem 0 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+    border-bottom: solid 1px lightgray;
+}
+
+.profile-card-interaction-stats-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: .75rem;
+    padding: 0.25rem 1rem 0.25rem 1rem;
+}
+
+.profile-card-interaction-stats-item:hover {
+    cursor: pointer;
+    background-color: lightgray;
+}
+
+.profile-card-interaction-stat-name {
+    color: slategray;
+    font-weight: bold;
+}
+
+.profile-card-interaction-stat {
+    color: darkred;
+}
+
+.profile-card-ad-cont {
+    font-size: 0.75rem;
+    color: slategray;
+    padding: 1rem;
+    text-align: left;
 }
