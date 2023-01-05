@@ -1,0 +1,28 @@
+.profile-card-cont {
+    background-color: aliceblue;
+    border: lightgray solid 2px;
+    width: 20vw;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.profile-card-user-cont {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-card-user-img-cont {
+    background-color: white;
+    border-radius: 15px 15px 0px 0px;
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-card-user-img {
+    height: 4rem;
+    border: lightgray solid 2px;
+    border-radius: 50%;
+    
+}

@@ -30,6 +30,30 @@
     font-weight: bold;
 }
 
+.header-cont-search {
+    display: flex;
+    background-color: lightgray;
+    align-items: center;
+    height: 2rem;
+    padding: 0 1rem 0 1rem;
+    border-radius: 1rem;
+}
+
+.header-cont-search>img {
+    height: 1rem;
+}
+
+.header-cont-search>input {
+    text-decoration: none;
+    background-color: unset;
+    border: none;
+    color: black;
+}
+
+.header-cont-search>input {
+    outline: none;
+}
+
 .header-nav-right {
     display: flex;
     flex-direction: row;
@@ -42,14 +66,53 @@
 }
 
 .header-nav-btn {
-    font-size: .75rem;
+    font-size: .5rem;
+    padding: 0.25rem;
+}
+
+.header-nav-btn>a {
+    text-decoration: none;
+    color: black;
+}
+
+.header-nav-btn:hover, .header-nav-menu:hover  {
+    background-color: lightgray;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .header-nav-img {
-    height: 2rem;
+    height: 1.5rem;
 }
 
 .header-nav-profile-pic {
-    height: 2rem;
+    height: 1.5rem;
     border-radius: 50%;
+}
+
+.header-nav-right {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    padding: 0 1rem 0 1rem;
+    gap: 1rem;
+}
+
+.header-nav-menu {
+    display: flex;
+    flex-direction: column;
+    font-size: .5rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+}
+
+.header-nav-menu>img {
+    height: 1.5rem;
+    
+}
+
+.header-nav-right-cta {
+    font-size: .75vw;
+    text-align: center;
 }
