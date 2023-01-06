@@ -160,3 +160,35 @@ h2 {
   border: 4px solid #046599;
   background-color: #e8f6fd;
 }
+
+/* footer */
+
+.footer {
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.footer-links-cont a {
+  color: grey;
+  text-decoration: none;
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.company-details-cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.company-details-cont>.header-cont-logo {
+  height: fit-content;
+  width: fit-content;
+}

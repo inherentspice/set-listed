@@ -4,6 +4,7 @@ import Header from "../../components/header";
 import News from "../../components/home/news";
 import Advertisement from "../../components/home/advertisement";
 import ProfileCard from "../../components/home/profile-card";
+import Footer from "../../components/home/footer";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Post />
       <News />
       <Advertisement />
+      <Footer />
 
     </div>
 
