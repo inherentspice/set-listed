@@ -3,7 +3,7 @@ export default function Notifications() {
   return (
     <div>
       <Header />
-      Notifications page
+      Notifications Page Here
     </div>
   )
 }
