@@ -181,6 +181,16 @@ h2 {
   font-size: 0.8rem;
 }
 
+.footer-links-cont a:hover {
+  color: #0077b5;
+  text-decoration: underline;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+}
+
 .company-details-cont {
   display: flex;
   align-items: center;
