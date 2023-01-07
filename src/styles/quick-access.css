@@ -1,0 +1,31 @@
+
+.quick-access-cont {
+    border: solid lightgray 2px;
+    border-radius: 15px;
+    width: 13rem;
+}
+
+.quick-access-category-cont{
+    padding: 0.5rem;
+}
+
+.quick-access-title {
+    font-size: 0.75rem;
+    color: darkred;
+    font-weight: bold;
+    padding-bottom: 0.75rem;
+}
+
+.quick-access-item-cont {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+}
+
+.quick-access-item-icon {
+    height: 0.75rem;
+}
+
+.quick-access-item {
+    font-size: .75rem;
+}

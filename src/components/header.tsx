@@ -1,12 +1,12 @@
 import '../styles/header.css';
-import Home from '../media/header/home.png';
-import MyNetwork from '../media/header/my-network.png';
-import Gigs from '../media/header/gigs.png';
-import Messaging from '../media/header/messaging.png';
-import Notifications from '../media/header/notifications.png';
+import Home from '../media/icons/home.png';
+import MyNetwork from '../media/icons/my-network.png';
+import Gigs from '../media/icons/gigs.png';
+import Messaging from '../media/icons/messaging.png';
+import Notifications from '../media/icons/notifications.png';
 import ProfilePic from '../media/home/profile-picture.png';
-import Search from '../media/header/search.png';
-import Services from '../media/header/services.png';
+import Search from '../media/icons/search.png';
+import Services from '../media/icons/services.png';
 
 export default function Header() {
     return(
