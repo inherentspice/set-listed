@@ -3,6 +3,30 @@ import Group from '../../media/icons/group.png';
 import Event from '../../media/icons/event.png';
 import '../../styles/quick-access.css';
 
+const profileCardData = {
+    userId: 123,
+    groups: [{groupId: 2, groupName:'Open Mic Support Group', groupURL: '/openmicsupportgroup'}],
+    events: [{eventId: 1, eventName:'Sad Mic at Restaurant', eventURL: '/sadmic'}],
+    hashtags: [{hashtagId: 9, hashtagName:'comedy', hashtagUrl:'/comedy'}]
+}
+
+function PopulateQuickAccessItems( QuickAccessItems: string){
+    return(
+        <div></div>
+    )
+}
+
+function CreateQuickAccessItem( itemType: string, itemName: string, itemLink: string ) {
+    return(
+        <div className='quick-access-item-cont'>
+            <a href={itemLink}>
+                <img className='quick-access-item-icon' src={itemType} />
+                <div className='quick-access-item'>{itemName}</div>
+            </a>
+        </div>
+    )
+}
+
 export default function QuickAccess(){
     return(
         <div className="quick-access-cont">
