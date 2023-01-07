@@ -2,17 +2,17 @@ export default function Footer() {
   return (
     <div className="footer">
       <div className="footer-links-cont">
-        <div className="links-1">
+        <div className="link">
           <a href="/">About</a>
           <a href="/">Accessibility</a>
           <a href="/">Help Center</a>
         </div>
-        <div className="links-2">
+        <div className="link">
           <a href="/">Privacy & Terms</a>
           <a href="/">Ad Choices</a>
           <a href="/">Advertising</a>
         </div>
-        <div className="links-3">
+        <div className="link">
           <a href="/">Business Services</a>
           <a href="/">More</a>
         </div>
