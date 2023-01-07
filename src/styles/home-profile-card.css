@@ -25,7 +25,6 @@
 .profile-card-background-img {
     height: 4rem;
     width: 100%;
-    background-image: url(../media/home/profile-background.jpg);
     background-size: cover;
     border-radius: 15px 15px 0 0;
 }
