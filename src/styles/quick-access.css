@@ -3,23 +3,30 @@
     border: solid lightgray 2px;
     border-radius: 15px;
     width: 13rem;
+    padding: 0 0 0.25rem 0;
 }
 
 .quick-access-category-cont{
-    padding: 0.5rem;
+    padding: 0 0 0.25rem 0;
 }
 
 .quick-access-title {
     font-size: 0.75rem;
     color: darkred;
     font-weight: bold;
-    padding-bottom: 0.75rem;
+    padding: 0.75rem 0 0.25rem 0.75rem;
 }
 
 .quick-access-item-cont {
     display: flex;
     flex-direction: row;
+    padding: 0.25rem 0.75rem 0.25rem 0.75rem;
     gap: .5rem;
+}
+
+.quick-access-item-cont:hover {
+    background-color: lightgray;
+    cursor: pointer;
 }
 
 .quick-access-item-icon {
@@ -28,4 +35,9 @@
 
 .quick-access-item {
     font-size: .75rem;
+}
+
+.quick-access-item>a {
+    text-decoration: none;
+    color: black;
 }
