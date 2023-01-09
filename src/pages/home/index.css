@@ -202,3 +202,26 @@ h2 {
   height: fit-content;
   width: fit-content;
 }
+
+/* feed */
+.home-feed-cont {
+  max-width: 500px;
+}
+
+.profile-info-cont {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.profile-text-info-cont>p {
+  margin: 0;
+}
+
+.profile-name {
+  font-weight: 700;
+}
+
+.profile-tag {
+  color: rgb(145, 145, 145);
+  font-size: 0.8rem;
+}
