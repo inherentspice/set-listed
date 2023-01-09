@@ -6,6 +6,8 @@ import Advertisement from "../../components/home/advertisement";
 import ProfileCard from "../../components/home/profile-card";
 import Footer from "../../components/home/footer";
 import QuickAccess from "../../components/home/quick-access";
+import Feed from "../../components/home/feed";
+import FeedData from "../../dummy-data/feed";
 
 
 export default function Home() {
@@ -15,10 +17,12 @@ export default function Home() {
       <ProfileCard />
       <QuickAccess />
       <Post />
+      {FeedData.map(post => {
+        return <Feed postData={post}/>
+      })}
       <News />
       <Advertisement />
       <Footer />
-
     </div>
 
   )

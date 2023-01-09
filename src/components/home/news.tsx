@@ -1,3 +1,5 @@
+import convertDate from "../../utilities/convert-date";
+
 export default function News() {
 
   interface newsDataObject {
@@ -35,17 +37,7 @@ export default function News() {
   ]
 
   // function to convert the date posted to the how long ago it was posted in days or hours
-  function convertDate(date: Date): string {
-    const dateDifference =  Date.now().valueOf() - date.valueOf();
-    const days = Math.floor(dateDifference / (24*60*60*1000));
-    // if days === 0, return value in hours
-    if (!days) {
-      return `${Math.floor(dateDifference / (60 * 60 * 1000))}h`;
-    }
 
-    // else return value in days
-    return `${days}d`;
-  }
 
   return (
     <div className="home-news-cont home-comp">
