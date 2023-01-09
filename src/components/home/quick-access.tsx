@@ -12,7 +12,7 @@ const profileCardData = {
 
 export default function QuickAccess(){
     return(
-        <div className="quick-access-cont">
+        <div className="quick-access-cont home-comp">
             <div className="quick-access-category-cont">
                 <div className="quick-access-title">Trending Now</div>
                 <div className="quick-access-item-cont">

@@ -16,7 +16,7 @@ const profileCardData = {
 
 export default function ProfileCard(){
     return(
-        <div className='profile-card-cont'>
+        <div className='profile-card-cont home-comp'>
             <div className='profile-card-user-cont'>
 
                 <div className='profile-card-user-img-cont'>
