@@ -11,7 +11,6 @@ const FeedData = [
     Whether it's through stand-up comedy, sketch writing, or improvisation, I love finding creative ways to bring stories to life on stage.
     How do you use stories in your life?`,
     profileImage: DeniseProfile
-
   },
   {
     name: "Rachel Loo",
