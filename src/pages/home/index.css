@@ -76,7 +76,7 @@ h2 {
 .post-option-btn {
   font-size: 14px;
   font-weight: 500;
-  color: #0077b5;
+  color: #8b0000;
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -146,8 +146,8 @@ h2 {
 
 .home-ad-cont>button {
   border-radius: 124px;
-  border: 2px solid #0077b5;
-  color:#0077b5;
+  border: 2px solid #a80101;
+  color: #a80101;
   background-color: #ffffff;
   width: 30%;
   height: 2rem;
@@ -157,8 +157,8 @@ h2 {
 }
 
 .home-ad-cont>button:hover {
-  border: 4px solid #046599;
-  background-color: #e8f6fd;
+  border: 4px solid #8b0000;
+  background-color: #faf1f1;
 }
 
 /* footer */
@@ -182,7 +182,7 @@ h2 {
 }
 
 .footer-links-cont a:hover {
-  color: #0077b5;
+  color: #8b0000;
   text-decoration: underline;
 }
 
