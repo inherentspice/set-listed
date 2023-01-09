@@ -11,7 +11,7 @@ import FeedData from "../../dummy-data/feed";
 
 export default function Home() {
   return (
-    <div>
+    <div className="home">
       <ProfileCard />
       <QuickAccess />
       <Post />
