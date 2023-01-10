@@ -1,18 +1,7 @@
 import ProfilePicture from '../../media/home/profile-picture.png';
 import BackgroundPicture from '../../media/home/profile-background.jpg';
 import '../../styles/home-profile-card.css';
-
-
-const profileCardData = {
-        userProfilePicture: ProfilePicture,
-        userBackgroundPicture: BackgroundPicture,
-        userFirstName: 'Ben',
-        userLastName: 'Dover',
-        userTagline: "The show didn't get canceled, I quit.",
-        userProfileViews: 1,
-        userPostImpressions: 69,
-    }
-
+import { FakeUserData } from '../../data/fake-users';
 
 export default function ProfileCard(){
     return(
@@ -20,25 +9,25 @@ export default function ProfileCard(){
             <div className='profile-card-user-cont'>
 
                 <div className='profile-card-user-img-cont'>
-                    <img className='profile-card-background-img' src={profileCardData.userBackgroundPicture} />
-                    <img className='profile-card-user-img' src={profileCardData.userProfilePicture}/>
+                    <img className='profile-card-background-img' src={FakeUserData.userBackgroundPicture} />
+                    <img className='profile-card-user-img' src={FakeUserData.userProfilePicture}/>
                 </div>
 
                 <div className='profile-card-user-info-cont'>
-                    <div className='profile-card-user-name'>{profileCardData.userFirstName+' '+profileCardData.userLastName}</div>
-                    <div className='profile-card-user-tagline'>{profileCardData.userTagline}</div>
+                    <div className='profile-card-user-name'>{FakeUserData.userFirstName+' '+FakeUserData.userLastName}</div>
+                    <div className='profile-card-user-tagline'>{FakeUserData.userTagline}</div>
                 </div>
             </div>
 
             <div className='profile-card-interaction-stats-cont'>
                 <div className='profile-card-interaction-stats-item'>
                     <div className='profile-card-interaction-stat-name'>Who's viewed your profile</div>
-                    <div className='profile-card-interaction-stat'>{profileCardData.userProfileViews}</div>
+                    <div className='profile-card-interaction-stat'>{FakeUserData.userProfileViews}</div>
                 </div>
 
                 <div className='profile-card-interaction-stats-item'>
                     <div className='profile-card-interaction-stat-name'>Impressions of your post</div>
-                    <div className='profile-card-interaction-stat'>{profileCardData.userPostImpressions}</div>
+                    <div className='profile-card-interaction-stat'>{FakeUserData.userPostImpressions}</div>
                 </div>
             </div>
 
