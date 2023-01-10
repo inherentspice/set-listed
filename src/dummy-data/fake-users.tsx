@@ -12,7 +12,7 @@ export const FakeUserData = {
   userTagline: "The show didn't get canceled, I quit.",
   userProfileViews: 1,
   userPostImpressions: 69,
-  groups: '',
-  events: '',
-  hashtags: ''
+  groups: [{id: 2, name:'Open Mic Support Group', url: '/groups/openmicsupportgroup'}],
+  events: [{id: 1, name:'Sad Mic at Restaurant', url: '/events/sadmic'}],
+  hashtags: [{id: 9, name:'comedy', url:'/hashtags/comedy'}]
 }

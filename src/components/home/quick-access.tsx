@@ -2,13 +2,7 @@ import Hashtag from '../../media/icons/hashtag.png';
 import Group from '../../media/icons/group.png';
 import Event from '../../media/icons/event.png';
 import '../../styles/quick-access.css';
-
-const profileCardData = {
-    userId: 123,
-    groups: [{id: 2, name:'Open Mic Support Group', url: '/groups/openmicsupportgroup'}],
-    events: [{id: 1, name:'Sad Mic at Restaurant', url: '/events/sadmic'}],
-    hashtags: [{id: 9, name:'comedy', url:'/hashtags/comedy'}]
-}
+import { FakeUserData } from '../../dummy-data/fake-users';
 
 export default function QuickAccess(){
     return(
@@ -24,7 +18,7 @@ export default function QuickAccess(){
             <div className="quick-access-category-cont">
                 <div className="quick-access-title">Groups</div>
                 <div>
-                {profileCardData.groups.map(item => {
+                {FakeUserData.groups.map(item => {
                         return(
                             <div className="quick-access-item-cont">
                                 <img className="quick-access-item-icon" src={Group}/>
@@ -38,7 +32,7 @@ export default function QuickAccess(){
             <div className="quick-access-category-cont">
                 <div className="quick-access-title">Upcoming Events</div>
                 <div>
-                {profileCardData.events.map(item => {
+                {FakeUserData.events.map(item => {
                         return(
                             <div className="quick-access-item-cont">
                                 <img className="quick-access-item-icon" src={Event}/>
@@ -52,7 +46,7 @@ export default function QuickAccess(){
             <div className="quick-access-category-cont">
                 <div className="quick-access-title">My Hashtags</div>
                 <div>
-                {profileCardData.hashtags.map(item => {
+                {FakeUserData.hashtags.map(item => {
                         return(
                             <div className="quick-access-item-cont">
                                 <img className="quick-access-item-icon" src={Hashtag}/>
