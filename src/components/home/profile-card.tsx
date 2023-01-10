@@ -1,7 +1,5 @@
-import ProfilePicture from '../../media/home/profile-picture.png';
-import BackgroundPicture from '../../media/home/profile-background.jpg';
 import '../../styles/home-profile-card.css';
-import { FakeUserData } from '../../data/fake-users';
+import { FakeUserData } from '../../dummy-data/fake-users';
 
 export default function ProfileCard(){
     return(

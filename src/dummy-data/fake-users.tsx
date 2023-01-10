@@ -1,4 +1,3 @@
-import { url } from "inspector";
 import BenDoverPic from '../media/home/profile-picture.png';
 import BenDoverBG from '../media/home/profile-background.jpg';
 
