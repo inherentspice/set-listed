@@ -1,0 +1,21 @@
+.profile-hero-cont {
+    width: 30rem;
+    border-radius: 15px;
+    border: lightgray 2px solid;
+    background-color: pink;
+}
+
+.profile-hero-background-img {
+    width: 30rem;
+    border-radius: 15px 15px 0 0 ;
+}
+
+.profile-hero-profile-img {
+    border: black 3px solid;
+    width: 8rem;
+    border-radius: 50%;
+    position: relative;
+    bottom: 4rem;
+    left: 2rem;
+    margin-bottom: -4rem;
+}
