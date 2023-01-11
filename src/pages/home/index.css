@@ -39,6 +39,16 @@ h2 {
   grid-template-rows: repeat(auto-fill, 150px);
   background-color: #fff7f7;
   grid-gap: 0.5rem;
+  width: 60%;
+  margin-top: 1rem;
+}
+
+.page-cont {
+  background-color: #fff7f7;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 /* post */
@@ -141,6 +151,7 @@ h2 {
   font-size: 0.8rem;
   font-weight: 300;
   color:rgb(64, 64, 64);
+  text-align: center;
 }
 
 .ad-content-cont {
@@ -157,7 +168,6 @@ h2 {
   border: 2px solid #a80101;
   color: #a80101;
   background-color: #ffffff;
-  width: 30%;
   height: 2rem;
   font-weight: 700;
   font-size: 1.25rem;

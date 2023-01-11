@@ -2,6 +2,7 @@
 .quick-access-cont {
     grid-column: 1 / 1;
     grid-row: 3 / 4;
+    height:fit-content;
 }
 
 .quick-access-category-cont{
