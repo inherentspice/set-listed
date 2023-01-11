@@ -1,3 +1,4 @@
+import React from "react";
 import Profile from "../../media/home/profile-picture.png";
 
 export default function Advertisement() {

@@ -1,3 +1,4 @@
+import React from "react";
 import convertDate from "../../utilities/convert-date";
 
 export default function News() {

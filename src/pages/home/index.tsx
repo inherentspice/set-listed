@@ -1,3 +1,4 @@
+import React from "react";
 import Post from "../../components/home/post";
 import "./index.css";
 import News from "../../components/home/news";
@@ -17,7 +18,7 @@ export default function Home() {
         <QuickAccess />
         <Post />
         {FeedData.map(post => {
-          return <Feed postData={post}/>
+          return <Feed postData={post} key={post.posted.toString()}/>
         })}
         <News />
         <div className="ad-footer-cont">
