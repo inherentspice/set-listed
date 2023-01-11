@@ -11,17 +11,19 @@ import FeedData from "../../dummy-data/feed";
 
 export default function Home() {
   return (
-    <div className="home">
-      <ProfileCard />
-      <QuickAccess />
-      <Post />
-      {FeedData.map(post => {
-        return <Feed postData={post}/>
-      })}
-      <News />
-      <div className="ad-footer-cont">
-        <Advertisement />
-        <Footer />
+    <div className="page-cont">
+      <div className="home">
+        <ProfileCard />
+        <QuickAccess />
+        <Post />
+        {FeedData.map(post => {
+          return <Feed postData={post}/>
+        })}
+        <News />
+        <div className="ad-footer-cont">
+          <Advertisement />
+          <Footer />
+        </div>
       </div>
     </div>
   )
