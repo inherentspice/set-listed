@@ -1,4 +1,5 @@
-import convertDate from "../../utilities/convert-date"
+import React from "react";
+import convertDate from "../../utilities/convert-date";
 
 interface feedProps {
   postData:
