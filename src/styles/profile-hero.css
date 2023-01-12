@@ -1,21 +1,69 @@
 .profile-hero-cont {
-    width: 30rem;
+    width: 50rem;
     border-radius: 15px;
     border: lightgray 2px solid;
-    background-color: pink;
+    display: flex;
+    flex-direction: column;
 }
 
 .profile-hero-background-img {
-    width: 30rem;
+    width: 100%;
     border-radius: 15px 15px 0 0 ;
 }
 
 .profile-hero-profile-img {
-    border: black 3px solid;
-    width: 8rem;
+    border: white 4px solid;
+    width: 10rem;
     border-radius: 50%;
     position: relative;
-    bottom: 4rem;
+    bottom: 7rem;
     left: 2rem;
-    margin-bottom: -4rem;
+    margin-bottom: -6rem;
+}
+
+.profile-hero-user-info-cont {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 0 0 0 1.5rem;
+    gap: .25rem;
+}
+
+.profile-hero-user-name-cont {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-hero-user-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.profile-hero-performer-type {
+    color: slategray;
+    font-size: 1.5rem;
+}
+
+.profile-hero-contact-cont {
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.profile-hero-location {
+    color: slategray;
+}
+
+.profile-hero-contact {
+    color: darkred;
+    font-weight: bold;
+}
+
+.profile-hero-connections {
+    color: darkred;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
