@@ -1,5 +1,7 @@
 import React from "react";
 import { FakeUserData } from "../../dummy-data/fake-users";
+import RachelLoo from "../../media/home/rachel-profile-picture.png";
+import DeniseFerguson from "../../media/home/denise-profile-picture.png";
 import "../../styles/profile-hero.css";
 
 export default function ProfileHero() {
@@ -10,7 +12,7 @@ export default function ProfileHero() {
       <div className="profile-hero-user-info-cont">
         <div className="profile-hero-user-name-cont">
           <div className="profile-hero-user-name">{FakeUserData.userFirstName+" "+ FakeUserData.userLastName}</div>
-          <div className='profile-hero-performer-type'>| Comedian</div>
+          <div className='profile-hero-performer-type'>| Improv Comedian</div>
 
         </div>
         <div className='profile-hero-tagline'>{FakeUserData.userTagline}</div>
@@ -20,8 +22,11 @@ export default function ProfileHero() {
         </div>
         <div className='profile-hero-connections'>500+ connections</div>
         <div className='profile-hero-mutual-connections-cont'>
-          <div className='profile-hero-mutual-connections-imgs'></div>
-          <div className='profile-hero-mutual-connections-names'>John Doe, Stevie Smiff</div>
+          <div className='profile-hero-mutual-connections-imgs'>
+            <img className="profile-hero-mutual-connection-img" alt="pic" src={RachelLoo} />
+            <img className="profile-hero-mutual-connection-img overlap" alt="pic" src={DeniseFerguson} />
+          </div>
+          <div className='profile-hero-mutual-connections-names'><a href='./my-profile'>2 Mutual Connections: Rachel Loo and Denise Ferguson</a></div>
         </div>
         <div className='profile-hero-message'>Message</div>
       </div>
