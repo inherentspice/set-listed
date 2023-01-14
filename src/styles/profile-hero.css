@@ -21,6 +21,11 @@
     margin-bottom: -6rem;
 }
 
+.profile-hero-user-cont {
+    display: grid;
+    grid-template-columns: 5fr 3fr;
+}
+
 .profile-hero-user-info-cont {
     display: flex;
     flex-direction: column;
@@ -82,23 +87,23 @@
 .profile-hero-mutual-connections-cont {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
 .profile-hero-mutual-connection-img {
-    height: 2rem;
+    height: 1.5rem;
     border-radius: 50%;
     border: 1px solid black;
 }
 
 .profile-hero-mutual-connection-img.overlap {
-    margin-left: -1rem;
+    margin-left: -0.5rem;
 }
 
 .profile-hero-mutual-connections-names>a {
     text-decoration: none;
     color: slategray;
+    font-size: 0.75rem;
 }
 
 .profile-hero-mutual-connections-names>a:hover {
@@ -121,5 +126,44 @@
 .profile-hero-message:hover {
     background-color: white;
     color: darkred;
+    cursor: pointer;
+}
+
+.profile-hero-user-digital-footprint>div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem;
+}
+
+.profile-hero-user-digital-footprint-item {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr 5fr;
+    align-items: center;
+    gap: 0.5rem;
+    color: slategray;
+    padding: 0.5rem;
+    border-radius: 25px;
+}
+
+
+
+.profile-hero-user-digital-footprint-img {
+    max-height: 1.5rem;
+    max-width: 1.5rem;
+}
+
+.profile-hero-user-digital-footprint-username {
+    font-weight: bold;
+    font-size: .75;
+}
+
+.profile-her-user-digital-footprint-follower-img {
+    max-height: 1.5rem;
+}
+
+.profile-hero-user-digital-footprint-item:hover {
+    background-color: darkred;
+    color: white;
     cursor: pointer;
 }
