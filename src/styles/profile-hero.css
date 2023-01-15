@@ -4,6 +4,23 @@
     width: fit-content;
 }
 
+.profile-hero-background-edit {
+    position: relative;
+    height: 1.5rem;
+    width: 1.5rem;
+    top: 2rem;
+    left: 85%;
+    margin-bottom: -2rem;
+    background-color: white;
+    border-radius: 50%;
+    padding: 0.5rem;
+}
+
+.profile-hero-background-edit:hover {
+    cursor: pointer;
+    background-color: lightgray;
+}
+
 .profile-hero-background-img {
     width: 100%;
     border-radius: 15px 15px 0 0 ;
@@ -17,6 +34,22 @@
     bottom: 7rem;
     left: 2rem;
     margin-bottom: -6rem;
+}
+
+.profile-hero-user-info-edit {
+    height: 1.5rem;
+    width: 1.5rem;
+    position: relative;
+    bottom: 3rem;
+    margin-bottom: -3rem;
+    left: 85%;
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+.profile-hero-user-info-edit:hover {
+    cursor: pointer;
+    background-color: lightgray;
 }
 
 .profile-hero-user-cont {

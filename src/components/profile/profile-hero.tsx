@@ -4,13 +4,16 @@ import RachelLoo from "../../media/home/rachel-profile-picture.png";
 import DeniseFerguson from "../../media/home/denise-profile-picture.png";
 import "../../styles/profile-hero.css";
 import Follower from "../../media/icons/follower.png";
+import Edit from "../../media/icons/edit.png";
 
 export default function ProfileHero() {
 
   return(
     <div className="profile-hero-cont comp">
+      <img className="profile-hero-background-edit" src={Edit} />
       <img className="profile-hero-background-img" src={FakeUserData.userBackgroundPicture} alt=""/>
       <img className="profile-hero-profile-img" src={FakeUserData.userProfilePicture} alt="" />
+      <img className="profile-hero-user-info-edit" src={Edit} />
       <div className="profile-hero-user-cont">
         <div className="profile-hero-user-info-cont">
           <div className="profile-hero-user-name-cont">
