@@ -1,37 +1,4 @@
-/* common styles */
-.home-comp {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
-  border-radius: 9px;
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14),
-              0 2px 1px -1px rgba(0,0,0,0.12),
-              0 1px 3px 0 rgba(0,0,0,0.2);
-  padding: 8px;
-}
-
-.profile-picture-small {
-  border-radius: 124px;
-  height: 50px;
-  width: 50px;
-  cursor: pointer;
-}
-
-.profile-picture-medium {
-  border-radius: 124px;
-  height: 80px;
-  width: 80px;
-  cursor: pointer;
-}
-
-h2 {
-  font-size: 1.1rem;
-  text-align: start;
-  margin: 0.25rem 0;
-}
+@import "../../App.css";
 
 .home {
   display: grid;
@@ -41,14 +8,6 @@ h2 {
   grid-gap: 0.5rem;
   width: 60%;
   margin-top: 1rem;
-}
-
-.page-cont {
-  background-color: #fff7f7;
-  min-height: 100vh;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
 }
 
 /* post */
