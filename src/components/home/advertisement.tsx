@@ -15,5 +15,5 @@ export default function Advertisement() {
       <p className="ad-cta">Name, explore more relevant oppurtunities with <b>Company</b></p>
       <button>Follow</button>
     </div>
-  )
+  );
 }

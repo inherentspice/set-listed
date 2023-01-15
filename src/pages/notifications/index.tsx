@@ -5,5 +5,5 @@ export default function Notifications() {
     <div>
       Notifications Page Here
     </div>
-  )
+  );
 }

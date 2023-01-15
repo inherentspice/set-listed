@@ -24,5 +24,5 @@ export default function Footer() {
         <p>setListed Corp 2023</p>
       </div>
     </div>
-  )
+  );
 }

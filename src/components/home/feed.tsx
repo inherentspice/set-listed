@@ -27,5 +27,5 @@ export default function Feed(props: feedProps) {
       </div>
       <p>{props.postData.post}</p>
     </div>
-  )
+  );
 }

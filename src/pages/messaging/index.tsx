@@ -5,5 +5,5 @@ export default function Messaging() {
     <div>
       messaging page
     </div>
-  )
+  );
 }

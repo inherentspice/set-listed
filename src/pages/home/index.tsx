@@ -18,7 +18,7 @@ export default function Home() {
         <QuickAccess />
         <Post />
         {FeedData.map(post => {
-          return <Feed postData={post} key={post.posted.toString()}/>
+          return <Feed postData={post} key={post.posted.toString()}/>;
         })}
         <News />
         <div className="ad-footer-cont">
@@ -27,5 +27,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-  )
+  );
 }

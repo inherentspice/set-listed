@@ -28,38 +28,20 @@
   },
   "proxy": "http://localhost:8080",
   "eslintConfig": {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
     "extends": [
       "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:jsx-a11y/recommended"
-    ],
-    "plugins": [
-      "react",
-      "jsx-a11y"
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react-hooks/recommended"
     ],
     "rules": {
-      "react/prop-types": 0,
-      "indent": [
-        "error",
-        2
-      ],
-      "linebreak-style": 1,
-      "quotes": [
-        "error",
-        "double"
-      ]
-    },
-    "parserOptions": {
-      "ecmaVersion": 2021,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "tsx": true
-      }
-    },
-    "env": {
-      "es6": true,
-      "browser": true,
-      "node": true
+      "semi": [1, "always"],
+      "quotes": [2, "double"]
     },
     "settings": {
       "react": {
@@ -80,8 +62,9 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^8.31.0",
-    "eslint-plugin-jsx-a11y": "^6.7.0",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "eslint": "^8.32.0",
     "eslint-plugin-react": "^7.32.0"
   }
 }

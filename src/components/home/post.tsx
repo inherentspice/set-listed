@@ -15,5 +15,5 @@ export default function Post() {
         <button className="post-option-btn">Write Article</button>
       </div>
     </div>
-  )
+  );
 }

@@ -22,6 +22,6 @@ const FeedData = [
     Thanks for reading and I hope to see you at a show soon!`,
     profileImage: RachelProfile,
   }
-]
+];
 
 export default FeedData;

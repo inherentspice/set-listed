@@ -8,5 +8,5 @@ export default function MyProfile() {
       <ProfileHero />
       <ProfileAbout />
     </div>
-  )
+  );
 }
