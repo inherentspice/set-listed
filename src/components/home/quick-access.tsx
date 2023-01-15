@@ -2,12 +2,11 @@ import React from "react";
 import Hashtag from "../../media/icons/hashtag.png";
 import Group from "../../media/icons/group.png";
 import Event from "../../media/icons/event.png";
-import "../../styles/quick-access.css";
 import { FakeUserData } from "../../dummy-data/fake-users";
 
 export default function QuickAccess(){
   return(
-    <div className="quick-access-cont home-comp">
+    <div className="quick-access-cont comp">
       <div className="quick-access-category-cont">
         <div className="quick-access-title">Trending Now</div>
         <div className="quick-access-item-cont">

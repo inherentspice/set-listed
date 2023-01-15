@@ -1,10 +1,9 @@
 import React from "react";
-import "../../styles/home-profile-card.css";
 import { FakeUserData } from "../../dummy-data/fake-users";
 
 export default function ProfileCard(){
   return(
-    <div className='profile-card-cont home-comp'>
+    <div className='profile-card-cont comp'>
       <div className='profile-card-user-cont'>
 
         <div className='profile-card-user-img-cont'>

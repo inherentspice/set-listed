@@ -8,14 +8,15 @@ import Follower from "../../media/icons/follower.png";
 export default function ProfileHero() {
 
   return(
-    <div className="profile-hero-cont">
+    <div className="profile-hero-cont comp">
       <img className="profile-hero-background-img" src={FakeUserData.userBackgroundPicture} alt=""/>
       <img className="profile-hero-profile-img" src={FakeUserData.userProfilePicture} alt="" />
       <div className="profile-hero-user-cont">
         <div className="profile-hero-user-info-cont">
           <div className="profile-hero-user-name-cont">
             <div className="profile-hero-user-name">{FakeUserData.userFirstName+" "+ FakeUserData.userLastName}</div>
-            <div className='profile-hero-performer-type'>| Improv Comedian</div>
+            <div className="profile-hero-divide"></div>
+            <div className='profile-hero-performer-type'>Improv Comedian</div>
 
           </div>
           <div className='profile-hero-tagline'>{FakeUserData.userTagline}</div>
