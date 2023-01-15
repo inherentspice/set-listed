@@ -43,11 +43,11 @@ export default function ProfileHero() {
                   <img className="profile-her-user-digital-footprint-follower-img" src={Follower} alt="" />
                   <div className="profile-hero-user-digital-footprint-followers">{item.followers}</div>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

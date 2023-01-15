@@ -5,5 +5,5 @@ export default function Gigs() {
     <div>
       gigs page
     </div>
-  )
+  );
 }

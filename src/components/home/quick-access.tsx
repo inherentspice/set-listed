@@ -25,7 +25,7 @@ export default function QuickAccess(){
                 <img className="quick-access-item-icon" src={Group} alt=""/>
                 <div className="quick-access-item"><a href={item.url}>{item.name}</a></div>
               </div>
-            )
+            );
           })}
         </div>
       </div>
@@ -39,7 +39,7 @@ export default function QuickAccess(){
                 <img className="quick-access-item-icon" src={Event} alt=""/>
                 <div className="quick-access-item"><a href={item.url}>{item.name}</a></div>
               </div>
-            )
+            );
           })}
         </div>
       </div>
@@ -53,10 +53,10 @@ export default function QuickAccess(){
                 <img className="quick-access-item-icon" src={Hashtag} alt=""/>
                 <div className="quick-access-item"><a href={item.url}>{item.name}</a></div>
               </div>
-            )
+            );
           })}
         </div>
       </div>
     </div>
-  )
+  );
 }

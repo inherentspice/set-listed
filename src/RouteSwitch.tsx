@@ -21,5 +21,5 @@ export default function RouteSwitch() {
         <Route path='/notifications' element={<Notifications />} />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }

@@ -5,5 +5,5 @@ export default function MyNetwork() {
     <div>
       my network page
     </div>
-  )
+  );
 }

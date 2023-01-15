@@ -35,5 +35,5 @@ export default function ProfileCard(){
         <div>Try Premium for Free Brokie</div>
       </div>
     </div>
-  )
+  );
 }

@@ -35,7 +35,7 @@ export default function News() {
       posted: new Date("January 3, 2023"),
       readCount: 41
     }
-  ]
+  ];
 
   // function to convert the date posted to the how long ago it was posted in days or hours
 
@@ -50,9 +50,9 @@ export default function News() {
               <li key={news.posted.toString()}>{news.title}</li>
               <p>{convertDate(news.posted)} ago | {news.readCount} readers</p>
             </div>
-          )
+          );
         })}
       </ul>
     </div>
-  )
+  );
 }
