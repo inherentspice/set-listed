@@ -3,7 +3,7 @@ import Profile from "../../media/home/profile-picture.png";
 
 export default function Advertisement() {
   return (
-    <div className="home-ad-cont home-comp">
+    <div className="home-ad-cont comp">
       <div className="ad-info-cont">
         <p>Ad</p>
       </div>

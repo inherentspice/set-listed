@@ -14,7 +14,7 @@ interface feedProps {
 
 export default function Feed(props: feedProps) {
   return (
-    <div className="home-feed-cont home-comp">
+    <div className="home-feed-cont comp">
       <div className="profile-info-cont">
         {props.postData.profileImage ?
           <img src={props.postData.profileImage} alt="" className="profile-picture-small"/>

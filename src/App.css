@@ -1,22 +1,22 @@
 :root {
   --primary-color: #8b0000;
   --primary-light-color: #faf1f1;
+  --secondary-color: #3e83c9;
   --background-color: #fff7f7;
   --background-comp-color: #ffffff;
   --button-hover-color: #d3d3d3;
+  --grey-color-0: #dddddd;
   --grey-color-1: #919191;
   --grey-color-2: #404040;
-
-
 }
 
-.home-comp {
+.comp {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
+  background-color: var(--background-comp-color);
+  border: 1px solid var(--grey-color-0);
   border-radius: 9px;
   box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14),
               0 2px 1px -1px rgba(0,0,0,0.12),

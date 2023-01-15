@@ -41,7 +41,7 @@ export default function News() {
 
 
   return (
-    <div className="home-news-cont home-comp">
+    <div className="home-news-cont comp">
       <h2>setListed News</h2>
       <ul>
         {newsData.map(news => {

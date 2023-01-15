@@ -1,11 +1,7 @@
+@import "../App.css";
+
 .profile-about-cont {
-    border: 2px lightgrey solid;
-    border-radius: 15px;
-    padding: 2rem;
-    width: 50rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    width: fit-content;
 }
 
 .profile-about-title {
