@@ -4,7 +4,24 @@
     width: fit-content;
 }
 
+.profile-about-title-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .profile-about-title {
     font-weight: bold;
     font-size: 1.5rem;
+}
+
+.profile-about-edit {
+    height: 1rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+.profile-about-edit:hover {
+    cursor: pointer;
+    background-color: lightgray;
 }
