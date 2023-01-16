@@ -10,6 +10,7 @@
   --grey-color-2: #404040;
 }
 
+/* components */
 .comp {
   position: relative;
   display: flex;
@@ -23,6 +24,16 @@
               0 1px 3px 0 rgba(0,0,0,0.2);
   padding: 8px;
 }
+
+.page-cont {
+  background-color: var(--background-color);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* pictures */
 
 .profile-picture-small {
   border-radius: 124px;
@@ -38,16 +49,17 @@
   cursor: pointer;
 }
 
+.profile-picture-large {
+  border-radius: 124px;
+  height: 120px;
+  width: 120px;
+  cursor: pointer;
+}
+
+
+/* global styles */
 h2 {
   font-size: 1.1rem;
   text-align: start;
   margin: 0.25rem 0;
-}
-
-.page-cont {
-  background-color: var(--background-color);
-  min-height: 100vh;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
 }
