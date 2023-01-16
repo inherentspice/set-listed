@@ -233,9 +233,7 @@
 }
 
 .profile-card-user-img {
-  height: 4rem;
   border: 1px solid var(--background-comp-color);
-  border-radius: 50%;
   position: relative;
   bottom: 2rem;
 }

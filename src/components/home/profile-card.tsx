@@ -8,7 +8,7 @@ export default function ProfileCard(){
 
         <div className='profile-card-user-img-cont'>
           <img className='profile-card-background-img' src={FakeUserData.userBackgroundPicture} alt="" />
-          <img className='profile-card-user-img' src={FakeUserData.userProfilePicture} alt=""/>
+          <img className='profile-card-user-img profile-picture-medium' src={FakeUserData.userProfilePicture} alt=""/>
         </div>
 
         <div className='profile-card-user-info-cont'>
