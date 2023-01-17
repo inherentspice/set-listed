@@ -1,4 +1,5 @@
 import React from "react";
+import "../../styles/profile-activity.css";
 
 export default function ProfileActivity() {
     return(
@@ -12,7 +13,10 @@ export default function ProfileActivity() {
                     <div className="profile-activity-start-post">Start a Post</div>
                 </div>
             </div>
-            <div className="profile-activity-posts-cont"></div>
+            <div className="profile-activity-posts-cont">
+
+            </div>
+            <div className="profile-activity-show-all">Show all activity</div>
         </div>
     )
 }
