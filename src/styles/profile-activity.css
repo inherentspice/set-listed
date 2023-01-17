@@ -1,0 +1,53 @@
+.profile-activity-cont {
+    width: fit-content;
+}
+
+.profile-activity-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 20rem;
+}
+
+.profile-activity-header-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-activity-header-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.profile-activity-header-followers {
+    font-size: 0.75rem;
+    color: slategray;
+}
+
+.profile-activity-start-post {
+    padding: .5rem;
+    font-weight: bold;
+    border: lightgray solid 2px;
+    border-radius: 2rem;
+}
+
+.profile-activity-start-post:hover {
+    cursor: pointer;
+    border: black solid 2px;
+    color: white;
+    background-color: darkred;
+}
+
+.profile-activity-show-all {
+    text-align: center;
+    border-top: lightgray 2px solid;
+    padding: .25rem;
+    border-radius: 0 0 15px 15px;
+    font-weight: bold;
+}
+
+.profile-activity-show-all:hover {
+    background-color: darkred;
+    color: white;
+    cursor: pointer;
+}
