@@ -1,3 +1,5 @@
+@import "../App.css";
+
 .profile-activity-cont {
     width: fit-content;
 }
@@ -6,7 +8,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 20rem;
+    width: 24rem;
 }
 
 .profile-activity-header-left {
@@ -21,33 +23,45 @@
 
 .profile-activity-header-followers {
     font-size: 0.75rem;
-    color: slategray;
+    color: var(--grey-color-1);
 }
 
 .profile-activity-start-post {
     padding: .5rem;
     font-weight: bold;
-    border: lightgray solid 2px;
+    border: var(--grey-color-1) solid 2px;
     border-radius: 2rem;
 }
 
 .profile-activity-start-post:hover {
     cursor: pointer;
     border: black solid 2px;
-    color: white;
-    background-color: darkred;
+    color: var(--background-comp-color);
+    background-color: var(--primary-color);
+}
+
+.profile-activity-post {
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-activity-post-img {
+    height: 4rem;
+    width: 4rem;
+    object-fit: cover;
+    border-radius: 15px;
 }
 
 .profile-activity-show-all {
     text-align: center;
-    border-top: lightgray 2px solid;
+    border-top: var(--grey-color-1) 2px solid;
     padding: .25rem;
     border-radius: 0 0 15px 15px;
     font-weight: bold;
 }
 
 .profile-activity-show-all:hover {
-    background-color: darkred;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--background-comp-color);
     cursor: pointer;
 }
