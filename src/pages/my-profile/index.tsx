@@ -8,7 +8,7 @@ import "./index.css";
 
 export default function MyProfile() {
   return (
-    <div className="page-cont">
+    <div className="page-cont profile-page">
       <ProfileHero />
       <ProfileAbout />
       <Featured />

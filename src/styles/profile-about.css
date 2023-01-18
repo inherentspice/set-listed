@@ -2,6 +2,7 @@
 
 .profile-about-cont {
     width: fit-content;
+    max-width: 50vw;
 }
 
 .profile-about-title-cont {
