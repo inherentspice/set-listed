@@ -1,6 +1,8 @@
 import React from "react";
 import Edit from "../../media/icons/edit.png";
 import Add from "../../media/icons/add.png";
+import "../../styles/profile-experience.css";
+import OpenMic from "../../media/profile/openmic.png";
 
 export default function ProfileExperience(){
     return(
@@ -14,7 +16,7 @@ export default function ProfileExperience(){
             </div>
             <div className="profile-experience-items-cont">
                 <div className="profile-experience-item">
-                    <img className="profile-experience-item-img" />
+                    <img className="profile-experience-item-img" src={OpenMic} />
                     <div className="profile-experience-item-info-cont">
                         <div className="profile-experience-item-title">Improv Host</div>
                         <div className="profile-experience-item-venue">Danny's Dive and Beer Shack</div>

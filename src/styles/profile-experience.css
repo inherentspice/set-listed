@@ -1,0 +1,70 @@
+@import "../App.css";
+
+.profile-experience-cont {
+    width: fit-content;
+    min-width: 50vw;
+}
+
+.profile-experience-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-experience-header-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.profile-experience-header-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.profile-experience-header-btn {
+    height: 2rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+.profile-experience-header-btn:hover {
+    cursor: pointer;
+    background-color: var(--grey-color-0);
+}
+
+.profile-experience-item {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.profile-experience-item-img {
+    height: 4rem;
+}
+
+.profile-experience-item-info-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.profile-experience-item-title {
+    font-weight: bold;
+}
+
+.profile-experience-item-venue {
+    font-size: 0.75rem;
+}
+
+.profile-experience-item-duration-cont {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+}
+
+.profile-experience-item-location {
+    font-size: 0.75rem;
+}
