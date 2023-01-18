@@ -3,6 +3,7 @@ import ProfileHero from "../../components/profile/profile-hero";
 import ProfileAbout from "../../components/profile/profile-about";
 import Featured from "../../components/profile/featured";
 import ProfileActivity from "../../components/profile/profile-activity";
+import ProfileExperience from "../../components/profile/profile-experience";
 import "./index.css";
 
 export default function MyProfile() {
@@ -12,6 +13,7 @@ export default function MyProfile() {
       <ProfileAbout />
       <Featured />
       <ProfileActivity />
+      <ProfileExperience />
     </div>
   );
 }

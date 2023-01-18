@@ -21,7 +21,7 @@ export default function ProfileActivity() {
             <div className="profile-activity-posts-cont">
                 {FakeUserData.activity.map(item => {
                     return(
-                        <div className="profile-activity-post-item">
+                        <div className="profile-activity-post-item" key={item.id}>
                         <div className="profile-activity-post-info">
                             <div className="profile-activity-post-author">{FakeUserData.userFirstName+" "+FakeUserData.userLastName}</div>
                             <div className="profile-activity-post-time">{"posted this | "+convertDate(item.date)}</div>
