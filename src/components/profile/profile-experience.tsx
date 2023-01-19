@@ -30,6 +30,9 @@ export default function ProfileExperience(){
                     </div>
                 </div>
             </div>
+            <div className="profile-experience-show-all-experience">
+                Show all experience
+            </div>
         </div>
     )
 }

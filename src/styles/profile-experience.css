@@ -68,3 +68,11 @@
 .profile-experience-item-location {
     font-size: 0.75rem;
 }
+
+.profile-experience-show-all-experience {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-top: solid 2px var(--grey-color-0);
+}
