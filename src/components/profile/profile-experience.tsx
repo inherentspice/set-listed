@@ -34,5 +34,5 @@ export default function ProfileExperience(){
                 Show all experience
             </div>
         </div>
-    )
+    );
 }

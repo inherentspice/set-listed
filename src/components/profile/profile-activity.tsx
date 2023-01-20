@@ -45,11 +45,11 @@ export default function ProfileActivity() {
                             <div className="profile-activity-post-like-count">{item.dislikes}</div>
                         </div>
                     </div>
-    
-                    )
+
+                    );
                 })}
             </div>
             <div className="profile-activity-show-all">Show all activity</div>
         </div>
-    )
+    );
 }
