@@ -26,76 +26,80 @@ export const FakeUserData = {
   userPostImpressions: 69,
   userFollwers: 1234,
   featured: [
-    {id: 1, name: "Open Mic @ Fishies", img: FeaturedOpenMic, description: "Always such a blast performing at Fishies on Newcastle Road. Great room, supportive regulars, and cheap beer!"},
-    {id: 2, name: "Opening for Dewey Parker", img: FeaturedGreenRoom, description: "It was a dream come true opening for one of my favourite comedians. I've always looked up to this guy, and to see him in the flesh was a real treat."}
+    {
+      id: 1,
+      name: "Open Mic @ Fishies",
+      img: FeaturedOpenMic,
+      description: "Always such a blast performing at Fishies on Newcastle Road. Great room, supportive regulars, and cheap beer!"},
+    {
+      id: 2,
+      name: "Opening for Dewey Parker",
+      img: FeaturedGreenRoom,
+      description: "It was a dream come true opening for one of my favourite comedians. I've always looked up to this guy, and to see him in the flesh was a real treat."}
   ],
-  groups: [{id: 1, name:"Open Mic Support Group", url: "/groups/openmicsupportgroup"}],
-  events: [{id: 2, name:"Sad Mic at Restaurant", url: "/events/sadmic"}],
-  hashtags: [{id: 3, name:"comedy", url:"/hashtags/comedy"}],
-  socialMedia: [{id: 4, socialMedia: "instagram", img: instagram, username: "@bendover69", followers: 3}, { id: 5, socialMedia: "youtube", img: youtube, username: "@BenDover69", followers: 14}, { id: 6, socialMedia: "tiktok", img: tiktok, username: "@BenChiling", followers: 100000}],
   groups: [{
-    id: 1, 
-    name:"Open Mic Support Group", 
+    id: 1,
+    name:"Open Mic Support Group",
     url: "/groups/openmicsupportgroup"
   }],
   events: [{
-    id: 2, 
-    name:"Sad Mic at Restaurant", 
+    id: 2,
+    name:"Sad Mic at Restaurant",
     url: "/events/sadmic"
   }],
   hashtags: [{
-    id: 3, 
-    name:"comedy", 
+    id: 3,
+    name:"comedy",
     url:"/hashtags/comedy"
   }],
   socialMedia: [{
-    id: 4, 
-    socialMedia: "instagram", 
-    img: instagram, 
-    username: "@bendover69", 
+    id: 4,
+    socialMedia: "instagram",
+    img: instagram,
+    username: "@bendover69",
     followers: 3
-  }, { 
-    id: 5, 
-    socialMedia: "youtube", 
-    img: youtube, 
-    username: "@BenDover69", 
+  }, {
+    id: 5,
+    socialMedia: "youtube",
+    img: youtube,
+    username: "@BenDover69",
     followers: 14
-  }, { 
-    id: 6, 
-    socialMedia: "tiktok", 
-    img: tiktok, 
-    username: "@BenChiling", 
+  }, {
+    id: 6,
+    socialMedia: "tiktok",
+    img: tiktok,
+    username: "@BenChiling",
     followers: 100000
   }],
   about:"I just received the initial deposit for a corporate show in Dubai that's coming up in a couple of weeks. The show pays $8000, yes, that's right, EIGHT THOUSAND US DOLLARS for less than one hour's work! And yes, I'll be flying in First Class as usual, in unbelievable luxury, with a flat bed!  I'll be checking out the indoor ski range, surfing on the sand dunes, visiting the tallest building in the world and the world's largest shopping mall, and luxuriating by the pool at my five star hotel. And yes, I will send pictures!",
   activity: [{
-    id: 7, 
-    date: new Date("January 1, 2023"), 
-    description: "I truly believe that I am the Bill Burr of the improv stage", 
-    title: "10 Reasons I am Bill Burr", 
-    url: "bendover.net", 
-    read: "2 min", 
-    img: BillBurr, 
-    likes: 1, 
+    id: 7,
+    date: new Date("January 1, 2023"),
+    description: "I truly believe that I am the Bill Burr of the improv stage",
+    title: "10 Reasons I am Bill Burr",
+    url: "bendover.net",
+    read: "2 min",
+    img: BillBurr,
+    likes: 1,
     dislikes: 1035
   }, {
-    id: 8, 
-    date: new Date("December 25, 2022"), 
-    description: "Steve Harvey's suits are fake and I have the proof they all zip up in the back.", 
-    title: "Steve Harvey the Liar", 
-    url: "bendover.net", 
-    read: "24 min", 
-    img: SteveHarvey, 
-    likes: 2560, 
+    id: 8,
+    date: new Date("December 25, 2022"),
+    description: "Steve Harvey's suits are fake and I have the proof they all zip up in the back.",
+    title: "Steve Harvey the Liar",
+    url: "bendover.net",
+    read: "24 min",
+    img: SteveHarvey,
+    likes: 2560,
     dislikes: 1}],
   experience: [{
-    id: 9, 
-    img: ImprovHost, 
-    title: "Improv Host", 
-    venue: "Danny's Dive and Beer Shack", 
-    start: "Jan 7, 1989", 
-    end: "Present", 
-    location: "Bangkok, Thailand", 
+    id: 9,
+    img: ImprovHost,
+    title: "Improv Host",
+    venue: "Danny's Dive and Beer Shack",
+    start: "Jan 7, 1989",
+    end: "Present",
+    location: "Bangkok, Thailand",
     description: "I run a show every night."
   }, {
     id: 10,

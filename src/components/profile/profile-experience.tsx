@@ -32,7 +32,7 @@ export default function ProfileExperience(){
                                 <div className="profile-experience-item-description">{item.description}</div>
                             </div>
                         </div>
-                    )
+                    );
                 })}
             </div>
             <div className="profile-experience-show-all-experience">
