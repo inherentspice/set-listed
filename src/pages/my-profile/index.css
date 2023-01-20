@@ -4,3 +4,38 @@
     align-items: center;
     gap: 1rem;
 }
+
+/* featured */
+
+.featured-cont {
+  width: 50vw;
+}
+
+.featured-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.featured-post-cont {
+  display: flex;
+}
+
+.featured-post {
+  max-width: 200px;
+  border: 2px solid var(--grey-color-0);
+  padding: 16px;
+  margin: 8px;
+  border-radius: 9px;
+}
+
+.featured-post>h4 {
+  margin: 0;
+}
+
+.featured-post>p {
+  margin: 0;
+}
+.featured-post>img {
+  width: -webkit-fill-available;
+  width: -moz-max-content;
+}

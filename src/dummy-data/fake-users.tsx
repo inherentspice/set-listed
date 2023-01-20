@@ -5,8 +5,11 @@ import instagram from "../media/icons/instagram.png";
 import youtube from "../media/icons/youtube.png";
 import BillBurr from "../media/profile/billburr.png";
 import SteveHarvey from "../media/profile/steveharvey.png";
+import FeaturedOpenMic from "../media/profile/fake-data-featured-post.png";
+import FeaturedGreenRoom from "../media/profile/fake-data-featured-green.png";
 import ImprovHost from "../media/profile/openmic.png";
 import Zoom from "../media/profile/zoom.png";
+
 
 export const FakeUserData = {
   userFirstName: "Ben",
@@ -22,6 +25,14 @@ export const FakeUserData = {
   userProfileViews: 1,
   userPostImpressions: 69,
   userFollwers: 1234,
+  featured: [
+    {id: 1, name: "Open Mic @ Fishies", img: FeaturedOpenMic, description: "Always such a blast performing at Fishies on Newcastle Road. Great room, supportive regulars, and cheap beer!"},
+    {id: 2, name: "Opening for Dewey Parker", img: FeaturedGreenRoom, description: "It was a dream come true opening for one of my favourite comedians. I've always looked up to this guy, and to see him in the flesh was a real treat."}
+  ],
+  groups: [{id: 1, name:"Open Mic Support Group", url: "/groups/openmicsupportgroup"}],
+  events: [{id: 2, name:"Sad Mic at Restaurant", url: "/events/sadmic"}],
+  hashtags: [{id: 3, name:"comedy", url:"/hashtags/comedy"}],
+  socialMedia: [{id: 4, socialMedia: "instagram", img: instagram, username: "@bendover69", followers: 3}, { id: 5, socialMedia: "youtube", img: youtube, username: "@BenDover69", followers: 14}, { id: 6, socialMedia: "tiktok", img: tiktok, username: "@BenChiling", followers: 100000}],
   groups: [{
     id: 1, 
     name:"Open Mic Support Group", 
