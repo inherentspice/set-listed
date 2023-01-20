@@ -3,6 +3,7 @@ import Edit from "../../media/icons/edit.png";
 import Add from "../../media/icons/add.png";
 import "../../styles/profile-experience.css";
 import OpenMic from "../../media/profile/openmic.png";
+import { FakeUserData } from "../../dummy-data/fake-users";
 
 export default function ProfileExperience(){
     return(
@@ -15,20 +16,24 @@ export default function ProfileExperience(){
                 </div>
             </div>
             <div className="profile-experience-items-cont">
-                <div className="profile-experience-item">
-                    <img className="profile-experience-item-img" src={OpenMic} />
-                    <div className="profile-experience-item-info-cont">
-                        <div className="profile-experience-item-title">Improv Host</div>
-                        <div className="profile-experience-item-venue">Danny's Dive and Beer Shack</div>
-                        <div className="profile-experience-item-duration-cont">
-                            <div className="profile-experience-item-dates">Jan 7, 1989 - Present</div>
-                            <div>|</div>
-                            <div className="profile-experience-item-duration">24 Years</div>
+                {FakeUserData.experience.map(item => {
+                    return(
+                        <div className="profile-experience-item">
+                            <img className="profile-experience-item-img" src={item.img} />
+                            <div className="profile-experience-item-info-cont">
+                                <div className="profile-experience-item-title">{item.title}</div>
+                                <div className="profile-experience-item-venue">{item.venue}</div>
+                                <div className="profile-experience-item-duration-cont">
+                                    <div className="profile-experience-item-dates">{item.start +" - "+ item.end}</div>
+                                    <div>|</div>
+                                    <div className="profile-experience-item-duration">24 Years</div>
+                                </div>
+                                <div className="profile-experience-item-location">{item.location}</div>
+                                <div className="profile-experience-item-description">{item.description}</div>
+                            </div>
                         </div>
-                        <div className="profile-experience-item-location">Bangkok, Thailand</div>
-                        <div className="profile-experience-item-description">I run a show every night.</div>
-                    </div>
-                </div>
+                    )
+                })}
             </div>
             <div className="profile-experience-show-all-experience">
                 Show all experience
