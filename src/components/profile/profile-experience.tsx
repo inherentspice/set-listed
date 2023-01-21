@@ -24,7 +24,7 @@ export default function ProfileExperience(){
                                 <div className="profile-experience-item-title">{item.title}</div>
                                 <div className="profile-experience-item-venue">{item.venue}</div>
                                 <div className="profile-experience-item-duration-cont">
-                                    <div className="profile-experience-item-dates">{item.start.toString().slice(4,16) +" - "+ item.end.toString().slice(4,16)}</div>
+                                    <div className="profile-experience-item-dates">{item.start.toString().slice(4,16) +" - "+ (item.end.toString().slice(4,16) === new Date(Date.now()).toString().slice(4,16) ? "Present" : item.end.toString().slice(4,16))}</div>
                                     <div>|</div>
                                     <div className="profile-experience-item-duration">{convertDateRange(item.start, item.end)}</div>
                                 </div>
