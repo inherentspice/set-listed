@@ -11,7 +11,7 @@ export default function QuickAccess(){
         <div className="quick-access-title">Trending Now</div>
         <div className="quick-access-item-cont">
           <img className="quick-access-item-icon" src={Hashtag} alt=""/>
-          <div className="quick-access-item">Dave Chappelle</div>
+          <div className="quick-access-item">Bill Burr</div>
         </div>
       </div>
 
