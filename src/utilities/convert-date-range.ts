@@ -6,7 +6,7 @@ export default function convertDateRange(start: Date, end: Date): string {
         return `${Math.floor(dateDifference / (24 * 60 * 60 * 1000 * 30))}m`;
     }
     if (years==1) {
-        return `${years} year`
+        return `${years} year`;
     }
 
     // else return value in days

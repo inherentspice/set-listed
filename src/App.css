@@ -33,6 +33,14 @@
   justify-content: center;
 }
 
+.close-button {
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 30px !important;
+}
+
 /* pictures */
 
 .profile-picture-small {
