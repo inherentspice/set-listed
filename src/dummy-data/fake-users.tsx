@@ -7,6 +7,9 @@ import BillBurr from "../media/profile/billburr.png";
 import SteveHarvey from "../media/profile/steveharvey.png";
 import FeaturedOpenMic from "../media/profile/fake-data-featured-post.png";
 import FeaturedGreenRoom from "../media/profile/fake-data-featured-green.png";
+import FeaturedWriting from "../media/profile/fake-data-featured-writing.png";
+import FeaturedLight from "../media/profile/fake-data-featured-light.png";
+import FeaturedAudience from "../media/profile/fake-data-featured-audience.png";
 import ImprovHost from "../media/profile/openmic.png";
 import Zoom from "../media/profile/zoom.png";
 
@@ -40,21 +43,21 @@ export const FakeUserData = {
     },
     {
       id: 3,
-      name: "Opening for Dewey Parker",
-      img: FeaturedGreenRoom,
-      description: "It was a dream come true opening for one of my favourite comedians. I've always looked up to this guy, and to see him in the flesh was a real treat. Such an honour to be there!"
+      name: "Writing Session",
+      img: FeaturedWriting,
+      description: "The writing process is a lot like being a stand-up comedian on stage. You never know what's going to land with the audience, so you just keep throwing out jokes, trying different things, and seeing what works. Just like a comedian, a writer must be willing to take risks and be open to failure in order to create something truly great. It's not always easy to come up with new material, and sometimes it feels like you're bombing on stage, but you have to keep going and keep pushing yourself. And just like a comedian, a writer's best work often comes from those moments when they're taking the biggest risks and putting themselves out there."
     },
     {
       id: 4,
-      name: "Opening for Dewey Parker",
-      img: FeaturedGreenRoom,
-      description: "It was a dream come true opening for one of my favourite comedians. I've always looked up to this guy, and to see him in the flesh was a real treat. Such an honour to be there!"
+      name: "Open Mic @ Bear & Claw",
+      img: FeaturedAudience,
+      description: "Last night at the open mic, I may have bombed on stage, but I learned that sometimes the best comedy comes from taking risks and trying new things. I may not have killed it out there, but I'm not going to let that stop me from getting back on stage and giving it another shot. After all, if you're not failing, you're not trying hard enough. #comedyneverdies #keepgrinding"
     },
     {
       id: 5,
-      name: "Opening for Dewey Parker",
-      img: FeaturedGreenRoom,
-      description: "It was a dream come true opening for one of my favourite comedians. I've always looked up to this guy, and to see him in the flesh was a real treat. Such an honour to be there!"
+      name: "The Light",
+      img: FeaturedLight,
+      description: "Comedy is like a beacon of light in the darkness, illuminating the human experience and shining a spotlight on the absurdity of life. It's a powerful tool that can bring people together and make us laugh even in the toughest of times. The light of comedy can break through the gloom and remind us of the beauty and wonder that exists in the world. It's a powerful force that can lift our spirits, open our hearts, and remind us that even in the darkest of moments, there is always a glimmer of hope. Like a ray of sunshine on a rainy day, comedy reminds us to keep going, to keep pushing through, and to never lose sight of the light that guides us."
     },
   ],
   groups: [{
