@@ -117,8 +117,8 @@ export const FakeUserData = {
     img: ImprovHost,
     title: "Improv Host",
     venue: "Danny's Dive and Beer Shack",
-    start: "Jan 7, 1989",
-    end: "Present",
+    start: new Date ("Jan 7, 1989"),
+    end: new Date(Date.now()),
     location: "Bangkok, Thailand",
     description: "I run a show every night."
   }, {
@@ -126,8 +126,8 @@ export const FakeUserData = {
     img: Zoom,
     title: "Zoom Mic Host",
     venue: "Zoom",
-    start: "Jan 15, 2020",
-    end: "Jan 15, 2021",
+    start: new Date ("Jan 15, 2020"),
+    end: new Date ("Jan 15, 2021"),
     location: "Online",
     description: "I run a digital mic featuring comics from over 2 countries."
   }]
