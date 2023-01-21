@@ -8,7 +8,7 @@ import { FakeUserData } from "../../dummy-data/fake-users";
 import shortenText from "../../utilities/shorten-text";
 
 
-export default function Featured() {
+export default function ProfileFeatured() {
   const [featureIndex, setFeatureIndex] = useState(0);
   // When backend is implemented, type of useState will change to <null | string>
   const [expandedPost, setExpandedPost] = useState<null | number>(null);
@@ -52,8 +52,8 @@ export default function Featured() {
   }
 
   return (
-    <div className="featured-cont comp">
-      <div className="featured-header">
+    <div className="profile-cont comp">
+      <div className="editable-comp-header">
         <h2>Featured</h2>
         <div className="profile-experience-header-buttons">
           <img className="profile-experience-header-btn" src={Add} />

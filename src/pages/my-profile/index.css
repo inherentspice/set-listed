@@ -7,15 +7,10 @@
 
 /* featured */
 
-.featured-cont {
+.profile-cont {
   width: 50vw;
 }
 
-.featured-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 .featured-post-cont {
   display: flex;
 }
@@ -98,4 +93,15 @@
 
 .expanded-text {
   padding: 12px;
+}
+
+/* award */
+.award-cont>h4 {
+  font-weight: 600;
+}
+
+/* potential connections */
+
+.profile-info-cont {
+  margin: 1rem;
 }
