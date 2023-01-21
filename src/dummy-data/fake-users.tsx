@@ -30,12 +30,32 @@ export const FakeUserData = {
       id: 1,
       name: "Open Mic @ Fishies",
       img: FeaturedOpenMic,
-      description: "Always such a blast performing at Fishies on Newcastle Road. Great room, supportive regulars, and cheap beer!"},
+      description: "Always such a blast performing at Fishies on Newcastle Road. Great room, supportive regulars, and cheap beer!"
+    },
     {
       id: 2,
       name: "Opening for Dewey Parker",
       img: FeaturedGreenRoom,
-      description: "It was a dream come true opening for one of my favourite comedians. I've always looked up to this guy, and to see him in the flesh was a real treat."}
+      description: "It was a dream come true opening for one of my favourite comedians. I've always looked up to this guy, and to see him in the flesh was a real treat. Such an honour to be there!"
+    },
+    {
+      id: 3,
+      name: "Opening for Dewey Parker",
+      img: FeaturedGreenRoom,
+      description: "It was a dream come true opening for one of my favourite comedians. I've always looked up to this guy, and to see him in the flesh was a real treat. Such an honour to be there!"
+    },
+    {
+      id: 4,
+      name: "Opening for Dewey Parker",
+      img: FeaturedGreenRoom,
+      description: "It was a dream come true opening for one of my favourite comedians. I've always looked up to this guy, and to see him in the flesh was a real treat. Such an honour to be there!"
+    },
+    {
+      id: 5,
+      name: "Opening for Dewey Parker",
+      img: FeaturedGreenRoom,
+      description: "It was a dream come true opening for one of my favourite comedians. I've always looked up to this guy, and to see him in the flesh was a real treat. Such an honour to be there!"
+    },
   ],
   groups: [{
     id: 1,

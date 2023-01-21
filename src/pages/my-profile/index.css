@@ -21,11 +21,12 @@
 }
 
 .featured-post {
-  max-width: 200px;
+  max-width: 180px;
   border: 2px solid var(--grey-color-0);
   padding: 16px;
   margin: 8px;
   border-radius: 9px;
+  cursor: pointer;
 }
 
 .featured-post>h4 {
@@ -38,4 +39,14 @@
 .featured-post>img {
   width: -webkit-fill-available;
   width: -moz-max-content;
+}
+
+.arrow-button {
+  max-height: 2.25rem;
+  position: absolute;
+  right: 1px;
+  background-color: var(--grey-color-0);
+  border-radius: 124px;
+  opacity: 80%;
+  cursor: pointer;
 }
