@@ -133,5 +133,15 @@ export const FakeUserData = {
     end: new Date ("Jan 15, 2021"),
     location: "Online",
     description: "I run a digital mic featuring comics from over 2 countries."
-  }]
+  }],
+  awards: [
+    {
+      id: 1,
+      title: "Semi-Finalist @ Zonkies Comedy Competition"
+    },
+    {
+      id: 2,
+      title: "Voted Best in Show @ Davenport Comedy Festival"
+    }
+  ]
 };

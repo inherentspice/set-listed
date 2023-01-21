@@ -4,6 +4,7 @@ import ProfileAbout from "../../components/profile/profile-about";
 import Featured from "../../components/profile/profile-featured";
 import ProfileActivity from "../../components/profile/profile-activity";
 import ProfileExperience from "../../components/profile/profile-experience";
+import ProfileAwards from "../../components/profile/profile-awards";
 import "./index.css";
 
 export default function MyProfile() {
@@ -14,6 +15,7 @@ export default function MyProfile() {
       <Featured />
       <ProfileActivity />
       <ProfileExperience />
+      <ProfileAwards />
     </div>
   );
 }
