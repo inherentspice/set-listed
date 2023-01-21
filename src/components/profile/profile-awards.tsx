@@ -4,8 +4,8 @@ import { FakeUserData } from "../../dummy-data/fake-users";
 
 export default function ProfileAwards() {
   return (
-    <div className="featured-cont comp">
-      <div className="featured-header">
+    <div className="profile-cont comp">
+      <div className="editable-comp-header">
         <h2>Awards & Achievements</h2>
         <div className="profile-experience-header-buttons">
           <img className="profile-experience-header-btn" src={Add} />

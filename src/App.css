@@ -41,6 +41,53 @@
   width: 30px !important;
 }
 
+.editable-comp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.primary-button {
+  border-radius: 124px;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  background-color: var(--background-comp-color);
+  height: 2rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.primary-button:hover {
+  border: 4px solid var(--primary-color);
+  background-color: var(--primary-light-color);
+}
+
+
+/* profile card */
+.profile-info-cont {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.profile-text-info-cont>p {
+  margin: 0;
+}
+
+.profile-name {
+  font-weight: 700;
+}
+
+.profile-tag {
+  color: var(--grey-color-1);
+  font-size: 0.8rem;
+}
+
+.profile-text-info-cont>button {
+  margin-top: 0.25rem;
+}
+
+
 /* pictures */
 
 .profile-picture-small {

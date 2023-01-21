@@ -13,7 +13,7 @@ export default function Advertisement() {
         <img src={Profile} alt="" className="profile-picture-medium"/>
       </div>
       <p className="ad-cta">Name, explore more relevant oppurtunities with <b>Company</b></p>
-      <button>Follow</button>
+      <button className="primary-button">Follow</button>
     </div>
   );
 }

@@ -122,22 +122,6 @@
   width: 80%;
 }
 
-.home-ad-cont>button {
-  border-radius: 124px;
-  border: 2px solid var(--primary-color);
-  color: var(--primary-color);
-  background-color: var(--background-comp-color);
-  height: 2rem;
-  font-weight: 700;
-  font-size: 1.25rem;
-  cursor: pointer;
-}
-
-.home-ad-cont>button:hover {
-  border: 4px solid var(--primary-color);
-  background-color: var(--primary-light-color);
-}
-
 /* footer */
 
 .footer {
@@ -182,24 +166,6 @@
 /* feed */
 .home-feed-cont {
   grid-column: 2 / 4;
-}
-
-.profile-info-cont {
-  display: flex;
-  gap: 0.25rem;
-}
-
-.profile-text-info-cont>p {
-  margin: 0;
-}
-
-.profile-name {
-  font-weight: 700;
-}
-
-.profile-tag {
-  color: var(--grey-color-1);
-  font-size: 0.8rem;
 }
 
 /* profile-card */
