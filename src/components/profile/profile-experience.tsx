@@ -2,8 +2,8 @@ import React from "react";
 import Edit from "../../media/icons/edit.png";
 import Add from "../../media/icons/add.png";
 import "../../styles/profile-experience.css";
-import OpenMic from "../../media/profile/openmic.png";
 import { FakeUserData } from "../../dummy-data/fake-users";
+import convertDateRange from "../../utilities/convert-date-range";
 
 export default function ProfileExperience(){
     return(
@@ -24,9 +24,9 @@ export default function ProfileExperience(){
                                 <div className="profile-experience-item-title">{item.title}</div>
                                 <div className="profile-experience-item-venue">{item.venue}</div>
                                 <div className="profile-experience-item-duration-cont">
-                                    <div className="profile-experience-item-dates">{item.start +" - "+ item.end}</div>
+                                    <div className="profile-experience-item-dates">{item.start.toString().slice(4,16) +" - "+ item.end.toString().slice(4,16)}</div>
                                     <div>|</div>
-                                    <div className="profile-experience-item-duration">24 Years</div>
+                                    <div className="profile-experience-item-duration">{convertDateRange(item.start, item.end)}</div>
                                 </div>
                                 <div className="profile-experience-item-location">{item.location}</div>
                                 <div className="profile-experience-item-description">{item.description}</div>
