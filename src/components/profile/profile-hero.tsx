@@ -1,19 +1,72 @@
-import React from "react";
+import React, {useState} from "react";
+import ReactDOM from "react-dom";
 import { FakeUserData } from "../../dummy-data/fake-users";
 import RachelLoo from "../../media/home/rachel-profile-picture.png";
 import DeniseFerguson from "../../media/home/denise-profile-picture.png";
 import "../../styles/profile-hero.css";
 import Follower from "../../media/icons/follower.png";
 import Edit from "../../media/icons/edit.png";
+import CancelButton from "../../media/icons/cancel.png";
+
 
 export default function ProfileHero() {
+  const [expandedEditProfile, setExpandedEditProfile] = useState<null | number>(null);
+
+  function handleEditProfileClick(id: number): void{
+    setExpandedEditProfile(id);
+  }
+
+  function handleEditProfileClose(): void{
+    setExpandedEditProfile(null);
+  }
+
+  function ShowEditProfileHero() {
+    return ReactDOM.createPortal(
+      <>
+        <div className="expanded-post-cont" key={FakeUserData.id}></div>
+        <div className="expanded-post">
+          <div className="edit-profile-hero-header-cont">
+            <div className="edit-profile-hero-title">Edit Intro</div>
+            <img className="edit-profile-hero-cancel" src={CancelButton} onClick={() => handleEditProfileClose()} />
+          </div>
+          <form>
+            <div className="edit-profile-hero-form-item">
+              <label>First Name</label>
+              <input defaultValue={FakeUserData.userFirstName}></input>
+            </div>
+            <div className="edit-profile-hero-form-item">
+              <label>Last Name</label>
+              <input defaultValue={FakeUserData.userLastName}></input>
+            </div>
+            <div className="edit-profile-hero-form-item">
+              <label>Performer Type</label>
+              <input defaultValue={FakeUserData.subCategory}></input>
+            </div>
+            <div className="edit-profile-hero-form-item">
+              <label>Tagline</label>
+              <input defaultValue={FakeUserData.userTagline}></input>
+            </div>
+            <div className="edit-profile-hero-form-item">
+              <label>City</label>
+              <input defaultValue={FakeUserData.city}></input>
+            </div>
+            <div className="edit-profile-hero-form-item">
+              <label>Country</label>
+              <input defaultValue={FakeUserData.country}></input>
+            </div>
+          </form>
+        </div>
+      </>,
+      document.body
+    );
+  }
 
   return(
     <div className="profile-hero-cont comp">
       <img className="profile-hero-background-edit" src={Edit} />
       <img className="profile-hero-background-img" src={FakeUserData.userBackgroundPicture} alt=""/>
       <img className="profile-hero-profile-img profile-picture-large" src={FakeUserData.userProfilePicture} alt="" />
-      <img className="profile-hero-user-info-edit" src={Edit} />
+      <img className="profile-hero-user-info-edit" src={Edit} onClick={() => handleEditProfileClick(FakeUserData.id)} />
       <div className="profile-hero-user-cont">
         <div className="profile-hero-user-info-cont">
           <div className="profile-hero-user-name-cont">
@@ -52,6 +105,7 @@ export default function ProfileHero() {
           </div>
         </div>
       </div>
+      {expandedEditProfile && <ShowEditProfileHero />}
     </div>
   );
 }
