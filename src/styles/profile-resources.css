@@ -1,0 +1,54 @@
+@import "../App.css";
+
+.profile-resources-cont {
+    width: 50%;
+}
+
+.profile-resources-items-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.profile-resources-item {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    border-top: 2px solid var(--grey-color-1);
+    padding: 0.5rem 0
+}
+
+.profile-resources-item:hover {
+    cursor: pointer;
+}
+
+.profile-resources-item-img {
+    height: 2rem;
+}
+
+.profile-resources-item-type {
+    font-weight: bold;
+}
+
+.profile-resources-item-type:hover {
+    text-decoration: underline;
+    color: var(--primary-color);
+}
+
+.profile-resources-item-description {
+    font-size: 0.75rem;
+}
+
+.profile-resources-show-all {
+    font-weight: bold;
+    text-align: center;
+    border-top: 2px solid var(--grey-color-1);
+    padding: 0.5rem 0 0.25rem 0;
+    border-radius: 0 0 15px 15px;
+}
+
+.profile-resources-show-all:hover {
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+}
