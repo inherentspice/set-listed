@@ -6,12 +6,14 @@ import ProfileActivity from "../../components/profile/profile-activity";
 import ProfileExperience from "../../components/profile/profile-experience";
 import ProfileAwards from "../../components/profile/profile-awards";
 import ProfilePotentialFriends from "../../components/profile/profile-friends";
+import ProfileAnalytics from "../../components/profile/profile-analytics";
 import "./index.css";
 
 export default function MyProfile() {
   return (
     <div className="page-cont profile-page">
       <ProfileHero />
+      <ProfileAnalytics />
       <ProfileAbout />
       <Featured />
       <ProfileActivity />
