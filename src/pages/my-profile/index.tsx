@@ -7,6 +7,7 @@ import ProfileExperience from "../../components/profile/profile-experience";
 import ProfileAwards from "../../components/profile/profile-awards";
 import ProfilePotentialFriends from "../../components/profile/profile-friends";
 import ProfileAnalytics from "../../components/profile/profile-analytics";
+import ProfileResources from "../../components/profile/profile-resources";
 import "./index.css";
 
 export default function MyProfile() {
@@ -14,6 +15,7 @@ export default function MyProfile() {
     <div className="page-cont profile-page">
       <ProfileHero />
       <ProfileAnalytics />
+      <ProfileResources />
       <ProfileAbout />
       <Featured />
       <ProfileActivity />
