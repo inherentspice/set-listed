@@ -23,7 +23,7 @@ export default function ProfileHero() {
   function ShowEditProfileHero() {
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-edit-profile-cont" key={FakeUserData.id}></div>
+        <div className="expanded-edit-profile-cont" key={FakeUserData[0].id}></div>
         <div className="expanded-edit-profile">
           <div className="edit-profile-hero-header-cont">
             <div className="edit-profile-hero-title">Edit Intro</div>
@@ -33,12 +33,12 @@ export default function ProfileHero() {
             <div>Basic Info</div>
             <div className="edit-profile-hero-form-item">
               <label>First Name</label>
-              <input defaultValue={FakeUserData.userFirstName}></input>
+              <input defaultValue={FakeUserData[0].userFirstName}></input>
             </div>
 
             <div className="edit-profile-hero-form-item">
               <label>Last Name</label>
-              <input defaultValue={FakeUserData.userLastName}></input>
+              <input defaultValue={FakeUserData[0].userLastName}></input>
             </div>
 
             <div className="edit-profile-hero-form-item">
@@ -67,15 +67,15 @@ export default function ProfileHero() {
 
             <div className="edit-profile-hero-form-item">
               <label>Tagline</label>
-              <input defaultValue={FakeUserData.userTagline} maxLength={50}></input>
+              <input defaultValue={FakeUserData[0].userTagline} maxLength={50}></input>
             </div>
             <div className="edit-profile-hero-form-item">
               <label>City</label>
-              <input defaultValue={FakeUserData.city}></input>
+              <input defaultValue={FakeUserData[0].city}></input>
             </div>
             <div className="edit-profile-hero-form-item">
               <label>Country</label>
-              <input defaultValue={FakeUserData.country}></input>
+              <input defaultValue={FakeUserData[0].country}></input>
             </div>
 
             <div>Social Media</div>
@@ -107,20 +107,20 @@ export default function ProfileHero() {
   return(
     <div className="profile-hero-cont comp">
       <img className="profile-hero-background-edit" src={Edit} />
-      <img className="profile-hero-background-img" src={FakeUserData.userBackgroundPicture} alt=""/>
-      <img className="profile-hero-profile-img profile-picture-large" src={FakeUserData.userProfilePicture} alt="" />
-      <img className="profile-hero-user-info-edit" src={Edit} onClick={() => handleEditProfileClick(FakeUserData.id)} />
+      <img className="profile-hero-background-img" src={FakeUserData[0].userBackgroundPicture} alt=""/>
+      <img className="profile-hero-profile-img profile-picture-large" src={FakeUserData[0].userProfilePicture} alt="" />
+      <img className="profile-hero-user-info-edit" src={Edit} onClick={() => handleEditProfileClick(FakeUserData[0].id)} />
       <div className="profile-hero-user-cont">
         <div className="profile-hero-user-info-cont">
           <div className="profile-hero-user-name-cont">
-            <div className="profile-hero-user-name">{FakeUserData.userFirstName+" "+ FakeUserData.userLastName}</div>
+            <div className="profile-hero-user-name">{FakeUserData[0].userFirstName+" "+ FakeUserData[0].userLastName}</div>
             <div className="profile-hero-divide"></div>
             <div className='profile-hero-performer-type'>Improv Comedian</div>
 
           </div>
-          <div className='profile-hero-tagline'>{FakeUserData.userTagline}</div>
+          <div className='profile-hero-tagline'>{FakeUserData[0].userTagline}</div>
           <div className='profile-hero-contact-cont'>
-            <div className='profile-hero-location'>{FakeUserData.city+", "+FakeUserData.country}</div>
+            <div className='profile-hero-location'>{FakeUserData[0].city+", "+FakeUserData[0].country}</div>
             <div className='profile-hero-contact'>Contact Info</div>
           </div>
           <div className='profile-hero-connections'>500+ connections</div>
@@ -135,7 +135,7 @@ export default function ProfileHero() {
         </div>
         <div className="profile-hero-user-digital-footprint">
           <div>
-            {FakeUserData.socialMedia.map(item => {
+            {FakeUserData[0].socialMedia.map(item => {
               return (
                 <div className="profile-hero-user-digital-footprint-item" key={item.id} >
                   <img className="profile-hero-user-digital-footprint-img" src={item.img} alt=""/>

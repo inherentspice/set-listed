@@ -14,7 +14,7 @@ import ImprovHost from "../media/profile/openmic.png";
 import Zoom from "../media/profile/zoom.png";
 
 
-export const FakeUserData = {
+export const FakeUserData = [{
   userFirstName: "George",
   userLastName: "Castles",
   city: "Bangkok",
@@ -145,4 +145,4 @@ export const FakeUserData = {
       title: "Voted Best in Show @ Davenport Comedy Festival"
     }
   ]
-};
+}];
