@@ -18,7 +18,7 @@ export default function QuickAccess(){
       <div className="quick-access-category-cont">
         <div className="quick-access-title">Groups</div>
         <div>
-          {FakeUserData.groups.map(item => {
+          {FakeUserData[0].groups.map(item => {
             return (
               <div className="quick-access-item-cont" key={item.id}>
                 <img className="quick-access-item-icon" src={Group} alt=""/>
@@ -32,7 +32,7 @@ export default function QuickAccess(){
       <div className="quick-access-category-cont">
         <div className="quick-access-title">Upcoming Events</div>
         <div>
-          {FakeUserData.events.map(item => {
+          {FakeUserData[0].events.map(item => {
             return (
               <div className="quick-access-item-cont" key={item.id}>
                 <img className="quick-access-item-icon" src={Event} alt=""/>
@@ -46,7 +46,7 @@ export default function QuickAccess(){
       <div className="quick-access-category-cont">
         <div className="quick-access-title">My Hashtags</div>
         <div>
-          {FakeUserData.hashtags.map(item => {
+          {FakeUserData[0].hashtags.map(item => {
             return (
               <div className="quick-access-item-cont" key={item.id}>
                 <img className="quick-access-item-icon" src={Hashtag} alt=""/>

@@ -13,7 +13,7 @@ export default function ProfileAwards() {
         </div>
       </div>
       <div className="awards-cont">
-        {FakeUserData.awards.map(award => {
+        {FakeUserData[0].awards.map(award => {
           return (
           <div className="award-cont" key={award.id}>
             <h4>{award.title}</h4>

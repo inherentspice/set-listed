@@ -11,7 +11,7 @@ export default function ProfileAbout() {
         <div className="profile-about-title">About</div>
         <img className="profile-about-edit" src={Edit} />
       </div>
-      <div className="profile-about-text">{FakeUserData.about}</div>
+      <div className="profile-about-text">{FakeUserData[0].about}</div>
     </div>
   );
 }

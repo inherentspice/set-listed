@@ -16,7 +16,7 @@ export default function ProfileExperience(){
                 </div>
             </div>
             <div className="profile-experience-items-cont">
-                {FakeUserData.experience.map(item => {
+                {FakeUserData[0].experience.map(item => {
                     return(
                         <div className="profile-experience-item">
                             <img className="profile-experience-item-img" src={item.img} />
