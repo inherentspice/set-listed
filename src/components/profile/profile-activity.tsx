@@ -12,18 +12,18 @@ export default function ProfileActivity() {
             <div className="profile-activity-header">
                 <div className="profile-activity-header-left">
                     <div className="profile-activity-header-title">Activity</div>
-                    <div className="profile-activity-header-followers">{FakeUserData.userFollwers+" followers"}</div>
+                    <div className="profile-activity-header-followers">{FakeUserData[0].userFollwers+" followers"}</div>
                 </div>
                 <div className="profile-activity-header-right">
                     <div className="profile-activity-start-post">Start a Post</div>
                 </div>
             </div>
             <div className="profile-activity-posts-cont">
-                {FakeUserData.activity.map(item => {
+                {FakeUserData[0].activity.map(item => {
                     return(
                         <div className="profile-activity-post-item" key={item.id}>
                         <div className="profile-activity-post-info">
-                            <div className="profile-activity-post-author">{FakeUserData.userFirstName+" "+FakeUserData.userLastName}</div>
+                            <div className="profile-activity-post-author">{FakeUserData[0].userFirstName+" "+FakeUserData[0].userLastName}</div>
                             <div className="profile-activity-post-time">{"posted this | "+convertDate(item.date)}</div>
                         </div>
                         <div className="profile-activity-post-description">{item.description}</div>

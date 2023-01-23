@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { FakeUserData } from "../../dummy-data/fake-users";
 import ProfileHero from "../../components/profile/profile-hero";
 import ProfileAbout from "../../components/profile/profile-about";
 import Featured from "../../components/profile/profile-featured";
@@ -7,12 +8,16 @@ import ProfileExperience from "../../components/profile/profile-experience";
 import ProfileAwards from "../../components/profile/profile-awards";
 import ProfilePotentialFriends from "../../components/profile/profile-friends";
 import ProfileSkills from "../../components/profile/profile-skills";
+import ProfileAnalytics from "../../components/profile/profile-analytics";
+import ProfileResources from "../../components/profile/profile-resources";
 import "./index.css";
 
 export default function MyProfile() {
   return (
     <div className="page-cont profile-page">
       <ProfileHero />
+      <ProfileAnalytics />
+      <ProfileResources />
       <ProfileAbout />
       <Featured />
       <ProfileActivity />

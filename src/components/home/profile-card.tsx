@@ -7,25 +7,25 @@ export default function ProfileCard(){
       <div className='profile-card-user-cont'>
 
         <div className='profile-card-user-img-cont'>
-          <img className='profile-card-background-img' src={FakeUserData.userBackgroundPicture} alt="" />
-          <img className='profile-card-user-img profile-picture-medium' src={FakeUserData.userProfilePicture} alt=""/>
+          <img className='profile-card-background-img' src={FakeUserData[0].userBackgroundPicture} alt="" />
+          <img className='profile-card-user-img profile-picture-medium' src={FakeUserData[0].userProfilePicture} alt=""/>
         </div>
 
         <div className='profile-card-user-info-cont'>
-          <div className='profile-card-user-name'>{FakeUserData.userFirstName+" "+FakeUserData.userLastName}</div>
-          <div className='profile-card-user-tagline'>{FakeUserData.userTagline}</div>
+          <div className='profile-card-user-name'>{FakeUserData[0].userFirstName+" "+FakeUserData[0].userLastName}</div>
+          <div className='profile-card-user-tagline'>{FakeUserData[0].userTagline}</div>
         </div>
       </div>
 
       <div className='profile-card-interaction-stats-cont'>
         <div className='profile-card-interaction-stats-item'>
           <div className='profile-card-interaction-stat-name'>Who&apos;s viewed your profile</div>
-          <div className='profile-card-interaction-stat'>{FakeUserData.userProfileViews}</div>
+          <div className='profile-card-interaction-stat'>{FakeUserData[0].userProfileViews}</div>
         </div>
 
         <div className='profile-card-interaction-stats-item'>
           <div className='profile-card-interaction-stat-name'>Impressions of your post</div>
-          <div className='profile-card-interaction-stat'>{FakeUserData.userPostImpressions}</div>
+          <div className='profile-card-interaction-stat'>{FakeUserData[0].userPostImpressions}</div>
         </div>
       </div>
 

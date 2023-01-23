@@ -16,7 +16,7 @@ export default function ProfileFeatured() {
   function handleNextClick(): void{
     setFeatureIndex(prevState => {
       let nextIndex = prevState + 1;
-      if (nextIndex >= Math.ceil(FakeUserData.featured.length / 3)) {
+      if (nextIndex >= Math.ceil(FakeUserData[0].featured.length / 3)) {
         nextIndex = 0;
       }
       return nextIndex;
@@ -29,6 +29,7 @@ export default function ProfileFeatured() {
   }
 
   // Uses createPortal to insert new div into the body
+
   function ShowExpandedPost(): ReactPortal{
     const expandedPostData = FakeUserData.featured.filter((featuredPost) => featuredPost.id === expandedPost)[0];
     return ReactDOM.createPortal(
@@ -61,7 +62,7 @@ export default function ProfileFeatured() {
         </div>
       </div>
       <div className="featured-post-cont">
-        {FakeUserData.featured
+        {FakeUserData[0].featured
         .filter((featuredPost, index) => index >= featureIndex && index < featureIndex + 3)
         .map((featuredPost) => {
           return (

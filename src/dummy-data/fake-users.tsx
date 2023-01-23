@@ -14,7 +14,7 @@ import ImprovHost from "../media/profile/openmic.png";
 import Zoom from "../media/profile/zoom.png";
 
 
-export const FakeUserData = {
+export const FakeUserData = [{
   userFirstName: "George",
   userLastName: "Castles",
   city: "Bangkok",
@@ -25,8 +25,9 @@ export const FakeUserData = {
   userProfilePicture: GeorgeCastlesPic,
   userBackgroundPicture: GeorgeCastlesBG,
   userTagline: "The show didn't get canceled, I quit.",
-  userProfileViews: 1,
+  userProfileViews: 2,
   userPostImpressions: 69,
+  userSearchAppearances: 500,
   userFollwers: 1234,
   featured: [
     {
@@ -66,29 +67,29 @@ export const FakeUserData = {
     url: "/groups/openmicsupportgroup"
   }],
   events: [{
-    id: 2,
+    id: 1,
     name:"Sad Mic at Restaurant",
     url: "/events/sadmic"
   }],
   hashtags: [{
-    id: 3,
+    id: 1,
     name:"comedy",
     url:"/hashtags/comedy"
   }],
   socialMedia: [{
-    id: 4,
+    id: 1,
     socialMedia: "instagram",
     img: instagram,
     username: "@GeorgeCastles1",
     followers: 3
   }, {
-    id: 5,
+    id: 2,
     socialMedia: "youtube",
     img: youtube,
     username: "@GeorgeCastles1",
     followers: 14
   }, {
-    id: 6,
+    id: 3,
     socialMedia: "tiktok",
     img: tiktok,
     username: "@GeorgeCastles1",
@@ -96,7 +97,7 @@ export const FakeUserData = {
   }],
   about:"I just received the initial deposit for a corporate show in Dubai that's coming up in a couple of weeks. The show pays $8000, yes, that's right, EIGHT THOUSAND US DOLLARS for less than one hour's work! And yes, I'll be flying in First Class as usual, in unbelievable luxury, with a flat bed!  I'll be checking out the indoor ski range, surfing on the sand dunes, visiting the tallest building in the world and the world's largest shopping mall, and luxuriating by the pool at my five star hotel. And yes, I will send pictures!",
   activity: [{
-    id: 7,
+    id: 1,
     date: new Date("January 1, 2023"),
     description: "I truly believe that I am the Bill Burr of the improv stage",
     title: "10 Reasons I am Bill Burr",
@@ -106,7 +107,7 @@ export const FakeUserData = {
     likes: 1,
     dislikes: 1035
   }, {
-    id: 8,
+    id: 2,
     date: new Date("December 25, 2022"),
     description: "Steve Harvey's suits are fake and I have the proof they all zip up in the back.",
     title: "Steve Harvey the Liar",
@@ -116,7 +117,7 @@ export const FakeUserData = {
     likes: 2560,
     dislikes: 1}],
   experience: [{
-    id: 9,
+    id: 1,
     img: ImprovHost,
     title: "Improv Host",
     venue: "Danny's Dive and Beer Shack",
@@ -125,7 +126,7 @@ export const FakeUserData = {
     location: "Bangkok, Thailand",
     description: "I run a show every night."
   }, {
-    id: 10,
+    id: 2,
     img: Zoom,
     title: "Zoom Mic Host",
     venue: "Zoom",
@@ -144,4 +145,4 @@ export const FakeUserData = {
       title: "Voted Best in Show @ Davenport Comedy Festival"
     }
   ]
-};
+}];

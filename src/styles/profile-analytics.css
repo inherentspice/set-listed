@@ -1,0 +1,26 @@
+.profile-analytics-cont {
+    width: 50vw;
+}
+
+.profile-analytics-items-cont{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.profile-analytics-item {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.profile-analytics-item-img {
+    height: 2rem;
+}
+
+.profile-analytics-type {
+    font-weight: bold;
+}
+
+.profile-analytics-description {
+    font-size: 0.75rem;
+}
