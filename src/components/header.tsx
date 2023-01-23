@@ -23,57 +23,45 @@ export default function Header() {
           </div>
 
           <div className="header-nav-btns">
-            <div className="header-nav-btn">
-              <a href='/' >
-                <img className='header-nav-img' src={Home} alt=""/>
-                <div className="header-nav-btn-name">Home</div>
-              </a>
-            </div>
+            <a href='/' className="header-nav-btn">
+              <img className='header-nav-img' src={Home} alt=""/>
+              <div className="header-nav-btn-name">Home</div>
+            </a>
 
-            <div className="header-nav-btn">
-              <a href='/my-network'>
-                <img className='header-nav-img' src={MyNetwork} alt="" />
-                <div className="header-nav-btn-name">My Network</div>
-              </a>
-            </div>
+            <a href='/my-network' className="header-nav-btn">
+              <img className='header-nav-img' src={MyNetwork} alt="" />
+              <div className="header-nav-btn-name">My Network</div>
+            </a>
 
-            <div className="header-nav-btn">
-              <a href='/gigs'>
-                <img className='header-nav-img' src={Gigs} alt=""/>
-                <div className="header-nav-btn-name">Gigs</div>
-              </a>
-            </div>
+            <a href='/gigs' className="header-nav-btn">
+              <img className='header-nav-img' src={Gigs} alt=""/>
+              <div className="header-nav-btn-name">Gigs</div>
+            </a>
 
-            <div className="header-nav-btn">
-              <a href='/messaging' >
-                <img className='header-nav-img' src={Messaging} alt=""/>
-                <div className="header-nav-btn-name">Messaging</div>
-              </a>
-            </div>
+            <a href='/messaging' className="header-nav-btn">
+              <img className='header-nav-img' src={Messaging} alt=""/>
+              <div className="header-nav-btn-name">Messaging</div>
+            </a>
 
-            <div className="header-nav-btn">
-              <a href='notifications'>
-                <img className='header-nav-img' src={Notifications} alt=""/>
-                <div className="header-nav-btn-name">Notifications</div>
-              </a>
-            </div>
+            <a href='/notifications' className="header-nav-btn">
+              <img className='header-nav-img' src={Notifications} alt=""/>
+              <div className="header-nav-btn-name">Notifications</div>
+            </a>
 
-            <div className="header-nav-btn">
-              <a href='my-profile'>
-                <img className='header-nav-profile-pic' src={ProfilePic} alt=""/>
-                <div className="header-nav-btn-name">My Profile</div>
-              </a>
-            </div>
+            <a href='/my-profile' className="header-nav-btn">
+              <img className='header-nav-profile-pic' src={ProfilePic} alt=""/>
+              <div className="header-nav-btn-name">My Profile</div>
+            </a>
           </div>
 
         </div>
 
         <div className="header-nav-right">
 
-          <div className="header-nav-menu">
+          <a href='/services' className="header-nav-menu">
             <img src={Services} alt=""/>
             <div>Services</div>
-          </div>
+          </a>
           <div className='header-nav-right-cta'><a href="/">Try Premium for Free you Brokie</a></div>
 
         </div>
