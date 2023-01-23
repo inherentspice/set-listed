@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { FakeUserData } from "../../dummy-data/fake-users";
+import React from "react";
 import ProfileHero from "../../components/profile/profile-hero";
 import ProfileAbout from "../../components/profile/profile-about";
 import Featured from "../../components/profile/profile-featured";

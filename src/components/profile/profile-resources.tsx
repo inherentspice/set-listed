@@ -25,5 +25,5 @@ export default function ProfileResources() {
             </div>
             <div className="profile-resources-show-all">Show all resources</div>
         </div>
-    )
+    );
 }

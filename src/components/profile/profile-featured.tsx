@@ -31,7 +31,7 @@ export default function ProfileFeatured() {
   // Uses createPortal to insert new div into the body
 
   function ShowExpandedPost(): ReactPortal{
-    const expandedPostData = FakeUserData.featured.filter((featuredPost) => featuredPost.id === expandedPost)[0];
+    const expandedPostData = FakeUserData[0].featured.filter((featuredPost) => featuredPost.id === expandedPost)[0];
     return ReactDOM.createPortal(
       <>
         <div className="expanded-post-cont" key={expandedPostData.id}></div>
