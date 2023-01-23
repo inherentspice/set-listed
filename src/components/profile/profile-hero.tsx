@@ -23,28 +23,51 @@ export default function ProfileHero() {
   function ShowEditProfileHero() {
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-post-cont" key={FakeUserData.id}></div>
-        <div className="expanded-post">
+        <div className="expanded-edit-profile-cont" key={FakeUserData.id}></div>
+        <div className="expanded-edit-profile">
           <div className="edit-profile-hero-header-cont">
             <div className="edit-profile-hero-title">Edit Intro</div>
             <img className="edit-profile-hero-cancel" src={CancelButton} onClick={() => handleEditProfileClose()} />
           </div>
-          <form>
+          <form className="edit-profile-hero-form">
+            <div>Basic Info</div>
             <div className="edit-profile-hero-form-item">
               <label>First Name</label>
               <input defaultValue={FakeUserData.userFirstName}></input>
             </div>
+
             <div className="edit-profile-hero-form-item">
               <label>Last Name</label>
               <input defaultValue={FakeUserData.userLastName}></input>
             </div>
+
             <div className="edit-profile-hero-form-item">
-              <label>Performer Type</label>
-              <input defaultValue={FakeUserData.subCategory}></input>
+              <label>Stagename</label>
+              <input></input>
+            </div>
+            
+            <div className="edit-profile-hero-form-item">
+              <label>Category</label>
+              <select>
+                <option value="comedy">Comedy</option>
+                <option value="comedy">Comedy</option>
+              </select>
             </div>
             <div className="edit-profile-hero-form-item">
+              <label>Type</label>
+              <select>
+                <option value="standup">Stand Up Comedian</option>
+                <option value="improv">Improv Comedian</option>
+                <option value="musical">Musical Comedian</option>
+                <option value="puppet">Puppet Comedian</option>
+                <option value="crosstalk">Cross Talk Comedian</option>
+                <option value="host">Host</option>
+              </select>
+            </div>
+
+            <div className="edit-profile-hero-form-item">
               <label>Tagline</label>
-              <input defaultValue={FakeUserData.userTagline}></input>
+              <input defaultValue={FakeUserData.userTagline} maxLength={50}></input>
             </div>
             <div className="edit-profile-hero-form-item">
               <label>City</label>
@@ -54,6 +77,26 @@ export default function ProfileHero() {
               <label>Country</label>
               <input defaultValue={FakeUserData.country}></input>
             </div>
+
+            <div>Social Media</div>
+
+            <div className="edit-profile-hero-form-item">
+              <label>Instagram</label>
+              <input ></input>
+            </div>
+            <div className="edit-profile-hero-form-item">
+              <label>Youtube</label>
+              <input ></input>
+            </div>
+            <div className="edit-profile-hero-form-item">
+              <label>Tik Tok</label>
+              <input ></input>
+            </div>
+            <div className="edit-profile-hero-form-item">
+              <label>Twitter</label>
+              <input ></input>
+            </div>
+            <button type="submit">Save</button>
           </form>
         </div>
       </>,
