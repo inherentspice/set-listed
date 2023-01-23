@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactPortal, useState } from "react";
 import ReactDOM from "react-dom";
 import Add from "../../media/icons/add.png";
 import Edit from "../../media/icons/edit.png";
@@ -29,8 +29,9 @@ export default function ProfileFeatured() {
   }
 
   // Uses createPortal to insert new div into the body
-  function ShowExpandedPost() {
-    const expandedPostData = FakeUserData[0].featured.filter((featuredPost) => featuredPost.id === expandedPost)[0];
+
+  function ShowExpandedPost(): ReactPortal{
+    const expandedPostData = FakeUserData.featured.filter((featuredPost) => featuredPost.id === expandedPost)[0];
     return ReactDOM.createPortal(
       <>
         <div className="expanded-post-cont" key={expandedPostData.id}></div>
@@ -76,6 +77,8 @@ export default function ProfileFeatured() {
         })}
       </div>
       <img className="arrow-button" src={ArrowForward} alt="" onClick={handleNextClick}></img>
+
+      {/* if featured post is clicked, this expands the post */}
       {expandedPost && <ShowExpandedPost/>}
     </div>
   );
