@@ -1,24 +1,20 @@
 @import "../App.css";
 
 .header-cont {
-    display: grid;
-    grid-template-columns: 6fr 1fr;
+    display: flex;
     border-bottom: solid var(--grey-color-1) 1px;
-    height: 4rem;
     padding: 0 2rem 0 2rem;
     align-items: center;
+    justify-content: space-evenly;
 }
 
 .header-nav-left {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border-right: solid var(--grey-color-1) 1px;
+    max-width: fit-content;
 }
 
 .header-nav-search {
     display: flex;
-    flex-direction: row;
     align-items: center;
     gap: 0.25rem;
 }
@@ -58,23 +54,26 @@
 
 .header-nav-right {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    padding: 0 1rem 0 1rem;
+    text-align: center;
+    gap: 1rem;
+    border-left: solid var(--grey-color-1) 1px;
+
 }
 
 .header-nav-btns {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     text-align: center;
+    gap: 0.5rem;
 }
 
 .header-nav-btn {
-    font-size: .5rem;
+    font-size: 1rem;
     padding: 0.25rem;
-}
-
-.header-nav-btn>a {
     text-decoration: none;
-    color: #000000;
+    color: var(--grey-color-2);
 }
 
 .header-nav-btn:hover, .header-nav-menu:hover  {
@@ -84,20 +83,12 @@
 }
 
 .header-nav-img {
-    height: 1.5rem;
+    height: 1.75rem;
 }
 
 .header-nav-profile-pic {
-    height: 1.5rem;
+    height: 1.75rem;
     border-radius: 50%;
-}
-
-.header-nav-right {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    align-items: center;
-    padding: 0 1rem 0 1rem;
-    gap: 1rem;
 }
 
 .header-nav-menu {
@@ -111,10 +102,9 @@
 
 .header-nav-menu>img {
     height: 1.5rem;
-
 }
 
-.header-nav-right-cta {
-    font-size: .75vw;
-    text-align: center;
+.header-nav-right-cta>a {
+  text-decoration: none;
+  color: var(--grey-color-2);
 }
