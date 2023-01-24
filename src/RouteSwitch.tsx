@@ -7,13 +7,21 @@ import MyNetwork from "./pages/my-network";
 import MyProfile from "./pages/my-profile";
 import Notifications from "./pages/notifications";
 import Header from "./components/header";
+import RequireAuth from "./components/require-auth";
 
 export default function RouteSwitch() {
+
   return(
     <BrowserRouter>
       <Header/>
       <Routes>
-        <Route path='/' element={<Home /> } />
+        <Route
+          path='/'
+          element={
+            <RequireAuth>
+              <Home />
+            </RequireAuth>}
+         />
         <Route path='/gigs' element={<Gigs />} />
         <Route path='/messaging' element={<Messaging />} />
         <Route path='/my-network' element={<MyNetwork />} />
