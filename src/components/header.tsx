@@ -8,6 +8,7 @@ import Notifications from "../media/icons/notifications.png";
 import ProfilePic from "../media/home/profile-picture.png";
 import Search from "../media/icons/search.png";
 import Services from "../media/icons/services.png";
+import LogoutIcon from "../media/icons/logout.png";
 
 export default function Header() {
   return(
@@ -57,12 +58,17 @@ export default function Header() {
         </div>
 
         <div className="header-nav-right">
-
-          <a href='/services' className="header-nav-menu">
-            <img src={Services} alt=""/>
+          <a href='/services' className="header-nav-btn">
+            <img className="header-nav-img" src={Services} alt=""/>
             <div>Services</div>
           </a>
-          <div className='header-nav-right-cta'><a href="/">Try Premium for Free you Brokie</a></div>
+          <a href="/login" className="header-nav-btn">
+            <img className="header-nav-img" src={LogoutIcon} alt=""/>
+            <div>Logout</div>
+          </a>
+          <div className='header-nav-right-cta'>
+            <a href="/">Try Premium for Free you Brokie</a>
+          </div>
 
         </div>
       </div>

@@ -8,6 +8,7 @@ import MyProfile from "./pages/my-profile";
 import Notifications from "./pages/notifications";
 import Header from "./components/header";
 import RequireAuth from "./components/require-auth";
+import Login from "./pages/login";
 
 export default function RouteSwitch() {
 
@@ -27,6 +28,8 @@ export default function RouteSwitch() {
         <Route path='/my-network' element={<MyNetwork />} />
         <Route path='/my-profile' element={<MyProfile />} />
         <Route path='/notifications' element={<Notifications />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
