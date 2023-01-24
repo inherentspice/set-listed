@@ -1,7 +1,7 @@
 import axios from "axios";
 import { AxiosResponse } from "axios";
 
-const baseUrl = "/home/profilecard";
+const baseUrl = "/profilecard";
 
 interface ProfileCardData {
   data: object,
