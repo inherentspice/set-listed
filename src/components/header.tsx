@@ -9,8 +9,14 @@ import ProfilePic from "../media/home/profile-picture.png";
 import Search from "../media/icons/search.png";
 import Services from "../media/icons/services.png";
 import LogoutIcon from "../media/icons/logout.png";
+import AuthService from "../services/home/auth";
 
 export default function Header() {
+
+  function handleLogout(): void {
+    AuthService.logout();
+  }
+
   return(
     <div>
       <div className="header-cont">
@@ -62,7 +68,7 @@ export default function Header() {
             <img className="header-nav-img" src={Services} alt=""/>
             <div>Services</div>
           </a>
-          <a href="/login" className="header-nav-btn">
+          <a href="/login" className="header-nav-btn" onClick={handleLogout}>
             <img className="header-nav-img" src={LogoutIcon} alt=""/>
             <div>Logout</div>
           </a>

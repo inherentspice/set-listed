@@ -28,11 +28,11 @@ const checkSession = (): Promise<AxiosResponse<UserData>> => {
   return axios.get<UserData>("/check-session");
 };
 
-const ProfileCardService = {
+const AuthService = {
   login,
   signup,
   logout,
   checkSession
 };
 
-export default ProfileCardService;
+export default AuthService;

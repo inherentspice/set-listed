@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AuthService from "../../services/home/auth";
+import "./index.css";
 
 export default function Login() {
   const [email, setEmail] = useState<string>("");
@@ -38,7 +39,7 @@ export default function Login() {
       <form className="login-form" onSubmit={event => handleUserLogin(event, email, password)}>
         <label>
           Email:
-          <input type="text" value={email} onChange={handleEmailChange} />
+          <input type="email" value={email} onChange={handleEmailChange} />
         </label>
         <label>
           Password:
