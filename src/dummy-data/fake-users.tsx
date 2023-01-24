@@ -13,7 +13,6 @@ import FeaturedAudience from "../media/profile/fake-data-featured-audience.png";
 import ImprovHost from "../media/profile/openmic.png";
 import Zoom from "../media/profile/zoom.png";
 
-
 export const FakeUserData = [{
   userFirstName: "George",
   userLastName: "Castles",
