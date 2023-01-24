@@ -9,7 +9,7 @@ import Edit from "../../media/icons/edit.png";
 import CancelButton from "../../media/icons/cancel.png";
 
 
-export default function ProfileHero() {
+export default function ProfileHero( ) {
   const [expandedEditProfile, setExpandedEditProfile] = useState<null | number>(null);
 
   function handleEditProfileClick(id: number): void{
