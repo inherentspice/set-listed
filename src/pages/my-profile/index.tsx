@@ -9,9 +9,12 @@ import ProfilePotentialFriends from "../../components/profile/profile-friends";
 import ProfileSkills from "../../components/profile/profile-skills";
 import ProfileAnalytics from "../../components/profile/profile-analytics";
 import ProfileResources from "../../components/profile/profile-resources";
+import { useParams } from "react-router-dom";
 import "./index.css";
 
-export default function MyProfile() {
+export default function BuildProfilePage() {
+  const { username } = useParams();
+  console.log({username});
 
   return (
     <div className="page-cont profile-page">
