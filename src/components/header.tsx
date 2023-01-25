@@ -55,7 +55,7 @@ export default function Header() {
               <div className="header-nav-btn-name">Notifications</div>
             </a>
 
-            <a href='/my-profile' className="header-nav-btn">
+            <a href='/user/georgecastles' className="header-nav-btn">
               <img className='header-nav-profile-pic' src={ProfilePic} alt=""/>
               <div className="header-nav-btn-name">My Profile</div>
             </a>
