@@ -4,8 +4,12 @@ import Add from "../../media/icons/add.png";
 import "../../styles/profile-experience.css";
 import { FakeUserData } from "../../dummy-data/fake-users";
 import convertDateRange from "../../utilities/convert-date-range";
+import { useParams } from "react-router-dom";
 
 export default function ProfileExperience(){
+    const { username } = useParams();
+    const userIndex = FakeUserData.findIndex(x => x.username === username);
+  
     return(
         <div className="profile-experience-cont comp">
             <div className="profile-experience-header">
@@ -16,7 +20,7 @@ export default function ProfileExperience(){
                 </div>
             </div>
             <div className="profile-experience-items-cont">
-                {FakeUserData[0].experience.map(item => {
+                {FakeUserData[userIndex].experience.map(item => {
                     return(
                         <div className="profile-experience-item">
                             <img className="profile-experience-item-img" src={item.img} />
