@@ -12,7 +12,6 @@ import ProfileResources from "../../components/profile/profile-resources";
 import "./index.css";
 
 export default function MyProfile() {
-  const [currentUserProfile, setCurrentUserProfile] = useState(FakeUserData[0]);
 
   return (
     <div className="page-cont profile-page">
