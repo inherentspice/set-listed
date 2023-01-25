@@ -4,15 +4,19 @@ import Like from "../../media/icons/like.png";
 import Dislike from "../../media/icons/dislike.png";
 import { FakeUserData } from "../../dummy-data/fake-users";
 import convertDate from "../../utilities/convert-date";
+import { useParams } from "react-router-dom";
 
 
 export default function ProfileActivity() {
+    const { username } = useParams();
+    const userIndex = FakeUserData.findIndex(x => x.username === username);  
+
     return(
         <div className="profile-activity-cont comp">
             <div className="profile-activity-header">
                 <div className="profile-activity-header-left">
                     <div className="profile-activity-header-title">Activity</div>
-                    <div className="profile-activity-header-followers">{FakeUserData[0].userFollwers+" followers"}</div>
+                    <div className="profile-activity-header-followers">{FakeUserData[userIndex].userFollwers+" followers"}</div>
                 </div>
                 <div className="profile-activity-header-right">
                     <div className="profile-activity-start-post">Start a Post</div>
@@ -23,7 +27,7 @@ export default function ProfileActivity() {
                     return(
                         <div className="profile-activity-post-item" key={item.id}>
                         <div className="profile-activity-post-info">
-                            <div className="profile-activity-post-author">{FakeUserData[0].userFirstName+" "+FakeUserData[0].userLastName}</div>
+                            <div className="profile-activity-post-author">{FakeUserData[userIndex].userFirstName+" "+FakeUserData[userIndex].userLastName}</div>
                             <div className="profile-activity-post-time">{"posted this | "+convertDate(item.date)}</div>
                         </div>
                         <div className="profile-activity-post-description">{item.description}</div>
