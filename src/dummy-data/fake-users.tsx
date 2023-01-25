@@ -15,7 +15,7 @@ import Zoom from "../media/profile/zoom.png";
 import IanBadenhurstPic from "../media/profile/ian-badenhurst-profile-pic.png";
 
 export const FakeUserData = [{
-  username: "georgecastes",
+  username: "georgecastles",
   userFirstName: "George",
   userLastName: "Castles",
   city: "Bangkok",
@@ -214,19 +214,19 @@ export const FakeUserData = [{
     id: 1,
     socialMedia: "instagram",
     img: instagram,
-    username: "@GeorgeCastles1",
+    username: "@IanBadenhurst1",
     followers: 3
   }, {
     id: 2,
     socialMedia: "youtube",
     img: youtube,
-    username: "@GeorgeCastles1",
+    username: "@IanBadenhurst1",
     followers: 14
   }, {
     id: 3,
     socialMedia: "tiktok",
     img: tiktok,
-    username: "@GeorgeCastles1",
+    username: "@IanBadenhurst1",
     followers: 100000
   }],
   about:"I just received the initial deposit for a corporate show in Dubai that's coming up in a couple of weeks. The show pays $8000, yes, that's right, EIGHT THOUSAND US DOLLARS for less than one hour's work! And yes, I'll be flying in First Class as usual, in unbelievable luxury, with a flat bed!  I'll be checking out the indoor ski range, surfing on the sand dunes, visiting the tallest building in the world and the world's largest shopping mall, and luxuriating by the pool at my five star hotel. And yes, I will send pictures!",

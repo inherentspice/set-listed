@@ -10,11 +10,11 @@ import ProfileSkills from "../../components/profile/profile-skills";
 import ProfileAnalytics from "../../components/profile/profile-analytics";
 import ProfileResources from "../../components/profile/profile-resources";
 import { useParams } from "react-router-dom";
+import { FakeUserData } from "../../dummy-data/fake-users";
 import "./index.css";
 
 export default function BuildProfilePage() {
-  const { username } = useParams();
-  console.log({username});
+  
 
   return (
     <div className="page-cont profile-page">
