@@ -119,7 +119,7 @@ export default function ProfileHero() {
           <div className="profile-hero-user-name-cont">
             <div className="profile-hero-user-name">{FakeUserData[userIndex].userFirstName+" "+ FakeUserData[userIndex].userLastName}</div>
             <div className="profile-hero-divide"></div>
-            <div className='profile-hero-performer-type'>Improv Comedian</div>
+            <div className='profile-hero-performer-type'>{FakeUserData[userIndex].subCategory}</div>
 
           </div>
           <div className='profile-hero-tagline'>{FakeUserData[userIndex].userTagline}</div>
