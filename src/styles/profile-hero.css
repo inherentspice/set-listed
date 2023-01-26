@@ -270,3 +270,29 @@
     grid-template-columns: 1fr 5fr;
     width: 85%;
   }
+
+  .edit-profile-hero-submit {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border-top: 2px solid var(--grey-color-1);
+  }
+
+  .edit-profile-hero-submit-btn {
+    color: var(--background-color);
+    background-color: var(--primary-color);
+    width: 6rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 0.5rem;
+    border: 2px solid darkred;
+    border-radius: 1.5rem;
+  }
+
+  .edit-profile-hero-submit-btn:hover {
+    background-color: var(--primary-light-color);
+    color: darkred;
+    cursor: pointer;
+  }
