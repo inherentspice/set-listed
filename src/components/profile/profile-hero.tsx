@@ -100,7 +100,9 @@ export default function ProfileHero() {
               <label>Twitter</label>
               <input ></input>
             </div>
-            <button type="submit">Save</button>
+            <div className="edit-profile-hero-submit">
+                <button className="edit-profile-hero-submit-btn" type="submit">Save</button>
+              </div>
           </form>
         </div>
       </>,
