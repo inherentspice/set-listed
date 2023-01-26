@@ -137,3 +137,76 @@
     color: var(--background-comp-color);
     cursor: pointer;
 }
+
+/* expanded start post */
+
+.expanded-start-post-cont {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px grey;
+    background-color: var(--grey-color-2);
+    opacity: 90%;
+    width: 100vw;
+}
+
+.expanded-start-post {
+    background-color: white;
+    opacity: 100%;
+    position: fixed;
+    top: 10%;
+    left: 12%;
+    z-index: 2;
+    min-width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    padding: 8px;
+    gap: 1rem;
+  }
+
+  .edit-start-post-header-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    border-bottom: solid 2px var(--grey-color-1);
+    font-weight: bold;
+  }
+
+  .start-post-user-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+  }
+
+  .start-post-user-cont {
+      display: flex;
+      width: 100%;
+      justify-content: left;
+      align-items: center;
+      gap: 1rem;
+  }
+
+  .start-post-privacy {
+      padding: 0.2rem 0rem;
+      border-radius: 0.8rem;
+  }
+
+  .start-post-textarea {
+      border: none;
+      font-size: 1.25rem;
+  }
+
+  .start-post-textarea:focus {
+      border: none;
+      outline: none;
+  }

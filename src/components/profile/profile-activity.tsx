@@ -1,15 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import "../../styles/profile-activity.css";
 import Like from "../../media/icons/like.png";
 import Dislike from "../../media/icons/dislike.png";
 import { FakeUserData } from "../../dummy-data/fake-users";
 import convertDate from "../../utilities/convert-date";
 import { useParams } from "react-router-dom";
+import CancelButton from "../../media/icons/cancel.png";
+import Emoji from "../../media/icons/emoji.png";
+import Picture from "../../media/icons/picture.png";
+import Video from "../../media/icons/video.png";
+import Document from "../../media/icons/document.png";
+import Chart from "../../media/icons/chart.png";
 
 
 export default function ProfileActivity() {
+    const [expandedStartPost, setExpandedStartPost] = useState<null | number>(null);
+
     const { username } = useParams();
-    const userIndex = FakeUserData.findIndex(x => x.username === username);  
+    const userIndex = FakeUserData.findIndex(x => x.username === username);
+
+    function handleStartPostClick(id: number): void{
+        setExpandedStartPost(id);
+      }
+
+      function handleStartPostClose(): void{
+        setExpandedStartPost(null);
+      }
+    
+      function ShowStartPost() {
+        return ReactDOM.createPortal(
+          <>
+            <div className="expanded-start-post-cont" key={FakeUserData[userIndex].id}></div>
+            <div className="expanded-start-post">
+              <div className="edit-start-post-header-cont">
+                <h2 className="expanded-start-post-title">Edit Your About Section</h2>
+                <img className="start-post-cancel" src={CancelButton} onClick={() => handleStartPostClose()} />
+              </div>
+              <form className="start-post-user-form">
+                  <div className="start-post-user-cont">
+                    <img className="profile-picture-small" src={FakeUserData[userIndex].userProfilePicture} />
+                    <select className="start-post-privacy">
+                        <option value="public">Public</option>
+                        <option value="connections">Connections Only</option>
+                        <option value="innercircle">Inner Circle Only</option>
+                        <option value="private">Only Me</option>
+                    </select>
+                  </div>
+                  <textarea className="start-post-textarea" placeholder="What is on your mind?" rows={10} />
+                  <div className="start-post-emoji-hashtag-cont">
+                      <img src={Emoji}/>
+                      <div className="start-post-add-hashtag">Add Hashtag</div>
+                  </div>
+                  <div className="start-post-foot">
+                      <div className="start-post-foot-multimedia-cont">
+                          <img className="start-post-foot-multimedia-item" src={Picture} />
+                          <img className="start-post-foot-multimedia-item" src={Video} />
+                          <img className="start-post-foot-multimedia-item" src={Document} />
+                          <img className="start-post-foot-multimedia-item" src={Chart} />
+                      </div>
+                      <div className="start-post-foot-submit-cont">
+                          <select>
+                              <option value="public">Public</option>
+                              <option value="connections">Connections Only</option>
+                              <option value="innercircle">Inner Circle Only</option>
+                              <option value="noone">Disable Comments</option>
+                          </select>
+                          <button type="submit">Post</button>
+                      </div>
+                  </div>
+              </form>
+            </div>
+          </>,
+          document.body
+        );
+      }
+    
 
     return(
         <div className="profile-activity-cont comp">
@@ -19,7 +85,7 @@ export default function ProfileActivity() {
                     <div className="profile-activity-header-followers">{FakeUserData[userIndex].userFollwers+" followers"}</div>
                 </div>
                 <div className="profile-activity-header-right">
-                    <div className="profile-activity-start-post">Start a Post</div>
+                    <div className="profile-activity-start-post" onClick={() => handleStartPostClick(FakeUserData[userIndex].id)}>Start a Post</div>
                 </div>
             </div>
             <div className="profile-activity-posts-cont">
@@ -54,6 +120,7 @@ export default function ProfileActivity() {
                 })}
             </div>
             <div className="profile-activity-show-all">Show all activity</div>
+            {expandedStartPost && <ShowStartPost />}
         </div>
     );
 }

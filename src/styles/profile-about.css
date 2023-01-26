@@ -71,7 +71,7 @@
     font-weight: bold;
   }
 
-  .edit-profile-about-cancel:hover {
+  .start-post-cancel:hover {
     cursor: pointer;
     background-color: var(--button-hover-color);
     border-radius: 50%;
