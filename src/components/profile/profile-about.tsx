@@ -23,10 +23,10 @@ export default function ProfileAbout() {
   function ShowEditProfileAbout() {
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-edit-profile-cont" key={FakeUserData[userIndex].id}></div>
-        <div className="expanded-edit-profile">
-          <div className="edit-profile-about-header-cont">
-            <div className="expanded-edit-about-title">Edit Your About Section</div>
+        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id}></div>
+        <div className="expanded-profile-overlay">
+          <div className="expanded-profile-overlay-header-cont">
+            <h2 className="expanded-edit-about-title">Edit Your About Section</h2>
             <img className="edit-profile-about-cancel" src={CancelButton} onClick={() => handleEditAboutClose()} />
           </div>
           <div className="edit-profile-about-body">
