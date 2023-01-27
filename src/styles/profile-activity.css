@@ -196,7 +196,7 @@
       gap: 1rem;
   }
 
-  .start-post-privacy {
+  .start-post-visibility {
       padding: 0.2rem 0rem;
       border-radius: 0.8rem;
   }
@@ -209,4 +209,59 @@
   .start-post-textarea:focus {
       border: none;
       outline: none;
+  }
+
+  .start-post-emoji-hashtag-cont {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.25rem;
+  }
+
+  .start-post-add-emoji {
+      height: 2rem;
+  }
+
+  .start-post-add-emoji:hover {
+      cursor: pointer;
+      background-color: var(--grey-color-1);
+      border-radius: 50%;
+  }
+
+  .start-post-add-hashtag {
+      font-size: 1.25rem;
+      font-weight: bold;
+  }
+
+  .start-post-add-hashtag:hover {
+      color: var(--primary-color);
+      cursor: pointer;
+  }
+
+  .start-post-foot {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      border-top: 2px solid var(--grey-color-1);
+      padding-top: 0.5rem;
+  }
+
+  .start-post-foot-multimedia-cont {
+      display: flex;
+      flex-direction: row;
+  }
+
+  .start-post-foot-multimedia-item {
+      cursor: pointer;
+  }
+
+  .start-post-foot-submit-cont {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      font-size: 0.75rem;
+      gap:0.25rem;
+      align-items: center;
+      border-left: solid 2px var(--grey-color-1);
   }
