@@ -27,10 +27,10 @@ export default function ProfileHero() {
   function ShowEditProfileHero() {
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-edit-profile-cont" key={FakeUserData[userIndex].id}></div>
-        <div className="expanded-edit-profile">
-          <div className="edit-profile-hero-header-cont">
-            <div className="edit-profile-hero-title">Edit Intro</div>
+        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id}></div>
+        <div className="expanded-profile-overlay">
+          <div className="expanded-profile-overlay-header-cont">
+            <h2 className="edit-profile-hero-title">Edit Intro</h2>
             <img className="edit-profile-hero-cancel" src={CancelButton} onClick={() => handleEditProfileClose()} />
           </div>
           <form className="edit-profile-hero-form">
