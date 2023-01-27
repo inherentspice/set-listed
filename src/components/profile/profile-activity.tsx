@@ -12,6 +12,8 @@ import Picture from "../../media/icons/picture.png";
 import Video from "../../media/icons/video.png";
 import Document from "../../media/icons/document.png";
 import Chart from "../../media/icons/chart.png";
+import Visibility from "../../media/icons/visibility.png";
+import Comments from "../../media/icons/comments.png";
 
 
 export default function ProfileActivity() {
@@ -40,7 +42,8 @@ export default function ProfileActivity() {
               <form className="start-post-user-form">
                   <div className="start-post-user-cont">
                     <img className="profile-picture-small" src={FakeUserData[userIndex].userProfilePicture} />
-                    <select className="start-post-privacy">
+                    <img src={Visibility}/>
+                    <select className="start-post-visibility">
                         <option value="public">Public</option>
                         <option value="connections">Connections Only</option>
                         <option value="innercircle">Inner Circle Only</option>
@@ -49,22 +52,23 @@ export default function ProfileActivity() {
                   </div>
                   <textarea className="start-post-textarea" placeholder="What is on your mind?" rows={10} />
                   <div className="start-post-emoji-hashtag-cont">
-                      <img src={Emoji}/>
+                      <button className="hidden-btn" title="Add Emoji"><img className="start-post-add-emoji" src={Emoji}></img></button>
                       <div className="start-post-add-hashtag">Add Hashtag</div>
                   </div>
                   <div className="start-post-foot">
                       <div className="start-post-foot-multimedia-cont">
-                          <img className="start-post-foot-multimedia-item" src={Picture} />
-                          <img className="start-post-foot-multimedia-item" src={Video} />
-                          <img className="start-post-foot-multimedia-item" src={Document} />
-                          <img className="start-post-foot-multimedia-item" src={Chart} />
+                          <button className="hidden-btn" title="Add Picture"><img className="start-post-foot-multimedia-item" src={Picture} /></button>
+                          <button className="hidden-btn" title="Add Video"><img className="start-post-foot-multimedia-item" src={Video} /></button>
+                          <button className="hidden-btn" title="Add Document"><img className="start-post-foot-multimedia-item" src={Document} /></button>
+                          <button className="hidden-btn" title="Add Poll"><img className="start-post-foot-multimedia-item" src={Chart} /></button>
                       </div>
                       <div className="start-post-foot-submit-cont">
+                          <img src={Comments}/>
                           <select>
                               <option value="public">Public</option>
-                              <option value="connections">Connections Only</option>
-                              <option value="innercircle">Inner Circle Only</option>
-                              <option value="noone">Disable Comments</option>
+                              <option value="connections">Connections</option>
+                              <option value="innercircle">Inner Circle</option>
+                              <option value="noone">Disable</option>
                           </select>
                           <button type="submit">Post</button>
                       </div>

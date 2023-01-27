@@ -63,6 +63,11 @@
   background-color: var(--primary-light-color);
 }
 
+.hidden-btn {
+  background-color: inherit;
+  border: none;
+}
+
 
 /* profile card */
 .profile-info-cont {
