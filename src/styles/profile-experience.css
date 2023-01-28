@@ -50,6 +50,14 @@
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    width: 100%;
+}
+
+.profile-experience-item-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .profile-experience-item-title {
@@ -85,4 +93,17 @@
     background-color: var(--primary-color);
     color: white;
     cursor: pointer;
+}
+
+/* expanded add experience */
+
+.add-experience-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-experience-form-item {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
 }
