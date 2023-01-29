@@ -165,3 +165,30 @@ h2 {
   border-bottom: solid 2px var(--grey-color-1);
   font-weight: bold;
 }
+
+.expanded-profile-overlay-submit {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-top: 2px solid var(--grey-color-1);
+}
+
+.expanded-profile-overlay-submit-btn {
+  color: var(--background-color);
+  background-color: var(--primary-color);
+  width: 6rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5rem;
+  border: 2px solid darkred;
+  border-radius: 1.5rem;
+}
+
+.expanded-profile-overlay-submit-btn:hover {
+  background-color: var(--primary-light-color);
+  color: darkred;
+  cursor: pointer;
+
+}

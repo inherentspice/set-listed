@@ -66,10 +66,10 @@ export default function ProfileExperience(){
                 </div>
                 <div className="add-experience-form-item">
                     <label>Description:</label>
-                    <input placeholder="Ex: I host a monthly Drag Show Brunch."></input>
+                    <input placeholder="Ex: I host a monthly Drag Show Brunch." maxLength={2000}></input>
                 </div>
-                <div className="edit-profile-hero-submit">
-                    <button className="edit-profile-hero-submit-btn" type="submit">Save</button>
+                <div className="expanded-profile-overlay-submit">
+                    <button className="expanded-profile-overlay-submit-btn" type="submit">Save</button>
                 </div>
             </form>
             </div>
@@ -111,10 +111,10 @@ export default function ProfileExperience(){
                 </div>
                 <div className="add-experience-form-item">
                     <label>Description:</label>
-                    <input defaultValue={FakeUserData[userIndex].experience[experienceIndex].description}></input>
+                    <input defaultValue={FakeUserData[userIndex].experience[experienceIndex].description } maxLength={2000}></input>
                 </div>
-                <div className="edit-profile-hero-submit">
-                    <button className="edit-profile-hero-submit-btn" type="submit">Save</button>
+                <div className="expanded-profile-overlay-submit">
+                    <button className="expanded-profile-overlay-submit-btn" type="submit">Save</button>
                 </div>
             </form>
 

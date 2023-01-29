@@ -33,8 +33,8 @@ export default function ProfileAbout() {
             <div className="edit-profile-about-explanation"></div>
             <form className="edit-profile-about-form">
               <textarea className="edit-profile-about-text-area" defaultValue={FakeUserData[userIndex].about} rows={10} cols={70} maxLength={2000}></textarea>
-              <div className="edit-profile-about-submit">
-                <button className="edit-profile-about-submit-btn" type="submit">Save</button>
+              <div className="expanded-profile-overlay-submit">
+                <button className="expanded-profile-overlay-submit-btn" type="submit">Save</button>
               </div>
             </form>
           </div>
