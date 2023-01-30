@@ -17,6 +17,54 @@ export default function ProfileFeatured() {
   // When backend is implemented, type of useState will change to <null | string>
   const [expandedPost, setExpandedPost] = useState<null | number>(null);
 
+  const [expandedAddFeatured, setExpandedAddFeatured] = useState<null | number>(null);
+  const [expandedEditFeatured, setExpandedEditFeatured] = useState<null | number>(null);
+
+  function handleAddFeaturedClick(id: number): void{
+    setExpandedAddFeatured(id);
+  }
+  function handleEditFeaturedClick(id: number): void{
+    setExpandedEditFeatured(id);
+  }
+
+  function handleAddFeaturedClose(): void{
+    setExpandedAddFeatured(null);
+  }
+  function handleEditFeaturedClose(): void{
+    setExpandedEditFeatured(null);
+  }
+
+  function ShowAddFeatured() {
+    return ReactDOM.createPortal(
+      <>
+        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id}></div>
+        <div className="expanded-profile-overlay">
+          <div className="expanded-profile-overlay-header-cont">
+            <h2 className="expanded-edit-about-title">Add to Your Featured Section</h2>
+            <img className="start-post-cancel" src={CancelButton} onClick={() => handleAddFeaturedClose()} />
+          </div>
+        </div>
+      </>,
+      document.body
+    );
+  }
+
+  function ShowEditFeatured() {
+    return ReactDOM.createPortal(
+      <>
+        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id}></div>
+        <div className="expanded-profile-overlay">
+          <div className="expanded-profile-overlay-header-cont">
+            <h2 className="expanded-edit-about-title">Edit Your Featured Section</h2>
+            <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditFeaturedClose()} />
+          </div>
+        </div>
+      </>,
+      document.body
+    );
+  }
+
+
   function handleNextClick(): void{
     setFeatureIndex(prevState => {
       let nextIndex = prevState + 1;
@@ -61,8 +109,8 @@ export default function ProfileFeatured() {
       <div className="editable-comp-header">
         <h2>Featured</h2>
         <div className="profile-experience-header-buttons">
-          <img className="profile-experience-header-btn" src={Add} />
-          <img className="profile-experience-header-btn" src={Edit} />
+          <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddFeaturedClick(FakeUserData[userIndex].id)} />
+          <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditFeaturedClick(FakeUserData[userIndex].id)}/>
         </div>
       </div>
       <div className="featured-post-cont">
@@ -84,6 +132,8 @@ export default function ProfileFeatured() {
 
       {/* if featured post is clicked, this expands the post */}
       {expandedPost && <ShowExpandedPost/>}
+      {expandedAddFeatured && <ShowAddFeatured/>}
+      {expandedEditFeatured && <ShowEditFeatured/>}
     </div>
   );
 }
