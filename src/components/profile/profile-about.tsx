@@ -27,7 +27,7 @@ export default function ProfileAbout() {
         <div className="expanded-profile-overlay">
           <div className="expanded-profile-overlay-header-cont">
             <h2 className="expanded-edit-about-title">Edit Your About Section</h2>
-            <img className="edit-profile-about-cancel" src={CancelButton} onClick={() => handleEditAboutClose()} />
+            <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditAboutClose()} />
           </div>
           <div className="edit-profile-about-body">
             <div className="edit-profile-about-explanation"></div>
