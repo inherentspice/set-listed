@@ -1,0 +1,29 @@
+.edit-featured-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 70vw;
+}
+
+.edit-featured-item-cont {
+    border: 2px black solid;
+    gap: 1rem;
+    
+}
+
+.edit-featured-item {
+    display: flex;
+    gap: 1rem;
+    padding: 0rem;
+}
+
+.edit-featured-img {
+    height: 8rem;
+    border-right: solid 2px black;
+}
+
+.remove-featured-item {
+    border-top: 2px solid black;
+    padding: 0.5rem;
+    display: flex;
+}
