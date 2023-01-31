@@ -7,6 +7,7 @@ import CancelButton from "../../media/icons/cancel.png";
 import { FakeUserData } from "../../dummy-data/fake-users";
 import shortenText from "../../utilities/shorten-text";
 import { useParams } from "react-router-dom";
+import "../../styles/profile-featured.css";
 
 
 export default function ProfileFeatured() {
@@ -57,6 +58,26 @@ export default function ProfileFeatured() {
           <div className="expanded-profile-overlay-header-cont">
             <h2 className="expanded-edit-about-title">Edit Your Featured Section</h2>
             <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditFeaturedClose()} />
+          </div>
+          <div className="edit-featured-cont">
+            {FakeUserData[userIndex].featured.map((featuredPost) => {
+              return (
+                <div className="edit-featured-item-cont" key={featuredPost.id}>
+                  <div className="edit-featured-item">
+                    <img className="edit-featured-img" src={featuredPost.img} alt=""/>
+                    <div className="edit-featured-info-cont">
+                      <h4>{featuredPost.name}</h4>
+                      {featuredPost.description.length <= 150 ?
+                      <p>{featuredPost.description}</p> :
+                      <p>{shortenText(featuredPost.description, 150)}</p>}
+                    </div>
+                  </div>
+                  <div className="remove-featured-item">
+                    <button className="remove-featured-item-btn">Remove this featured item</button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </>,
