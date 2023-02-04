@@ -36,7 +36,7 @@ export default function ProfileExperience(){
     function ShowAddExperience() {
         return ReactDOM.createPortal(
           <>
-            <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id}></div>
+            <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleAddExerienceClose()}></div>
             <div className="expanded-profile-overlay">
                 <div className="expanded-profile-overlay-header-cont">
                     <h2 className="expanded-profile-overlay-title">Add Your Experience</h2>
@@ -81,7 +81,7 @@ export default function ProfileExperience(){
     function ShowEditExperience() {
         return ReactDOM.createPortal(
           <>
-            <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id}></div>
+            <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleEditExerienceClose()}></div>
             <div className="expanded-profile-overlay">
                 <div className="expanded-profile-overlay-header-cont">
                     <h2 className="expanded-profile-overlay-title">Edit Your Experience</h2>

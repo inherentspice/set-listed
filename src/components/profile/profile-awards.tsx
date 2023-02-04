@@ -33,7 +33,7 @@ export default function ProfileAwards() {
   function ShowAddAwards() {
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id}></div>
+        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleAddAwardsClose()}></div>
         <div className="expanded-profile-overlay">
           <div className="expanded-profile-overlay-header-cont">
               <h2 className="expanded-profile-overlay-title">Add Your Awards</h2>
@@ -57,7 +57,7 @@ export default function ProfileAwards() {
   function ShowEditAwards() {
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id}></div>
+        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleEditAwardsClose()}></div>
         <div className="expanded-profile-overlay">
           <div className="expanded-profile-overlay-header-cont">
             <h2 className="expanded-profile-overlay-title">Edit Your Award</h2>

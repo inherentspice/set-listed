@@ -33,7 +33,7 @@ export default function ProfileActivity() {
       function ShowStartPost() {
         return ReactDOM.createPortal(
           <>
-            <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id}></div>
+            <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleStartPostClose()}></div>
             <div className="expanded-profile-overlay">
               <div className="expanded-profile-overlay-header-cont">
                 <h2 className="expanded-start-post-title">Edit Your About Section</h2>

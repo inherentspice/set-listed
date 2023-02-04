@@ -54,7 +54,7 @@ export default function ProfileFeatured() {
     return ReactDOM.createPortal(
       <>
         <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleEditFeaturedClose()}></div>
-        <div className="expanded-profile-overlay">
+        <div className="expanded-profile-overlay-overflow">
           <div className="expanded-profile-overlay-header-cont">
             <h2 className="expanded-edit-about-title">Edit Your Featured Section</h2>
             <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditFeaturedClose()} />

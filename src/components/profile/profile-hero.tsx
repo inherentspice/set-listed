@@ -27,7 +27,7 @@ export default function ProfileHero() {
   function ShowEditProfileHero() {
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id}></div>
+        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleEditProfileClose()}></div>
         <div className="expanded-profile-overlay">
           <div className="expanded-profile-overlay-header-cont">
             <h2 className="edit-profile-hero-title">Edit Intro</h2>
