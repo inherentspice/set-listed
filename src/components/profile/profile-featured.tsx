@@ -38,7 +38,7 @@ export default function ProfileFeatured() {
   function ShowAddFeatured() {
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id}></div>
+        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleAddFeaturedClose()} ></div>
         <div className="expanded-profile-overlay">
           <div className="expanded-profile-overlay-header-cont">
             <h2 className="expanded-edit-about-title">Add to Your Featured Section</h2>
@@ -53,7 +53,7 @@ export default function ProfileFeatured() {
   function ShowEditFeatured() {
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id}></div>
+        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleEditFeaturedClose()}></div>
         <div className="expanded-profile-overlay">
           <div className="expanded-profile-overlay-header-cont">
             <h2 className="expanded-edit-about-title">Edit Your Featured Section</h2>
