@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "../../styles/profile-activity.css";
 import Like from "../../media/icons/like.png";
 import Dislike from "../../media/icons/dislike.png";
-import { FakeUserData } from "../../dummy-data/fake-users";
 import convertDate from "../../utilities/convert-date";
-import { useParams } from "react-router-dom";
 import CancelButton from "../../media/icons/cancel.png";
 import Emoji from "../../media/icons/emoji.png";
 import Picture from "../../media/icons/picture.png";
