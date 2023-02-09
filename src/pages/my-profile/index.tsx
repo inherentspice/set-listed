@@ -40,12 +40,12 @@ export default function BuildProfilePage() {
     <>
      {profile && <div className="page-cont profile-page">
         <ProfileHero profileCard={profile && profile.profileCard}/>
-        {/* <ProfileAnalytics />
-        <ProfileResources />
+        {/* <ProfileAnalytics/> */}
+        {/* <ProfileResources />
         <ProfileAbout />
-        <Featured />
-        <ProfileActivity />
-        <ProfileExperience />
+        <Featured /> */}
+        <ProfileActivity profileCard={profile && profile.profileCard} posts={profile && profile.post}/>
+        {/* <ProfileExperience />
         <ProfileSkills />
         <ProfileAwards />
         <ProfilePotentialFriends /> */}

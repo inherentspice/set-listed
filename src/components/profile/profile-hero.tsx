@@ -111,7 +111,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
   return(
     <div className="profile-hero-cont comp">
       <img className="profile-hero-background-edit" src={Edit} />
-      <img className="profile-hero-background-img" src={profileCard.backgroundImage || "/"} alt=""/>
+      <img className="profile-hero-background-img" src={profileCard.backgroundImage || "https://res.cloudinary.com/dhptcrsjc/image/upload/v1675955714/Set-Listed/default-background_wyziyb.png"} alt=""/>
       <img className="profile-hero-profile-img profile-picture-large" src={profileCard.image} alt="" />
       <img className="profile-hero-user-info-edit" src={Edit} onClick={() => handleEditProfileClick(profileCard.id)} />
       <div className="profile-hero-user-cont">
