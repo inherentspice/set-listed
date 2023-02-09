@@ -12,32 +12,44 @@ import ProfileResources from "../../components/profile/profile-resources";
 import { useParams } from "react-router-dom";
 import { FakeUserData } from "../../dummy-data/fake-users";
 import ProfileCardService from "../../services/home/profile";
+import ProfileData from "../../types/profile";
 import "./index.css";
 
 export default function BuildProfilePage() {
-  console.log(useParams);
-  const [profile, setProfile] = useState({});
-  useEffect(()=> {
+  const [profile, setProfile] = useState< ProfileData | undefined>(undefined);
+  const { userid } = useParams();
+
+  useEffect(() => {
     (async function() {
-      const profileInfo = await ProfileCardService.getProfile("63dddee66d67ea2e63f428f1");
-      setProfile(profileInfo.data);
+      if (userid) {
+        try {
+          const profileInfo = await ProfileCardService.getProfile(userid);
+          const profileInfoData = profileInfo.data;
+          setProfile(profileInfoData);
+        } catch (err) {
+          console.log(err);
+        }
+      }
     }());
   }, []);
 
+  console.log(userid);
   console.log(profile);
 
   return (
-    <div className="page-cont profile-page">
-      <ProfileHero />
-      <ProfileAnalytics />
-      <ProfileResources />
-      <ProfileAbout />
-      <Featured />
-      <ProfileActivity />
-      <ProfileExperience />
-      <ProfileSkills />
-      <ProfileAwards />
-      <ProfilePotentialFriends />
-    </div>
+    <>
+     {profile && <div className="page-cont profile-page">
+        <ProfileHero profileCard={profile && profile.profileCard}/>
+        {/* <ProfileAnalytics />
+        <ProfileResources />
+        <ProfileAbout />
+        <Featured />
+        <ProfileActivity />
+        <ProfileExperience />
+        <ProfileSkills />
+        <ProfileAwards />
+        <ProfilePotentialFriends /> */}
+    </div>}
+    </>
   );
 }

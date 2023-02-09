@@ -57,16 +57,15 @@ export interface SkillData {
   id: string,
 }
 
-export interface ProfileData {
-  about: AboutData,
-  award: AwardData,
-  experience: ExperienceData,
-  featured: FeaturedData,
-  post: PostData,
-  profileCard: ProfileCardData,
-  skill: SkillData
+export default interface ProfileData {
+  about: AboutData[],
+  award: AwardData[],
+  experience: ExperienceData[],
+  featured: FeaturedData[],
+  post: PostData[],
+  profileCard: ProfileCardData[],
+  skill: SkillData[]
 }
 
-export default interface Profile {
-  data: ProfileData,
-};
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ProfileCardItems extends Array<ProfileCardData>{}

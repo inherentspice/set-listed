@@ -26,7 +26,7 @@ export default function RouteSwitch() {
         <Route path='/gigs' element={<Gigs />} />
         <Route path='/messaging' element={<Messaging />} />
         <Route path='/my-network' element={<MyNetwork />} />
-        <Route path='/user/:username' element={<BuildProfilePage />} />
+        <Route path='/user/:userid' element={<BuildProfilePage />} />
         <Route path='/notifications' element={<Notifications />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Login />} />
