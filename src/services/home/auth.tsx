@@ -1,16 +1,6 @@
 import axios from "axios";
 import { AxiosResponse } from "axios";
-
-type UserData = {
-  user: string
-}
-
-type User = {
-  id ?: string,
-  email ?: string,
-  password ?: string,
-  confirmPassword ?: string,
-}
+import UserData, {User} from "../../types/header";
 
 const login = (user: User): Promise<AxiosResponse<UserData>> => {
   return axios.post<UserData>("/login", user);

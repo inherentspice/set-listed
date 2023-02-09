@@ -7,16 +7,14 @@ import "../../styles/profile-hero.css";
 import Follower from "../../media/icons/follower.png";
 import Edit from "../../media/icons/edit.png";
 import CancelButton from "../../media/icons/cancel.png";
-import { useParams } from "react-router-dom";
+import { ProfileCardData } from "../../types/profile";
 
+export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
+  const [expandedEditProfile, setExpandedEditProfile] = useState<null | string>(null);
 
-export default function ProfileHero() {
-  const [expandedEditProfile, setExpandedEditProfile] = useState<null | number>(null);
+  const profileCard = props.profileCard[0];
 
-  const { username } = useParams();
-  const userIndex = FakeUserData.findIndex(x => x.username === username);
-
-  function handleEditProfileClick(id: number): void{
+  function handleEditProfileClick(id: string): void{
     setExpandedEditProfile(id);
   }
 
@@ -27,7 +25,7 @@ export default function ProfileHero() {
   function ShowEditProfileHero() {
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleEditProfileClose()}></div>
+        <div className="expanded-profile-overlay-cont" key={profileCard.id} onClick={() => handleEditProfileClose()}></div>
         <div className="expanded-profile-overlay">
           <div className="expanded-profile-overlay-header-cont">
             <h2 className="edit-profile-hero-title">Edit Intro</h2>
@@ -37,19 +35,19 @@ export default function ProfileHero() {
             <div>Basic Info</div>
             <div className="edit-profile-hero-form-item">
               <label>First Name</label>
-              <input defaultValue={FakeUserData[userIndex].userFirstName}></input>
+              <input defaultValue={profileCard.firstName}></input>
             </div>
 
             <div className="edit-profile-hero-form-item">
               <label>Last Name</label>
-              <input defaultValue={FakeUserData[userIndex].userLastName}></input>
+              <input defaultValue={profileCard.lastName}></input>
             </div>
 
             <div className="edit-profile-hero-form-item">
               <label>Stagename</label>
               <input></input>
             </div>
-            
+
             <div className="edit-profile-hero-form-item">
               <label>Category</label>
               <select>
@@ -71,15 +69,15 @@ export default function ProfileHero() {
 
             <div className="edit-profile-hero-form-item">
               <label>Tagline</label>
-              <input defaultValue={FakeUserData[userIndex].userTagline} maxLength={50}></input>
+              <input defaultValue={profileCard.tagline} maxLength={50}></input>
             </div>
             <div className="edit-profile-hero-form-item">
               <label>City</label>
-              <input defaultValue={FakeUserData[userIndex].city}></input>
+              <input defaultValue={profileCard.city}></input>
             </div>
             <div className="edit-profile-hero-form-item">
               <label>Country</label>
-              <input defaultValue={FakeUserData[userIndex].country}></input>
+              <input defaultValue={profileCard.country}></input>
             </div>
 
             <div>Social Media</div>
@@ -113,20 +111,18 @@ export default function ProfileHero() {
   return(
     <div className="profile-hero-cont comp">
       <img className="profile-hero-background-edit" src={Edit} />
-      <img className="profile-hero-background-img" src={FakeUserData[userIndex].userBackgroundPicture} alt=""/>
-      <img className="profile-hero-profile-img profile-picture-large" src={FakeUserData[userIndex].userProfilePicture} alt="" />
-      <img className="profile-hero-user-info-edit" src={Edit} onClick={() => handleEditProfileClick(FakeUserData[userIndex].id)} />
+      <img className="profile-hero-background-img" src={profileCard.backgroundImage || "/"} alt=""/>
+      <img className="profile-hero-profile-img profile-picture-large" src={profileCard.image} alt="" />
+      <img className="profile-hero-user-info-edit" src={Edit} onClick={() => handleEditProfileClick(profileCard.id)} />
       <div className="profile-hero-user-cont">
         <div className="profile-hero-user-info-cont">
           <div className="profile-hero-user-name-cont">
-            <div className="profile-hero-user-name">{FakeUserData[userIndex].userFirstName+" "+ FakeUserData[userIndex].userLastName}</div>
+            <div className="profile-hero-user-name">{profileCard.firstName+" "+ profileCard.lastName}</div>
             <div className="profile-hero-divide"></div>
-            <div className='profile-hero-performer-type'>{FakeUserData[userIndex].subCategory}</div>
-
           </div>
-          <div className='profile-hero-tagline'>{FakeUserData[userIndex].userTagline}</div>
+          <div className='profile-hero-tagline'>{profileCard.tagline}</div>
           <div className='profile-hero-contact-cont'>
-            <div className='profile-hero-location'>{FakeUserData[userIndex].city+", "+FakeUserData[userIndex].country}</div>
+            <div className='profile-hero-location'>{profileCard.city+", "+profileCard.country}</div>
             <div className='profile-hero-contact'>Contact Info</div>
           </div>
           <div className='profile-hero-connections'>500+ connections</div>
@@ -141,14 +137,15 @@ export default function ProfileHero() {
         </div>
         <div className="profile-hero-user-digital-footprint">
           <div>
-            {FakeUserData[userIndex].socialMedia.map(item => {
+            {profileCard.socials && profileCard.socials.map(item => {
               return (
-                <div className="profile-hero-user-digital-footprint-item" key={item.id} >
-                  <img className="profile-hero-user-digital-footprint-img" src={item.img} alt=""/>
-                  <div className="profile-hero-user-digital-footprint-username">{item.username}</div>
-                  <img className="profile-her-user-digital-footprint-follower-img" src={Follower} alt="" />
-                  <div className="profile-hero-user-digital-footprint-followers">{item.followers}</div>
-                </div>
+                // <div className="profile-hero-user-digital-footprint-item" key={item.id} >
+                //   <img className="profile-hero-user-digital-footprint-img" src={item.img} alt=""/>
+                //   <div className="profile-hero-user-digital-footprint-username">{item.username}</div>
+                //   <img className="profile-her-user-digital-footprint-follower-img" src={Follower} alt="" />
+                //   <div className="profile-hero-user-digital-footprint-followers">{item.followers}</div>
+                // </div>
+                <h1>{item}</h1>
               );
             })}
           </div>

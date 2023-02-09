@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/header.css";
 import Home from "../media/icons/home.png";
 import MyNetwork from "../media/icons/my-network.png";
@@ -10,8 +10,17 @@ import Search from "../media/icons/search.png";
 import Services from "../media/icons/services.png";
 import LogoutIcon from "../media/icons/logout.png";
 import AuthService from "../services/home/auth";
+import UserDataType from "../types/header";
 
 export default function Header() {
+  const [userId, setUserId] = useState<UserDataType | null>(null);
+
+  useEffect(() => {
+    (async function(){
+      const user = await AuthService.checkSession();
+      setUserId(user.data);
+    }());
+  }, []);
 
   function handleLogout(): void {
     AuthService.logout();
@@ -55,10 +64,10 @@ export default function Header() {
               <div className="header-nav-btn-name">Notifications</div>
             </a>
 
-            <a href='/user/georgecastles' className="header-nav-btn">
+            {userId && <a href={`/user/${userId.user}`} className="header-nav-btn">
               <img className='header-nav-profile-pic' src={ProfilePic} alt=""/>
               <div className="header-nav-btn-name">My Profile</div>
-            </a>
+            </a>}
           </div>
 
         </div>
