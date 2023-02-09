@@ -22,7 +22,7 @@
     background-color: var(--grey-color-0);
 }
 
-.profile-hero-background-img {
+editable-comp-header {
     width: 100%;
     max-height: 250px;
     border-radius: 15px 15px 0 0 ;

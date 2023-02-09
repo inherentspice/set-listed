@@ -1,6 +1,6 @@
 import axios from "axios";
 import { AxiosResponse } from "axios";
-import ProfileData, {ProfileCardData} from "../../types/profile";
+import ProfileData, {PostData, ProfileCardData} from "../../types/profile";
 
 const baseUrl = "/profilecard";
 
@@ -13,9 +13,14 @@ const getProfile = (id: string): Promise<AxiosResponse<ProfileData>> => {
   return axios.get(`/profile/${id}`);
 };
 
+const getProfilePosts = (id: string): Promise<AxiosResponse<PostData>> => {
+  return axios.get(`profile/posts/${id}`);
+}
+
 const ProfileCardService = {
   getOne,
-  getProfile
+  getProfile,
+  getProfilePosts
 };
 
 export default ProfileCardService;

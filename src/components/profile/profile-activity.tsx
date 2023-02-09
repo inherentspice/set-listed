@@ -3,9 +3,7 @@ import ReactDOM from "react-dom";
 import "../../styles/profile-activity.css";
 import Like from "../../media/icons/like.png";
 import Dislike from "../../media/icons/dislike.png";
-import { FakeUserData } from "../../dummy-data/fake-users";
 import convertDate from "../../utilities/convert-date";
-import { useParams } from "react-router-dom";
 import CancelButton from "../../media/icons/cancel.png";
 import Emoji from "../../media/icons/emoji.png";
 import Picture from "../../media/icons/picture.png";
@@ -14,26 +12,27 @@ import Document from "../../media/icons/document.png";
 import Chart from "../../media/icons/chart.png";
 import Visibility from "../../media/icons/visibility.png";
 import Comments from "../../media/icons/comments.png";
+import { ProfileCardData, PostData } from "../../types/profile";
+
+export default function ProfileActivity(props: {profileCard: ProfileCardData[], posts: PostData[]}) {
+    const [expandedStartPost, setExpandedStartPost] = useState<null | string>(null);
+    const posts = props.posts;
+
+    const profileCard = props.profileCard[0];
 
 
-export default function ProfileActivity() {
-    const [expandedStartPost, setExpandedStartPost] = useState<null | number>(null);
-
-    const { username } = useParams();
-    const userIndex = FakeUserData.findIndex(x => x.username === username);
-
-    function handleStartPostClick(id: number): void{
+    function handleStartPostClick(id: string): void{
         setExpandedStartPost(id);
       }
 
       function handleStartPostClose(): void{
         setExpandedStartPost(null);
       }
-    
+
       function ShowStartPost() {
         return ReactDOM.createPortal(
           <>
-            <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleStartPostClose()}></div>
+            <div className="expanded-profile-overlay-cont" key={profileCard.id} onClick={() => handleStartPostClose()}></div>
             <div className="expanded-profile-overlay">
               <div className="expanded-profile-overlay-header-cont">
                 <h2 className="expanded-start-post-title">Edit Your About Section</h2>
@@ -41,7 +40,7 @@ export default function ProfileActivity() {
               </div>
               <form className="start-post-user-form">
                   <div className="start-post-user-cont">
-                    <img className="profile-picture-small" src={FakeUserData[userIndex].userProfilePicture} />
+                    <img className="profile-picture-small" src={profileCard.image} />
                     <img src={Visibility}/>
                     <select className="start-post-visibility">
                         <option value="public">Public</option>
@@ -79,44 +78,32 @@ export default function ProfileActivity() {
           document.body
         );
       }
-    
+
 
     return(
         <div className="profile-activity-cont comp">
             <div className="profile-activity-header">
                 <div className="profile-activity-header-left">
                     <div className="profile-activity-header-title">Activity</div>
-                    <div className="profile-activity-header-followers">{FakeUserData[userIndex].userFollwers+" followers"}</div>
+                    <div className="profile-activity-header-followers">{profileCard.userProfileViews+" followers"}</div>
                 </div>
                 <div className="profile-activity-header-right">
-                    <div className="profile-activity-start-post" onClick={() => handleStartPostClick(FakeUserData[userIndex].id)}>Start a Post</div>
+                    <div className="profile-activity-start-post" onClick={() => handleStartPostClick(profileCard.id)}>Start a Post</div>
                 </div>
             </div>
             <div className="profile-activity-posts-cont">
-                {FakeUserData[0].activity.map(item => {
+                {posts && posts.map(item => {
                     return(
                         <div className="profile-activity-post-item" key={item.id}>
                         <div className="profile-activity-post-info">
-                            <div className="profile-activity-post-author">{FakeUserData[userIndex].userFirstName+" "+FakeUserData[userIndex].userLastName}</div>
-                            <div className="profile-activity-post-time">{"posted this | "+convertDate(item.date)}</div>
+                            <div className="profile-activity-post-author">{profileCard.firstName+" "+profileCard.lastName}</div>
+                            <div className="profile-activity-post-time">{"posted this | "+convertDate(item.createdAt)}</div>
                         </div>
-                        <div className="profile-activity-post-description">{item.description}</div>
-                        <div className="profile-activity-post">
-                            <img className="profile-activity-post-img" src={item.img} />
-                            <div className="profile-activity-post-right">
-                                <div className="profile-activity-post-title">{item.title}</div>
-                                <div className="profile-activity-post-about">
-                                    <div className="profile-activity-post-url">{item.url}</div>
-                                    <div>|</div>
-                                    <div className="profile-activity-post-read-time">{item.read+" read"}</div>
-                                </div>
-                            </div>
-                        </div>
+                        <div className="profile-activity-post-description">{item.content}</div>
                         <div className="profile-activity-post-likes">
                             <img className="profile-activity-post-like-img" src={Like} />
                             <div className="profile-activity-post-like-count">{item.likes}</div>
                             <img className="profile-activity-post-like-img" src={Dislike} />
-                            <div className="profile-activity-post-like-count">{item.dislikes}</div>
                         </div>
                     </div>
 

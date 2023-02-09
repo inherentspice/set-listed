@@ -1,10 +1,8 @@
 import React, {useState} from "react";
 import ReactDOM from "react-dom";
-import { FakeUserData } from "../../dummy-data/fake-users";
 import RachelLoo from "../../media/home/rachel-profile-picture.png";
 import DeniseFerguson from "../../media/home/denise-profile-picture.png";
 import "../../styles/profile-hero.css";
-import Follower from "../../media/icons/follower.png";
 import Edit from "../../media/icons/edit.png";
 import CancelButton from "../../media/icons/cancel.png";
 import { ProfileCardData } from "../../types/profile";
@@ -111,7 +109,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
   return(
     <div className="profile-hero-cont comp">
       <img className="profile-hero-background-edit" src={Edit} />
-      <img className="profile-hero-background-img" src={profileCard.backgroundImage || "/"} alt=""/>
+      <img className="profile-hero-background-img" src={profileCard.backgroundImage || "https://res.cloudinary.com/dhptcrsjc/image/upload/v1675955714/Set-Listed/default-background_wyziyb.png"} alt=""/>
       <img className="profile-hero-profile-img profile-picture-large" src={profileCard.image} alt="" />
       <img className="profile-hero-user-info-edit" src={Edit} onClick={() => handleEditProfileClick(profileCard.id)} />
       <div className="profile-hero-user-cont">
