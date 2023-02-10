@@ -4,41 +4,37 @@ import Add from "../../media/icons/add.png";
 import Edit from "../../media/icons/edit.png";
 import ArrowForward from "../../media/icons/arrow-forward.png";
 import CancelButton from "../../media/icons/cancel.png";
-import { FakeUserData } from "../../dummy-data/fake-users";
 import shortenText from "../../utilities/shorten-text";
-import { useParams } from "react-router-dom";
 import "../../styles/profile-featured.css";
+import { FeaturedData } from "../../types/profile";
 
 
-export default function ProfileFeatured() {
-  const { username } = useParams();
-  const userIndex = FakeUserData.findIndex(x => x.username === username);
+export default function ProfileFeatured(props: {featured: FeaturedData[]}) {
 
   const [featureIndex, setFeatureIndex] = useState(0);
-  // When backend is implemented, type of useState will change to <null | string>
-  const [expandedPost, setExpandedPost] = useState<null | number>(null);
+  const [expandedPost, setExpandedPost] = useState<null | string>(null);
 
-  const [expandedAddFeatured, setExpandedAddFeatured] = useState<null | number>(null);
-  const [expandedEditFeatured, setExpandedEditFeatured] = useState<null | number>(null);
+  const [expandedAddFeatured, setExpandedAddFeatured] = useState<boolean>(false);
+  const [expandedEditFeatured, setExpandedEditFeatured] = useState<boolean>(false);
 
-  function handleAddFeaturedClick(id: number): void{
-    setExpandedAddFeatured(id);
+  function handleAddFeaturedClick(): void{
+    setExpandedAddFeatured(true);
   }
-  function handleEditFeaturedClick(id: number): void{
-    setExpandedEditFeatured(id);
+  function handleEditFeaturedClick(): void{
+    setExpandedEditFeatured(true);
   }
 
   function handleAddFeaturedClose(): void{
-    setExpandedAddFeatured(null);
+    setExpandedAddFeatured(false);
   }
   function handleEditFeaturedClose(): void{
-    setExpandedEditFeatured(null);
+    setExpandedEditFeatured(false);
   }
 
   function ShowAddFeatured() {
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleAddFeaturedClose()} ></div>
+        <div className="expanded-profile-overlay-cont" onClick={() => handleAddFeaturedClose()} ></div>
         <div className="expanded-profile-overlay">
           <div className="expanded-profile-overlay-header-cont">
             <h2 className="expanded-edit-about-title">Add to Your Featured Section</h2>
@@ -53,23 +49,23 @@ export default function ProfileFeatured() {
   function ShowEditFeatured() {
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleEditFeaturedClose()}></div>
+        <div className="expanded-profile-overlay-cont" onClick={() => handleEditFeaturedClose()}></div>
         <div className="expanded-profile-overlay-overflow">
           <div className="expanded-profile-overlay-header-cont">
             <h2 className="expanded-edit-about-title">Edit Your Featured Section</h2>
             <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditFeaturedClose()} />
           </div>
           <div className="edit-featured-cont">
-            {FakeUserData[userIndex].featured.map((featuredPost) => {
+            {props.featured.map((featuredPost) => {
               return (
                 <div className="edit-featured-item-cont" key={featuredPost.id}>
                   <div className="edit-featured-item">
-                    <img className="edit-featured-img" src={featuredPost.img} alt=""/>
+                    <img className="edit-featured-img" src={featuredPost.image} alt=""/>
                     <div className="edit-featured-info-cont">
-                      <h4>{featuredPost.name}</h4>
-                      {featuredPost.description.length <= 150 ?
-                      <p>{featuredPost.description}</p> :
-                      <p>{shortenText(featuredPost.description, 150)}</p>}
+                      <h4>{featuredPost.title}</h4>
+                      {featuredPost.content.length <= 150 ?
+                      <p>{featuredPost.content}</p> :
+                      <p>{shortenText(featuredPost.content, 150)}</p>}
                     </div>
                   </div>
                   <div className="remove-featured-item">
@@ -89,30 +85,29 @@ export default function ProfileFeatured() {
   function handleNextClick(): void{
     setFeatureIndex(prevState => {
       let nextIndex = prevState + 1;
-      if (nextIndex >= Math.ceil(FakeUserData[userIndex].featured.length / 3)) {
+      if (nextIndex >= Math.ceil(props.featured.length / 3)) {
         nextIndex = 0;
       }
       return nextIndex;
     });
   }
 
-  // When backend is implemented, type of id will change to string
-  function handlePostClick(id: number): void{
+  function handlePostClick(id: string): void{
     setExpandedPost(id);
   }
 
   // Uses createPortal to insert new div into the body
 
   function ShowExpandedPost(): ReactPortal{
-    const expandedPostData = FakeUserData[userIndex].featured.filter((featuredPost) => featuredPost.id === expandedPost)[0];
+    const expandedPostData = props.featured.filter((featuredPost) => featuredPost.id === expandedPost)[0];
     return ReactDOM.createPortal(
       <>
         <div className="expanded-post-cont" key={expandedPostData.id}></div>
         <div className="expanded-post">
-          <img src={expandedPostData.img} alt=""/>
+          <img src={expandedPostData.image} alt=""/>
           <div className="expanded-text">
-            <h4>{expandedPostData.name}</h4>
-            <p>{expandedPostData.description}</p>
+            <h4>{expandedPostData.title}</h4>
+            <p>{expandedPostData.content}</p>
           </div>
           <img src={CancelButton} alt="" onClick={handleExpandedImageClose} className="close-button"></img>
         </div>
@@ -130,21 +125,21 @@ export default function ProfileFeatured() {
       <div className="editable-comp-header">
         <h2>Featured</h2>
         <div className="profile-experience-header-buttons">
-          <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddFeaturedClick(FakeUserData[userIndex].id)} />
-          <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditFeaturedClick(FakeUserData[userIndex].id)}/>
+          <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddFeaturedClick()} />
+          <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditFeaturedClick()}/>
         </div>
       </div>
       <div className="featured-post-cont">
-        {FakeUserData[userIndex].featured
+        {props.featured
         .filter((featuredPost, index) => index >= featureIndex && index < featureIndex + 3)
         .map((featuredPost) => {
           return (
             <div className="featured-post" key={featuredPost.id} onClick={() => handlePostClick(featuredPost.id)}>
-              <img src={featuredPost.img} alt=""/>
-              <h4>{featuredPost.name}</h4>
-              {featuredPost.description.length <= 150 ?
-              <p>{featuredPost.description}</p> :
-              <p>{shortenText(featuredPost.description, 150)}</p>}
+              <img src={featuredPost.image} alt=""/>
+              <h4>{featuredPost.title}</h4>
+              {featuredPost.content.length <= 150 ?
+              <p>{featuredPost.content}</p> :
+              <p>{shortenText(featuredPost.content, 150)}</p>}
             </div>
           );
         })}

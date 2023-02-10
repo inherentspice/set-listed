@@ -3,9 +3,7 @@ import ReactDOM from "react-dom";
 import Edit from "../../media/icons/edit.png";
 import Add from "../../media/icons/add.png";
 import "../../styles/profile-experience.css";
-import { FakeUserData } from "../../dummy-data/fake-users";
 import convertDateRange from "../../utilities/convert-date-range";
-import { useParams } from "react-router-dom";
 import CancelButton from "../../media/icons/cancel.png";
 import { ExperienceData } from "../../types/profile";
 
@@ -14,15 +12,12 @@ import { ExperienceData } from "../../types/profile";
 export default function ProfileExperience(props: {experience: ExperienceData[]}){
     const [expandedAddExperience, setExpandedAddExperience] = useState<boolean>(false);
     const [expandedEditExperience, setExpandedEditExperience] = useState<null | string>(null);
-    const [experienceIndex, setExperienceIndex] = useState(-1);
 
     function handleAddExperienceClick(): void{
         setExpandedAddExperience(true);
     }
-    function handleEditExperienceClick(id: string, index: number): void{
+    function handleEditExperienceClick(id: string): void{
         setExpandedEditExperience(id);
-        setExperienceIndex(index);
-        console.log("click");
     }
 
     function handleAddExerienceClose(): void{
@@ -144,7 +139,7 @@ export default function ProfileExperience(props: {experience: ExperienceData[]})
                                         <div className="profile-experience-item-venue">{item.venue}</div>
                                     </div>
                                     <div className="profile-experience-item-head-right">
-                                        <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditExperienceClick(item.id, props.experience.indexOf(item))} />
+                                        <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditExperienceClick(item.id)} />
                                     </div>
                                 </div>
                                 <div className="profile-experience-item-duration-cont">

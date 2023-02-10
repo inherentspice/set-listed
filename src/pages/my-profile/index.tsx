@@ -32,9 +32,6 @@ export default function BuildProfilePage() {
     }());
   }, []);
 
-  console.log(userid);
-  console.log(profile);
-
   return (
     <>
      {profile && <div className="page-cont profile-page">
@@ -42,12 +39,12 @@ export default function BuildProfilePage() {
         <ProfileAnalytics profileCard={profile.profileCard}/>
         <ProfileResources />
         <ProfileAbout about={profile.about}/>
-        {/* <Featured /> */}
+        <Featured featured={profile.featured}/>
         <ProfileActivity profileCard={profile.profileCard} posts={profile && profile.post}/>
         <ProfileExperience experience={profile.experience}/>
-        {/* <ProfileSkills />
-        <ProfileAwards />
-        <ProfilePotentialFriends /> */}
+        <ProfileSkills />
+        <ProfileAwards awards={profile.award}/>
+        <ProfilePotentialFriends />
     </div>}
     </>
   );
