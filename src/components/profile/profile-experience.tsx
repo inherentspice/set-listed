@@ -7,27 +7,26 @@ import { FakeUserData } from "../../dummy-data/fake-users";
 import convertDateRange from "../../utilities/convert-date-range";
 import { useParams } from "react-router-dom";
 import CancelButton from "../../media/icons/cancel.png";
+import { ExperienceData } from "../../types/profile";
 
 
-export default function ProfileExperience(){
-    const [expandedAddExperience, setExpandedAddExperience] = useState<null | number>(null);
-    const [expandedEditExperience, setExpandedEditExperience] = useState<null | number>(null);
+
+export default function ProfileExperience(props: {experience: ExperienceData[]}){
+    const [expandedAddExperience, setExpandedAddExperience] = useState<boolean>(false);
+    const [expandedEditExperience, setExpandedEditExperience] = useState<null | string>(null);
     const [experienceIndex, setExperienceIndex] = useState(-1);
 
-    const { username } = useParams();
-    const userIndex = FakeUserData.findIndex(x => x.username === username);
-
-    function handleAddExperienceClick(id: number): void{
-        setExpandedAddExperience(id);
+    function handleAddExperienceClick(): void{
+        setExpandedAddExperience(true);
     }
-    function handleEditExperienceClick(id: number, index: number): void{
+    function handleEditExperienceClick(id: string, index: number): void{
         setExpandedEditExperience(id);
         setExperienceIndex(index);
         console.log("click");
     }
 
     function handleAddExerienceClose(): void{
-        setExpandedAddExperience(null);
+        setExpandedAddExperience(false);
     }
     function handleEditExerienceClose(): void{
         setExpandedEditExperience(null);
@@ -36,7 +35,7 @@ export default function ProfileExperience(){
     function ShowAddExperience() {
         return ReactDOM.createPortal(
           <>
-            <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleAddExerienceClose()}></div>
+            <div className="expanded-profile-overlay-cont" onClick={() => handleAddExerienceClose()}></div>
             <div className="expanded-profile-overlay">
                 <div className="expanded-profile-overlay-header-cont">
                     <h2 className="expanded-profile-overlay-title">Add Your Experience</h2>
@@ -58,7 +57,7 @@ export default function ProfileExperience(){
                 <div className="add-experience-form-item">
                     <label>End:</label>
                     <input placeholder="DD/MM/YYYY - leave blank if you still perform here" type="date"/>
-                    
+
                 </div>
                 <div className="add-experience-form-item">
                     <label>Location:</label>
@@ -79,22 +78,23 @@ export default function ProfileExperience(){
     }
 
     function ShowEditExperience() {
+      const expExperience = props.experience.filter(exp => exp.id === expandedEditExperience)[0];
         return ReactDOM.createPortal(
           <>
-            <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleEditExerienceClose()}></div>
+            <div className="expanded-profile-overlay-cont" key={expExperience.id} onClick={() => handleEditExerienceClose()}></div>
             <div className="expanded-profile-overlay">
                 <div className="expanded-profile-overlay-header-cont">
                     <h2 className="expanded-profile-overlay-title">Edit Your Experience</h2>
                     <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditExerienceClose()} />
                 </div>
                 <form className="add-experience-form">
-                <div className="add-experience-form-item">
+                {/* <div className="add-experience-form-item">
                     <label>Title:</label>
                     <input defaultValue={FakeUserData[userIndex].experience[experienceIndex].title}></input>
-                </div>
+                </div> */}
                 <div className="add-experience-form-item">
                     <label>Venue:</label>
-                    <input defaultValue={FakeUserData[userIndex].experience[experienceIndex].venue}></input>
+                    <input defaultValue={expExperience.venue}></input>
                 </div>
                 <div className="add-experience-form-item">
                     <label>Start:</label>
@@ -103,15 +103,15 @@ export default function ProfileExperience(){
                 <div className="add-experience-form-item">
                     <label>End:</label>
                     <input type="date"/>
-                    
+
                 </div>
-                <div className="add-experience-form-item">
+                {/* <div className="add-experience-form-item">
                     <label>Location:</label>
                     <input defaultValue={FakeUserData[userIndex].experience[experienceIndex].location}></input>
-                </div>
+                </div> */}
                 <div className="add-experience-form-item">
                     <label>Description:</label>
-                    <input defaultValue={FakeUserData[userIndex].experience[experienceIndex].description } maxLength={2000}></input>
+                    <input defaultValue={expExperience.content} maxLength={2000}></input>
                 </div>
                 <div className="expanded-profile-overlay-submit">
                     <button className="expanded-profile-overlay-submit-btn" type="submit">Save</button>
@@ -129,31 +129,31 @@ export default function ProfileExperience(){
             <div className="profile-experience-header">
                 <div className="profile-experience-header-title">Experience</div>
                 <div className="profile-experience-header-buttons">
-                    <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddExperienceClick(FakeUserData[userIndex].id)} />
+                    <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddExperienceClick()} />
                 </div>
             </div>
             <div className="profile-experience-items-cont">
-                {FakeUserData[userIndex].experience.map(item => {
+                {props.experience.map(item => {
                     return(
                         <div className="profile-experience-item">
-                            <img className="profile-experience-item-img" src={item.img} />
+                            <img className="profile-experience-item-img" src={"/"} />
                             <div className="profile-experience-item-info-cont">
                                 <div className="profile-experience-item-head">
                                     <div className="profile-experience-head-left">
-                                        <div className="profile-experience-item-title">{item.title}</div>
+                                        {/* <div className="profile-experience-item-title">{item.title}</div> */}
                                         <div className="profile-experience-item-venue">{item.venue}</div>
                                     </div>
                                     <div className="profile-experience-item-head-right">
-                                        <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditExperienceClick(FakeUserData[userIndex].id, FakeUserData[userIndex].experience.indexOf(item))} />
+                                        <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditExperienceClick(item.id, props.experience.indexOf(item))} />
                                     </div>
-                                </div>                                    
-                                <div className="profile-experience-item-duration-cont">
-                                    <div className="profile-experience-item-dates">{item.start.toString().slice(4,16) +" - "+ (item.end.toString().slice(4,16) === new Date(Date.now()).toString().slice(4,16) ? "Present" : item.end.toString().slice(4,16))}</div>
-                                    <div>|</div>
-                                    <div className="profile-experience-item-duration">{convertDateRange(item.start, item.end)}</div>
                                 </div>
-                                <div className="profile-experience-item-location">{item.location}</div>
-                                <div className="profile-experience-item-description">{item.description}</div>
+                                <div className="profile-experience-item-duration-cont">
+                                    {/* <div className="profile-experience-item-dates">{item.start.toString().slice(4,16) +" - "+ (item.end.toString().slice(4,16) === new Date(Date.now()).toString().slice(4,16) ? "Present" : item.end.toString().slice(4,16))}</div> */}
+                                    {/* <div>|</div> */}
+                                    {/* <div className="profile-experience-item-duration">{convertDateRange(item.start, item.end)}</div> */}
+                                </div>
+                                {/* <div className="profile-experience-item-location">{item.venue}</div> */}
+                                <div className="profile-experience-item-description">{item.content}</div>
                             </div>
                         </div>
                     );
