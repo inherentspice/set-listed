@@ -1,30 +1,26 @@
 import Add from "../../media/icons/add.png";
 import Edit from "../../media/icons/edit.png";
-import { FakeUserData } from "../../dummy-data/fake-users";
-import { useParams } from "react-router-dom";
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import CancelButton from "../../media/icons/cancel.png";
+import { AwardData } from "../../types/profile";
 
-export default function ProfileAwards() {
-  const { username } = useParams();
-  const userIndex = FakeUserData.findIndex(x => x.username === username);
 
-  const [expandedAddAwards, setExpandedAddAwards] = useState<null | number>(null);
-  const [expandedEditAwards, setExpandedEditAwards] = useState<null | number>(null);
-  const [awardsIndex, setAwardsIndex] = useState(-1);
+export default function ProfileAwards(props: {awards: AwardData[]}) {
 
-  function handleAddAwardsClick(id: number): void{
-    setExpandedAddAwards(id);
+
+  const [expandedAddAwards, setExpandedAddAwards] = useState<boolean>(false);
+  const [expandedEditAwards, setExpandedEditAwards] = useState<null | string>(null);
+
+  function handleAddAwardsClick(): void{
+    setExpandedAddAwards(true);
   }
-  function handleEditAwardsClick(id: number, index: number): void{
+  function handleEditAwardsClick(id: string): void{
     setExpandedEditAwards(id);
-    setAwardsIndex(index);
-    console.log("click");
   }
 
   function handleAddAwardsClose(): void{
-    setExpandedAddAwards(null);
+    setExpandedAddAwards(false);
   }
   function handleEditAwardsClose(): void{
     setExpandedEditAwards(null);
@@ -33,7 +29,7 @@ export default function ProfileAwards() {
   function ShowAddAwards() {
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleAddAwardsClose()}></div>
+        <div className="expanded-profile-overlay-cont" onClick={() => handleAddAwardsClose()}></div>
         <div className="expanded-profile-overlay">
           <div className="expanded-profile-overlay-header-cont">
               <h2 className="expanded-profile-overlay-title">Add Your Awards</h2>
@@ -55,9 +51,10 @@ export default function ProfileAwards() {
   }
 
   function ShowEditAwards() {
+    const expAward = props.awards.filter((award) => award.id === expandedEditAwards)[0];
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleEditAwardsClose()}></div>
+        <div className="expanded-profile-overlay-cont" onClick={() => handleEditAwardsClose()}></div>
         <div className="expanded-profile-overlay">
           <div className="expanded-profile-overlay-header-cont">
             <h2 className="expanded-profile-overlay-title">Edit Your Award</h2>
@@ -66,7 +63,7 @@ export default function ProfileAwards() {
           <form className="add-experience-form">
             <div className="add-experience-form-item">
               <label>Award:</label>
-              <input defaultValue={FakeUserData[userIndex].awards[awardsIndex].title}></input>
+              <input defaultValue={expAward.content}></input>
             </div>
             <div className="expanded-profile-overlay-submit">
               <button className="expanded-profile-overlay-submit-btn" type="submit">Save</button>
@@ -86,15 +83,15 @@ export default function ProfileAwards() {
       <div className="editable-comp-header">
         <h2>Awards & Achievements</h2>
         <div className="profile-experience-header-buttons">
-          <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddAwardsClick(FakeUserData[userIndex].id)} />
+          <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddAwardsClick()} />
         </div>
       </div>
       <div className="awards-cont">
-        {FakeUserData[userIndex].awards.map(award => {
+        {props.awards.map(award => {
           return (
           <div className="award-cont" key={award.id}>
-            <h4>{award.title}</h4>
-            <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditAwardsClick(FakeUserData[userIndex].id, FakeUserData[userIndex].awards.indexOf(award))} />
+            <h4>{award.content}</h4>
+            <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditAwardsClick(award.id)} />
           </div>
           );
         })}
