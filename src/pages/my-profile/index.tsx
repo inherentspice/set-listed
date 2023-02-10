@@ -38,14 +38,14 @@ export default function BuildProfilePage() {
   return (
     <>
      {profile && <div className="page-cont profile-page">
-        <ProfileHero profileCard={profile && profile.profileCard}/>
+        <ProfileHero profileCard={profile.profileCard}/>
         <ProfileAnalytics profileCard={profile.profileCard}/>
         <ProfileResources />
         <ProfileAbout about={profile.about}/>
         {/* <Featured /> */}
-        <ProfileActivity profileCard={profile && profile.profileCard} posts={profile && profile.post}/>
-        {/* <ProfileExperience />
-        <ProfileSkills />
+        <ProfileActivity profileCard={profile.profileCard} posts={profile && profile.post}/>
+        <ProfileExperience experience={profile.experience}/>
+        {/* <ProfileSkills />
         <ProfileAwards />
         <ProfilePotentialFriends /> */}
     </div>}
