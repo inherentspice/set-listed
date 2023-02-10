@@ -143,7 +143,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
                 //   <img className="profile-her-user-digital-footprint-follower-img" src={Follower} alt="" />
                 //   <div className="profile-hero-user-digital-footprint-followers">{item.followers}</div>
                 // </div>
-                <h1>{item}</h1>
+                <p>{item}</p>
               );
             })}
           </div>
