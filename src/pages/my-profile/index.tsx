@@ -10,7 +10,6 @@ import ProfileSkills from "../../components/profile/profile-skills";
 import ProfileAnalytics from "../../components/profile/profile-analytics";
 import ProfileResources from "../../components/profile/profile-resources";
 import { useParams } from "react-router-dom";
-import { FakeUserData } from "../../dummy-data/fake-users";
 import ProfileCardService from "../../services/home/profile";
 import ProfileData from "../../types/profile";
 import "./index.css";
@@ -41,9 +40,9 @@ export default function BuildProfilePage() {
      {profile && <div className="page-cont profile-page">
         <ProfileHero profileCard={profile && profile.profileCard}/>
         <ProfileAnalytics profileCard={profile.profileCard}/>
-        {/* <ProfileResources />
-        <ProfileAbout />
-        <Featured /> */}
+        <ProfileResources />
+        <ProfileAbout about={profile.about}/>
+        {/* <Featured /> */}
         <ProfileActivity profileCard={profile && profile.profileCard} posts={profile && profile.post}/>
         {/* <ProfileExperience />
         <ProfileSkills />
