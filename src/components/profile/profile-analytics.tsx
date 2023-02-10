@@ -2,9 +2,7 @@ import React from "react";
 import Network from "../../media/icons/my-network.png";
 import Chart from "../../media/icons/chart.png";
 import Search from "../../media/icons/search.png";
-import { FakeUserData } from "../../dummy-data/fake-users";
 import "../../styles/profile-analytics.css";
-import { useParams } from "react-router-dom";
 import { ProfileCardData } from "../../types/profile";
 
 export default function ProfileAnalytics(props: {profileCard: ProfileCardData[]}) {
@@ -36,7 +34,6 @@ export default function ProfileAnalytics(props: {profileCard: ProfileCardData[]}
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }

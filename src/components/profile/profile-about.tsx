@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { FakeUserData } from "../../dummy-data/fake-users";
 import "../../styles/profile-about.css";
 import Edit from "../../media/icons/edit.png";
-import { useParams } from "react-router-dom";
 import CancelButton from "../../media/icons/cancel.png";
+import { AboutData } from "../../types/profile";
 
-export default function ProfileAbout() {
-  const [expandedEditAbout, setExpandedEditAbout] = useState<null | number>(null);
 
-  const { username } = useParams();
-  const userIndex = FakeUserData.findIndex(x => x.username === username);
+export default function ProfileAbout(props: {about: AboutData[]}) {
+  const [expandedEditAbout, setExpandedEditAbout] = useState<null | string>(null);
 
-  function handleEditAboutClick(id: number): void{
+  const about = props.about[0];
+
+  function handleEditAboutClick(id: string): void{
     setExpandedEditAbout(id);
   }
 
@@ -23,7 +22,7 @@ export default function ProfileAbout() {
   function ShowEditProfileAbout() {
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-profile-overlay-cont" key={FakeUserData[userIndex].id} onClick={() => handleEditAboutClose()}></div>
+        <div className="expanded-profile-overlay-cont" key={about.id} onClick={() => handleEditAboutClose()}></div>
         <div className="expanded-profile-overlay">
           <div className="expanded-profile-overlay-header-cont">
             <h2 className="expanded-edit-about-title">Edit Your About Section</h2>
@@ -32,7 +31,7 @@ export default function ProfileAbout() {
           <div className="edit-profile-about-body">
             <div className="edit-profile-about-explanation"></div>
             <form className="edit-profile-about-form">
-              <textarea className="edit-profile-about-text-area" defaultValue={FakeUserData[userIndex].about} rows={10} cols={70} maxLength={2000}></textarea>
+              <textarea className="edit-profile-about-text-area" defaultValue={about.content} rows={10} cols={70} maxLength={2000}></textarea>
               <div className="expanded-profile-overlay-submit">
                 <button className="expanded-profile-overlay-submit-btn" type="submit">Save</button>
               </div>
@@ -49,9 +48,9 @@ export default function ProfileAbout() {
     <div className="profile-about-cont comp">
       <div className="profile-about-title-cont">
         <div className="profile-about-title">About</div>
-        <img className="profile-about-edit" src={Edit} onClick={() => handleEditAboutClick(FakeUserData[userIndex].id)} />
+        <img className="profile-about-edit" src={Edit} onClick={() => handleEditAboutClick(about.id)} />
       </div>
-      <div className="profile-about-text">{FakeUserData[userIndex].about}</div>
+      <div className="profile-about-text">{about.content}</div>
       {expandedEditAbout && <ShowEditProfileAbout />}
     </div>
   );
