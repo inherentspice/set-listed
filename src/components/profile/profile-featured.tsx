@@ -4,9 +4,7 @@ import Add from "../../media/icons/add.png";
 import Edit from "../../media/icons/edit.png";
 import ArrowForward from "../../media/icons/arrow-forward.png";
 import CancelButton from "../../media/icons/cancel.png";
-import { FakeUserData } from "../../dummy-data/fake-users";
 import shortenText from "../../utilities/shorten-text";
-import { useParams } from "react-router-dom";
 import "../../styles/profile-featured.css";
 import { FeaturedData } from "../../types/profile";
 
@@ -14,7 +12,6 @@ import { FeaturedData } from "../../types/profile";
 export default function ProfileFeatured(props: {featured: FeaturedData[]}) {
 
   const [featureIndex, setFeatureIndex] = useState(0);
-  // When backend is implemented, type of useState will change to <null | string>
   const [expandedPost, setExpandedPost] = useState<null | string>(null);
 
   const [expandedAddFeatured, setExpandedAddFeatured] = useState<boolean>(false);
@@ -95,7 +92,6 @@ export default function ProfileFeatured(props: {featured: FeaturedData[]}) {
     });
   }
 
-  // When backend is implemented, type of id will change to string
   function handlePostClick(id: string): void{
     setExpandedPost(id);
   }
