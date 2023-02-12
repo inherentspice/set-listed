@@ -42,7 +42,7 @@ export default function BuildProfilePage() {
         <Featured featured={profile.featured}/>
         <ProfileActivity profileCard={profile.profileCard} posts={profile && profile.post}/>
         <ProfileExperience experience={profile.experience}/>
-        <ProfileSkills />
+        <ProfileSkills skills={profile.skill}/>
         <ProfileAwards awards={profile.award}/>
         <ProfilePotentialFriends />
     </div>}

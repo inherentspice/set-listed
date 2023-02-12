@@ -105,3 +105,15 @@
 .profile-info-cont {
   margin: 1rem;
 }
+
+/* skills */
+.skill-cont {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-endorse-cont {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
