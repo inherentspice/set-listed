@@ -2,25 +2,30 @@ import axios from "axios";
 import { AxiosResponse } from "axios";
 import ProfileData, {PostData, ProfileCardData} from "../../types/profile";
 
-const baseUrl = "/profilecard";
+const baseUrl = "/profile";
 
 
 const getOne = (id: string): Promise<AxiosResponse<ProfileCardData>> => {
-  return axios.get(`${baseUrl}/${id}`);
+  return axios.get(`profilecard/${id}`);
 };
 
 const getProfile = (id: string): Promise<AxiosResponse<ProfileData>> => {
-  return axios.get(`/profile/${id}`);
+  return axios.get(`${baseUrl}/${id}`);
 };
 
 const getProfilePosts = (id: string): Promise<AxiosResponse<PostData>> => {
-  return axios.get(`profile/posts/${id}`);
-}
-
-const ProfileCardService = {
-  getOne,
-  getProfile,
-  getProfilePosts
+  return axios.get(`${baseUrl}/posts/${id}`);
 };
 
-export default ProfileCardService;
+const postFeatured = (formObject: FormData) => {
+  return axios.post(`${baseUrl}/featured`, formObject);
+};
+
+const ProfileService = {
+  getOne,
+  getProfile,
+  getProfilePosts,
+  postFeatured,
+};
+
+export default ProfileService;

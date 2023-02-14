@@ -6,10 +6,11 @@ import ArrowForward from "../../media/icons/arrow-forward.png";
 import CancelButton from "../../media/icons/cancel.png";
 import shortenText from "../../utilities/shorten-text";
 import "../../styles/profile-featured.css";
+import ProfileService from "../../services/home/profile";
 import { FeaturedData } from "../../types/profile";
 
 
-export default function ProfileFeatured(props: {featured: FeaturedData[]}) {
+export default function ProfileFeatured(props: {featured: FeaturedData[], user: string}) {
 
   const [featureIndex, setFeatureIndex] = useState(0);
   const [expandedPost, setExpandedPost] = useState<null | string>(null);
@@ -31,7 +32,50 @@ export default function ProfileFeatured(props: {featured: FeaturedData[]}) {
     setExpandedEditFeatured(false);
   }
 
+  function handleAddFeaturedSubmit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, suppImageUpload: File | null, description: string, title: string): void{
+    e.preventDefault();
+    addFeatured(suppImageUpload, description, title)
+      .then(() => {
+      console.log("feature added");
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+  async function addFeatured(suppImageUpload: File | null, description: string, title: string) {
+    const formData = new FormData();
+    if (suppImageUpload && description && title) {
+    formData.append("image", suppImageUpload);
+    formData.append("content", description);
+    formData.append("title", title);
+    formData.append("user", props.user);
+    try {
+      const newSuppImage = await ProfileService.postFeatured(formData);
+      console.log(newSuppImage);
+    } catch (err) {
+      console.log(err);
+    }
+    }
+  }
+
   function ShowAddFeatured() {
+
+    const [title, setTitle] = useState("");
+    const [suppImageUpload, setSuppImageUpload] = useState<File | null>(null);
+    const [description, setDescription] = useState<string>("");
+
+    function handleTitleChange(e: React.ChangeEvent<HTMLInputElement>): void{
+      setTitle(e.target.value);
+    }
+
+    function handleDescriptionChange(e: React.ChangeEvent<HTMLTextAreaElement>): void{
+      setDescription(e.target.value);
+    }
+    function handleSuppImageChange(e: React.ChangeEvent<HTMLInputElement>): void{
+      if (e.target.files){
+        setSuppImageUpload(e.target.files[0]);
+      }
+    }
+
     return ReactDOM.createPortal(
       <>
         <div className="expanded-profile-overlay-cont" onClick={() => handleAddFeaturedClose()} ></div>
@@ -40,6 +84,21 @@ export default function ProfileFeatured(props: {featured: FeaturedData[]}) {
             <h2 className="expanded-edit-about-title">Add to Your Featured Section</h2>
             <img className="start-post-cancel" src={CancelButton} onClick={() => handleAddFeaturedClose()} />
           </div>
+          <form className="start-post-user-form">
+            <label className="profile-add-label">
+              Title:
+              <input type="text" value={title} onChange={handleTitleChange} />
+            </label>
+            <label className="profile-add-label">
+              Description:
+              <textarea className="profile-add-textarea" placeholder="" value={description} rows={10} onChange={handleDescriptionChange} />
+            </label>
+            <label className="profile-add-label">
+              Add Supplementary Image:
+              <input className="upload-image-input" type="file" onChange={handleSuppImageChange} />
+            </label>
+            <button className="primary-button" type="submit" onClick={(e) => handleAddFeaturedSubmit(e, suppImageUpload, description, title)}>Upload New Featured Item</button>
+          </form>
         </div>
       </>,
       document.body
@@ -92,8 +151,10 @@ export default function ProfileFeatured(props: {featured: FeaturedData[]}) {
     });
   }
 
-  function handlePostClick(id: string): void{
-    setExpandedPost(id);
+  function handlePostClick(id: string | undefined): void{
+    if (id) {
+      setExpandedPost(id);
+    }
   }
 
   // Uses createPortal to insert new div into the body
@@ -119,6 +180,8 @@ export default function ProfileFeatured(props: {featured: FeaturedData[]}) {
   function handleExpandedImageClose(): void{
     setExpandedPost(null);
   }
+
+  console.log(props.featured);
 
   return (
     <div className="profile-cont comp">
