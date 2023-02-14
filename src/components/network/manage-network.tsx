@@ -17,7 +17,7 @@ export default function NetworkManage() {
                 <div className="network-manage-item">
                     <img className="network-manage-item-img" src={MyNetwork} />
                     <div className="network-manage-item-name">Connections</div>
-                    <div className="network-manage-item-count">5</div>
+                    <div className="network-manage-item-count">512</div>
                 </div>
 
                 <div className="network-manage-item">
