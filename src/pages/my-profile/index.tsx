@@ -10,7 +10,7 @@ import ProfileSkills from "../../components/profile/profile-skills";
 import ProfileAnalytics from "../../components/profile/profile-analytics";
 import ProfileResources from "../../components/profile/profile-resources";
 import { useParams } from "react-router-dom";
-import ProfileCardService from "../../services/home/profile";
+import ProfileService from "../../services/home/profile";
 import ProfileData from "../../types/profile";
 import "./index.css";
 
@@ -22,7 +22,7 @@ export default function BuildProfilePage() {
     (async function() {
       if (userid) {
         try {
-          const profileInfo = await ProfileCardService.getProfile(userid);
+          const profileInfo = await ProfileService.getProfile(userid);
           const profileInfoData = profileInfo.data;
           setProfile(profileInfoData);
         } catch (err) {
@@ -39,8 +39,8 @@ export default function BuildProfilePage() {
         <ProfileAnalytics profileCard={profile.profileCard}/>
         <ProfileResources />
         <ProfileAbout about={profile.about}/>
-        <Featured featured={profile.featured}/>
-        <ProfileActivity profileCard={profile.profileCard} posts={profile && profile.post}/>
+        <Featured user={profile.profileCard[0].user} featured={profile.featured}/>
+        <ProfileActivity profileCard={profile.profileCard} posts={profile.post}/>
         <ProfileExperience experience={profile.experience}/>
         <ProfileSkills skills={profile.skill}/>
         <ProfileAwards awards={profile.award}/>

@@ -19,11 +19,11 @@ export interface ExperienceData {
 
 export interface FeaturedData {
   user: string,
-  image: string,
-  cloudinaryId: string,
+  image?: string,
+  cloudinaryId?: string,
   title: string,
   content: string,
-  id: string
+  id?: string
 }
 
 export interface PostData {
