@@ -1,0 +1,92 @@
+@import "../../App.css";
+
+.network-invitations-cont {
+    width: 50vw;
+}
+
+.network-invitation-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.network-invitation-items-cont {
+    display: flex;
+    flex-direction: column;
+}
+
+.network-invitation-item {
+    display: grid;
+    grid-template-columns: 2fr 5fr 3fr;
+    padding: 1rem;
+    border-top: 2px solid var(--grey-color-1);
+}
+
+.network-invitation-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.network-invitation-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.network-invitation-tagline {
+    color: var(--grey-color-2);
+}
+
+.network-invitation-shared-connections {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.network-invitation-shared-connections-img {
+    height: 1.25rem
+}
+
+.network-invitation-shared-connections-people {
+    color: var(--grey-color-1);
+}
+
+.network-invitation-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.network-invitation-ignore-btn {
+    padding: .5rem 1.25rem;
+    font-weight: bold;
+    border: var(--grey-color-2) solid 2px;
+    background-color: var(--grey-color-2);
+    border-radius: 2rem;
+    color: white;
+}
+
+.network-invitation-ignore-btn:hover {
+    cursor: pointer;
+    border: var(--grey-color-2) solid 2px;
+    color: var(--grey-color-2);
+    background-color: white;
+}
+
+.network-invitation-accept-btn {
+    padding: .5rem 1.25rem;
+    font-weight: bold;
+    border: var(--primary-color) solid 2px;
+    background-color: var(--primary-color);
+    border-radius: 2rem;
+    color: white;
+}
+
+.network-invitation-accept-btn:hover {
+    cursor: pointer;
+    border: var(--primary-color) solid 2px;
+    color: var(--primary-color);
+    background-color: var(--primary-light-color);
+}
