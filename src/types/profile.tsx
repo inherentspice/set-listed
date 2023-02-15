@@ -52,6 +52,11 @@ export interface PostData {
   id: string
 }
 
+export interface PostDataSend {
+  content: string,
+  user: string
+}
+
 export interface ProfileCardData {
   firstName: string,
   lastName: string,
@@ -73,6 +78,11 @@ export interface SkillData {
   content: string,
   endorsments: number,
   id: string,
+}
+
+export interface SkillDataSend {
+  user: string,
+  content: string,
 }
 
 export default interface ProfileData {

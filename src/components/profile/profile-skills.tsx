@@ -4,8 +4,9 @@ import { SkillData } from "../../types/profile";
 import Add from "../../media/icons/add.png";
 import Edit from "../../media/icons/edit.png";
 import CancelButton from "../../media/icons/cancel.png";
+import ProfileService from "../../services/home/profile";
 
-export default function ProfileSkills(props: {skills: SkillData[]}) {
+export default function ProfileSkills(props: {skills: SkillData[], user: string}) {
 
   const [expandedAddSkill, setExpandedAddSkill] = useState<boolean>(false);
   const [expandedEditSkill, setExpandedEditSkill] = useState<boolean>(false);
@@ -25,7 +26,37 @@ export default function ProfileSkills(props: {skills: SkillData[]}) {
     setExpandedEditSkill(false);
   }
 
+  function handleAddSkillSubmit(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    content: string
+  ) {
+    e.preventDefault();
+    addSkill(content, props.user)
+      .then(() => {
+        console.log("added skill");
+      });
+  }
+
+  async function addSkill(content: string, user: string) {
+    const formData = {
+      content,
+      user
+    };
+    try {
+      const newSkill = await ProfileService.postSkill(formData);
+      console.log(newSkill);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   function ShowAddSkill() {
+    const [content, setContent] = useState<string>("");
+
+    function handleContentChange(value: string): void{
+      setContent(value);
+    }
+
     return ReactDOM.createPortal(
       <>
         <div className="expanded-profile-overlay-cont" onClick={() => handleAddSkillClose()} ></div>
@@ -34,6 +65,31 @@ export default function ProfileSkills(props: {skills: SkillData[]}) {
             <h2 className="expanded-edit-about-title">Add to Your Skill Section</h2>
             <img className="start-post-cancel" src={CancelButton} onClick={() => handleAddSkillClose()} />
           </div>
+          <form>
+            <label className="add-experience-form-item">
+              <select value={content} onChange={(e) => handleContentChange(e.target.value)}>
+                <option value="">Choose a skill to add</option>
+                <option value="Hosting">Hosting</option>
+                <option value="Headlining">Headlining</option>
+                <option value="Show Running">Show Running</option>
+                <option value="Promoting">Promoting</option>
+                <option value="Improvisation">Improvisation</option>
+                <option value="Crowdwork">Crowdwork</option>
+                <option value="Story-telling">Story-telling</option>
+                <option value="Writing">Writing</option>
+                <option value="Riffing">Riffing</option>
+                <option value="One-liners">One-liners</option>
+                <option value="Stage Presence">Stage Presence</option>
+              </select>
+            </label>
+            <div className="expanded-profile-overlay-submit">
+                    <button
+                      className="expanded-profile-overlay-submit-btn"
+                      type="submit"
+                      onClick={(e) => handleAddSkillSubmit(e, content)}
+                    >Save</button>
+            </div>
+          </form>
         </div>
       </>,
       document.body

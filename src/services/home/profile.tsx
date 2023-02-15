@@ -1,6 +1,6 @@
 import axios from "axios";
 import { AxiosResponse } from "axios";
-import ProfileData, {AwardDataSend, ExperienceData, ExperienceDataSend, PostData, ProfileCardData} from "../../types/profile";
+import ProfileData, {AwardDataSend, ExperienceDataSend, PostData, PostDataSend, ProfileCardData, SkillDataSend} from "../../types/profile";
 
 const baseUrl = "/profile";
 
@@ -29,13 +29,23 @@ const postAward = (formObject: AwardDataSend) => {
   return axios.post(`${baseUrl}/award`, formObject);
 };
 
+const postSkill = (formObject: SkillDataSend) => {
+  return axios.post(`${baseUrl}/skill`, formObject);
+};
+
+const postPost = (formObject: PostDataSend) => {
+  return axios.post(`${baseUrl}/post`, formObject);
+};
+
 const ProfileService = {
   getOne,
   getProfile,
   getProfilePosts,
   postFeatured,
   postExperience,
-  postAward
+  postAward,
+  postSkill,
+  postPost
 };
 
 export default ProfileService;

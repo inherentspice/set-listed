@@ -13,6 +13,7 @@ import Chart from "../../media/icons/chart.png";
 import Visibility from "../../media/icons/visibility.png";
 import Comments from "../../media/icons/comments.png";
 import { ProfileCardData, PostData } from "../../types/profile";
+import ProfileService from "../../services/home/profile";
 
 export default function ProfileActivity(props: {profileCard: ProfileCardData[], posts: PostData[]}) {
     const [expandedStartPost, setExpandedStartPost] = useState<null | string>(null);
@@ -20,16 +21,47 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
 
     const profileCard = props.profileCard[0];
 
-
     function handleStartPostClick(id: string): void{
         setExpandedStartPost(id);
       }
 
-      function handleStartPostClose(): void{
-        setExpandedStartPost(null);
+    function handleStartPostClose(): void{
+      setExpandedStartPost(null);
+    }
+
+    function handleAddPostSubmit(
+      e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+      content: string
+    ) {
+      e.preventDefault();
+      addPost(content, profileCard.user)
+        .then(() => {
+          console.log("post added");
+        }).catch((err) => {
+          console.log(err);
+        });
+    }
+
+    async function addPost(content: string, user: string): Promise<void>{
+      const formData = {
+        content,
+        user
+      };
+      try {
+        const newPost = await ProfileService.postPost(formData);
+        console.log(newPost);
+      } catch (err) {
+        console.log(err);
       }
+    }
 
       function ShowStartPost() {
+        const [content, setContent] = useState<string>("");
+
+        function handleContentChange(e: React.ChangeEvent<HTMLTextAreaElement>): void{
+          setContent(e.target.value);
+        }
+
         return ReactDOM.createPortal(
           <>
             <div className="expanded-profile-overlay-cont" key={profileCard.id} onClick={() => handleStartPostClose()}></div>
@@ -49,7 +81,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
                         <option value="private">Only Me</option>
                     </select>
                   </div>
-                  <textarea className="start-post-textarea" placeholder="What is on your mind?" rows={10} />
+                  <textarea className="start-post-textarea" placeholder="What is on your mind?" rows={10} value={content} onChange={handleContentChange}/>
                   <div className="start-post-emoji-hashtag-cont">
                       <button className="hidden-btn" title="Add Emoji"><img className="start-post-add-emoji" src={Emoji}></img></button>
                       <div className="start-post-add-hashtag">Add Hashtag</div>
@@ -69,7 +101,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
                               <option value="innercircle">Inner Circle</option>
                               <option value="noone">Disable</option>
                           </select>
-                          <button type="submit">Post</button>
+                          <button type="submit" onClick={(e) => {handleAddPostSubmit(e, content)}}>Post</button>
                       </div>
                   </div>
               </form>
