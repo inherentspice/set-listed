@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import CancelButton from "../../media/icons/cancel.png";
 import { AwardData } from "../../types/profile";
+import ProfileService from "../../services/home/profile";
 
 
-export default function ProfileAwards(props: {awards: AwardData[]}) {
-
+export default function ProfileAwards(props: {awards: AwardData[], user: string}) {
 
   const [expandedAddAwards, setExpandedAddAwards] = useState<boolean>(false);
   const [expandedEditAwards, setExpandedEditAwards] = useState<null | string>(null);
@@ -26,7 +26,36 @@ export default function ProfileAwards(props: {awards: AwardData[]}) {
     setExpandedEditAwards(null);
   }
 
+  function handleAddAwardSubmit(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    content: string
+  ) {
+    e.preventDefault();
+    addAward(content, props.user)
+      .then(() => {
+        console.log("award added");
+      });
+  }
+
+  async function addAward(content: string, user: string) {
+    const formData = {
+      content,
+      user
+    };
+    try {
+      const newAward = await ProfileService.postAward(formData);
+      console.log(newAward);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   function ShowAddAwards() {
+    const [content, setContent] = useState<string>("");
+
+    function handleContentChange(e: React.ChangeEvent<HTMLInputElement>): void{
+      setContent(e.target.value);
+    }
     return ReactDOM.createPortal(
       <>
         <div className="expanded-profile-overlay-cont" onClick={() => handleAddAwardsClose()}></div>
@@ -36,12 +65,11 @@ export default function ProfileAwards(props: {awards: AwardData[]}) {
               <img className="start-post-cancel" src={CancelButton} onClick={() => handleAddAwardsClose()} />
           </div>
           <form className="add-experience-form">
-            <div className="add-experience-form-item">
-              <label>Award:</label>
-              <input placeholder="Ex: Best Heckler @ Mochi's Bar"></input>
-            </div>
+            <label className="add-experience-form-item">Award:
+              <input placeholder="Ex: Best Heckler @ Mochi's Bar" value={content} onChange={handleContentChange}></input>
+            </label>
             <div className="expanded-profile-overlay-submit">
-              <button className="expanded-profile-overlay-submit-btn" type="submit">Save</button>
+              <button className="expanded-profile-overlay-submit-btn" type="submit" onClick={(e) => handleAddAwardSubmit(e, content)}>Save</button>
             </div>
           </form>
         </div>

@@ -10,6 +10,11 @@ export interface AwardData {
   content: string
 }
 
+export interface AwardDataSend {
+  user: string,
+  content: string
+}
+
 export interface ExperienceData {
   content: string,
   id: string,

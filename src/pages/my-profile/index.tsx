@@ -43,7 +43,7 @@ export default function BuildProfilePage() {
         <ProfileActivity profileCard={profile.profileCard} posts={profile.post}/>
         <ProfileExperience user={profile.profileCard[0].user} experience={profile.experience}/>
         <ProfileSkills skills={profile.skill}/>
-        <ProfileAwards awards={profile.award}/>
+        <ProfileAwards user={profile.profileCard[0].user} awards={profile.award}/>
         <ProfilePotentialFriends />
     </div>}
     </>
