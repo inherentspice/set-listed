@@ -75,6 +75,11 @@ export interface SkillData {
   id: string,
 }
 
+export interface SkillDataSend {
+  user: string,
+  content: string,
+}
+
 export default interface ProfileData {
   about: AboutData[],
   award: AwardData[],
