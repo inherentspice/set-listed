@@ -14,7 +14,20 @@ export interface ExperienceData {
   content: string,
   id: string,
   user: string,
-  venue: string
+  venue: string,
+  dateStart?: string,
+  dateEnd?: string,
+  location?: string
+}
+
+export interface ExperienceDataSend {
+  content: string,
+  id?: string,
+  user: string,
+  venue: string,
+  dateStart?: string,
+  dateEnd?: string,
+  location?: string
 }
 
 export interface FeaturedData {
