@@ -41,6 +41,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
       console.log(err);
     });
   }
+
   async function addFeatured(suppImageUpload: File | null, description: string, title: string) {
     const formData = new FormData();
     if (suppImageUpload && description && title) {
@@ -58,8 +59,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
   }
 
   function ShowAddFeatured() {
-
-    const [title, setTitle] = useState("");
+    const [title, setTitle] = useState<string>("");
     const [suppImageUpload, setSuppImageUpload] = useState<File | null>(null);
     const [description, setDescription] = useState<string>("");
 
@@ -180,8 +180,6 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
   function handleExpandedImageClose(): void{
     setExpandedPost(null);
   }
-
-  console.log(props.featured);
 
   return (
     <div className="profile-cont comp">

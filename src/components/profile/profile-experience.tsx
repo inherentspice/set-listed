@@ -6,10 +6,11 @@ import "../../styles/profile-experience.css";
 import convertDateRange from "../../utilities/convert-date-range";
 import CancelButton from "../../media/icons/cancel.png";
 import { ExperienceData } from "../../types/profile";
+import ProfileService from "../../services/home/profile";
 
 
 
-export default function ProfileExperience(props: {experience: ExperienceData[]}){
+export default function ProfileExperience(props: {experience: ExperienceData[], user: string}){
     const [expandedAddExperience, setExpandedAddExperience] = useState<boolean>(false);
     const [expandedEditExperience, setExpandedEditExperience] = useState<null | string>(null);
 
@@ -27,8 +28,82 @@ export default function ProfileExperience(props: {experience: ExperienceData[]})
         setExpandedEditExperience(null);
     }
 
+    function handleAddExperienceSubmit(
+      e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+      title: string,
+      venue: string,
+      description: string,
+      dateStart: string,
+      dateEnd: string,
+      location: string
+    ) {
+      e.preventDefault();
+      addExperience(title, venue, description, dateStart, dateEnd, location, props.user)
+        .then(() => {
+          console.log("feature added");
+        }).catch((err) => {
+          console.log(err);
+        });
+    }
+
+    async function addExperience(
+      title: string,
+      venue: string,
+      description: string,
+      dateStart: string,
+      dateEnd: string,
+      location: string,
+      user: string
+    ) {
+      const formData = {
+        title,
+        content: description,
+        venue,
+        dateStart,
+        dateEnd,
+        location,
+        user
+      };
+      try {
+        const newExperience = await ProfileService.postExperience(formData);
+        console.log(newExperience);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
     function ShowAddExperience() {
-        return ReactDOM.createPortal(
+      const [title, setTitle] = useState<string>("");
+      const [description, setDescription] = useState<string>("");
+      const [venue, setVenue] = useState<string>("");
+      const [dateStart, setDateStart] = useState<string>("");
+      const [dateEnd, setDateEnd] = useState<string>("");
+      const [location, setLocation] = useState<string>("");
+
+      function handleTitleChange(e: React.ChangeEvent<HTMLInputElement>): void{
+        setTitle(e.target.value);
+      }
+
+      function handleDescriptionChange(e: React.ChangeEvent<HTMLInputElement>): void{
+        setDescription(e.target.value);
+      }
+
+      function handleVenueChange(e: React.ChangeEvent<HTMLInputElement>): void{
+        setVenue(e.target.value);
+      }
+
+      function handleDateStartChange(e: React.ChangeEvent<HTMLInputElement>): void{
+        setDateStart(e.target.value);
+      }
+
+      function handleDateEndChange(e: React.ChangeEvent<HTMLInputElement>): void{
+        setDateEnd(e.target.value);
+      }
+
+      function handleLocationChange(e: React.ChangeEvent<HTMLInputElement>): void{
+        setLocation(e.target.value);
+      }
+      return ReactDOM.createPortal(
           <>
             <div className="expanded-profile-overlay-cont" onClick={() => handleAddExerienceClose()}></div>
             <div className="expanded-profile-overlay">
@@ -37,33 +112,30 @@ export default function ProfileExperience(props: {experience: ExperienceData[]})
                     <img className="start-post-cancel" src={CancelButton} onClick={() => handleAddExerienceClose()} />
                 </div>
                 <form className="add-experience-form">
-                <div className="add-experience-form-item">
-                    <label>Title:</label>
-                    <input placeholder="Ex: Open Mic Host"></input>
-                </div>
-                <div className="add-experience-form-item">
-                    <label>Venue:</label>
-                    <input placeholder="Ex: Tai Chi Comedy"></input>
-                </div>
-                <div className="add-experience-form-item">
-                    <label>Start:</label>
-                    <input placeholder="DD/MM/YYYY" type="date"></input>
-                </div>
-                <div className="add-experience-form-item">
-                    <label>End:</label>
-                    <input placeholder="DD/MM/YYYY - leave blank if you still perform here" type="date"/>
-
-                </div>
-                <div className="add-experience-form-item">
-                    <label>Location:</label>
-                    <input placeholder="City, Country"></input>
-                </div>
-                <div className="add-experience-form-item">
-                    <label>Description:</label>
-                    <input placeholder="Ex: I host a monthly Drag Show Brunch." maxLength={2000}></input>
-                </div>
+                  <label className="add-experience-form-item">Title:
+                    <input placeholder="Ex: Open Mic Host" value={title} onChange={handleTitleChange}></input>
+                  </label>
+                  <label className="add-experience-form-item">Venue:
+                    <input placeholder="Ex: Tai Chi Comedy" value={venue} onChange={handleVenueChange}></input>
+                  </label>
+                  <label className="add-experience-form-item">Start:
+                    <input placeholder="DD/MM/YYYY" type="date" value={dateStart} onChange={handleDateStartChange}></input>
+                  </label>
+                  <label className="add-experience-form-item">End:
+                    <input placeholder="DD/MM/YYYY - leave blank if you still perform here" type="date" value={dateEnd} onChange={handleDateEndChange}/>
+                  </label>
+                  <label className="add-experience-form-item">Location:
+                    <input placeholder="City, Country" value={location} onChange={handleLocationChange}></input>
+                  </label>
+                  <label className="add-experience-form-item">Description:
+                    <input placeholder="Ex: I host a monthly Drag Show Brunch." maxLength={2000} value={description} onChange={handleDescriptionChange}></input>
+                  </label>
                 <div className="expanded-profile-overlay-submit">
-                    <button className="expanded-profile-overlay-submit-btn" type="submit">Save</button>
+                    <button
+                      className="expanded-profile-overlay-submit-btn"
+                      type="submit"
+                      onClick={(e) => handleAddExperienceSubmit(e, title, description, venue, dateStart, dateEnd, location)}
+                    >Save</button>
                 </div>
             </form>
             </div>
