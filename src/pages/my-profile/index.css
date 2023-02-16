@@ -117,3 +117,18 @@
   align-items: center;
   gap: 2rem;
 }
+
+/* hero */
+.edit-profile-hero-background {
+  display: flex;
+  gap: 2rem;
+}
+
+.edit-profile-hero-background>img {
+  min-width: 500px;
+  max-height: 250px;
+}
+
+.edit-profile-hero-background>form {
+  align-self: center;
+}
