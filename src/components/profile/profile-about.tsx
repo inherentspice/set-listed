@@ -4,6 +4,7 @@ import "../../styles/profile-about.css";
 import Edit from "../../media/icons/edit.png";
 import CancelButton from "../../media/icons/cancel.png";
 import { AboutData } from "../../types/profile";
+import ProfileService from "../../services/home/profile";
 
 
 export default function ProfileAbout(props: {about: AboutData[]}) {
@@ -19,7 +20,38 @@ export default function ProfileAbout(props: {about: AboutData[]}) {
     setExpandedEditAbout(null);
   }
 
+  function handleAddAboutEditSubmit(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    content: string
+  ) {
+    e.preventDefault();
+    addAboutEdit(content, about.user)
+      .then(() => {
+        console.log("about edited");
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
+
+  async function addAboutEdit(content: string, user: string) {
+    const formData = {
+      content
+    };
+    try {
+      const editedAbout = await ProfileService.editAbout(formData, user);
+      console.log(editedAbout);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   function ShowEditProfileAbout() {
+    const [content, setContent] = useState<string>(about.content);
+
+    function handleContentChange(e: React.ChangeEvent<HTMLTextAreaElement>): void{
+      setContent(e.target.value);
+    }
+
     return ReactDOM.createPortal(
       <>
         <div className="expanded-profile-overlay-cont" key={about.id} onClick={() => handleEditAboutClose()}></div>
@@ -31,9 +63,16 @@ export default function ProfileAbout(props: {about: AboutData[]}) {
           <div className="edit-profile-about-body">
             <div className="edit-profile-about-explanation"></div>
             <form className="edit-profile-about-form">
-              <textarea className="edit-profile-about-text-area" defaultValue={about.content} rows={10} cols={70} maxLength={2000}></textarea>
+              <textarea
+                className="edit-profile-about-text-area"
+                defaultValue={content}
+                rows={10}
+                cols={70}
+                maxLength={2000}
+                onChange={handleContentChange}
+              ></textarea>
               <div className="expanded-profile-overlay-submit">
-                <button className="expanded-profile-overlay-submit-btn" type="submit">Save</button>
+                <button className="expanded-profile-overlay-submit-btn" type="submit" onClick={(e) => handleAddAboutEditSubmit(e, content)}>Save</button>
               </div>
             </form>
           </div>
