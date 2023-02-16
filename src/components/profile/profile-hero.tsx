@@ -114,7 +114,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
     e.preventDefault();
     addProfilePicEdit(imageUpload, profileCard.user)
       .then(() => {
-        console.log("profile pic changed")
+        console.log("profile pic changed");
       }).catch((err) => {
         console.log(err);
       });
