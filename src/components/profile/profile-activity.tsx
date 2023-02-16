@@ -16,7 +16,8 @@ import { ProfileCardData, PostData } from "../../types/profile";
 import ProfileService from "../../services/home/profile";
 
 export default function ProfileActivity(props: {profileCard: ProfileCardData[], posts: PostData[]}) {
-    const [expandedStartPost, setExpandedStartPost] = useState<null | string>(null);
+    const [expandedStartPost, setExpandedStartPost] = useState<string>("");
+    const [expandedEditPost, setExpandedEditPost] = useState<string>("");
     const posts = props.posts;
 
     const profileCard = props.profileCard[0];
@@ -26,7 +27,15 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
       }
 
     function handleStartPostClose(): void{
-      setExpandedStartPost(null);
+      setExpandedStartPost("");
+    }
+
+    function handleEditPostClick(id: string): void{
+      setExpandedEditPost(id);
+    }
+
+    function handleEditPostClose(): void{
+      setExpandedEditPost("");
     }
 
     function handleAddPostSubmit(
@@ -55,95 +64,178 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
       }
     }
 
-      function ShowStartPost() {
-        const [content, setContent] = useState<string>("");
+    function handleEditPostSubmit(
+      e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+      content: string,
+      id: string
+    ) {
+      e.preventDefault();
+      addPostEdit(content, id)
+        .then(() => {
+          console.log("post edited");
+        }).catch((err) => {
+          console.log(err);
+        });
+    }
 
-        function handleContentChange(e: React.ChangeEvent<HTMLTextAreaElement>): void{
-          setContent(e.target.value);
-        }
+    async function addPostEdit(content: string, id: string) {
+      const formData = {
+        content
+      };
+      try {
+        const editedPost = await ProfileService.editPost(formData, id);
+        console.log(editedPost);
+      } catch (err) {
+        console.log(err);
+      }
+    }
 
-        return ReactDOM.createPortal(
-          <>
-            <div className="expanded-profile-overlay-cont" key={profileCard.id} onClick={() => handleStartPostClose()}></div>
-            <div className="expanded-profile-overlay">
-              <div className="expanded-profile-overlay-header-cont">
-                <h2 className="expanded-start-post-title">Edit Your About Section</h2>
-                <img className="start-post-cancel" src={CancelButton} onClick={() => handleStartPostClose()} />
-              </div>
-              <form className="start-post-user-form">
-                  <div className="start-post-user-cont">
-                    <img className="profile-picture-small" src={profileCard.image} />
-                    <img src={Visibility}/>
-                    <select className="start-post-visibility">
-                        <option value="public">Public</option>
-                        <option value="connections">Connections Only</option>
-                        <option value="innercircle">Inner Circle Only</option>
-                        <option value="private">Only Me</option>
+    function ShowStartPost() {
+      const [content, setContent] = useState<string>("");
+
+      function handleContentChange(e: React.ChangeEvent<HTMLTextAreaElement>): void{
+        setContent(e.target.value);
+      }
+
+      return ReactDOM.createPortal(
+        <>
+          <div className="expanded-profile-overlay-cont" key={profileCard.id} onClick={() => handleStartPostClose()}></div>
+          <div className="expanded-profile-overlay">
+            <div className="expanded-profile-overlay-header-cont">
+              <h2 className="expanded-start-post-title">Edit Your About Section</h2>
+              <img className="start-post-cancel" src={CancelButton} onClick={() => handleStartPostClose()} />
+            </div>
+            <form className="start-post-user-form">
+                <div className="start-post-user-cont">
+                  <img className="profile-picture-small" src={profileCard.image} />
+                  <img src={Visibility}/>
+                  <select className="start-post-visibility">
+                      <option value="public">Public</option>
+                      <option value="connections">Connections Only</option>
+                      <option value="innercircle">Inner Circle Only</option>
+                      <option value="private">Only Me</option>
+                  </select>
+                </div>
+                <textarea className="start-post-textarea" placeholder="What is on your mind?" rows={10} value={content} onChange={handleContentChange}/>
+                <div className="start-post-emoji-hashtag-cont">
+                  <button className="hidden-btn" title="Add Emoji"><img className="start-post-add-emoji" src={Emoji}></img></button>
+                  <div className="start-post-add-hashtag">Add Hashtag</div>
+                </div>
+                <div className="start-post-foot">
+                  <div className="start-post-foot-multimedia-cont">
+                    <button className="hidden-btn" title="Add Picture"><img className="start-post-foot-multimedia-item" src={Picture} /></button>
+                    <button className="hidden-btn" title="Add Video"><img className="start-post-foot-multimedia-item" src={Video} /></button>
+                    <button className="hidden-btn" title="Add Document"><img className="start-post-foot-multimedia-item" src={Document} /></button>
+                    <button className="hidden-btn" title="Add Poll"><img className="start-post-foot-multimedia-item" src={Chart} /></button>
+                  </div>
+                  <div className="start-post-foot-submit-cont">
+                    <img src={Comments}/>
+                    <select>
+                      <option value="public">Public</option>
+                      <option value="connections">Connections</option>
+                      <option value="innercircle">Inner Circle</option>
+                      <option value="noone">Disable</option>
                     </select>
+                    <button type="submit" onClick={(e) => {handleAddPostSubmit(e, content);}}>Post</button>
                   </div>
-                  <textarea className="start-post-textarea" placeholder="What is on your mind?" rows={10} value={content} onChange={handleContentChange}/>
-                  <div className="start-post-emoji-hashtag-cont">
-                      <button className="hidden-btn" title="Add Emoji"><img className="start-post-add-emoji" src={Emoji}></img></button>
-                      <div className="start-post-add-hashtag">Add Hashtag</div>
-                  </div>
-                  <div className="start-post-foot">
-                      <div className="start-post-foot-multimedia-cont">
-                          <button className="hidden-btn" title="Add Picture"><img className="start-post-foot-multimedia-item" src={Picture} /></button>
-                          <button className="hidden-btn" title="Add Video"><img className="start-post-foot-multimedia-item" src={Video} /></button>
-                          <button className="hidden-btn" title="Add Document"><img className="start-post-foot-multimedia-item" src={Document} /></button>
-                          <button className="hidden-btn" title="Add Poll"><img className="start-post-foot-multimedia-item" src={Chart} /></button>
-                      </div>
-                      <div className="start-post-foot-submit-cont">
-                          <img src={Comments}/>
-                          <select>
-                              <option value="public">Public</option>
-                              <option value="connections">Connections</option>
-                              <option value="innercircle">Inner Circle</option>
-                              <option value="noone">Disable</option>
-                          </select>
-                          <button type="submit" onClick={(e) => {handleAddPostSubmit(e, content);}}>Post</button>
-                      </div>
-                  </div>
+                </div>
               </form>
             </div>
           </>,
           document.body
         );
       }
+    function ShowEditPost() {
+      const selectedPost = posts.filter((post) => post.id === expandedEditPost)[0];
+      const [content, setContent] = useState<string>(selectedPost.content);
 
+      function handleContentChange(e: React.ChangeEvent<HTMLTextAreaElement>): void{
+        setContent(e.target.value);
+      }
+
+      return ReactDOM.createPortal(
+        <>
+          <div className="expanded-profile-overlay-cont" key={selectedPost.id} onClick={() => handleEditPostClose()}></div>
+          <div className="expanded-profile-overlay">
+            <div className="expanded-profile-overlay-header-cont">
+              <h2 className="expanded-start-post-title">Edit Your About Section</h2>
+              <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditPostClose()} />
+            </div>
+            <form className="start-post-user-form">
+                <div className="start-post-user-cont">
+                  <img className="profile-picture-small" src={profileCard.image} />
+                  <img src={Visibility}/>
+                  <select className="start-post-visibility">
+                      <option value="public">Public</option>
+                      <option value="connections">Connections Only</option>
+                      <option value="innercircle">Inner Circle Only</option>
+                      <option value="private">Only Me</option>
+                  </select>
+                </div>
+                <textarea className="start-post-textarea" rows={10} value={content} onChange={handleContentChange}/>
+                <div className="start-post-emoji-hashtag-cont">
+                  <button className="hidden-btn" title="Add Emoji"><img className="start-post-add-emoji" src={Emoji}></img></button>
+                  <div className="start-post-add-hashtag">Add Hashtag</div>
+                </div>
+                <div className="start-post-foot">
+                  <div className="start-post-foot-multimedia-cont">
+                    <button className="hidden-btn" title="Add Picture"><img className="start-post-foot-multimedia-item" src={Picture} /></button>
+                    <button className="hidden-btn" title="Add Video"><img className="start-post-foot-multimedia-item" src={Video} /></button>
+                    <button className="hidden-btn" title="Add Document"><img className="start-post-foot-multimedia-item" src={Document} /></button>
+                    <button className="hidden-btn" title="Add Poll"><img className="start-post-foot-multimedia-item" src={Chart} /></button>
+                  </div>
+                  <div className="start-post-foot-submit-cont">
+                    <img src={Comments}/>
+                    <select>
+                      <option value="public">Public</option>
+                      <option value="connections">Connections</option>
+                      <option value="innercircle">Inner Circle</option>
+                      <option value="noone">Disable</option>
+                    </select>
+                    <button type="submit" onClick={(e) => {handleEditPostSubmit(e, content, selectedPost.id);}}>Save Edits</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </>,
+          document.body
+        );
+
+    }
 
     return(
-        <div className="profile-activity-cont comp">
-            <div className="profile-activity-header">
-                <div className="profile-activity-header-left">
-                    <div className="profile-activity-header-title">Activity</div>
-                    <div className="profile-activity-header-followers">{profileCard.userProfileViews+" followers"}</div>
-                </div>
-                <div className="profile-activity-header-right">
-                    <div className="profile-activity-start-post" onClick={() => handleStartPostClick(profileCard.id)}>Start a Post</div>
-                </div>
-            </div>
-            <div className="profile-activity-posts-cont">
-                {posts && posts.map(item => {
-                    return(
-                        <div className="profile-activity-post-item" key={item.id}>
-                        <div className="profile-activity-post-info">
-                            <div className="profile-activity-post-author">{profileCard.firstName+" "+profileCard.lastName}</div>
-                            <div className="profile-activity-post-time">{"posted this | "+convertDate(item.createdAt)}</div>
-                        </div>
-                        <div className="profile-activity-post-description">{item.content}</div>
-                        <div className="profile-activity-post-likes">
-                            <img className="profile-activity-post-like-img" src={Like} />
-                            <div className="profile-activity-post-like-count">{item.likes}</div>
-                            <img className="profile-activity-post-like-img" src={Dislike} />
-                        </div>
-                    </div>
-
-                    );
-                })}
-            </div>
-            <div className="profile-activity-show-all">Show all activity</div>
-            {expandedStartPost && <ShowStartPost />}
+      <div className="profile-activity-cont comp">
+        <div className="profile-activity-header">
+          <div className="profile-activity-header-left">
+            <div className="profile-activity-header-title">Activity</div>
+            <div className="profile-activity-header-followers">{profileCard.userProfileViews+" followers"}</div>
+          </div>
+          <div className="profile-activity-header-right">
+            <div className="profile-activity-start-post" onClick={() => handleStartPostClick(profileCard.id)}>Start a Post</div>
+          </div>
         </div>
+        <div className="profile-activity-posts-cont">
+          {posts && posts.map(item => {
+            return(
+              <div className="profile-activity-post-item" key={item.id}>
+                <div className="profile-activity-post-info">
+                  <div className="profile-activity-post-author">{profileCard.firstName+" "+profileCard.lastName}</div>
+                  <div className="profile-activity-post-time">{"posted this | "+convertDate(item.createdAt)}</div>
+                </div>
+                <p className="profile-activity-post-description">{item.content}</p>
+                <div className="profile-activity-post-likes">
+                  <img className="profile-activity-post-like-img" src={Like} />
+                  <div className="profile-activity-post-like-count">{item.likes}</div>
+                  <img className="profile-activity-post-like-img" src={Dislike} />
+                  <button className="post-edit" onClick={() => handleEditPostClick(item.id)}>edit</button>
+                </div>
+              </div>
+              );
+            })}
+        </div>
+        <div className="profile-activity-show-all">Show all activity</div>
+        {expandedStartPost && <ShowStartPost />}
+        {expandedEditPost && <ShowEditPost />}
+      </div>
     );
 }

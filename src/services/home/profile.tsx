@@ -51,7 +51,11 @@ const editProfilePic = (formObject: FormData, id: string) => {
 
 const editAbout = (formObject: {content: string}, id: string) => {
   return axios.put(`${baseUrl}/about/${id}`, formObject)
-}
+};
+
+const editPost = (formObject: {content: string}, id: string) => {
+  return axios.put(`${baseUrl}/post/${id}`, formObject);
+};
 const ProfileService = {
   getOne,
   getProfile,
@@ -64,7 +68,8 @@ const ProfileService = {
   editBackground,
   editHero,
   editProfilePic,
-  editAbout
+  editAbout,
+  editPost
 };
 
 export default ProfileService;
