@@ -11,6 +11,20 @@
     justify-content: space-between;
 }
 
+.network-invitation-header-button {
+    background: none;
+    border: none;
+    font-weight: bold;
+    padding: 0.25rem 1rem;
+    border-radius: 15px;
+}
+
+.network-invitation-header-button:hover {
+    cursor: pointer;
+    background-color: var(--grey-color-1);
+    color: white;
+}
+
 .network-invitation-items-cont {
     display: flex;
     flex-direction: column;
