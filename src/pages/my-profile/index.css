@@ -136,3 +136,17 @@
 .edit-profile-hero-pic>img {
   max-width: 500px;
 }
+
+/* activity */
+
+.post-edit {
+  background-color: var(--background-comp-color);
+  border: none;
+  color: var(--grey-color-1);
+  cursor: pointer;
+  font-size: smaller;
+}
+
+.post-edit:hover {
+  color: var(--grey-color-2);
+}
