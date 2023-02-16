@@ -1,6 +1,6 @@
 import axios from "axios";
 import { AxiosResponse } from "axios";
-import ProfileData, {AwardDataSend, ExperienceDataSend, PostData, PostDataSend, ProfileCardData, SkillDataSend} from "../../types/profile";
+import ProfileData, {AwardDataSend, ExperienceDataSend, PostData, PostDataSend, ProfileCardData, ProfileCardDataSend, SkillDataSend} from "../../types/profile";
 
 const baseUrl = "/profile";
 
@@ -40,6 +40,10 @@ const postPost = (formObject: PostDataSend) => {
 const editBackground = (formObject: FormData, id: string) => {
   return axios.put(`${baseUrl}/backgroundpicture/${id}`, formObject);
 };
+
+const editHero = (formObject: ProfileCardDataSend, id: string) => {
+  return axios.put(`${baseUrl}/hero/${id}`, formObject);
+}
 const ProfileService = {
   getOne,
   getProfile,
@@ -49,7 +53,8 @@ const ProfileService = {
   postAward,
   postSkill,
   postPost,
-  editBackground
+  editBackground,
+  editHero
 };
 
 export default ProfileService;

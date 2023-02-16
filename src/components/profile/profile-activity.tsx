@@ -101,7 +101,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
                               <option value="innercircle">Inner Circle</option>
                               <option value="noone">Disable</option>
                           </select>
-                          <button type="submit" onClick={(e) => {handleAddPostSubmit(e, content)}}>Post</button>
+                          <button type="submit" onClick={(e) => {handleAddPostSubmit(e, content);}}>Post</button>
                       </div>
                   </div>
               </form>

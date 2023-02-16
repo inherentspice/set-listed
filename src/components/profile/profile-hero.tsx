@@ -55,6 +55,48 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
     }
   }
 
+  function handleEditHeroSubmit(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    firstName: string,
+    lastName: string,
+    country: string,
+    city: string,
+    socials: string[],
+    tagline: string
+    ) {
+      e.preventDefault();
+      addHeroEdit(firstName, lastName, country, city, socials, tagline, profileCard.user)
+        .then(() => {
+          console.log("hero edited");
+        }).catch((err) => {
+          console.log(err);
+        });
+    }
+  async function addHeroEdit(
+    firstName: string,
+    lastName: string,
+    country: string,
+    city: string,
+    socials: string[],
+    tagline: string,
+    user: string
+  ) {
+    const formData = {
+      firstName,
+      lastName,
+      country,
+      city,
+      socials,
+      tagline,
+    };
+    try {
+      const editedHero = await ProfileService.editHero(formData, user);
+      console.log(editedHero);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   function ShowEditBackgroundHero() {
     const [imageUpload, setImageUpload] = useState<File | null>(null);
 
@@ -92,6 +134,39 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
   }
 
   function ShowEditProfileHero() {
+    const [firstName, setFirstName] = useState<string>(profileCard.firstName || "");
+    const [lastName, setLastName] = useState<string>(profileCard.lastName || "");
+    const [country, setCountry] = useState<string>(profileCard.country || "");
+    const [city, setCity] = useState<string>(profileCard.city || "");
+    const [tagline, setTagline] = useState<string>(profileCard.tagline || "");
+    const [socials, setSocials] = useState<string[]>(profileCard.socials || ["", "", "", ""]);
+
+    function handleFirstNameChange(e: React.ChangeEvent<HTMLInputElement>): void{
+      setFirstName(e.target.value);
+    }
+
+    function handleLastNameChange(e: React.ChangeEvent<HTMLInputElement>): void{
+      setLastName(e.target.value);
+    }
+
+    function handleCountryChange(e: React.ChangeEvent<HTMLInputElement>): void{
+      setCountry(e.target.value);
+    }
+
+    function handleCityChange(e: React.ChangeEvent<HTMLInputElement>): void{
+      setCity(e.target.value);
+    }
+
+    function handleTaglineChange(e: React.ChangeEvent<HTMLInputElement>): void{
+      setTagline(e.target.value);
+    }
+
+    function handleSocialsChange(e: React.ChangeEvent<HTMLInputElement>, index: number): void{
+      const newSocials = [...socials];
+      newSocials[index] = e.target.value;
+      setSocials(newSocials);
+    }
+
     return ReactDOM.createPortal(
       <>
         <div className="expanded-profile-overlay-cont" key={profileCard.id} onClick={() => handleEditProfileClose()}></div>
@@ -101,74 +176,49 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
             <img className="edit-profile-hero-cancel" src={CancelButton} onClick={() => handleEditProfileClose()} />
           </div>
           <form className="edit-profile-hero-form">
-            <div>Basic Info</div>
-            <div className="edit-profile-hero-form-item">
-              <label>First Name</label>
-              <input defaultValue={profileCard.firstName}></input>
-            </div>
+            <label className="edit-profile-hero-form-item">First Name
+              <input type="text" value={firstName} onChange={handleFirstNameChange}></input>
+            </label>
 
-            <div className="edit-profile-hero-form-item">
-              <label>Last Name</label>
-              <input defaultValue={profileCard.lastName}></input>
-            </div>
+            <label className="edit-profile-hero-form-item">Last Name
+              <input type="text" value={lastName} onChange={handleLastNameChange}></input>
+            </label>
 
-            <div className="edit-profile-hero-form-item">
-              <label>Stagename</label>
-              <input></input>
-            </div>
+            <label className="edit-profile-hero-form-item">Tagline
+              <input type="text" value={tagline} onChange={handleTaglineChange} maxLength={50}></input>
+            </label>
 
-            <div className="edit-profile-hero-form-item">
-              <label>Category</label>
-              <select>
-                <option value="comedy">Comedy</option>
-                <option value="comedy">Comedy</option>
-              </select>
-            </div>
-            <div className="edit-profile-hero-form-item">
-              <label>Type</label>
-              <select>
-                <option value="standup">Stand Up Comedian</option>
-                <option value="improv">Improv Comedian</option>
-                <option value="musical">Musical Comedian</option>
-                <option value="puppet">Puppet Comedian</option>
-                <option value="crosstalk">Cross Talk Comedian</option>
-                <option value="host">Host</option>
-              </select>
-            </div>
+            <label className="edit-profile-hero-form-item">City
+              <input type="text" value={city} onChange={handleCityChange}></input>
+            </label>
 
-            <div className="edit-profile-hero-form-item">
-              <label>Tagline</label>
-              <input defaultValue={profileCard.tagline} maxLength={50}></input>
-            </div>
-            <div className="edit-profile-hero-form-item">
-              <label>City</label>
-              <input defaultValue={profileCard.city}></input>
-            </div>
-            <div className="edit-profile-hero-form-item">
-              <label>Country</label>
-              <input defaultValue={profileCard.country}></input>
-            </div>
+            <label className="edit-profile-hero-form-item">Country
+              <input type="text" value={country} onChange={handleCountryChange}></input>
+            </label>
 
             <div>Social Media</div>
+            <label className="edit-profile-hero-form-item">Instagram
+              <input type="text" value={socials[0] ? socials[0] : ""} onChange={(e) => handleSocialsChange(e, 0)}></input>
+            </label>
 
-            <div className="edit-profile-hero-form-item">
-              <label>Instagram</label>
-              <input ></input>
-            </div>
-            <div className="edit-profile-hero-form-item">
-              <label>Youtube</label>
-              <input ></input>
-            </div>
-            <div className="edit-profile-hero-form-item">
-              <label>Tik Tok</label>
-              <input ></input>
-            </div>
-            <div className="edit-profile-hero-form-item">
-              <label>Twitter</label>
-              <input ></input>
-            </div>
+            <label className="edit-profile-hero-form-item">Youtube
+              <input type="text" value={socials[1] ? socials[1] : ""} onChange={(e) => handleSocialsChange(e, 1)}></input>
+            </label>
+
+            <label className="edit-profile-hero-form-item">Tik Tok
+              <input type="text" value={socials[2] ? socials[2] : ""} onChange={(e) => handleSocialsChange(e, 2)}></input>
+            </label>
+
+            <label className="edit-profile-hero-form-item">Twitter
+              <input type="text" value={socials[3] ? socials[3] : ""} onChange={(e) => handleSocialsChange(e, 3)}></input>
+            </label>
+
             <div className="expanded-profile-overlay-submit">
-                <button className="expanded-profile-overlay-submit-btn" type="submit">Save</button>
+                <button
+                  className="expanded-profile-overlay-submit-btn"
+                  type="submit"
+                  onClick={(e) => handleEditHeroSubmit(e, firstName, lastName, country, city, socials, tagline)}
+                >Save</button>
             </div>
           </form>
         </div>

@@ -73,6 +73,15 @@ export interface ProfileCardData {
   userProfileViews: number,
 }
 
+export interface ProfileCardDataSend {
+  firstName: string,
+  lastName: string,
+  country: string,
+  city: string,
+  socials: string[],
+  tagline: string
+}
+
 export interface SkillData {
   user: string,
   content: string,
