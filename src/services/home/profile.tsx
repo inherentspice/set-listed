@@ -43,7 +43,11 @@ const editBackground = (formObject: FormData, id: string) => {
 
 const editHero = (formObject: ProfileCardDataSend, id: string) => {
   return axios.put(`${baseUrl}/hero/${id}`, formObject);
-}
+};
+
+const editProfilePic = (formObject: FormData, id: string) => {
+  return axios.put(`${baseUrl}/profilepicture/${id}`, formObject);
+};
 const ProfileService = {
   getOne,
   getProfile,
@@ -54,7 +58,8 @@ const ProfileService = {
   postSkill,
   postPost,
   editBackground,
-  editHero
+  editHero,
+  editProfilePic
 };
 
 export default ProfileService;

@@ -132,3 +132,7 @@
 .edit-profile-hero-background>form {
   align-self: center;
 }
+
+.edit-profile-hero-pic>img {
+  max-width: 500px;
+}

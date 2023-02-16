@@ -11,6 +11,7 @@ import ProfileService from "../../services/home/profile";
 export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
   const [expandedEditProfile, setExpandedEditProfile] = useState<string>("");
   const [expandedEditBackground, setExpandedEditBackground] = useState<string>("");
+  const [expandedEditProfilePic, setExpandedEditProfilePic] = useState<string>("");
 
   const profileCard = props.profileCard[0];
 
@@ -28,6 +29,14 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
 
   function handleEditBackgroundClose(): void{
     setExpandedEditBackground("");
+  }
+
+  function handleEditProfilePicClick(id: string): void{
+    setExpandedEditProfilePic(id);
+  }
+
+  function handleEditProfilePicClose(): void{
+    setExpandedEditProfilePic("");
   }
 
   function handleEditBackgroundSubmit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, imageUpload: File | null) {
@@ -72,6 +81,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
           console.log(err);
         });
     }
+
   async function addHeroEdit(
     firstName: string,
     lastName: string,
@@ -97,6 +107,34 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
     }
   }
 
+  function handleEditProfilePicSubmit(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    imageUpload: File | null
+  ) {
+    e.preventDefault();
+    addProfilePicEdit(imageUpload, profileCard.user)
+      .then(() => {
+        console.log("profile pic changed")
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
+
+  async function addProfilePicEdit(imageUpload: File | null, user: string) {
+    if (!imageUpload) {
+      console.log("missing image file");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("image", imageUpload);
+    try {
+      const newImage = await ProfileService.editProfilePic(formData, user);
+      console.log(newImage);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   function ShowEditBackgroundHero() {
     const [imageUpload, setImageUpload] = useState<File | null>(null);
 
@@ -108,7 +146,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
 
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-profile-overlay-cont" key={profileCard.id} onClick={() => handleEditProfileClose()}></div>
+        <div className="expanded-profile-overlay-cont" key={profileCard.id} onClick={() => handleEditBackgroundClose()}></div>
         <div className="expanded-profile-overlay">
           <div className="expanded-profile-overlay-header-cont">
             <h2 className="edit-profile-hero-title">Edit Background Image</h2>
@@ -127,6 +165,42 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
             </form>
           </div>
           <button className="primary-button" type="submit" onClick={(e)=>handleEditBackgroundSubmit(e, imageUpload)}>Save New Background</button>
+        </div>
+      </>,
+      document.body
+    );
+  }
+
+  function ShowEditProfilePic() {
+    const [imageUpload, setImageUpload] = useState<File | null>(null);
+
+    function handleImageChange(e: React.ChangeEvent<HTMLInputElement>): void{
+      if (e.target.files){
+        setImageUpload(e.target.files[0]);
+      }
+    }
+
+    return ReactDOM.createPortal(
+      <>
+        <div className="expanded-profile-overlay-cont" key={profileCard.id} onClick={() => handleEditProfilePicClose()}></div>
+        <div className="expanded-profile-overlay">
+          <div className="expanded-profile-overlay-header-cont">
+            <h2 className="edit-profile-hero-title">Edit Profile Image</h2>
+            <img className="edit-profile-hero-cancel" src={CancelButton} onClick={() => handleEditProfilePicClose()} />
+          </div>
+          <div className="edit-profile-hero-pic">
+            {imageUpload ? (
+              <img src={URL.createObjectURL(imageUpload)} alt="" />
+            ) : (
+              <img src={profileCard.image || "https://res.cloudinary.com/dhptcrsjc/image/upload/v1674789718/Set-Listed/empty-profile-pic_b2hrxu.png"} alt=""></img>
+            )}
+            <form className="edit-profile-hero-form">
+              <label className="profile-add-label">
+                <input className="upload-image-input" type="file" onChange={handleImageChange}></input>
+              </label>
+            </form>
+          </div>
+          <button className="primary-button" type="submit" onClick={(e)=>handleEditProfilePicSubmit(e, imageUpload)}>Save New Profile Pic</button>
         </div>
       </>,
       document.body
@@ -230,8 +304,16 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
   return (
     <div className="profile-hero-cont comp">
       <img className="profile-hero-background-edit" src={Edit} onClick={() => handleEditBackgroundClick(profileCard.id)}/>
-      <img className="profile-hero-background-img" src={profileCard.backgroundImage || "https://res.cloudinary.com/dhptcrsjc/image/upload/v1675955714/Set-Listed/default-background_wyziyb.png"} alt=""/>
-      <img className="profile-hero-profile-img profile-picture-large" src={profileCard.image} alt="" />
+      <img className="profile-hero-background-img"
+        src={profileCard.backgroundImage || "https://res.cloudinary.com/dhptcrsjc/image/upload/v1675955714/Set-Listed/default-background_wyziyb.png"}
+        alt=""
+      />
+      <img
+        className="profile-hero-profile-img profile-picture-large"
+        src={profileCard.image}
+        alt=""
+        onClick={() => handleEditProfilePicClick(profileCard.id)}
+      />
       <img className="profile-hero-user-info-edit" src={Edit} onClick={() => handleEditProfileClick(profileCard.id)} />
       <div className="profile-hero-user-cont">
         <div className="profile-hero-user-info-cont">
@@ -272,6 +354,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
       </div>
       {expandedEditProfile && <ShowEditProfileHero />}
       {expandedEditBackground && <ShowEditBackgroundHero />}
+      {expandedEditProfilePic && <ShowEditProfilePic />}
     </div>
   );
 }
