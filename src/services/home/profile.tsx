@@ -53,6 +53,10 @@ const editAbout = (formObject: {content: string}, id: string) => {
   return axios.put(`${baseUrl}/about/${id}`, formObject)
 };
 
+const editAward = (formObject: {content: string}, id: string) => {
+  return axios.put(`${baseUrl}/award/${id}`, formObject);
+};
+
 const editPost = (formObject: {content: string}, id: string) => {
   return axios.put(`${baseUrl}/post/${id}`, formObject);
 };
@@ -69,6 +73,7 @@ const ProfileService = {
   editHero,
   editProfilePic,
   editAbout,
+  editAward,
   editPost
 };
 

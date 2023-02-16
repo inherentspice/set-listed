@@ -200,7 +200,6 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
           </>,
           document.body
         );
-
     }
 
     return(

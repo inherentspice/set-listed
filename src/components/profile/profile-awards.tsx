@@ -50,12 +50,39 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string}
     }
   }
 
+  function handleEditAwardSubmit(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    content: string,
+    id: string
+  ) {
+    e.preventDefault();
+    addAwardEdit(content, id)
+      .then(() => {
+        console.log("award edited");
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
+
+  async function addAwardEdit(content: string, id: string) {
+    const formData = {
+      content
+    };
+    try {
+      const editedAward = await ProfileService.editAward(formData, id);
+      console.log(editedAward);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   function ShowAddAwards() {
     const [content, setContent] = useState<string>("");
 
     function handleContentChange(e: React.ChangeEvent<HTMLInputElement>): void{
       setContent(e.target.value);
     }
+
     return ReactDOM.createPortal(
       <>
         <div className="expanded-profile-overlay-cont" onClick={() => handleAddAwardsClose()}></div>
@@ -80,6 +107,12 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string}
 
   function ShowEditAwards() {
     const expAward = props.awards.filter((award) => award.id === expandedEditAwards)[0];
+    const [content, setContent] = useState<string>(expAward.content);
+
+    function handleContentChange(e: React.ChangeEvent<HTMLInputElement>): void{
+      setContent(e.target.value);
+    }
+
     return ReactDOM.createPortal(
       <>
         <div className="expanded-profile-overlay-cont" onClick={() => handleEditAwardsClose()}></div>
@@ -91,10 +124,14 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string}
           <form className="add-experience-form">
             <div className="add-experience-form-item">
               <label>Award:</label>
-              <input defaultValue={expAward.content}></input>
+              <input defaultValue={content} onChange={handleContentChange}></input>
             </div>
             <div className="expanded-profile-overlay-submit">
-              <button className="expanded-profile-overlay-submit-btn" type="submit">Save</button>
+              <button
+                className="expanded-profile-overlay-submit-btn"
+                type="submit"
+                onClick={(e) => handleEditAwardSubmit(e, content, expAward.id)}
+              >Save</button>
             </div>
           </form>
 
@@ -103,8 +140,6 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string}
       document.body
     );
   }
-
-
 
   return (
     <div className="profile-cont comp">
