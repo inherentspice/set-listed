@@ -8,7 +8,7 @@ export default function NetworkInvitations() {
         <div className="network-invitations-cont comp">
             <div className="network-invitation-header">
                 <h2>Invitations</h2>
-                <a>See All</a>
+                <button className="network-invitation-header-button">See All</button>
             </div>
             <div className="network-invitation-items-cont">
 

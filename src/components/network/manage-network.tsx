@@ -13,39 +13,39 @@ export default function NetworkManage() {
             <h2>Manage my network</h2>
             <div className="network-manage-items-cont">
 
-                <a className="network-manage-item">
+                <a className="network-manage-item" href="../my-network/connections">
                     <img className="network-manage-item-img" src={MyNetwork} />
                     <div className="network-manage-item-name">Connections</div>
                     <div className="network-manage-item-count">512</div>
                 </a>
 
-                <a className="network-manage-item">
+                <a className="network-manage-item" href="../my-network/groups">
                     <img className="network-manage-item-img" src={Group} />
                     <div className="network-manage-item-name">Groups</div>
                     <div className="network-manage-item-count">5</div>
                 </a>
 
-                <a className="network-manage-item">
+                <a className="network-manage-item" href="../my-network/fans">
                     <img className="network-manage-item-img" src={Fans} />
                     <div className="network-manage-item-name">Fans</div>
                     <div className="network-manage-item-count">5</div>
                 </a>
 
 
-                <a className="network-manage-item">
+                <a className="network-manage-item" href="../my-network/contacts">
                     <img className="network-manage-item-img" src={Contact} />
                     <div className="network-manage-item-name">Contacts</div>
                     <div className="network-manage-item-count">5</div>
                 </a>
 
 
-                <a className="network-manage-item">
+                <a className="network-manage-item" href="../my-network/events">
                     <img className="network-manage-item-img" src={Event} />
                     <div className="network-manage-item-name">Events</div>
                     <div className="network-manage-item-count">5</div>
                 </a>
 
-                <a className="network-manage-item">
+                <a className="network-manage-item" href="../my-network/hashtags">
                     <img className="network-manage-item-img" src={Hashtag} />
                     <div className="network-manage-item-name">Hashtags</div>
                     <div className="network-manage-item-count">5</div>
