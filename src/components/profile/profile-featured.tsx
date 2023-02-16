@@ -45,16 +45,18 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
   async function addFeatured(suppImageUpload: File | null, description: string, title: string) {
     const formData = new FormData();
     if (suppImageUpload && description && title) {
-    formData.append("image", suppImageUpload);
-    formData.append("content", description);
-    formData.append("title", title);
-    formData.append("user", props.user);
-    try {
-      const newSuppImage = await ProfileService.postFeatured(formData);
-      console.log(newSuppImage);
-    } catch (err) {
-      console.log(err);
-    }
+      formData.append("image", suppImageUpload);
+      formData.append("content", description);
+      formData.append("title", title);
+      formData.append("user", props.user);
+      try {
+        const newSuppImage = await ProfileService.postFeatured(formData);
+        console.log(newSuppImage);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      console.log("missing content");
     }
   }
 
