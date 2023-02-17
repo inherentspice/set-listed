@@ -99,6 +99,38 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
     }
   }
 
+  function handleEditFeaturedSubmit(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    title: string,
+    content: string,
+    id: string
+  ) {
+    e.preventDefault();
+    addFeaturedEdit(title, content, id)
+      .then(() => {
+        console.log("featured post edited");
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
+
+  async function addFeaturedEdit(
+    title: string,
+    content: string,
+    id: string
+  ) {
+    const formData = {
+      title,
+      content,
+    };
+    try {
+      const editedFeaturedItem = await ProfileService.editFeatured(formData, id);
+      console.log(editedFeaturedItem);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   function ShowAddFeatured() {
     const [title, setTitle] = useState<string>("");
     const [suppImageUpload, setSuppImageUpload] = useState<File | null>(null);
@@ -185,11 +217,21 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
   function ShowEditFeaturedItem() {
     const featuredItem = props.featured.filter((item) => item.id === expandedEditFeaturedItem)[0];
     const [imageUpload, setImageUpload] = useState<File | null>(null);
+    const [title, setTitle] = useState<string>(featuredItem.title);
+    const [description, setDescription] = useState<string>(featuredItem.content);
 
     function handleImageChange(e: React.ChangeEvent<HTMLInputElement>): void{
       if (e.target.files){
         setImageUpload(e.target.files[0]);
       }
+    }
+
+    function handleTitleChange(e: React.ChangeEvent<HTMLInputElement>): void{
+      setTitle(e.target.value);
+    }
+
+    function handleDescriptionChange(e: React.ChangeEvent<HTMLTextAreaElement>): void{
+      setDescription(e.target.value);
     }
 
     return ReactDOM.createPortal(
@@ -211,9 +253,18 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
                 <input className="upload-image-input" type="file" onChange={handleImageChange}></input>
               </label>
             </form>
+            <button className="primary-button" type="submit" onClick={(e)=>handleEditFeaturedPicSubmit(e, imageUpload, featuredItem.id)}>Save New Featured Image</button>
           </div>
-          <button className="primary-button" type="submit" onClick={(e)=>handleEditFeaturedPicSubmit(e, imageUpload, featuredItem.id)}>Save New Featured Image</button>
+          <form className="edit-profile-hero-form">
+            <label className="edit-profile-hero-form-item">Title:
+              <input type="text" value={title} onChange={handleTitleChange}></input>
+            </label>
+            <label className="edit-profile-hero-form-item">Description:
+              <textarea value={description} onChange={handleDescriptionChange}></textarea>
+            </label>
+            <button className="primary-button" type="submit" onClick={(e)=>handleEditFeaturedSubmit(e, title, description, featuredItem.id)}>Save Edited Feature Content</button>
 
+          </form>
         </div>
       </>,
       document.body
