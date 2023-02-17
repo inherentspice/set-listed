@@ -64,6 +64,11 @@ const editPost = (formObject: {content: string}, id: string) => {
 const editExperience = (formObject: ExperienceDataSend, id: string) => {
   return axios.put(`${baseUrl}/experience/${id}`, formObject);
 };
+
+const editFeaturedImage = (formObject: FormData, id: string) => {
+  return axios.put(`${baseUrl}/featured/image/${id}`, formObject);
+};
+
 const ProfileService = {
   getOne,
   getProfile,
@@ -79,7 +84,8 @@ const ProfileService = {
   editAbout,
   editAward,
   editPost,
-  editExperience
+  editExperience,
+  editFeaturedImage
 };
 
 export default ProfileService;

@@ -16,20 +16,30 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
   const [expandedPost, setExpandedPost] = useState<null | string>(null);
 
   const [expandedAddFeatured, setExpandedAddFeatured] = useState<boolean>(false);
-  const [expandedEditFeatured, setExpandedEditFeatured] = useState<boolean>(false);
+  const [expandedEditFeaturedOverview, setExpandedEditFeaturedOverview] = useState<boolean>(false);
+  const [expandedEditFeaturedItem, setExpandedEditFeaturedItem] = useState<string>("");
 
   function handleAddFeaturedClick(): void{
     setExpandedAddFeatured(true);
   }
   function handleEditFeaturedClick(): void{
-    setExpandedEditFeatured(true);
+    setExpandedEditFeaturedOverview(true);
   }
 
   function handleAddFeaturedClose(): void{
     setExpandedAddFeatured(false);
   }
   function handleEditFeaturedClose(): void{
-    setExpandedEditFeatured(false);
+    setExpandedEditFeaturedOverview(false);
+  }
+
+  function handleEditFeaturedItemClick(id: string): void{
+    setExpandedEditFeaturedOverview(false);
+    setExpandedEditFeaturedItem(id);
+  }
+
+  function handleEditFeaturedItemClose(): void{
+    setExpandedEditFeaturedItem("");
   }
 
   function handleAddFeaturedSubmit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, suppImageUpload: File | null, description: string, title: string): void{
@@ -44,19 +54,48 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
 
   async function addFeatured(suppImageUpload: File | null, description: string, title: string) {
     const formData = new FormData();
-    if (suppImageUpload && description && title) {
-      formData.append("image", suppImageUpload);
-      formData.append("content", description);
-      formData.append("title", title);
-      formData.append("user", props.user);
-      try {
-        const newSuppImage = await ProfileService.postFeatured(formData);
-        console.log(newSuppImage);
-      } catch (err) {
-        console.log(err);
-      }
-    } else {
+    if (!(suppImageUpload && description && title)) {
       console.log("missing content");
+      return;
+    }
+    formData.append("image", suppImageUpload);
+    formData.append("content", description);
+    formData.append("title", title);
+    formData.append("user", props.user);
+    try {
+      const newSuppImage = await ProfileService.postFeatured(formData);
+      console.log(newSuppImage);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  function handleEditFeaturedPicSubmit(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    image: File | null,
+    id: string
+  ) {
+    e.preventDefault();
+    addFeaturedImageEdit(image, id)
+      .then(() => {
+        console.log("featured image changed");
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
+
+  async function addFeaturedImageEdit(image: File | null, id: string) {
+    const formData = new FormData();
+    if (!image) {
+      console.log("missing content");
+      return;
+    }
+    formData.append("image", image);
+    try {
+      const editedImage = await ProfileService.editFeaturedImage(formData, id);
+      console.log(editedImage);
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -107,7 +146,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
     );
   }
 
-  function ShowEditFeatured() {
+  function ShowEditFeaturedOverview() {
     return ReactDOM.createPortal(
       <>
         <div className="expanded-profile-overlay-cont" onClick={() => handleEditFeaturedClose()}></div>
@@ -131,11 +170,50 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
                   </div>
                   <div className="remove-featured-item">
                     <button className="remove-featured-item-btn">Remove this featured item</button>
+                    <button onClick={() => handleEditFeaturedItemClick(featuredPost.id)}>Edit this featured item</button>
                   </div>
                 </div>
               );
             })}
           </div>
+        </div>
+      </>,
+      document.body
+    );
+  }
+
+  function ShowEditFeaturedItem() {
+    const featuredItem = props.featured.filter((item) => item.id === expandedEditFeaturedItem)[0];
+    const [imageUpload, setImageUpload] = useState<File | null>(null);
+
+    function handleImageChange(e: React.ChangeEvent<HTMLInputElement>): void{
+      if (e.target.files){
+        setImageUpload(e.target.files[0]);
+      }
+    }
+
+    return ReactDOM.createPortal(
+      <>
+        <div className="expanded-profile-overlay-cont" onClick={() => handleEditFeaturedItemClose()}></div>
+        <div className="expanded-profile-overlay-overflow">
+          <div className="expanded-profile-overlay-header-cont">
+            <h2 className="expanded-edit-about-title">Edit Your Featured Section</h2>
+            <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditFeaturedItemClose()} />
+          </div>
+          <div className="edit-profile-hero-pic">
+            {imageUpload ? (
+              <img src={URL.createObjectURL(imageUpload)} alt="" />
+            ) : (
+              <img src={featuredItem.image || ""} alt=""></img>
+            )}
+            <form className="edit-profile-hero-form">
+              <label className="profile-add-label">
+                <input className="upload-image-input" type="file" onChange={handleImageChange}></input>
+              </label>
+            </form>
+          </div>
+          <button className="primary-button" type="submit" onClick={(e)=>handleEditFeaturedPicSubmit(e, imageUpload, featuredItem.id)}>Save New Featured Image</button>
+
         </div>
       </>,
       document.body
@@ -212,7 +290,8 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
       {/* if featured post is clicked, this expands the post */}
       {expandedPost && <ShowExpandedPost/>}
       {expandedAddFeatured && <ShowAddFeatured/>}
-      {expandedEditFeatured && <ShowEditFeatured/>}
+      {expandedEditFeaturedOverview && <ShowEditFeaturedOverview/>}
+      {expandedEditFeaturedItem && <ShowEditFeaturedItem/>}
     </div>
   );
 }

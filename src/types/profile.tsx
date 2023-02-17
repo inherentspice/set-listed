@@ -43,7 +43,7 @@ export interface FeaturedData {
   cloudinaryId?: string,
   title: string,
   content: string,
-  id?: string
+  id: string
 }
 
 export interface PostData {
