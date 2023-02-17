@@ -154,7 +154,7 @@ h2 {
   border-radius: 9px;
   padding: 10px;
   gap: 1rem;
-  
+
 }
 
 .expanded-profile-overlay-overflow {
@@ -172,7 +172,7 @@ h2 {
   justify-content: center;
   border-radius: 9px;
   gap: 1rem;
-  padding: 21rem 10px 10px 10px;
+  padding: 1rem 10px 10px 10px;
   overflow-y: scroll;
 
 }
