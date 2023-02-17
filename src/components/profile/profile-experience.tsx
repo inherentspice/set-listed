@@ -7,12 +7,12 @@ import convertDateRange from "../../utilities/convert-date-range";
 import CancelButton from "../../media/icons/cancel.png";
 import { ExperienceData } from "../../types/profile";
 import ProfileService from "../../services/home/profile";
-
+import ShowImage from "../../media/profile/openmic.png";
 
 
 export default function ProfileExperience(props: {experience: ExperienceData[], user: string}){
     const [expandedAddExperience, setExpandedAddExperience] = useState<boolean>(false);
-    const [expandedEditExperience, setExpandedEditExperience] = useState<null | string>(null);
+    const [expandedEditExperience, setExpandedEditExperience] = useState<string>("");
 
     function handleAddExperienceClick(): void{
         setExpandedAddExperience(true);
@@ -25,7 +25,7 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
         setExpandedAddExperience(false);
     }
     function handleEditExerienceClose(): void{
-        setExpandedEditExperience(null);
+        setExpandedEditExperience("");
     }
 
     function handleAddExperienceSubmit(
@@ -40,7 +40,7 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
       e.preventDefault();
       addExperience(title, venue, description, dateStart, dateEnd, location, props.user)
         .then(() => {
-          console.log("feature added");
+          console.log("experience added");
         }).catch((err) => {
           console.log(err);
         });
@@ -67,6 +67,52 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
       try {
         const newExperience = await ProfileService.postExperience(formData);
         console.log(newExperience);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    function handleEditExperienceSubmit(
+      e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+      title: string,
+      venue: string,
+      description: string,
+      dateStart: string,
+      dateEnd: string,
+      location: string,
+      id: string
+    ) {
+      e.preventDefault();
+      addExperienceEdit(title, venue, description, dateStart, dateEnd, location, id, props.user)
+        .then(() => {
+          console.log("experience edited");
+        }).catch((err) => {
+          console.log(err);
+        });
+    }
+
+    async function addExperienceEdit(
+      title: string,
+      venue: string,
+      description: string,
+      dateStart: string,
+      dateEnd: string,
+      location: string,
+      id: string,
+      user: string
+    ) {
+      const formData = {
+        title,
+        venue,
+        content: description,
+        dateStart,
+        dateEnd,
+        location,
+        user
+      };
+      try {
+        const editedExperience = await ProfileService.editExperience(formData, id);
+        console.log(editedExperience);
       } catch (err) {
         console.log(err);
       }
@@ -103,6 +149,7 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
       function handleLocationChange(e: React.ChangeEvent<HTMLInputElement>): void{
         setLocation(e.target.value);
       }
+
       return ReactDOM.createPortal(
           <>
             <div className="expanded-profile-overlay-cont" onClick={() => handleAddExerienceClose()}></div>
@@ -146,91 +193,117 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
 
     function ShowEditExperience() {
       const expExperience = props.experience.filter(exp => exp.id === expandedEditExperience)[0];
-        return ReactDOM.createPortal(
-          <>
-            <div className="expanded-profile-overlay-cont" key={expExperience.id} onClick={() => handleEditExerienceClose()}></div>
-            <div className="expanded-profile-overlay">
-                <div className="expanded-profile-overlay-header-cont">
-                    <h2 className="expanded-profile-overlay-title">Edit Your Experience</h2>
-                    <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditExerienceClose()} />
-                </div>
-                <form className="add-experience-form">
-                {/* <div className="add-experience-form-item">
-                    <label>Title:</label>
-                    <input defaultValue={FakeUserData[userIndex].experience[experienceIndex].title}></input>
-                </div> */}
-                <div className="add-experience-form-item">
-                    <label>Venue:</label>
-                    <input defaultValue={expExperience.venue}></input>
-                </div>
-                <div className="add-experience-form-item">
-                    <label>Start:</label>
-                    <input type="date"></input>
-                </div>
-                <div className="add-experience-form-item">
-                    <label>End:</label>
-                    <input type="date"/>
+      const [title, setTitle] = useState<string>(expExperience.title);
+      const [description, setDescription] = useState<string>(expExperience.content);
+      const [venue, setVenue] = useState<string>(expExperience.venue);
+      const [dateStart, setDateStart] = useState<string>(expExperience.dateStart ? expExperience.dateStart.slice(0, 10) : "");
+      const [dateEnd, setDateEnd] = useState<string>(expExperience.dateEnd ? expExperience.dateEnd.slice(0, 10) : "");
+      const [location, setLocation] = useState<string>(expExperience.location ? expExperience.location : "");
 
-                </div>
-                {/* <div className="add-experience-form-item">
-                    <label>Location:</label>
-                    <input defaultValue={FakeUserData[userIndex].experience[experienceIndex].location}></input>
-                </div> */}
-                <div className="add-experience-form-item">
-                    <label>Description:</label>
-                    <input defaultValue={expExperience.content} maxLength={2000}></input>
-                </div>
-                <div className="expanded-profile-overlay-submit">
-                    <button className="expanded-profile-overlay-submit-btn" type="submit">Save</button>
-                </div>
+      console.log(expExperience);
+      function handleTitleChange(e: React.ChangeEvent<HTMLInputElement>): void{
+        setTitle(e.target.value);
+      }
+
+      function handleDescriptionChange(e: React.ChangeEvent<HTMLInputElement>): void{
+        setDescription(e.target.value);
+      }
+
+      function handleVenueChange(e: React.ChangeEvent<HTMLInputElement>): void{
+        setVenue(e.target.value);
+      }
+
+      function handleDateStartChange(e: React.ChangeEvent<HTMLInputElement>): void{
+        setDateStart(e.target.value);
+      }
+
+      function handleDateEndChange(e: React.ChangeEvent<HTMLInputElement>): void{
+        setDateEnd(e.target.value);
+      }
+
+      function handleLocationChange(e: React.ChangeEvent<HTMLInputElement>): void{
+        setLocation(e.target.value);
+      }
+
+      return ReactDOM.createPortal(
+        <>
+          <div className="expanded-profile-overlay-cont" key={expExperience.id} onClick={() => handleEditExerienceClose()}></div>
+          <div className="expanded-profile-overlay">
+            <div className="expanded-profile-overlay-header-cont">
+              <h2 className="expanded-profile-overlay-title">Edit Your Experience</h2>
+              <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditExerienceClose()} />
+            </div>
+            <form className="add-experience-form">
+              <label className="add-experience-form-item">Title:
+                <input value={title} onChange={handleTitleChange}></input>
+              </label>
+              <label className="add-experience-form-item">Venue:
+                <input value={venue} onChange={handleVenueChange}></input>
+              </label>
+              <label className="add-experience-form-item">Start:
+                <input type="date" value={dateStart} onChange={handleDateStartChange}></input>
+              </label>
+              <label className="add-experience-form-item">End:
+                <input type="date" value={dateEnd} onChange={handleDateEndChange}/>
+              </label>
+              <label className="add-experience-form-item">Location:
+                <input value={location} onChange={handleLocationChange}></input>
+              </label>
+              <label>Description:
+                <input value={description} maxLength={2000} onChange={handleDescriptionChange}></input>
+              </label>
+              <div className="expanded-profile-overlay-submit">
+                <button
+                  className="expanded-profile-overlay-submit-btn"
+                  type="submit"
+                  onClick={(e) => handleEditExperienceSubmit(e, title, venue, description, dateStart, dateEnd, location, expExperience.id)}
+                >Save</button>
+              </div>
             </form>
-
-            </div>
-          </>,
-          document.body
-        );
-    }
-
-    return(
-        <div className="profile-experience-cont comp">
-            <div className="profile-experience-header">
-                <div className="profile-experience-header-title">Experience</div>
-                <div className="profile-experience-header-buttons">
-                    <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddExperienceClick()} />
-                </div>
-            </div>
-            <div className="profile-experience-items-cont">
-                {props.experience.map(item => {
-                    return(
-                        <div className="profile-experience-item">
-                            <img className="profile-experience-item-img" src={"/"} />
-                            <div className="profile-experience-item-info-cont">
-                                <div className="profile-experience-item-head">
-                                    <div className="profile-experience-head-left">
-                                        {/* <div className="profile-experience-item-title">{item.title}</div> */}
-                                        <div className="profile-experience-item-venue">{item.venue}</div>
-                                    </div>
-                                    <div className="profile-experience-item-head-right">
-                                        <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditExperienceClick(item.id)} />
-                                    </div>
-                                </div>
-                                <div className="profile-experience-item-duration-cont">
-                                    {/* <div className="profile-experience-item-dates">{item.start.toString().slice(4,16) +" - "+ (item.end.toString().slice(4,16) === new Date(Date.now()).toString().slice(4,16) ? "Present" : item.end.toString().slice(4,16))}</div> */}
-                                    {/* <div>|</div> */}
-                                    {/* <div className="profile-experience-item-duration">{convertDateRange(item.start, item.end)}</div> */}
-                                </div>
-                                {/* <div className="profile-experience-item-location">{item.venue}</div> */}
-                                <div className="profile-experience-item-description">{item.content}</div>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
-            <div className="profile-experience-show-all-experience">
-                Show all experience
-            </div>
-            {expandedAddExperience && <ShowAddExperience />}
-            {expandedEditExperience && <ShowEditExperience />}
+          </div>
+        </>,
+      document.body
+    );
+  }
+    return (
+      <div className="profile-experience-cont comp">
+        <div className="profile-experience-header">
+          <div className="profile-experience-header-title">Experience</div>
+          <div className="profile-experience-header-buttons">
+            <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddExperienceClick()} />
+          </div>
         </div>
+        <div className="profile-experience-items-cont">
+          {props.experience.map(item => {
+            return(
+              <div className="profile-experience-item">
+                <img className="profile-experience-item-img" src={ShowImage} />
+                <div className="profile-experience-item-info-cont">
+                  <div className="profile-experience-item-head">
+                    <div className="profile-experience-head-left">
+                      <div className="profile-experience-item-title">{item.title}</div>
+                      <div className="profile-experience-item-venue">{item.venue}</div>
+                    </div>
+                    <div className="profile-experience-item-head-right">
+                      <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditExperienceClick(item.id)} />
+                    </div>
+                  </div>
+                  <div className="profile-experience-item-duration-cont">
+                    {/* <div className="profile-experience-item-dates">{item.start.toString().slice(4,16) +" - "+ (item.end.toString().slice(4,16) === new Date(Date.now()).toString().slice(4,16) ? "Present" : item.end.toString().slice(4,16))}</div> */}
+                      {/* <div>|</div> */}
+                      {/* <div className="profile-experience-item-duration">{convertDateRange(item.start, item.end)}</div> */}
+                    </div>
+                    <div className="profile-experience-item-description">{item.content}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="profile-experience-show-all-experience">
+            Show all experience
+          </div>
+        {expandedAddExperience && <ShowAddExperience />}
+        {expandedEditExperience && <ShowEditExperience />}
+      </div>
     );
 }

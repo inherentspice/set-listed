@@ -17,6 +17,7 @@ export interface AwardDataSend {
 
 export interface ExperienceData {
   content: string,
+  title: string,
   id: string,
   user: string,
   venue: string,
@@ -27,6 +28,7 @@ export interface ExperienceData {
 
 export interface ExperienceDataSend {
   content: string,
+  title: string,
   id?: string,
   user: string,
   venue: string,
