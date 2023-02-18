@@ -1,0 +1,43 @@
+.follow-recommendation-cont {
+    width: 50vw;
+}
+.recommendation-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.25rem;
+    width: 50vw;
+}
+
+.recommendation-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0rem 1rem; 
+    width: 20rem;
+    height: 20rem;
+    border: 2px solid black;
+}
+
+.recommendation-card-top {
+    margin-bottom: -120px
+}
+
+.recommendation-card-background {
+    height: 120px;
+    border-radius: 60px 60px 60px 60px;
+    padding-left: 1rem;
+}
+
+.recommendation-card-cancel {
+    position: relative;
+    height: 2rem;
+    margin-bottom: -5rem;
+    left: 80%;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.recommendation-card-profile-picture {
+    position: relative;
+    bottom: 123px;
+}
