@@ -1,43 +1,128 @@
-.follow-recommendation-cont {
+@import "../../App.css";
+
+.network-recommended-cont {
     width: 50vw;
+    padding: 1rem
+}
+
+.follow-recommendation-cont {
+    width: 48vw;
+    
 }
 .recommendation-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 0.25rem;
-    width: 50vw;
+    width: 48vw;
+}
+
+.recommendation-card-cont {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 1rem;
 }
 
 .recommendation-card {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 0rem 1rem; 
-    width: 20rem;
-    height: 20rem;
-    border: 2px solid black;
+    width: 16rem;
+    height: 16rem;
+    border: 2px solid var(--grey-color-2);
+    border-radius: 15px;
+}
+
+.recommendation-card:hover {
+    box-shadow: var(--grey-color-1) 5px 5px;
 }
 
 .recommendation-card-top {
-    margin-bottom: -120px
+    display: flex;
+    flex-direction: column;
+}
+
+.recommentation-header-btn {
+    background-color: unset;
+    border: unset;
+    font-weight: bold;
+    padding: 0 1rem;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.recommentation-header-btn:hover {
+    background-color: var(--grey-color-1);
+    color: white;
+    
 }
 
 .recommendation-card-background {
-    height: 120px;
+    height: 100px;
     border-radius: 60px 60px 60px 60px;
     padding-left: 1rem;
+
 }
 
 .recommendation-card-cancel {
     position: relative;
     height: 2rem;
-    margin-bottom: -5rem;
+    width: 2rem;
+    top: 70px;
+    margin-top: -1rem;
     left: 80%;
     background-color: white;
     border-radius: 50%;
+    cursor: pointer;
+}
+
+.recommendation-card-cancel:hover {
+    background-color: var(--primary-color);
 }
 
 .recommendation-card-profile-picture {
     position: relative;
-    bottom: 123px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    bottom: 100px;
+    margin-bottom: -100px;
+    cursor: pointer;
+}
+
+.recommendation-card-middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.recommendation-card-name:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.recommendation-card-bottom {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+.recommendation-card-follow-btn {
+    border: var(--primary-color) solid 2px;
+    border-radius: 15px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    background-color: unset;
+    width: 100%;
+}
+
+.recommendation-card-follow-btn:hover {
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: white;
 }
