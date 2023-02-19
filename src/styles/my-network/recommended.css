@@ -91,6 +91,7 @@
     bottom: 100px;
     margin-bottom: -100px;
     cursor: pointer;
+    background-color: var(--primary-color);
 }
 
 .recommendation-card-middle {
