@@ -9,8 +9,7 @@ import ProfileService from "../../services/home/profile";
 
 export default function ProfileAbout(props: {about: AboutData[]}) {
   const [expandedEditAbout, setExpandedEditAbout] = useState<null | string>(null);
-
-  const about = props.about[0];
+  const [about, setAbout] = useState<AboutData>(props.about[0]);
 
   function handleEditAboutClick(id: string): void{
     setExpandedEditAbout(id);
@@ -39,7 +38,8 @@ export default function ProfileAbout(props: {about: AboutData[]}) {
     };
     try {
       const editedAbout = await ProfileService.editAbout(formData, user);
-      console.log(editedAbout);
+      setAbout(editedAbout.data.about);
+      handleEditAboutClose();
     } catch (err) {
       console.log(err);
     }
