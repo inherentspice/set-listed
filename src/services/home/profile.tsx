@@ -1,6 +1,6 @@
 import axios from "axios";
 import { AxiosResponse } from "axios";
-import ProfileData, {AwardDataSend, ExperienceDataSend, PostData, PostDataSend, ProfileCardData, ProfileCardDataSend, SkillDataSend} from "../../types/profile";
+import ProfileData, {AwardDataSend, ExperienceDataSend, PostData, ProfileCardData, ProfileCardDataSend, SkillDataSend} from "../../types/profile";
 
 const baseUrl = "/profile";
 

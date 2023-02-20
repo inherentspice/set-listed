@@ -6,7 +6,7 @@ import convertDate from "../../utilities/convert-date";
 export default function Feed(props: {post: PostData}) {
 
   const [profile, setProfile] = useState<ProfileCardData | undefined>(undefined);
-  console.log(profile);
+
   useEffect(() => {
     (async function() {
       try {
@@ -18,7 +18,6 @@ export default function Feed(props: {post: PostData}) {
   }());
   }, []);
 
-  console.log(profile);
   return (
     <div className="home-feed-cont comp">
       <div className="profile-info-cont">

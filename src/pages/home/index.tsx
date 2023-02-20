@@ -7,7 +7,6 @@ import ProfileCard from "../../components/home/profile-card";
 import Footer from "../../components/home/footer";
 import QuickAccess from "../../components/home/quick-access";
 import Feed from "../../components/home/feed";
-import FeedData from "../../dummy-data/feed";
 import { ProfileCardData, PostData } from "../../types/profile";
 import AuthService from "../../services/home/auth";
 import PostService from "../../services/home/posts";
@@ -26,22 +25,20 @@ export default function Home() {
         const getProfile = await ProfileService.getProfileCard(userAuth.data.user);
         setUser(userAuth.data.user);
         setPosts(getPosts.data.posts);
-        setProfile(getProfile.data);
+        setProfile(getProfile.data.profileCard[0]);
       } catch (err) {
         console.log("");
       }
     }());
   }, []);
 
-
   return (
     <div className="page-cont">
       <div className="home">
         <ProfileCard />
         <QuickAccess />
-        <Post />
+        {profile && <Post profileImg={profile.image}/>}
         {posts && Array.from(posts).map(post => {
-          console.log("here");
           return <Feed post={post} key={post.id}/>;
         })}
         <News />
