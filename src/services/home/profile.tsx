@@ -69,6 +69,10 @@ const editFeaturedImage = (formObject: FormData, id: string) => {
   return axios.put(`${baseUrl}/featured/image/${id}`, formObject);
 };
 
+const deleteAward = (id: string) => {
+  return axios.delete(`${baseUrl}/award/${id}`);
+};
+
 const ProfileService = {
   getOne,
   getProfile,
@@ -85,7 +89,8 @@ const ProfileService = {
   editAward,
   editExperience,
   editFeatured,
-  editFeaturedImage
+  editFeaturedImage,
+  deleteAward
 };
 
 export default ProfileService;

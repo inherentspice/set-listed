@@ -76,6 +76,31 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string}
     }
   }
 
+  function handleDeleteAwardSubmit(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: string
+  ) {
+    e.preventDefault();
+    const confirmDelete = confirm("Click OK if you actually want to delete this");
+    if (confirmDelete) {
+      deleteAward(id)
+        .then(() => {
+          console.log("award deleted");
+        }).catch((err) => {
+          console.log(err);
+        });
+    }
+  }
+
+  async function deleteAward(id: string) {
+    try {
+      const deletedConfirmation = await ProfileService.deleteAward(id);
+      console.log(deletedConfirmation);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   function ShowAddAwards() {
     const [content, setContent] = useState<string>("");
 
@@ -131,7 +156,11 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string}
                 className="expanded-profile-overlay-submit-btn"
                 type="submit"
                 onClick={(e) => handleEditAwardSubmit(e, content, expAward.id)}
-              >Save</button>
+              >Save Edits</button>
+              <button
+                className="expanded-profile-overlay-submit-btn"
+                onClick={(e) => handleDeleteAwardSubmit(e, expAward.id)}
+              >Delete Award</button>
             </div>
           </form>
 
