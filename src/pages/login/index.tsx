@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AuthService from "../../services/home/auth";
+import SignUp from "../../components/login/signup";
 import "./index.css";
 
 export default function Login() {
@@ -7,6 +8,7 @@ export default function Login() {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [user, setUser] = useState<string>("");
+  const [signUp, setSignUp] = useState<boolean>(false);
 
   function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
     setEmail(event.target.value);
@@ -34,6 +36,12 @@ export default function Login() {
       });
   }
 
+  if (signUp) {
+    return (
+      <SignUp logIn={setSignUp}/>
+    )
+  }
+
   return (
     <div className="login-form-cont">
       <form className="login-form" onSubmit={event => handleUserLogin(event, email, password)}>
@@ -48,6 +56,7 @@ export default function Login() {
         <br />
         <input type="submit" value="Login" />
       </form>
+      <button className="primary-button login-button" onClick={() => setSignUp(true)}>Sign Up</button>
       {error && <p>{error}</p>}
     </div>
   );
