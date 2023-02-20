@@ -90,6 +90,31 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
       }
     }
 
+    function handleDeletePostClick(
+      e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+      id: string)
+    {
+      e.preventDefault();
+      const confirmDelete = confirm("Click OK if you actually want to delete this");
+      if (confirmDelete) {
+        deletePost(id)
+          .then(() => {
+            console.log("post deleted");
+          }).catch((err) => {
+            console.log(err);
+          });
+      }
+    }
+
+    async function deletePost(id: string) {
+      try {
+        const deletedConfirmation = await PostService.deletePost(id);
+        console.log(deletedConfirmation);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
     function ShowStartPost() {
       const [content, setContent] = useState<string>("");
 
@@ -227,6 +252,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
                   <div className="profile-activity-post-like-count">{item.likes}</div>
                   <img className="profile-activity-post-like-img" src={Dislike} />
                   <button className="post-edit" onClick={() => handleEditPostClick(item.id)}>edit</button>
+                  <button className="post-edit" onClick={(e) => handleDeletePostClick(e, item.id)}>delete</button>
                 </div>
               </div>
               );
