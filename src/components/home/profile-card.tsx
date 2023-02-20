@@ -10,7 +10,7 @@ export default function ProfileCard(props: {profile: ProfileCardData}){
       <div className='profile-card-user-cont'>
 
         <div className='profile-card-user-img-cont'>
-          <img className='profile-card-background-img' src={props.profile.backgroundImage} alt="" />
+          <img className='profile-card-background-img' src={props.profile.backgroundImage || "https://res.cloudinary.com/dhptcrsjc/image/upload/v1675955714/Set-Listed/default-background_wyziyb.png"} alt="" />
           <img className='profile-card-user-img profile-picture-medium' src={props.profile.image} alt=""/>
         </div>
 

@@ -39,7 +39,7 @@ export default function Login() {
   if (signUp) {
     return (
       <SignUp logIn={setSignUp}/>
-    )
+    );
   }
 
   return (

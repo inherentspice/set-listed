@@ -21,9 +21,11 @@ export default function Feed(props: {post: PostData}) {
   return (
     <div className="home-feed-cont comp">
       <div className="profile-info-cont">
+        <a href={`/user/${props.post.user}`}>
         {profile?.image ?
           <img src={profile.image} alt="" className="profile-picture-small"/>
           : <></>}
+        </a>
         <div className="profile-text-info-cont">
           <p className="profile-name">{profile?.firstName} {profile?.lastName}</p>
           <p className="profile-tag">{profile?.tagline}</p>
