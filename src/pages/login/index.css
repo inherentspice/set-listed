@@ -46,4 +46,11 @@
 
 .login-form-cont {
   margin: 5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-button {
+  align-self: center;
+  margin: 1rem 0;
 }
