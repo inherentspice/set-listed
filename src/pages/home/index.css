@@ -166,6 +166,7 @@
 /* feed */
 .home-feed-cont {
   grid-column: 2 / 4;
+  height: fit-content;
 }
 
 /* profile-card */

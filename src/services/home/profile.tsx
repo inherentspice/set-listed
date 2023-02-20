@@ -13,6 +13,10 @@ const getProfile = (id: string): Promise<AxiosResponse<ProfileData>> => {
   return axios.get(`${baseUrl}/${id}`);
 };
 
+const getProfileCard = (id: string) => {
+  return axios.get(`${baseUrl}/profilecard/${id}`);
+};
+
 const getProfilePosts = (id: string): Promise<AxiosResponse<PostData>> => {
   return axios.get(`${baseUrl}/posts/${id}`);
 };
@@ -33,10 +37,6 @@ const postSkill = (formObject: SkillDataSend) => {
   return axios.post(`${baseUrl}/skill`, formObject);
 };
 
-const postPost = (formObject: PostDataSend) => {
-  return axios.post(`${baseUrl}/post`, formObject);
-};
-
 const editBackground = (formObject: FormData, id: string) => {
   return axios.put(`${baseUrl}/backgroundpicture/${id}`, formObject);
 };
@@ -50,15 +50,11 @@ const editProfilePic = (formObject: FormData, id: string) => {
 };
 
 const editAbout = (formObject: {content: string}, id: string) => {
-  return axios.put(`${baseUrl}/about/${id}`, formObject)
+  return axios.put(`${baseUrl}/about/${id}`, formObject);
 };
 
 const editAward = (formObject: {content: string}, id: string) => {
   return axios.put(`${baseUrl}/award/${id}`, formObject);
-};
-
-const editPost = (formObject: {content: string}, id: string) => {
-  return axios.put(`${baseUrl}/post/${id}`, formObject);
 };
 
 const editExperience = (formObject: ExperienceDataSend, id: string) => {
@@ -76,18 +72,17 @@ const editFeaturedImage = (formObject: FormData, id: string) => {
 const ProfileService = {
   getOne,
   getProfile,
+  getProfileCard,
   getProfilePosts,
   postFeatured,
   postExperience,
   postAward,
   postSkill,
-  postPost,
   editBackground,
   editHero,
   editProfilePic,
   editAbout,
   editAward,
-  editPost,
   editExperience,
   editFeatured,
   editFeaturedImage
