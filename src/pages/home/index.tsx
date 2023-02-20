@@ -37,7 +37,7 @@ export default function Home() {
       <div className="home">
         <ProfileCard />
         <QuickAccess />
-        {profile && <Post profileImg={profile.image}/>}
+        {profile && <Post profileImg={profile.image} user={user}/>}
         {posts && Array.from(posts).map(post => {
           return <Feed post={post} key={post.id}/>;
         })}
