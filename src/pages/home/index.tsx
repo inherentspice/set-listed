@@ -43,7 +43,7 @@ export default function Home() {
         })}
         <News />
         <div className="ad-footer-cont">
-          <Advertisement />
+          {profile && <Advertisement profileImg={profile.image}/>}
           <Footer />
         </div>
       </div>
