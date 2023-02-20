@@ -2,6 +2,8 @@ import React from "react";
 import { FakeUserData } from "../../dummy-data/fake-users";
 
 export default function ProfileCard(){
+
+
   return(
     <div className='profile-card-cont comp'>
       <div className='profile-card-user-cont'>

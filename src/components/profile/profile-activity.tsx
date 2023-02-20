@@ -13,7 +13,7 @@ import Chart from "../../media/icons/chart.png";
 import Visibility from "../../media/icons/visibility.png";
 import Comments from "../../media/icons/comments.png";
 import { ProfileCardData, PostData } from "../../types/profile";
-import ProfileService from "../../services/home/profile";
+import PostService from "../../services/home/posts";
 
 export default function ProfileActivity(props: {profileCard: ProfileCardData[], posts: PostData[]}) {
     const [expandedStartPost, setExpandedStartPost] = useState<string>("");
@@ -57,7 +57,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
         user
       };
       try {
-        const newPost = await ProfileService.postPost(formData);
+        const newPost = await PostService.postPost(formData);
         console.log(newPost);
       } catch (err) {
         console.log(err);
@@ -83,7 +83,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
         content
       };
       try {
-        const editedPost = await ProfileService.editPost(formData, id);
+        const editedPost = await PostService.editPost(formData, id);
         console.log(editedPost);
       } catch (err) {
         console.log(err);
