@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <div className="page-cont">
       <div className="home">
-        <ProfileCard />
+        {profile && <ProfileCard profile={profile}/>}
         <QuickAccess />
         {profile && <Post profileImg={profile.image} user={user}/>}
         {posts && Array.from(posts).map(post => {
