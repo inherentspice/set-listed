@@ -1,11 +1,11 @@
 import React from "react";
 import Profile from "../../media/home/profile-picture.png";
 
-export default function Post() {
+export default function Post(props: {profileImg: string | undefined}) {
   return (
     <div className="home-post-cont comp">
       <div className="post-button-cont">
-        <img src={Profile} alt="" className="profile-picture-small"/>
+        <img src={props.profileImg} alt="" className="profile-picture-small"/>
         <button className="start-post-btn">Start a post</button>
       </div>
       <div className="specific-post-cont">
