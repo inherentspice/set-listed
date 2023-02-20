@@ -323,7 +323,9 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
           </div>
           <div className='profile-hero-tagline'>{profileCard.tagline}</div>
           <div className='profile-hero-contact-cont'>
-            <div className='profile-hero-location'>{profileCard.city+", "+profileCard.country}</div>
+            <div className='profile-hero-location'>{`
+              ${profileCard.city ? profileCard.city : ""}
+              , ${profileCard.country ? profileCard.country : ""}`}</div>
             <div className='profile-hero-contact'>Contact Info</div>
           </div>
           <div className='profile-hero-connections'>500+ connections</div>
