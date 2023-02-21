@@ -131,6 +131,31 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
     }
   }
 
+  function handleDeleteFeaturedItemClick(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: string
+  ) {
+    e.preventDefault();
+    const confirmDelete = confirm("Click OK if you actually want to delete this");
+    if (confirmDelete) {
+      deleteFeatured(id)
+        .then(() => {
+          console.log("featured deleted");
+        }).catch((err) => {
+          console.log(err);
+        });
+    }
+  }
+
+  async function deleteFeatured(id: string) {
+    try {
+      const deletedConfirmation = await ProfileService.deleteFeatured(id);
+      console.log(deletedConfirmation);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   function ShowAddFeatured() {
     const [title, setTitle] = useState<string>("");
     const [suppImageUpload, setSuppImageUpload] = useState<File | null>(null);
@@ -201,7 +226,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
                     </div>
                   </div>
                   <div className="remove-featured-item">
-                    <button className="remove-featured-item-btn">Remove this featured item</button>
+                    <button className="remove-featured-item-btn" onClick={(e) => handleDeleteFeaturedItemClick(e, featuredPost.id)}>Remove this featured item</button>
                     <button onClick={() => handleEditFeaturedItemClick(featuredPost.id)}>Edit this featured item</button>
                   </div>
                 </div>
