@@ -13,10 +13,14 @@ import { useParams } from "react-router-dom";
 import ProfileService from "../../services/home/profile";
 import ProfileData from "../../types/profile";
 import "./index.css";
+import AuthService from "../../services/home/auth";
 
 export default function BuildProfilePage() {
   const [profile, setProfile] = useState< ProfileData | undefined>(undefined);
+  const [viewingUser, setViewingUser] = useState<string>("");
   const { userid } = useParams();
+
+
 
   useEffect(() => {
     (async function() {
@@ -29,6 +33,8 @@ export default function BuildProfilePage() {
           console.log(err);
         }
       }
+      const userAuth = await AuthService.checkSession();
+      setViewingUser(userAuth.data.user);
     }());
   }, []);
 
@@ -40,7 +46,7 @@ export default function BuildProfilePage() {
         <ProfileResources />
         <ProfileAbout about={profile.about}/>
         <Featured user={profile.profileCard[0].user} featured={profile.featured}/>
-        <ProfileActivity profileCard={profile.profileCard} posts={profile.post}/>
+        <ProfileActivity profileCard={profile.profileCard} posts={profile.post} viewingUser={viewingUser}/>
         <ProfileExperience user={profile.profileCard[0].user} experience={profile.experience}/>
         <ProfileSkills user={profile.profileCard[0].user} skills={profile.skill}/>
         <ProfileAwards user={profile.profileCard[0].user} awards={profile.award}/>

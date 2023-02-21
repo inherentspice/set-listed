@@ -27,11 +27,12 @@ export default function Home() {
         setPosts(getPosts.data.posts);
         setProfile(getProfile.data.profileCard[0]);
       } catch (err) {
-        console.log("");
+        console.log("error");
       }
     }());
   }, []);
 
+  console.log(user)
   return (
     <div className="page-cont">
       <div className="home">

@@ -15,7 +15,7 @@ import Comments from "../../media/icons/comments.png";
 import { ProfileCardData, PostData } from "../../types/profile";
 import PostService from "../../services/home/posts";
 
-export default function ProfileActivity(props: {profileCard: ProfileCardData[], posts: PostData[]}) {
+export default function ProfileActivity(props: {profileCard: ProfileCardData[], posts: PostData[], viewingUser: string}) {
     const [expandedStartPost, setExpandedStartPost] = useState<string>("");
     const [expandedEditPost, setExpandedEditPost] = useState<string>("");
     const posts = props.posts;
@@ -110,6 +110,28 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
       try {
         const deletedConfirmation = await PostService.deletePost(id);
         console.log(deletedConfirmation);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    function handleLikePostClick(id: string, viewingUser: string) {
+      likePost(id, viewingUser)
+        .then(() => {
+          console.log("post liked!");
+        }).catch((err) => {
+          console.log(err);
+        });
+    }
+
+    async function likePost(id: string, viewingUser: string) {
+      try {
+        const formObject = {
+          user: viewingUser
+        };
+        const updatedLikes = await PostService.modifyPostLikes(formObject, id);
+        console.log(updatedLikes);
+
       } catch (err) {
         console.log(err);
       }
@@ -248,9 +270,8 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
                 </div>
                 <p className="profile-activity-post-description">{item.content}</p>
                 <div className="profile-activity-post-likes">
-                  <img className="profile-activity-post-like-img" src={Like} />
-                  <div className="profile-activity-post-like-count">{item.likes}</div>
-                  <img className="profile-activity-post-like-img" src={Dislike} />
+                  <img className="profile-activity-post-like-img" onClick={() => handleLikePostClick(item.id, props.viewingUser)} src={Like} />
+                  <div className="profile-activity-post-like-count">{item.likes ? item.likes.length : 0}</div>
                   <button className="post-edit" onClick={() => handleEditPostClick(item.id)}>edit</button>
                   <button className="post-edit" onClick={(e) => handleDeletePostClick(e, item.id)}>delete</button>
                 </div>
