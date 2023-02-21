@@ -92,8 +92,8 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
 
     function handleDeletePostClick(
       e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-      id: string)
-    {
+      id: string
+    ) {
       e.preventDefault();
       const confirmDelete = confirm("Click OK if you actually want to delete this");
       if (confirmDelete) {

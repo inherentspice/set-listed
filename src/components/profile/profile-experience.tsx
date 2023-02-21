@@ -118,6 +118,31 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
       }
     }
 
+    function handleDeleteExperienceSubmit(
+      e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+      id: string
+    ) {
+      e.preventDefault();
+      const confirmDelete = confirm("Click OK if you actually want to delete this");
+      if (confirmDelete) {
+        deleteExperience(id)
+          .then(() => {
+            console.log("experience deleted");
+          }).catch((err) => {
+            console.log(err);
+          });
+      }
+    }
+
+    async function deleteExperience(id: string) {
+      try {
+        const deletedConfirmation = await ProfileService.deleteExperience(id);
+        console.log(deletedConfirmation);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
     function ShowAddExperience() {
       const [title, setTitle] = useState<string>("");
       const [description, setDescription] = useState<string>("");
@@ -258,6 +283,10 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
                   type="submit"
                   onClick={(e) => handleEditExperienceSubmit(e, title, venue, description, dateStart, dateEnd, location, expExperience.id)}
                 >Save</button>
+                <button
+                  className="expanded-profile-overlay-submit-btn"
+                  onClick={(e) => handleDeleteExperienceSubmit(e, expExperience.id)}
+                >Delete</button>
               </div>
             </form>
           </div>

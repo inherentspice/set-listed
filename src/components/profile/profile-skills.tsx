@@ -50,6 +50,31 @@ export default function ProfileSkills(props: {skills: SkillData[], user: string}
     }
   }
 
+  function handleDeleteSkillSubmit(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: string
+  ) {
+    e.preventDefault();
+    const confirmDelete = confirm("Click OK if you actually want to delete this");
+    if (confirmDelete) {
+      deleteSkill(id)
+        .then(() => {
+          console.log("skill deleted");
+        }).catch((err) => {
+          console.log(err);
+        });
+    }
+  }
+
+  async function deleteSkill(id: string) {
+    try {
+      const deletedConfirmation = await ProfileService.deleteSkill(id);
+      console.log(deletedConfirmation);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   function ShowAddSkill() {
     const [content, setContent] = useState<string>("");
 
@@ -104,6 +129,19 @@ export default function ProfileSkills(props: {skills: SkillData[], user: string}
           <div className="expanded-profile-overlay-header-cont">
             <h2 className="expanded-edit-about-title">Edit Your Skill Section</h2>
             <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditSkillClose()} />
+          </div>
+          <div className="skills-cont">
+            {props.skills.map((skill) => {
+            return (
+              <div className="skill-cont">
+                <div className="content-endorse-cont">
+                  <p>{skill.content}</p>
+                  <button className="primary-button" onClick={(e) => handleDeleteSkillSubmit(e, skill.id)}>Delete</button>
+                </div>
+                {skill.endorsments && <p>{skill.endorsments + " endorsements"}</p>}
+              </div>
+            );
+            })}
           </div>
         </div>
       </>,
