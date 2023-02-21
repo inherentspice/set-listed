@@ -77,6 +77,10 @@ const deleteFeatured = (id: string) => {
   return axios.delete(`${baseUrl}/featured/${id}`);
 };
 
+const deleteExperience = (id: string) => {
+  return axios.delete(`${baseUrl}/experience/${id}`);
+};
+
 const ProfileService = {
   getOne,
   getProfile,
@@ -95,7 +99,8 @@ const ProfileService = {
   editFeatured,
   editFeaturedImage,
   deleteAward,
-  deleteFeatured
+  deleteFeatured,
+  deleteExperience
 };
 
 export default ProfileService;
