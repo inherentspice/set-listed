@@ -12,31 +12,35 @@ import ProfileResources from "../../components/profile/profile-resources";
 import { useParams } from "react-router-dom";
 import ProfileService from "../../services/home/profile";
 import ProfileData from "../../types/profile";
+import { useUserId } from "../../context/userIdContext";
 import "./index.css";
 import AuthService from "../../services/home/auth";
 
 export default function BuildProfilePage() {
   const [profile, setProfile] = useState< ProfileData | undefined>(undefined);
-  const [viewingUser, setViewingUser] = useState<string>("");
-  const { userid } = useParams();
+  const { profileid } = useParams<string>();
+  const { userId } = useUserId();
+
 
 
 
   useEffect(() => {
-    (async function() {
-      if (userid) {
+    async function fetchProfile() {
+      if (profileid) {
         try {
-          const profileInfo = await ProfileService.getProfile(userid);
+          const profileInfo = await ProfileService.getProfile(profileid);
           const profileInfoData = profileInfo.data;
           setProfile(profileInfoData);
         } catch (err) {
           console.log(err);
         }
       }
-      const userAuth = await AuthService.checkSession();
-      setViewingUser(userAuth.data.user);
-    }());
-  }, []);
+    }
+
+    if (profileid) {
+      fetchProfile();
+    }
+  }, [profileid]);
 
   return (
     <>
@@ -46,7 +50,7 @@ export default function BuildProfilePage() {
         <ProfileResources />
         <ProfileAbout about={profile.about}/>
         <Featured user={profile.profileCard[0].user} featured={profile.featured}/>
-        <ProfileActivity profileCard={profile.profileCard} posts={profile.post} viewingUser={viewingUser}/>
+        <ProfileActivity profileCard={profile.profileCard} posts={profile.post} viewingUser={userId}/>
         <ProfileExperience user={profile.profileCard[0].user} experience={profile.experience}/>
         <ProfileSkills user={profile.profileCard[0].user} skills={profile.skill}/>
         <ProfileAwards user={profile.profileCard[0].user} awards={profile.award}/>

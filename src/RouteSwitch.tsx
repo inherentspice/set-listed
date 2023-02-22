@@ -9,10 +9,13 @@ import Notifications from "./pages/notifications";
 import Header from "./components/header";
 import RequireAuth from "./components/require-auth";
 import Login from "./pages/login";
+import { UserIdProvider } from "./context/userIdContext";
+
 
 export default function RouteSwitch() {
 
   return(
+    <UserIdProvider>
     <BrowserRouter>
       <Header/>
       <Routes>
@@ -26,11 +29,12 @@ export default function RouteSwitch() {
         <Route path='/gigs' element={<Gigs />} />
         <Route path='/messaging' element={<Messaging />} />
         <Route path='/my-network' element={<MyNetwork />} />
-        <Route path='/user/:userid' element={<BuildProfilePage />} />
+        <Route path='/user/:profileid' element={<BuildProfilePage />} />
         <Route path='/notifications' element={<Notifications />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Login />} />
       </Routes>
     </BrowserRouter>
+    </UserIdProvider>
   );
 }
