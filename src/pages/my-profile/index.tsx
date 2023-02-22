@@ -14,7 +14,6 @@ import ProfileService from "../../services/home/profile";
 import ProfileData from "../../types/profile";
 import { useUserId } from "../../context/userIdContext";
 import "./index.css";
-import AuthService from "../../services/home/auth";
 
 export default function BuildProfilePage() {
   const [profile, setProfile] = useState< ProfileData | undefined>(undefined);

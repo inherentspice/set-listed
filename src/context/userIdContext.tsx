@@ -1,7 +1,7 @@
 import { createContext, SetStateAction, useContext, useState, Dispatch } from "react";
 
 interface UserIdContextType {
-  userId: string | null;
+  userId: string;
   setUserId: Dispatch<SetStateAction<string>>;
 }
 
