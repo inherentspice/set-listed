@@ -14,11 +14,15 @@ import ProfileService from "../../services/home/profile";
 import ProfileData from "../../types/profile";
 import { useUserId } from "../../context/userIdContext";
 import "./index.css";
+import AuthService from "../../services/home/auth";
 
 export default function BuildProfilePage() {
   const [profile, setProfile] = useState< ProfileData | undefined>(undefined);
   const { profileid } = useParams<string>();
   const { userId } = useUserId();
+
+
+
 
   useEffect(() => {
     async function fetchProfile() {
@@ -46,7 +50,7 @@ export default function BuildProfilePage() {
         <ProfileResources />
         <ProfileAbout about={profile.about}/>
         <Featured user={profile.profileCard[0].user} featured={profile.featured}/>
-        <ProfileActivity profileCard={profile.profileCard} posts={profile.post}/>
+        <ProfileActivity profileCard={profile.profileCard} posts={profile.post} viewingUser={userId}/>
         <ProfileExperience user={profile.profileCard[0].user} experience={profile.experience}/>
         <ProfileSkills user={profile.profileCard[0].user} skills={profile.skill}/>
         <ProfileAwards user={profile.profileCard[0].user} awards={profile.award}/>

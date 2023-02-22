@@ -48,7 +48,7 @@ export interface FeaturedData {
 
 export interface PostData {
   content: string,
-  likes: number,
+  likes: string[],
   user: string,
   createdAt: Date,
   id: string
