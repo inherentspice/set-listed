@@ -10,6 +10,7 @@ export default function ProfileSkills(props: {skills: SkillData[], user: string}
 
   const [expandedAddSkill, setExpandedAddSkill] = useState<boolean>(false);
   const [expandedEditSkill, setExpandedEditSkill] = useState<boolean>(false);
+  const [skills, setSkills] = useState(props.skills);
 
   function handleAddSkillClick(): void{
     setExpandedAddSkill(true);
@@ -34,6 +35,7 @@ export default function ProfileSkills(props: {skills: SkillData[], user: string}
     addSkill(content, props.user)
       .then(() => {
         console.log("added skill");
+        handleAddSkillClose();
       });
   }
 
@@ -44,7 +46,9 @@ export default function ProfileSkills(props: {skills: SkillData[], user: string}
     };
     try {
       const newSkill = await ProfileService.postSkill(formData);
-      console.log(newSkill);
+      const newSkills = skills;
+      newSkills.push(newSkill.data.skill);
+      setSkills(newSkills);
     } catch (err) {
       console.log(err);
     }
@@ -131,9 +135,9 @@ export default function ProfileSkills(props: {skills: SkillData[], user: string}
             <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditSkillClose()} />
           </div>
           <div className="skills-cont">
-            {props.skills.map((skill) => {
+            {props.skills.map(skill => {
             return (
-              <div className="skill-cont">
+              <div className="skill-cont" key={skill.id}>
                 <div className="content-endorse-cont">
                   <p>{skill.content}</p>
                   <button className="primary-button" onClick={(e) => handleDeleteSkillSubmit(e, skill.id)}>Delete</button>
@@ -159,9 +163,9 @@ export default function ProfileSkills(props: {skills: SkillData[], user: string}
         </div>
       </div>
       <div className="skills-cont">
-        {props.skills.map((skill) => {
+        {skills.map((skill) => {
           return (
-            <div className="skill-cont">
+            <div className="skill-cont" key={skill.id}>
               <div className="content-endorse-cont">
                 <p>{skill.content}</p>
                 <button className="primary-button">Endorse</button>
