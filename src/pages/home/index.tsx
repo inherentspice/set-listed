@@ -27,7 +27,7 @@ export default function Home() {
         setPosts(getPosts.data.posts);
         setProfile(getProfile.data.profileCard[0]);
       } catch (err) {
-        console.log("");
+        console.log("error");
       }
     }());
   }, []);
@@ -39,7 +39,7 @@ export default function Home() {
         <QuickAccess />
         {profile && <Post profileImg={profile.image} user={user}/>}
         {posts && Array.from(posts).map(post => {
-          return <Feed post={post} key={post.id}/>;
+          return <Feed viewingUser={user} post={post} key={post.id}/>;
         })}
         <News />
         <div className="ad-footer-cont">
