@@ -32,7 +32,6 @@ export default function Home() {
     }());
   }, []);
 
-  console.log(user)
   return (
     <div className="page-cont">
       <div className="home">
@@ -40,7 +39,7 @@ export default function Home() {
         <QuickAccess />
         {profile && <Post profileImg={profile.image} user={user}/>}
         {posts && Array.from(posts).map(post => {
-          return <Feed post={post} key={post.id}/>;
+          return <Feed viewingUser={user} post={post} key={post.id}/>;
         })}
         <News />
         <div className="ad-footer-cont">

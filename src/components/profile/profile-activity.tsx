@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "../../styles/profile-activity.css";
 import Like from "../../media/icons/like.png";
-import Dislike from "../../media/icons/dislike.png";
 import convertDate from "../../utilities/convert-date";
 import CancelButton from "../../media/icons/cancel.png";
 import Emoji from "../../media/icons/emoji.png";
