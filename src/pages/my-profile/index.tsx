@@ -12,25 +12,31 @@ import ProfileResources from "../../components/profile/profile-resources";
 import { useParams } from "react-router-dom";
 import ProfileService from "../../services/home/profile";
 import ProfileData from "../../types/profile";
+import { useUserId } from "../../context/userIdContext";
 import "./index.css";
 
 export default function BuildProfilePage() {
   const [profile, setProfile] = useState< ProfileData | undefined>(undefined);
-  const { userid } = useParams();
+  const { profileid } = useParams<string>();
+  const { userId } = useUserId();
 
   useEffect(() => {
-    (async function() {
-      if (userid) {
+    async function fetchProfile() {
+      if (profileid) {
         try {
-          const profileInfo = await ProfileService.getProfile(userid);
+          const profileInfo = await ProfileService.getProfile(profileid);
           const profileInfoData = profileInfo.data;
           setProfile(profileInfoData);
         } catch (err) {
           console.log(err);
         }
       }
-    }());
-  }, []);
+    }
+
+    if (profileid) {
+      fetchProfile();
+    }
+  }, [profileid]);
 
   return (
     <>

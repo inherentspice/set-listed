@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import AuthService from "../../services/home/auth";
 import SignUp from "../../components/login/signup";
+import { useUserId } from "../../context/userIdContext";
+
 import "./index.css";
 
 export default function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [user, setUser] = useState<string>("");
   const [signUp, setSignUp] = useState<boolean>(false);
+  const { userId, setUserId } = useUserId();
+
 
   function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
     setEmail(event.target.value);
@@ -29,12 +32,14 @@ export default function Login() {
 
     AuthService.login(userObject)
       .then(response => {
-        setUser(response.data.user);
+        setUserId(response.data.user);
       })
       .catch(error => {
         setError(error.response.data.error);
       });
   }
+
+  console.log(userId);
 
   if (signUp) {
     return (

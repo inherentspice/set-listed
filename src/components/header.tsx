@@ -5,22 +5,25 @@ import MyNetwork from "../media/icons/my-network.png";
 import Gigs from "../media/icons/gigs.png";
 import Messaging from "../media/icons/messaging.png";
 import Notifications from "../media/icons/notifications.png";
-import ProfilePic from "../media/home/profile-picture.png";
 import Search from "../media/icons/search.png";
 import Services from "../media/icons/services.png";
 import LogoutIcon from "../media/icons/logout.png";
 import AuthService from "../services/home/auth";
-import UserDataType from "../types/header";
+import { useUserId } from "../context/userIdContext";
+import ProfileService from "../services/home/profile";
 
 export default function Header() {
-  const [userId, setUserId] = useState<UserDataType | null>(null);
+  const { userId, setUserId } = useUserId();
+  const [ profile, setProfile] = useState<string>("");
 
   useEffect(() => {
     (async function(){
       const user = await AuthService.checkSession();
-      setUserId(user.data);
+      const profile = await ProfileService.getProfileCard(user.data.user);
+      setProfile(profile.data.profileCard[0].image);
+      setUserId(user.data.user);
     }());
-  }, []);
+  }, [userId, setUserId]);
 
   function handleLogout(): void {
     AuthService.logout();
@@ -64,12 +67,11 @@ export default function Header() {
               <div className="header-nav-btn-name">Notifications</div>
             </a>
 
-            {userId && <a href={`/user/${userId.user}`} className="header-nav-btn">
-              <img className='header-nav-profile-pic' src={ProfilePic} alt=""/>
+            {userId && <a href={`/user/${userId}`} className="header-nav-btn">
+              <img className='header-nav-profile-pic' src={profile} alt=""/>
               <div className="header-nav-btn-name">My Profile</div>
             </a>}
           </div>
-
         </div>
 
         <div className="header-nav-right">
