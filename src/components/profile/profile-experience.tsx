@@ -13,6 +13,7 @@ import ShowImage from "../../media/profile/openmic.png";
 export default function ProfileExperience(props: {experience: ExperienceData[], user: string}){
     const [expandedAddExperience, setExpandedAddExperience] = useState<boolean>(false);
     const [expandedEditExperience, setExpandedEditExperience] = useState<string>("");
+    const [experience, setExperience] = useState(props.experience);
 
     function handleAddExperienceClick(): void{
         setExpandedAddExperience(true);
@@ -41,6 +42,7 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
       addExperience(title, venue, description, dateStart, dateEnd, location, props.user)
         .then(() => {
           console.log("experience added");
+          handleAddExerienceClose();
         }).catch((err) => {
           console.log(err);
         });
@@ -66,7 +68,9 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
       };
       try {
         const newExperience = await ProfileService.postExperience(formData);
-        console.log(newExperience);
+        const newExperienceState = experience;
+        newExperienceState.push(newExperience.data.experience);
+        setExperience(newExperienceState);
       } catch (err) {
         console.log(err);
       }
@@ -303,7 +307,7 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
           </div>
         </div>
         <div className="profile-experience-items-cont">
-          {props.experience.map(item => {
+          {experience.map(item => {
             return(
               <div className="profile-experience-item">
                 <img className="profile-experience-item-img" src={ShowImage} />
