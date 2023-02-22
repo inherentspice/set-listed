@@ -11,6 +11,7 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string}
 
   const [expandedAddAwards, setExpandedAddAwards] = useState<boolean>(false);
   const [expandedEditAwards, setExpandedEditAwards] = useState<null | string>(null);
+  const [awards, setAwards] = useState(props.awards);
 
   function handleAddAwardsClick(): void{
     setExpandedAddAwards(true);
@@ -34,6 +35,7 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string}
     addAward(content, props.user)
       .then(() => {
         console.log("award added");
+        handleAddAwardsClose();
       });
   }
 
@@ -44,7 +46,10 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string}
     };
     try {
       const newAward = await ProfileService.postAward(formData);
-      console.log(newAward);
+      const newAwards = awards; 
+      newAwards.push(newAward.data.award);
+      setAwards(newAwards);
+      
     } catch (err) {
       console.log(err);
     }
@@ -179,7 +184,7 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string}
         </div>
       </div>
       <div className="awards-cont">
-        {props.awards.map(award => {
+        {awards.map(award => {
           return (
           <div className="award-cont" key={award.id}>
             <h4>{award.content}</h4>
