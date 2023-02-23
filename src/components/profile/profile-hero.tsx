@@ -12,8 +12,9 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
   const [expandedEditProfile, setExpandedEditProfile] = useState<string>("");
   const [expandedEditBackground, setExpandedEditBackground] = useState<string>("");
   const [expandedEditProfilePic, setExpandedEditProfilePic] = useState<string>("");
+  const [profileCard, setProfileCard] = useState(props.profileCard[0]);
 
-  const profileCard = props.profileCard[0];
+  // const profileCard = props.profileCard[0];
 
   function handleEditProfileClick(id: string): void{
     setExpandedEditProfile(id);
@@ -77,6 +78,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
       addHeroEdit(firstName, lastName, country, city, socials, tagline, profileCard.user)
         .then(() => {
           console.log("hero edited");
+          handleEditProfileClose();
         }).catch((err) => {
           console.log(err);
         });
@@ -101,7 +103,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
     };
     try {
       const editedHero = await ProfileService.editHero(formData, user);
-      console.log(editedHero);
+      setProfileCard(editedHero.data.profileCard);
     } catch (err) {
       console.log(err);
     }
