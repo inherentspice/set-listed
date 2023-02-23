@@ -14,7 +14,7 @@ import Comments from "../../media/icons/comments.png";
 import { ProfileCardData, PostData } from "../../types/profile";
 import PostService from "../../services/home/posts";
 
-export default function ProfileActivity(props: {profileCard: ProfileCardData[], posts: PostData[], viewingUser: string}) {
+export default function ProfileActivity(props: {profileCard: ProfileCardData[], posts: PostData[], viewingUser: string, userProfile: boolean}) {
     const [expandedStartPost, setExpandedStartPost] = useState<string>("");
     const [expandedEditPost, setExpandedEditPost] = useState<string>("");
     const posts = props.posts;
@@ -256,7 +256,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
             <div className="profile-activity-header-followers">{profileCard.userProfileViews+" followers"}</div>
           </div>
           <div className="profile-activity-header-right">
-            <div className="profile-activity-start-post" onClick={() => handleStartPostClick(profileCard.id)}>Start a Post</div>
+            {props.userProfile && <div className="profile-activity-start-post" onClick={() => handleStartPostClick(profileCard.id)}>Start a Post</div>}
           </div>
         </div>
         <div className="profile-activity-posts-cont">
@@ -271,8 +271,8 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
                 <div className="profile-activity-post-likes">
                   <img className="profile-activity-post-like-img" onClick={() => handleLikePostClick(item.id, props.viewingUser)} src={Like} />
                   <div className="profile-activity-post-like-count">{item.likes ? item.likes.length : 0}</div>
-                  <button className="post-edit" onClick={() => handleEditPostClick(item.id)}>edit</button>
-                  <button className="post-edit" onClick={(e) => handleDeletePostClick(e, item.id)}>delete</button>
+                  {props.userProfile && <button className="post-edit" onClick={() => handleEditPostClick(item.id)}>edit</button>}
+                  {props.userProfile && <button className="post-edit" onClick={(e) => handleDeletePostClick(e, item.id)}>delete</button>}
                 </div>
               </div>
               );

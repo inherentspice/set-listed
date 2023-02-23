@@ -19,7 +19,7 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
         console.log(err);
       }
   }());
-  }, []);
+  }, [props.post.user]);
 
   function handleLikePostClick(id: string, viewingUser: string) {
     likePost(id, viewingUser)

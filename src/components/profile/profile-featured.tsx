@@ -10,7 +10,7 @@ import ProfileService from "../../services/home/profile";
 import { FeaturedData } from "../../types/profile";
 
 
-export default function ProfileFeatured(props: {featured: FeaturedData[], user: string}) {
+export default function ProfileFeatured(props: {featured: FeaturedData[], user: string, userProfile: boolean}) {
 
   const [featureIndex, setFeatureIndex] = useState(0);
   const [expandedPost, setExpandedPost] = useState<null | string>(null);
@@ -342,8 +342,8 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
       <div className="editable-comp-header">
         <h2>Featured</h2>
         <div className="profile-experience-header-buttons">
-          <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddFeaturedClick()} />
-          <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditFeaturedClick()}/>
+          {props.userProfile && <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddFeaturedClick()} />}
+          {props.userProfile && <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditFeaturedClick()}/>}
         </div>
       </div>
       <div className="featured-post-cont">

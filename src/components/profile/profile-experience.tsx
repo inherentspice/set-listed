@@ -10,7 +10,7 @@ import ProfileService from "../../services/home/profile";
 import ShowImage from "../../media/profile/openmic.png";
 
 
-export default function ProfileExperience(props: {experience: ExperienceData[], user: string}){
+export default function ProfileExperience(props: {experience: ExperienceData[], user: string, userProfile: boolean}){
     const [expandedAddExperience, setExpandedAddExperience] = useState<boolean>(false);
     const [expandedEditExperience, setExpandedEditExperience] = useState<string>("");
     const [experience, setExperience] = useState(props.experience);
@@ -310,7 +310,7 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
         <div className="profile-experience-header">
           <div className="profile-experience-header-title">Experience</div>
           <div className="profile-experience-header-buttons">
-            <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddExperienceClick()} />
+            {props.userProfile && <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddExperienceClick()} />}
           </div>
         </div>
         <div className="profile-experience-items-cont">
@@ -324,9 +324,9 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
                       <div className="profile-experience-item-title">{item.title}</div>
                       <div className="profile-experience-item-venue">{item.venue}</div>
                     </div>
-                    <div className="profile-experience-item-head-right">
+                    {props.userProfile && <div className="profile-experience-item-head-right">
                       <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditExperienceClick(item.id)} />
-                    </div>
+                    </div>}
                   </div>
                   <div className="profile-experience-item-duration-cont">
                     {/* <div className="profile-experience-item-dates">{item.start.toString().slice(4,16) +" - "+ (item.end.toString().slice(4,16) === new Date(Date.now()).toString().slice(4,16) ? "Present" : item.end.toString().slice(4,16))}</div> */}

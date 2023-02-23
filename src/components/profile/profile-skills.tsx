@@ -6,7 +6,7 @@ import Edit from "../../media/icons/edit.png";
 import CancelButton from "../../media/icons/cancel.png";
 import ProfileService from "../../services/home/profile";
 
-export default function ProfileSkills(props: {skills: SkillData[], user: string}) {
+export default function ProfileSkills(props: {skills: SkillData[], user: string, userProfile: boolean}) {
 
   const [expandedAddSkill, setExpandedAddSkill] = useState<boolean>(false);
   const [expandedEditSkill, setExpandedEditSkill] = useState<boolean>(false);
@@ -159,10 +159,10 @@ export default function ProfileSkills(props: {skills: SkillData[], user: string}
     <div className="profile-cont comp">
       <div className="editable-comp-header">
         <h2>Skills</h2>
-        <div className="profile-experience-header-buttons">
+        {props.userProfile && <div className="profile-experience-header-buttons">
           <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddSkillClick()} />
           <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditSkillClick()}/>
-        </div>
+        </div>}
       </div>
       <div className="skills-cont">
         {skills.map((skill) => {
