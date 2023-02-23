@@ -7,7 +7,7 @@ import { AboutData } from "../../types/profile";
 import ProfileService from "../../services/home/profile";
 
 
-export default function ProfileAbout(props: {about: AboutData[]}) {
+export default function ProfileAbout(props: {about: AboutData[], userProfile: boolean}) {
   const [expandedEditAbout, setExpandedEditAbout] = useState<null | string>(null);
   const [about, setAbout] = useState<AboutData>(props.about[0]);
 
@@ -87,7 +87,7 @@ export default function ProfileAbout(props: {about: AboutData[]}) {
     <div className="profile-about-cont comp">
       <div className="profile-about-title-cont">
         <div className="profile-about-title">About</div>
-        <img className="profile-about-edit" src={Edit} onClick={() => handleEditAboutClick(about.id)} />
+        {props.userProfile && <img className="profile-about-edit" src={Edit} onClick={() => handleEditAboutClick(about.id)} />}
       </div>
       <div className="profile-about-text">{about.content}</div>
       {expandedEditAbout && <ShowEditProfileAbout />}

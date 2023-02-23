@@ -7,7 +7,7 @@ import { AwardData } from "../../types/profile";
 import ProfileService from "../../services/home/profile";
 
 
-export default function ProfileAwards(props: {awards: AwardData[], user: string}) {
+export default function ProfileAwards(props: {awards: AwardData[], user: string, userProfile: boolean}) {
 
   const [expandedAddAwards, setExpandedAddAwards] = useState<boolean>(false);
   const [expandedEditAwards, setExpandedEditAwards] = useState<null | string>(null);
@@ -46,10 +46,10 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string}
     };
     try {
       const newAward = await ProfileService.postAward(formData);
-      const newAwards = awards; 
+      const newAwards = awards;
       newAwards.push(newAward.data.award);
       setAwards(newAwards);
-      
+
     } catch (err) {
       console.log(err);
     }
@@ -186,16 +186,16 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string}
     <div className="profile-cont comp">
       <div className="editable-comp-header">
         <h2>Awards & Achievements</h2>
-        <div className="profile-experience-header-buttons">
+        {props.userProfile && <div className="profile-experience-header-buttons">
           <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddAwardsClick()} />
-        </div>
+        </div>}
       </div>
       <div className="awards-cont">
         {awards.map(award => {
           return (
           <div className="award-cont" key={award.id}>
             <h4>{award.content}</h4>
-            <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditAwardsClick(award.id)} />
+            {props.userProfile && <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditAwardsClick(award.id)} />}
           </div>
           );
         })}

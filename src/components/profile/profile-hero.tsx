@@ -8,7 +8,7 @@ import CancelButton from "../../media/icons/cancel.png";
 import { ProfileCardData } from "../../types/profile";
 import ProfileService from "../../services/home/profile";
 
-export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
+export default function ProfileHero(props: {profileCard: ProfileCardData[], userProfile: boolean}) {
   const [expandedEditProfile, setExpandedEditProfile] = useState<string>("");
   const [expandedEditBackground, setExpandedEditBackground] = useState<string>("");
   const [expandedEditProfilePic, setExpandedEditProfilePic] = useState<string>("");
@@ -33,7 +33,9 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
   }
 
   function handleEditProfilePicClick(id: string): void{
-    setExpandedEditProfilePic(id);
+    if (props.userProfile) {
+      setExpandedEditProfilePic(id);
+    }
   }
 
   function handleEditProfilePicClose(): void{
@@ -305,7 +307,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
 
   return (
     <div className="profile-hero-cont comp">
-      <img className="profile-hero-background-edit" src={Edit} onClick={() => handleEditBackgroundClick(profileCard.id)}/>
+      {props.userProfile && <img className="profile-hero-background-edit" src={Edit} onClick={() => handleEditBackgroundClick(profileCard.id)}/>}
       <img className="profile-hero-background-img"
         src={profileCard.backgroundImage || "https://res.cloudinary.com/dhptcrsjc/image/upload/v1675955714/Set-Listed/default-background_wyziyb.png"}
         alt=""
@@ -316,7 +318,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[]}) {
         alt=""
         onClick={() => handleEditProfilePicClick(profileCard.id)}
       />
-      <img className="profile-hero-user-info-edit" src={Edit} onClick={() => handleEditProfileClick(profileCard.id)} />
+      {props.userProfile && <img className="profile-hero-user-info-edit" src={Edit} onClick={() => handleEditProfileClick(profileCard.id)} />}
       <div className="profile-hero-user-cont">
         <div className="profile-hero-user-info-cont">
           <div className="profile-hero-user-name-cont">

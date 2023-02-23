@@ -20,9 +20,6 @@ export default function BuildProfilePage() {
   const { profileid } = useParams<string>();
   const { userId } = useUserId();
 
-
-
-
   useEffect(() => {
     async function fetchProfile() {
       if (profileid) {
@@ -44,15 +41,15 @@ export default function BuildProfilePage() {
   return (
     <>
      {profile && <div className="page-cont profile-page">
-        <ProfileHero profileCard={profile.profileCard}/>
-        <ProfileAnalytics profileCard={profile.profileCard}/>
-        <ProfileResources />
-        <ProfileAbout about={profile.about}/>
-        <Featured user={profile.profileCard[0].user} featured={profile.featured}/>
-        <ProfileActivity profileCard={profile.profileCard} posts={profile.post} viewingUser={userId}/>
-        <ProfileExperience user={profile.profileCard[0].user} experience={profile.experience}/>
-        <ProfileSkills user={profile.profileCard[0].user} skills={profile.skill}/>
-        <ProfileAwards user={profile.profileCard[0].user} awards={profile.award}/>
+        <ProfileHero userProfile={userId === profileid} profileCard={profile.profileCard}/>
+        {userId === profileid && <ProfileAnalytics profileCard={profile.profileCard}/>}
+        {userId === profileid && <ProfileResources />}
+        <ProfileAbout userProfile={userId === profileid} about={profile.about}/>
+        <Featured userProfile={userId === profileid} user={profile.profileCard[0].user} featured={profile.featured}/>
+        <ProfileActivity userProfile={userId === profileid} profileCard={profile.profileCard} posts={profile.post} viewingUser={userId}/>
+        <ProfileExperience userProfile={userId === profileid} user={profile.profileCard[0].user} experience={profile.experience}/>
+        <ProfileSkills userProfile={userId === profileid} user={profile.profileCard[0].user} skills={profile.skill}/>
+        <ProfileAwards userProfile={userId === profileid} user={profile.profileCard[0].user} awards={profile.award}/>
         <ProfilePotentialFriends />
     </div>}
     </>
