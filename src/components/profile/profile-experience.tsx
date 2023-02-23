@@ -117,7 +117,7 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
       };
       try {
         const editedExperience = await ProfileService.editExperience(formData, id);
-        const editedIndex = experience.indexOf(editedExperience.data.experience)
+        const editedIndex = experience.map(function(experience) {return experience.id;}).indexOf(editedExperience.data.experience.id);
         const editedExperienceState = experience;
         editedExperienceState.splice(editedIndex, 1, editedExperience.data.experience);
         setExperience(editedExperienceState);

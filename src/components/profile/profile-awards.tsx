@@ -64,6 +64,7 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string}
     addAwardEdit(content, id)
       .then(() => {
         console.log("award edited");
+        handleEditAwardsClose();
       }).catch((err) => {
         console.log(err);
       });
@@ -75,7 +76,10 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string}
     };
     try {
       const editedAward = await ProfileService.editAward(formData, id);
-      console.log(editedAward);
+      const editedIndex = awards.map(function(award) {return award.id;}).indexOf(editedAward.data.award.id);
+      const editedAwards = awards;
+      editedAwards.splice(editedIndex, 1, editedAward.data.award);
+      setAwards(editedAwards);
     } catch (err) {
       console.log(err);
     }
