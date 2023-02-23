@@ -50,7 +50,7 @@ export interface PostData {
   content: string,
   likes: string[],
   user: string,
-  createdAt: Date,
+  createdAt: string,
   id: string
 }
 
