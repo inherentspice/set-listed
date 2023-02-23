@@ -73,6 +73,8 @@ export default function ProfileSkills(props: {skills: SkillData[], user: string}
   async function deleteSkill(id: string) {
     try {
       const deletedConfirmation = await ProfileService.deleteSkill(id);
+      const deletedSkillsState = skills.filter(skill => skill.id != id);
+      setSkills(deletedSkillsState);
       console.log(deletedConfirmation);
     } catch (err) {
       console.log(err);
@@ -135,7 +137,7 @@ export default function ProfileSkills(props: {skills: SkillData[], user: string}
             <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditSkillClose()} />
           </div>
           <div className="skills-cont">
-            {props.skills.map(skill => {
+            {skills.map(skill => {
             return (
               <div className="skill-cont" key={skill.id}>
                 <div className="content-endorse-cont">
