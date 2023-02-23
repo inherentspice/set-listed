@@ -48,7 +48,7 @@ export default function News() {
           return (
             <div className="news-list-cont">
               <li key={news.posted.toString()}>{news.title}</li>
-              <p>{convertDate(news.posted)} ago | {news.readCount} readers</p>
+              {/* <p>{convertDate(news.posted)} ago | {news.readCount} readers</p> */}
             </div>
           );
         })}
