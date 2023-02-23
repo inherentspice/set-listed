@@ -91,6 +91,7 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string}
       deleteAward(id)
         .then(() => {
           console.log("award deleted");
+          handleEditAwardsClose();
         }).catch((err) => {
           console.log(err);
         });
@@ -101,6 +102,8 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string}
     try {
       const deletedConfirmation = await ProfileService.deleteAward(id);
       console.log(deletedConfirmation);
+      const deletedAwardsState = awards.filter(award => award.id != id);
+      setAwards(deletedAwardsState);
     } catch (err) {
       console.log(err);
     }
