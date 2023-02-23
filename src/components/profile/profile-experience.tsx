@@ -90,6 +90,7 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
       addExperienceEdit(title, venue, description, dateStart, dateEnd, location, id, props.user)
         .then(() => {
           console.log("experience edited");
+          handleEditExerienceClose();
         }).catch((err) => {
           console.log(err);
         });
@@ -116,7 +117,10 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
       };
       try {
         const editedExperience = await ProfileService.editExperience(formData, id);
-        console.log(editedExperience);
+        const editedIndex = experience.indexOf(editedExperience.data.experience)
+        const editedExperienceState = experience;
+        editedExperienceState.splice(editedIndex, 1, editedExperience.data.experience);
+        setExperience(editedExperienceState);
       } catch (err) {
         console.log(err);
       }
@@ -132,6 +136,7 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
         deleteExperience(id)
           .then(() => {
             console.log("experience deleted");
+            handleEditExerienceClose();
           }).catch((err) => {
             console.log(err);
           });
@@ -141,6 +146,8 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
     async function deleteExperience(id: string) {
       try {
         const deletedConfirmation = await ProfileService.deleteExperience(id);
+        const deletedExperienceState = experience.filter(experienceItem => experienceItem.id != id);
+        setExperience(deletedExperienceState);
         console.log(deletedConfirmation);
       } catch (err) {
         console.log(err);
