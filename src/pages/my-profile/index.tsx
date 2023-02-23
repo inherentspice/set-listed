@@ -22,8 +22,11 @@ export default function BuildProfilePage() {
 
   useEffect(() => {
     async function fetchProfile() {
-      if (profileid) {
+      if (profileid && userId) {
         try {
+          if (profileid !== userId) {
+            await ProfileService.editProfileViews(profileid);
+          }
           const profileInfo = await ProfileService.getProfile(profileid);
           const profileInfoData = profileInfo.data;
           setProfile(profileInfoData);
@@ -36,7 +39,7 @@ export default function BuildProfilePage() {
     if (profileid) {
       fetchProfile();
     }
-  }, [profileid]);
+  }, [profileid, userId]);
 
   return (
     <>
@@ -45,11 +48,11 @@ export default function BuildProfilePage() {
         {userId === profileid && <ProfileAnalytics profileCard={profile.profileCard}/>}
         {userId === profileid && <ProfileResources />}
         <ProfileAbout userProfile={userId === profileid} about={profile.about}/>
-        <Featured userProfile={userId === profileid} user={profile.profileCard[0].user} featured={profile.featured}/>
+        <Featured userProfile={userId === profileid} user={profileid ? profileid : ""} featured={profile.featured}/>
         <ProfileActivity userProfile={userId === profileid} profileCard={profile.profileCard} posts={profile.post} viewingUser={userId}/>
-        <ProfileExperience userProfile={userId === profileid} user={profile.profileCard[0].user} experience={profile.experience}/>
-        <ProfileSkills userProfile={userId === profileid} user={profile.profileCard[0].user} skills={profile.skill}/>
-        <ProfileAwards userProfile={userId === profileid} user={profile.profileCard[0].user} awards={profile.award}/>
+        <ProfileExperience userProfile={userId === profileid} user={profileid ? profileid : ""} experience={profile.experience}/>
+        <ProfileSkills userProfile={userId === profileid} user={profileid ? profileid : ""} skills={profile.skill}/>
+        <ProfileAwards userProfile={userId === profileid} user={profileid ? profileid : ""} awards={profile.award}/>
         <ProfilePotentialFriends />
     </div>}
     </>

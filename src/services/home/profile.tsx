@@ -37,6 +37,10 @@ const postSkill = (formObject: SkillDataSend) => {
   return axios.post(`${baseUrl}/skill`, formObject);
 };
 
+const editProfileViews = (id: string) => {
+  return axios.put(`${baseUrl}/profileviews/${id}`);
+};
+
 const editBackground = (formObject: FormData, id: string) => {
   return axios.put(`${baseUrl}/backgroundpicture/${id}`, formObject);
 };
@@ -94,6 +98,7 @@ const ProfileService = {
   postExperience,
   postAward,
   postSkill,
+  editProfileViews,
   editBackground,
   editHero,
   editProfilePic,
