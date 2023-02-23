@@ -146,10 +146,9 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
     async function deleteExperience(id: string) {
       try {
         const deletedConfirmation = await ProfileService.deleteExperience(id);
-        const deletedIndex = experience.indexOf(deletedConfirmation.data)
-        const deletedExperienceState = experience;
-        deletedExperienceState.splice(deletedIndex, 1);
+        const deletedExperienceState = experience.filter(experienceItem => experienceItem.id != id);
         setExperience(deletedExperienceState);
+        console.log(deletedConfirmation);
       } catch (err) {
         console.log(err);
       }
