@@ -132,6 +132,7 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
         deleteExperience(id)
           .then(() => {
             console.log("experience deleted");
+            handleEditExerienceClose();
           }).catch((err) => {
             console.log(err);
           });
@@ -141,7 +142,10 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
     async function deleteExperience(id: string) {
       try {
         const deletedConfirmation = await ProfileService.deleteExperience(id);
-        console.log(deletedConfirmation);
+        const deletedIndex = experience.indexOf(deletedConfirmation.data)
+        const deletedExperienceState = experience;
+        deletedExperienceState.splice(deletedIndex, 1);
+        setExperience(deletedExperienceState);
       } catch (err) {
         console.log(err);
       }
