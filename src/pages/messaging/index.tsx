@@ -3,21 +3,19 @@ import { useUserId } from "../../context/userIdContext";
 import RoomInfo, { ReducedProfileCard, Messages } from "../../types/messaging";
 import MessagingService from "../../services/home/messaging";
 import "./index.css";
-import io from "socket.io-client";
+import io, { Socket } from "socket.io-client";
 import axios from "axios";
 
 
-function MessagingContent(props: {roomId: string, userId: string, friend: ReducedProfileCard, friendId: string}) {
+function MessagingContent(props: {roomId: string, userId: string, friend: ReducedProfileCard, friendId: string, socket: Socket}) {
   const [messages, setMessages] = useState<Messages[]>([]);
   const [newMessage, setNewMessage] = useState<string>("");
-  const [roomId, setRoomId] = useState(props.roomId);
-  const socket = io("http://localhost:8080");
-
+  const { socket } = props;
 
   const createMessage = async () => {
     try {
       socket.emit("message", {
-        roomId,
+        roomId: props.roomId,
         sender: props.userId,
         recipient: props.friendId,
         content: newMessage,
@@ -29,8 +27,12 @@ function MessagingContent(props: {roomId: string, userId: string, friend: Reduce
   };
 
   useEffect(() => {
+    const roomId = props.roomId;
+
     if (roomId) {
-      socket.emit("join", roomId);
+      if (!socket.connected) {
+        socket.emit("join", roomId);
+      }
 
       const fetchMessages = async () => {
         try {
@@ -52,7 +54,8 @@ function MessagingContent(props: {roomId: string, userId: string, friend: Reduce
         socket.off();
       };
     }
-  }, [roomId, newMessage]);
+  }, [props.roomId, newMessage, socket]);
+
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -65,7 +68,7 @@ function MessagingContent(props: {roomId: string, userId: string, friend: Reduce
       <h2>Recipient: {`${props.friend.firstName} ${props.friend.lastName}`}</h2>
       <ul>
         {messages.map((message, index) => (
-          <li key={index}>[{message.user}]: {message.content}</li>
+          <li key={index}>[{message.user.firstName} {message.user.lastName}]: {message.content}</li>
         ))}
       </ul>
       <form onSubmit={(e) => handleSubmit(e)}>
@@ -80,7 +83,16 @@ export default function Messaging() {
   const [rooms, setRooms] = useState<RoomInfo[]>([]);
   const [selectedRoom, setSelectedRoom] = useState<string>("");
   const { userId } = useUserId();
+  const [socket, setSocket] = useState<Socket | null>(null);
 
+  useEffect(() => {
+    const newSocket = io("http://localhost:8080");
+    setSocket(newSocket);
+
+    return () => {
+      newSocket.close();
+    }
+  }, []);
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -98,7 +110,7 @@ export default function Messaging() {
 
   return (
     <main>
-      <h2>Rooms for user {userId}</h2>
+      <h2>Talking Shop</h2>
       <div className="messages-select-content-cont">
       {rooms && <div className="user-messages-cont">
         {rooms.map((room) => (
@@ -107,17 +119,18 @@ export default function Messaging() {
             <div className="profile-text-info-cont">
               <p className="profile-name">{room.profileCard.firstName} {room.profileCard.lastName}</p>
             </div>
-            {room.messages.length ? <p className="message-preview">{room.messages[0].content}</p> : <p className="message-preview">Start a conversation!</p>}
+            {room.messages.length ? <p className="message-preview">{room.messages[0].user.firstName}: {room.messages[0].content}</p> : <p className="message-preview">Start a conversation!</p>}
           </div>
         ))}
         </div>}
         <div className="messages-content-cont comp">
-          {selectedRoom ?
+          {selectedRoom && socket ?
           <MessagingContent
-          roomId={selectedRoom}
-          userId={userId}
-          friend={rooms.filter((room => room.room.id === selectedRoom))[0].profileCard}
-          friendId={rooms.filter(room => room.room.id === selectedRoom)[0].friendId}
+            roomId={selectedRoom}
+            userId={userId}
+            friend={rooms.filter((room => room.room.id === selectedRoom))[0].profileCard}
+            friendId={rooms.filter(room => room.room.id === selectedRoom)[0].friendId}
+            socket={socket}
         />
         : <p>Select a chat to see messages</p>}
         </div>

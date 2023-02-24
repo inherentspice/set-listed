@@ -14,13 +14,22 @@ export interface ReducedProfileCard {
 
 export interface Messages {
   content: string,
-  user: string,
   createdAt: string
+  user: {
+    firstName: string,
+    lastName: string,
+    id: string
+  },
+  recipient: {
+    firstName: string,
+    lastName: string,
+    id: string
+  }
 }
 
 export default interface RoomInfo {
   room: Room,
   profileCard: ReducedProfileCard,
   friendId: string,
-  messages: Messages[]
+  messages: Messages[],
 }
