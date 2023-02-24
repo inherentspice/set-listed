@@ -4,6 +4,7 @@ import RoomInfo, { ReducedProfileCard, Messages } from "../../types/messaging";
 import MessagingService from "../../services/home/messaging";
 import "./index.css";
 import io from "socket.io-client";
+import axios from "axios";
 
 
 function MessagingContent(props: {roomId: string, userId: string, friend: ReducedProfileCard, friendId: string}) {
@@ -23,13 +24,24 @@ function MessagingContent(props: {roomId: string, userId: string, friend: Reduce
       });
       setNewMessage("");
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
   useEffect(() => {
     if (roomId) {
       socket.emit("join", roomId);
+
+      const fetchMessages = async () => {
+        try {
+          const response = await axios.get(`/messaging/${roomId}`);
+          setMessages(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      fetchMessages();
 
       socket.on("message", (message) => {
         setMessages((prevMessages) => [...prevMessages, message] as Messages[]);
@@ -40,7 +52,7 @@ function MessagingContent(props: {roomId: string, userId: string, friend: Reduce
         socket.off();
       };
     }
-  }, [roomId]);
+  }, [roomId, newMessage]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -53,7 +65,7 @@ function MessagingContent(props: {roomId: string, userId: string, friend: Reduce
       <h2>Recipient: {`${props.friend.firstName} ${props.friend.lastName}`}</h2>
       <ul>
         {messages.map((message, index) => (
-          <li key={index}>{message.content}</li>
+          <li key={index}>[{message.user}]: {message.content}</li>
         ))}
       </ul>
       <form onSubmit={(e) => handleSubmit(e)}>
