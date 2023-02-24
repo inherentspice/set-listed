@@ -12,10 +12,6 @@ export interface ReducedProfileCard {
   image: string
 }
 
-export interface FriendId {
-  friendId: string
-}
-
 export interface Messages {
   content: string,
   user: string,
@@ -25,6 +21,6 @@ export interface Messages {
 export default interface RoomInfo {
   room: Room,
   profileCard: ReducedProfileCard,
-  friendId: FriendId,
+  friendId: string,
   messages: Messages
 }
