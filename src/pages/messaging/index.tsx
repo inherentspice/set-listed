@@ -4,7 +4,6 @@ import RoomInfo, { ReducedProfileCard, Messages } from "../../types/messaging";
 import MessagingService from "../../services/home/messaging";
 import "./index.css";
 import io, { Socket } from "socket.io-client";
-import axios from "axios";
 
 
 function MessagingContent(props: {roomId: string, userId: string, friend: ReducedProfileCard, friendId: string, socket: Socket}) {
@@ -36,7 +35,7 @@ function MessagingContent(props: {roomId: string, userId: string, friend: Reduce
 
       const fetchMessages = async () => {
         try {
-          const response = await axios.get(`/messaging/${roomId}`);
+          const response = await MessagingService.getRoom(roomId);
           setMessages(response.data);
         } catch (error) {
           console.log(error);
@@ -91,7 +90,7 @@ export default function Messaging() {
 
     return () => {
       newSocket.close();
-    }
+    };
   }, []);
 
   useEffect(() => {
