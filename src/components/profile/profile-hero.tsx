@@ -7,11 +7,16 @@ import Edit from "../../media/icons/edit.png";
 import CancelButton from "../../media/icons/cancel.png";
 import { ProfileCardData } from "../../types/profile";
 import ProfileService from "../../services/home/profile";
+import { useNavigate } from "react-router-dom";
+import MessagingService from "../../services/home/messaging";
 
-export default function ProfileHero(props: {profileCard: ProfileCardData[], userProfile: boolean}) {
+
+export default function ProfileHero(props: {profileCard: ProfileCardData[], userProfile: boolean, viewingUser: string}) {
   const [expandedEditProfile, setExpandedEditProfile] = useState<string>("");
   const [expandedEditBackground, setExpandedEditBackground] = useState<string>("");
   const [expandedEditProfilePic, setExpandedEditProfilePic] = useState<string>("");
+  const navigate = useNavigate();
+
   const [profileCard, setProfileCard] = useState(props.profileCard[0]);
 
   // const profileCard = props.profileCard[0];
@@ -139,6 +144,22 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
     }
   }
 
+  // update to route directly to message
+  async function handleMessageClick(profileUser: string, viewingUser: string): Promise<void>{
+    try {
+      const formObject = {
+        userId: viewingUser,
+        friendId: profileUser
+      }
+      const room = await MessagingService.createRoom(formObject);
+      console.log(room);
+      navigate("/messaging");
+      return Promise.resolve();
+    } catch (err) {
+      console.log(err);
+      return Promise.reject(err);
+    }
+  }
   function ShowEditBackgroundHero() {
     const [imageUpload, setImageUpload] = useState<File | null>(null);
 
@@ -340,7 +361,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
             </div>
             <div className='profile-hero-mutual-connections-names'><a href='./my-profile'>2 Mutual Connections: Rachel Loo and Denise Ferguson</a></div>
           </div>
-          <div className='profile-hero-message'>Message</div>
+          <div className='profile-hero-message' onClick={() => handleMessageClick(profileCard.user, props.viewingUser)}>Message</div>
         </div>
         <div className="profile-hero-user-digital-footprint">
           <div>
