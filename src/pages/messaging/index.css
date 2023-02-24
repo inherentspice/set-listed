@@ -9,8 +9,18 @@
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+  width: 20%;
+}
+
+.user-message-cont {
+  width: 75%;
+  padding: 1rem;
 }
 
 .messages-content-cont {
   width: 80%;
+}
+
+.message-preview {
+  color: var(--grey-color-1);
 }

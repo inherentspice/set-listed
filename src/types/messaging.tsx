@@ -22,5 +22,5 @@ export default interface RoomInfo {
   room: Room,
   profileCard: ReducedProfileCard,
   friendId: string,
-  messages: Messages
+  messages: Messages[]
 }

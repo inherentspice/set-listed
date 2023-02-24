@@ -91,11 +91,10 @@ export default function Messaging() {
         console.log(error);
       }
     };
-
-    fetchRooms();
+    if (userId) {
+      fetchRooms();
+    }
   }, [userId]);
-
-  console.log(rooms)
 
   return (
     <main>
@@ -103,12 +102,12 @@ export default function Messaging() {
       <div className="messages-select-content-cont">
       {rooms && <div className="user-messages-cont">
         {rooms.map((room) => (
-          <div className="user-message-cont comp" onClick={() => setSelectedRoom(room.room.id)}>
+          <div key={room.room.id} className="user-message-cont comp" onClick={() => setSelectedRoom(room.room.id)}>
             <img src={room.profileCard.image} alt="" className="profile-picture-small"/>
             <div className="profile-text-info-cont">
               <p className="profile-name">{room.profileCard.firstName} {room.profileCard.lastName}</p>
             </div>
-            {room.messages.content ? <p>{room.messages.content}</p> : <p>Start a conversation!</p>}
+            {room.messages.length ? <p className="message-preview">{room.messages[0].content}</p> : <p className="message-preview">Start a conversation!</p>}
           </div>
         ))}
         </div>}
