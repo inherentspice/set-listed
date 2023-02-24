@@ -1,0 +1,15 @@
+.messages-select-content-cont {
+  display: flex;
+  min-height: 100vh;
+}
+
+.user-messages-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.messages-content-cont {
+  width: 80%;
+}

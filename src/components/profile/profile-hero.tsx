@@ -7,7 +7,7 @@ import Edit from "../../media/icons/edit.png";
 import CancelButton from "../../media/icons/cancel.png";
 import { ProfileCardData } from "../../types/profile";
 import ProfileService from "../../services/home/profile";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MessagingService from "../../services/home/messaging";
 
 
