@@ -7,8 +7,8 @@ const createRoom = (formObject: {userId: string, friendId: string}) => {
   return axios.post(`${baseUrl}/room`, formObject);
 };
 
-const getRoom = (id: string) => {
-  return axios.get(`${baseUrl}/room/${id}`);
+const getMessages = (id: string) => {
+  return axios.get(`${baseUrl}/${id}`);
 };
 
 const getRooms = (id: string) => {
@@ -16,7 +16,7 @@ const getRooms = (id: string) => {
 };
 
 const MessagingService = {
-  getRoom,
+  getMessages,
   getRooms,
   createRoom
 };
