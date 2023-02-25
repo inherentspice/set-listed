@@ -1,10 +1,13 @@
 import React from "react";
-import { FakeUserData } from "../../dummy-data/fake-users";
 import { ProfileCardData } from "../../types/profile";
 import "../../styles/home/profile-card.css";
 
-export default function ProfileCard(props: {profile: ProfileCardData}){
-
+export default function ProfileCard(props: {profile: ProfileCardData | null}){
+  if (!props.profile) {
+    return (
+      <div className="profile-card-cont comp loading-profile-card loading"></div>
+    );
+  }
 
   return(
     <div className='profile-card-cont comp'>

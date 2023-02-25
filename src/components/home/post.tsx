@@ -11,7 +11,7 @@ import Visibility from "../../media/icons/visibility.png";
 import Comments from "../../media/icons/comments.png";
 import "../../styles/home/post.css";
 
-export default function Post(props: {profileImg: string | undefined, user: string}) {
+export default function Post(props: {profileImg: string, user: string}) {
   const [expandedStartPost, setExpandedStartPost] = useState<string>("");
 
   function handleStartPostClick(id: string): void{
@@ -104,6 +104,11 @@ export default function Post(props: {profileImg: string | undefined, user: strin
       );
     }
 
+  if (!props.profileImg) {
+    return (
+      <div className="home-post-cont comp loading-post loading"></div>
+    );
+  }
   return (
     <div className="home-post-cont comp">
       <div className="post-button-cont">
