@@ -35,7 +35,7 @@ function MessagingContent(props: {roomId: string, userId: string, friend: Reduce
 
       const fetchMessages = async () => {
         try {
-          const response = await MessagingService.getRoom(roomId);
+          const response = await MessagingService.getMessages(roomId);
           setMessages(response.data);
         } catch (error) {
           console.log(error);
