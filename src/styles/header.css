@@ -6,6 +6,9 @@
     width: 100%;
     border-bottom: solid var(--secondary-color) 1px;
     background-color: var(--primary-light-color);
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }
 
 .header-cont {
@@ -87,7 +90,7 @@
     font-size: 1rem;
     text-decoration: none;
     padding: .25rem;
-    color: var(--primary-color);
+    color: white;
     font-weight: bold;
     cursor: pointer;
 }
@@ -98,7 +101,7 @@
 
 .header-nav-img {
     height: 1.75rem;
-    fill: var(--primary-color);
+    fill: white;
 }
 
 .header-nav-btn-name {

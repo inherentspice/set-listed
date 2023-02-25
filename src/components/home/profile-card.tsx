@@ -1,6 +1,7 @@
 import React from "react";
 import { FakeUserData } from "../../dummy-data/fake-users";
 import { ProfileCardData } from "../../types/profile";
+import "../../styles/home/profile-card.css";
 
 export default function ProfileCard(props: {profile: ProfileCardData}){
 

@@ -4,6 +4,7 @@ import PostService from "../../services/home/posts";
 import { PostData, ProfileCardData } from "../../types/profile";
 import convertDate from "../../utilities/convert-date";
 import Like from "../../media/icons/like.png";
+import "../../styles/home/feed.css";
 
 
 export default function Feed(props: {post: PostData, viewingUser: string}) {

@@ -9,6 +9,7 @@ import Document from "../../media/icons/document.png";
 import Chart from "../../media/icons/chart.png";
 import Visibility from "../../media/icons/visibility.png";
 import Comments from "../../media/icons/comments.png";
+import "../../styles/home/post.css";
 
 export default function Post(props: {profileImg: string | undefined, user: string}) {
   const [expandedStartPost, setExpandedStartPost] = useState<string>("");

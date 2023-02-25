@@ -1,0 +1,27 @@
+@import url("../../App.css");
+
+.home-news-cont {
+  padding: 8px;
+}
+
+.news-list-cont {
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 0 8px;
+}
+
+.news-list-cont:hover {
+  background-color: var(--button-hover-color);
+}
+.news-list-cont>li {
+  font-weight: 700;
+  margin-right: 16px;
+  font-size: 0.8rem;
+}
+
+.news-list-cont>p {
+  margin-top: 0;
+  color: var(--grey-color-1);
+  font-size: 0.7rem;
+}
+

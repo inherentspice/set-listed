@@ -1,0 +1,30 @@
+@import url("../../App.css");
+
+.home-ad-cont {
+    align-items: center;
+    padding: 8px;
+  }
+  
+  .ad-info-cont {
+    font-size: 0.8rem;
+    font-weight: 300;
+    align-self: flex-end;
+  }
+  
+  .ad-sub-heading {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--grey-color-2);
+    text-align: center;
+  }
+  
+  .ad-content-cont {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .ad-cta {
+    width: 80%;
+  }
+  
+  

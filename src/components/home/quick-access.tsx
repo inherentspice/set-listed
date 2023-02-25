@@ -3,6 +3,7 @@ import Hashtag from "../../media/icons/hashtag.png";
 import Group from "../../media/icons/group.png";
 import Event from "../../media/icons/event.png";
 import { FakeUserData } from "../../dummy-data/fake-users";
+import "../../styles/home/quick-access.css";
 
 export default function QuickAccess(){
   return(

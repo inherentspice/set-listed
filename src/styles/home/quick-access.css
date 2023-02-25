@@ -1,0 +1,44 @@
+@import url("../../App.css");
+
+.quick-access-cont {
+    grid-column: 1 / 1;
+    grid-row: 3 / 4;
+    height:fit-content;
+  }
+  
+  .quick-access-category-cont{
+    padding: 0 0 0.25rem 0;
+  }
+  
+  .quick-access-title {
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    padding: 0.75rem 0 0.25rem 0.75rem;
+  }
+  
+  .quick-access-item-cont {
+    display: flex;
+    flex-direction: row;
+    padding: 0.25rem 0.75rem 0.25rem 0.75rem;
+    gap: .5rem;
+  }
+  
+  .quick-access-item-cont:hover {
+    background-color: var(--button-hover-color);
+    cursor: pointer;
+  }
+  
+  .quick-access-item-icon {
+    height: 0.75rem;
+  }
+  
+  .quick-access-item {
+    font-size: .75rem;
+  }
+  
+  .quick-access-item>a {
+    text-decoration: none;
+    color: #000000;
+  }
+  

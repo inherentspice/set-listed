@@ -1,5 +1,6 @@
 import React from "react";
 import convertDate from "../../utilities/convert-date";
+import "../../styles/home/news.css";
 
 export default function News() {
 

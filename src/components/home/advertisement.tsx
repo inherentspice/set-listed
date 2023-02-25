@@ -1,5 +1,6 @@
 import React from "react";
 import Profile from "../../media/home/profile-picture.png";
+import "../../styles/home/advertisement.css";
 
 export default function Advertisement(props: {profileImg: string}) {
   return (

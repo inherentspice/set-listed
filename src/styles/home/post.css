@@ -1,0 +1,60 @@
+@import url(../../App.css);
+
+.home-post-cont {
+    align-items: center;
+    padding: 8px;
+    
+  }
+  
+  .post-button-cont {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 8px;
+    gap: 0.5rem;
+  }
+  
+  .start-post-btn {
+    font-size: 14px;
+    font-weight: 500;
+    color: #212121;
+    border: 1px solid #212121;
+    background-color: var(--background-comp-color);
+    border-radius: 22px;
+    width: 100%;
+    height: 40px;
+    padding: 8px 12px;
+    cursor: pointer;
+    text-align: start;
+  }
+  
+  .start-post-btn:hover {
+    background-color: var(--button-hover-color);
+  }
+  
+  .specific-post-cont {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 8px;
+  }
+  
+  .post-option-btn {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--primary-color);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 8px;
+    width: 20%;
+    padding: 8px;
+    border-radius: 10px;
+  }
+  
+  .post-option-btn:hover {
+    background-color: var(--button-hover-color);
+  }
+  
+  
