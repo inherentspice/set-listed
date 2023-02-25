@@ -1,0 +1,42 @@
+@import url("../../App.css");
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .footer-links-cont a {
+    color: var(--grey-color-2);
+    text-decoration: none;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 0.8rem;
+  }
+  
+  .footer-links-cont a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+  }
+  
+  .link {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .company-details-cont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+  
+  .company-details-cont>.header-cont-logo {
+    height: fit-content;
+    width: fit-content;
+  }
+  
+  

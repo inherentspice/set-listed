@@ -35,17 +35,29 @@ export default function Home() {
   return (
     <div className="page-cont">
       <div className="home">
-        {profile && <ProfileCard profile={profile}/>}
-        <QuickAccess />
-        {profile && <Post profileImg={profile.image} user={user}/>}
-        {posts && Array.from(posts).map(post => {
-          return <Feed viewingUser={user} post={post} key={post.id}/>;
-        })}
-        <News />
-        <div className="ad-footer-cont">
-          {profile && <Advertisement profileImg={profile.image}/>}
-          <Footer />
+        <div className="home-left">
+          {profile && <ProfileCard profile={profile}/>}
+          <QuickAccess />
         </div>
+
+        <div className="home-center">
+          {profile && <Post profileImg={profile.image} user={user}/>}
+          
+          <div className="home-feed">
+            {posts && Array.from(posts).map(post => {
+              return <Feed viewingUser={user} post={post} key={post.id}/>;
+            })}
+          </div>
+        </div>
+
+        <div className="home-right">
+          <News />
+          <div className="ad-footer-cont">
+            {profile && <Advertisement profileImg={profile.image}/>}
+            <Footer />
+          </div>
+        </div>
+                
       </div>
     </div>
   );
