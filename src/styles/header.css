@@ -89,18 +89,16 @@
     padding: .25rem;
     color: var(--primary-color);
     font-weight: bold;
-    border-left: 1px solid var(--primary-light-color);
-    border-right: 1px solid var(--primary-light-color);
     cursor: pointer;
 }
 
 .header-nav-btn:hover {
-    border-left: 1px solid var(--grey-color-1);
-    border-right: 1px solid var(--grey-color-1);
+    background-color: var(--secondary-color);
 }
 
 .header-nav-img {
     height: 1.75rem;
+    fill: var(--primary-color);
 }
 
 .header-nav-btn-name {
@@ -124,9 +122,4 @@
 
 .header-nav-menu>img {
     height: 1.5rem;
-}
-
-.header-nav-right-cta>a {
-  text-decoration: none;
-  color: var(--grey-color-2);
 }
