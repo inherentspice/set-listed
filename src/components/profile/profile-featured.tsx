@@ -80,8 +80,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
     addFeaturedImageEdit(image, id)
       .then(() => {
         console.log("featured image changed");
-      }).catch((err) => {
-        console.log(err);
+        handleEditFeaturedItemClose();
       });
   }
 
@@ -94,7 +93,14 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
     formData.append("image", image);
     try {
       const editedImage = await ProfileService.editFeaturedImage(formData, id);
-      console.log(editedImage);
+      const updatedFeatured = featured.map((feature) => {
+        if (feature.id === editedImage.data.featured.id) {
+          return editedImage.data.featured;
+        } else {
+          return feature;
+        }
+      });
+      setFeatured(updatedFeatured);
     } catch (err) {
       console.log(err);
     }
@@ -110,8 +116,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
     addFeaturedEdit(title, content, id)
       .then(() => {
         console.log("featured post edited");
-      }).catch((err) => {
-        console.log(err);
+        handleEditFeaturedItemClose();
       });
   }
 
@@ -126,7 +131,14 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
     };
     try {
       const editedFeaturedItem = await ProfileService.editFeatured(formData, id);
-      console.log(editedFeaturedItem);
+      const updatedFeatured = featured.map((feature) => {
+        if (feature.id === editedFeaturedItem.data.featured.id) {
+          return editedFeaturedItem.data.featured;
+        } else {
+          return feature;
+        }
+      });
+      setFeatured(updatedFeatured);
     } catch (err) {
       console.log(err);
     }
