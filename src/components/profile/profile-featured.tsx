@@ -154,16 +154,16 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
       deleteFeatured(id)
         .then(() => {
           console.log("featured deleted");
-        }).catch((err) => {
-          console.log(err);
+          handleEditFeaturedClose();
         });
     }
   }
 
   async function deleteFeatured(id: string) {
     try {
-      const deletedConfirmation = await ProfileService.deleteFeatured(id);
-      console.log(deletedConfirmation);
+      await ProfileService.deleteFeatured(id);
+      const updatedFeatured = featured.filter((feature) => feature.id !== id);
+      setFeatured(updatedFeatured);
     } catch (err) {
       console.log(err);
     }
