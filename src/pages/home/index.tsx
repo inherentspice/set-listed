@@ -42,7 +42,7 @@ export default function Home() {
 
         <div className="home-center">
           {profile && <Post profileImg={profile.image} user={user}/>}
-          
+          <div className="home-center-divider"></div>
           <div className="home-feed">
             {posts && Array.from(posts).map(post => {
               return <Feed viewingUser={user} post={post} key={post.id}/>;

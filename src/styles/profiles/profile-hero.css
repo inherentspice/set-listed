@@ -1,7 +1,7 @@
 @import "../../App.css";
 
 .profile-hero-cont {
-    width: fit-content;
+    width: 100%;
     max-width: 50vw;
 }
 

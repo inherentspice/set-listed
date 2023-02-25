@@ -1,8 +1,13 @@
  .profile-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: 7fr 2fr;
+    width: 70rem;
+}
+
+.profile-page-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* featured */

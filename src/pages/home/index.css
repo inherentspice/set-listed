@@ -19,12 +19,21 @@
 .home-center {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 1rem;
+  align-items: center;
+}
+
+.home-center-divider {
+  height: 10px;
+  width: 400px;
+  border-radius: 5px;
+  background-color: var(--primary-color);
 }
 
 .home-feed {
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 0.5rem;
 }
 
