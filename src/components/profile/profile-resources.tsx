@@ -1,7 +1,7 @@
 import React from "react";
 import Network from "../../media/icons/my-network.png";
 import Creator from "../../media/icons/creator.png";
-import "../../styles/profile-resources.css";
+import "../../styles/profiles/profile-resources.css";
 
 export default function ProfileResources() {
     return(

@@ -2,7 +2,7 @@ import React from "react";
 import Network from "../../media/icons/my-network.png";
 import Chart from "../../media/icons/chart.png";
 import Search from "../../media/icons/search.png";
-import "../../styles/profile-analytics.css";
+import "../../styles/profiles/profile-analytics.css";
 import { ProfileCardData } from "../../types/profile";
 
 export default function ProfileAnalytics(props: {profileCard: ProfileCardData[]}) {

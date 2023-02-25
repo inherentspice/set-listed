@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Edit from "../../media/icons/edit.png";
 import Add from "../../media/icons/add.png";
-import "../../styles/profile-experience.css";
+import "../../styles/profiles/profile-experience.css";
 import convertDateRange from "../../utilities/convert-date-range";
 import CancelButton from "../../media/icons/cancel.png";
 import { ExperienceData } from "../../types/profile";
