@@ -17,7 +17,7 @@ import PostService from "../../services/home/posts";
 export default function ProfileActivity(props: {profileCard: ProfileCardData[], posts: PostData[], viewingUser: string, userProfile: boolean}) {
     const [expandedStartPost, setExpandedStartPost] = useState<string>("");
     const [expandedEditPost, setExpandedEditPost] = useState<string>("");
-    const posts = props.posts;
+    const [posts, setPosts] = useState<PostData[]>(props.posts);
 
     const profileCard = props.profileCard[0];
 
@@ -45,8 +45,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
       addPost(content, profileCard.user)
         .then(() => {
           console.log("post added");
-        }).catch((err) => {
-          console.log(err);
+          handleStartPostClose();
         });
     }
 
@@ -57,7 +56,8 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
       };
       try {
         const newPost = await PostService.postPost(formData);
-        console.log(newPost);
+        const newPosts = posts.concat(newPost.data.post);
+        setPosts(newPosts);
       } catch (err) {
         console.log(err);
       }
@@ -72,8 +72,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
       addPostEdit(content, id)
         .then(() => {
           console.log("post edited");
-        }).catch((err) => {
-          console.log(err);
+          handleEditPostClose();
         });
     }
 
@@ -83,7 +82,14 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
       };
       try {
         const editedPost = await PostService.editPost(formData, id);
-        console.log(editedPost);
+        const updatedPosts = posts.map((post) => {
+          if (post.id === editedPost.data.post.id) {
+            return editedPost.data.post;
+          } else {
+            return post;
+          }
+        });
+        setPosts(updatedPosts);
       } catch (err) {
         console.log(err);
       }
@@ -99,16 +105,15 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
         deletePost(id)
           .then(() => {
             console.log("post deleted");
-          }).catch((err) => {
-            console.log(err);
           });
       }
     }
 
     async function deletePost(id: string) {
       try {
-        const deletedConfirmation = await PostService.deletePost(id);
-        console.log(deletedConfirmation);
+        await PostService.deletePost(id);
+        const updatedPosts = posts.filter((post) => post.id !== id);
+        setPosts(updatedPosts);
       } catch (err) {
         console.log(err);
       }

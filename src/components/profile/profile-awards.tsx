@@ -11,7 +11,7 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string,
 
   const [expandedAddAwards, setExpandedAddAwards] = useState<boolean>(false);
   const [expandedEditAwards, setExpandedEditAwards] = useState<null | string>(null);
-  const [awards, setAwards] = useState(props.awards);
+  const [awards, setAwards] = useState<AwardData[]>(props.awards);
 
   function handleAddAwardsClick(): void{
     setExpandedAddAwards(true);
@@ -46,8 +46,7 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string,
     };
     try {
       const newAward = await ProfileService.postAward(formData);
-      const newAwards = awards;
-      newAwards.push(newAward.data.award);
+      const newAwards = awards.concat(newAward.data.award);
       setAwards(newAwards);
 
     } catch (err) {

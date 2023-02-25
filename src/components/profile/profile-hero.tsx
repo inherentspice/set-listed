@@ -15,9 +15,8 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
   const [expandedEditProfile, setExpandedEditProfile] = useState<string>("");
   const [expandedEditBackground, setExpandedEditBackground] = useState<string>("");
   const [expandedEditProfilePic, setExpandedEditProfilePic] = useState<string>("");
+  const [profileCard, setProfileCard] = useState<ProfileCardData>(props.profileCard[0]);
   const navigate = useNavigate();
-
-  const [profileCard, setProfileCard] = useState(props.profileCard[0]);
 
   // const profileCard = props.profileCard[0];
 
@@ -52,8 +51,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
     addBackground(imageUpload, profileCard.user)
       .then(() => {
         console.log("new background added");
-      }).catch((err) => {
-        console.log(err);
+        handleEditBackgroundClose();
       });
   }
 
@@ -66,7 +64,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
     formData.append("image", imageUpload);
     try {
       const newImage = await ProfileService.editBackground(formData, user);
-      console.log(newImage);
+      setProfileCard(newImage.data.profileCard);
     } catch (err) {
       console.log(err);
     }
@@ -86,8 +84,6 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
         .then(() => {
           console.log("hero edited");
           handleEditProfileClose();
-        }).catch((err) => {
-          console.log(err);
         });
     }
 
@@ -124,8 +120,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
     addProfilePicEdit(imageUpload, profileCard.user)
       .then(() => {
         console.log("profile pic changed");
-      }).catch((err) => {
-        console.log(err);
+        handleEditProfilePicClose();
       });
   }
 
@@ -138,7 +133,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
     formData.append("image", imageUpload);
     try {
       const newImage = await ProfileService.editProfilePic(formData, user);
-      console.log(newImage);
+      setProfileCard(newImage.data.profileCard);
     } catch (err) {
       console.log(err);
     }
@@ -150,9 +145,8 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
       const formObject = {
         userId: viewingUser,
         friendId: profileUser
-      }
-      const room = await MessagingService.createRoom(formObject);
-      console.log(room);
+      };
+      await MessagingService.createRoom(formObject);
       navigate("/messaging");
       return Promise.resolve();
     } catch (err) {
@@ -160,6 +154,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
       return Promise.reject(err);
     }
   }
+
   function ShowEditBackgroundHero() {
     const [imageUpload, setImageUpload] = useState<File | null>(null);
 
