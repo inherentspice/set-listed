@@ -30,11 +30,11 @@ export default function Header() {
   }
 
   return(
-    <div>
+    <div className="header">
       <div className="header-cont">
         <div className="header-nav-left">
           <div className='header-nav-search'>
-            <div className="header-cont-logo">SL</div>
+            <a href="../"><div className="header-cont-logo">SL</div></a>
             <div className="header-cont-search">
               <img src={Search} alt=""/>
               <input placeholder='Search'></input>
@@ -69,7 +69,7 @@ export default function Header() {
 
             {userId && <a href={`/user/${userId}`} className="header-nav-btn">
               <img className='header-nav-profile-pic' src={profile} alt=""/>
-              <div className="header-nav-btn-name">My Profile</div>
+              <div className="header-nav-btn-name">My Page</div>
             </a>}
           </div>
         </div>
@@ -77,15 +77,15 @@ export default function Header() {
         <div className="header-nav-right">
           <a href='/services' className="header-nav-btn">
             <img className="header-nav-img" src={Services} alt=""/>
-            <div>Services</div>
+            <div className="header-nav-btn-name">Services</div>
           </a>
           <a href="/login" className="header-nav-btn" onClick={handleLogout}>
             <img className="header-nav-img" src={LogoutIcon} alt=""/>
-            <div>Logout</div>
+            <div className="header-nav-btn-name">Logout</div>
           </a>
-          <div className='header-nav-right-cta'>
+          {/* <div className='header-nav-right-cta'>
             <a href="/">Try Premium for Free you Brokie</a>
-          </div>
+          </div> */}
 
         </div>
       </div>

@@ -1,22 +1,36 @@
 @import "../App.css";
 
+.header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border-bottom: solid var(--grey-color-1) 1px;
+}
+
 .header-cont {
     display: flex;
-    border-bottom: solid var(--grey-color-1) 1px;
     padding: 0 2rem 0 2rem;
     align-items: center;
     justify-content: space-evenly;
+    max-width: 70rem;
+    cursor: pointer;
+    
 }
 
 .header-nav-left {
     display: flex;
-    max-width: fit-content;
+    justify-content: space-between;
+    width: 60rem;
 }
 
 .header-nav-search {
     display: flex;
     align-items: center;
     gap: 0.25rem;
+}
+
+.header-nav-search>a{
+    text-decoration: unset;
 }
 
 .header-cont-logo {
@@ -26,6 +40,7 @@
     border-radius: 15%;
     font-size: 1.25rem;
     font-weight: bold;
+    
 }
 
 .header-cont-search {
@@ -33,8 +48,9 @@
     background-color: var(--grey-color-0);
     align-items: center;
     height: 2rem;
+    width: 15rem;
     padding: 0 1rem 0 1rem;
-    border-radius: 1rem;
+    border-radius: .25rem;
 }
 
 .header-cont-search>img {
@@ -46,6 +62,7 @@
     background-color: unset;
     border: none;
     color: #000000;
+    width: 14rem;
 }
 
 .header-cont-search>input {
@@ -66,24 +83,29 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     text-align: center;
-    gap: 0.5rem;
 }
 
 .header-nav-btn {
     font-size: 1rem;
-    padding: 0.25rem;
     text-decoration: none;
+    padding: .25rem;
     color: var(--grey-color-2);
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    cursor: pointer;
 }
 
-.header-nav-btn:hover, .header-nav-menu:hover  {
-    background-color: var(--button-hover-color);
-    border-radius: 10px;
-    cursor: pointer;
+.header-nav-btn:hover {
+    border-left: 1px solid var(--grey-color-1);
+    border-right: 1px solid var(--grey-color-1);
 }
 
 .header-nav-img {
     height: 1.75rem;
+}
+
+.header-nav-btn-name {
+    font-size: .75rem;
 }
 
 .header-nav-profile-pic {
@@ -98,6 +120,7 @@
     align-items: center;
     justify-content: center;
     padding: 0.25rem;
+    cursor: pointer;
 }
 
 .header-nav-menu>img {
