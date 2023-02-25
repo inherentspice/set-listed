@@ -14,6 +14,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
 
   const [featureIndex, setFeatureIndex] = useState(0);
   const [expandedPost, setExpandedPost] = useState<null | string>(null);
+  const [featured, setFeatured] = useState<FeaturedData[]>(props.featured);
 
   const [expandedAddFeatured, setExpandedAddFeatured] = useState<boolean>(false);
   const [expandedEditFeaturedOverview, setExpandedEditFeaturedOverview] = useState<boolean>(false);
@@ -47,8 +48,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
     addFeatured(suppImageUpload, description, title)
       .then(() => {
       console.log("feature added");
-    }).catch((err) => {
-      console.log(err);
+      handleAddFeaturedClose();
     });
   }
 
@@ -64,7 +64,8 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
     formData.append("user", props.user);
     try {
       const newSuppImage = await ProfileService.postFeatured(formData);
-      console.log(newSuppImage);
+      const newFeatureds = featured.concat(newSuppImage.data.featured);
+      setFeatured(newFeatureds);
     } catch (err) {
       console.log(err);
     }
@@ -213,7 +214,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
             <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditFeaturedClose()} />
           </div>
           <div className="edit-featured-cont">
-            {props.featured.map((featuredPost) => {
+            {featured.map((featuredPost) => {
               return (
                 <div className="edit-featured-item-cont" key={featuredPost.id}>
                   <div className="edit-featured-item">
@@ -240,7 +241,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
   }
 
   function ShowEditFeaturedItem() {
-    const featuredItem = props.featured.filter((item) => item.id === expandedEditFeaturedItem)[0];
+    const featuredItem = featured.filter((item) => item.id === expandedEditFeaturedItem)[0];
     const [imageUpload, setImageUpload] = useState<File | null>(null);
     const [title, setTitle] = useState<string>(featuredItem.title);
     const [description, setDescription] = useState<string>(featuredItem.content);
@@ -300,7 +301,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
   function handleNextClick(): void{
     setFeatureIndex(prevState => {
       let nextIndex = prevState + 1;
-      if (nextIndex >= Math.ceil(props.featured.length / 3)) {
+      if (nextIndex >= Math.ceil(featured.length / 3)) {
         nextIndex = 0;
       }
       return nextIndex;
@@ -316,7 +317,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
   // Uses createPortal to insert new div into the body
 
   function ShowExpandedPost(): ReactPortal{
-    const expandedPostData = props.featured.filter((featuredPost) => featuredPost.id === expandedPost)[0];
+    const expandedPostData = featured.filter((featuredPost) => featuredPost.id === expandedPost)[0];
     return ReactDOM.createPortal(
       <>
         <div className="expanded-post-cont" key={expandedPostData.id}></div>
@@ -347,7 +348,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
         </div>
       </div>
       <div className="featured-post-cont">
-        {props.featured
+        {featured
         .filter((featuredPost, index) => index >= featureIndex && index < featureIndex + 3)
         .map((featuredPost) => {
           return (
