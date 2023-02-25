@@ -32,32 +32,59 @@ export default function Home() {
     }());
   }, []);
 
+  if (!profile) {
+    return (
+      <div className="page-cont">
+        <div className="home">
+          <div className="home-left">
+            <ProfileCard profile={null}/>
+            <QuickAccess loaded={false}/>
+          </div>
+          <div className="home-center">
+            <Post profileImg={""} user={user} />
+            <div className="home-feed">
+              {posts && Array.from(posts).map(post => {
+                return <Feed viewingUser={user} post={post} key={post.id}/>;
+              })}
+            </div>
+          </div>
+          <div className="home-right">
+            <News loaded={false}/>
+            <div className="ad-footer-cont">
+              <Advertisement profileImg={""} />
+              <Footer />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="page-cont">
       <div className="home">
         <div className="home-left">
           {profile && <ProfileCard profile={profile}/>}
-          <QuickAccess />
+          {!profile && <ProfileCard profile={null}/>}
+          <QuickAccess loaded={true}/>
         </div>
-
         <div className="home-center">
           {profile && <Post profileImg={profile.image} user={user}/>}
-          
+          {!profile && <Post profileImg={""} user={user} />}
           <div className="home-feed">
             {posts && Array.from(posts).map(post => {
               return <Feed viewingUser={user} post={post} key={post.id}/>;
             })}
           </div>
         </div>
-
         <div className="home-right">
-          <News />
+          <News loaded={true}/>
           <div className="ad-footer-cont">
             {profile && <Advertisement profileImg={profile.image}/>}
+            {!profile && <Advertisement profileImg={""} />}
             <Footer />
           </div>
         </div>
-                
       </div>
     </div>
   );
