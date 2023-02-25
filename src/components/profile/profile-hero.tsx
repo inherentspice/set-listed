@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import ReactDOM from "react-dom";
 import RachelLoo from "../../media/home/rachel-profile-picture.png";
 import DeniseFerguson from "../../media/home/denise-profile-picture.png";
-import "../../styles/profile-hero.css";
+import "../../styles/profiles/profile-hero.css";
 import Edit from "../../media/icons/edit.png";
 import CancelButton from "../../media/icons/cancel.png";
 import { ProfileCardData } from "../../types/profile";

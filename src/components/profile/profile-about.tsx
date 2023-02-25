@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import "../../styles/profile-about.css";
+import "../../styles/profiles/profile-about.css";
 import Edit from "../../media/icons/edit.png";
 import CancelButton from "../../media/icons/cancel.png";
 import { AboutData } from "../../types/profile";

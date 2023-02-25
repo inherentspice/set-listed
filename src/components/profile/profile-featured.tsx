@@ -5,7 +5,7 @@ import Edit from "../../media/icons/edit.png";
 import ArrowForward from "../../media/icons/arrow-forward.png";
 import CancelButton from "../../media/icons/cancel.png";
 import shortenText from "../../utilities/shorten-text";
-import "../../styles/profile-featured.css";
+import "../../styles/profiles/profile-featured.css";
 import ProfileService from "../../services/home/profile";
 import { FeaturedData } from "../../types/profile";
 
