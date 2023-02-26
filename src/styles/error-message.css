@@ -1,9 +1,9 @@
 .error-cont {
   position: absolute;
-  top: 40%;
-  left: 40%;
+  top: 33%;
+  left: 18%;
   z-index: 1;
-  padding: 2rem;
+  padding: 3rem;
   border-radius: 124px;
   border: 3px solid var(--error-color);
   background-color: var(--background-comp-color);

@@ -88,14 +88,13 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
     addFeaturedImageEdit(image, id)
       .then(() => {
         console.log("featured image changed");
-        handleEditFeaturedItemClose();
       });
   }
 
   async function addFeaturedImageEdit(image: File | null, id: string) {
     const formData = new FormData();
     if (!image) {
-      console.log("missing content");
+      setErr(true);
       return;
     }
     formData.append("image", image);
@@ -109,8 +108,9 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
         }
       });
       setFeatured(updatedFeatured);
+      handleEditFeaturedItemClose();
     } catch (err) {
-      console.log(err);
+      setErr(true);
     }
   }
 
@@ -124,7 +124,6 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
     addFeaturedEdit(title, content, id)
       .then(() => {
         console.log("featured post edited");
-        handleEditFeaturedItemClose();
       });
   }
 
@@ -147,8 +146,9 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
         }
       });
       setFeatured(updatedFeatured);
+      handleEditFeaturedItemClose();
     } catch (err) {
-      console.log(err);
+      setErr(true);
     }
   }
 
@@ -162,7 +162,6 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
       deleteFeatured(id)
         .then(() => {
           console.log("featured deleted");
-          handleEditFeaturedClose();
         });
     }
   }
@@ -172,8 +171,9 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
       await ProfileService.deleteFeatured(id);
       const updatedFeatured = featured.filter((feature) => feature.id !== id);
       setFeatured(updatedFeatured);
+      handleEditFeaturedClose();
     } catch (err) {
-      console.log(err);
+      setErr(true);
     }
   }
 
@@ -312,6 +312,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
             <button className="primary-button" type="submit" onClick={(e)=>handleEditFeaturedSubmit(e, title, description, featuredItem.id)}>Save Edited Feature Content</button>
 
           </form>
+          {err && <ErrorMessage/>}
         </div>
       </>,
       document.body
