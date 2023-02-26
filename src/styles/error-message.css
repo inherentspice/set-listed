@@ -2,16 +2,19 @@
   position: absolute;
   top: 40%;
   left: 40%;
-  background-color: var(--error-color);
   z-index: 1;
   padding: 2rem;
   border-radius: 124px;
+  border: 3px solid var(--error-color);
+  background-color: var(--background-comp-color);
+  color: var(--error-color);
   opacity: 1;
   animation: errorDisplay 0.3s ease-in-out;
 }
 
 .error-cont>p {
-  color: var(--background-comp-color);
+  font-size: 18px;
+  font-weight: 700;
 }
 
 @keyframes errorDisplay {
