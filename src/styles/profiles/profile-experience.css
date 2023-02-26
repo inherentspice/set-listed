@@ -1,8 +1,7 @@
 @import "../../App.css";
 
 .profile-experience-cont {
-    width: fit-content;
-    min-width: 50vw;
+    width: 100%;
 }
 
 .profile-experience-header {

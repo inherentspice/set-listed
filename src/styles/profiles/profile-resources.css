@@ -1,21 +1,25 @@
 @import "../../App.css";
 
 .profile-resources-cont {
-    width: 50%;
+    width: 100%;
+}
+
+.profile-resources-header {
+    padding: 15px 0 5px 15px
 }
 
 .profile-resources-items-cont {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 10px;
 }
 
 .profile-resources-item {
     display: flex;
     flex-direction: row;
-    gap: 0.5rem;
+    gap: 10px;
     border-top: 2px solid var(--grey-color-1);
-    padding: 0.5rem 0
+    padding: 10px 15px
 }
 
 .profile-resources-item:hover {
@@ -23,7 +27,7 @@
 }
 
 .profile-resources-item-img {
-    height: 2rem;
+    height: 35px;
 }
 
 .profile-resources-item-type {
@@ -43,8 +47,8 @@
     font-weight: bold;
     text-align: center;
     border-top: 2px solid var(--grey-color-1);
-    padding: 0.5rem 0 0.25rem 0;
-    border-radius: 0 0 15px 15px;
+    padding: 15px;
+    border-radius: 0 0 8px 8px;
 }
 
 .profile-resources-show-all:hover {

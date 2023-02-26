@@ -1,4 +1,5 @@
 import { UserConnections } from "../../dummy-data/connections";
+import "../../styles/profiles/profile-potential-connections.css";
 
 export default function ProfilePotentialFriends() {
   return (

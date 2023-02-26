@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import CancelButton from "../../media/icons/cancel.png";
 import { AwardData } from "../../types/profile";
 import ProfileService from "../../services/home/profile";
+import "../../styles/profiles/profile-awards.css";
 
 
 export default function ProfileAwards(props: {awards: AwardData[], user: string, userProfile: boolean}) {

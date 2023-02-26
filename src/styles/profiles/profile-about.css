@@ -1,8 +1,8 @@
 @import "../../App.css";
 
 .profile-about-cont {
-    width: fit-content;
-    max-width: 50vw;
+    width: 100%;
+    padding: 15px;
 }
 
 .profile-about-title-cont {
@@ -17,8 +17,9 @@
 }
 
 .profile-about-edit {
-    height: 1rem;
-    padding: 0.5rem;
+    height: 35px;
+    width: 35px;
+    padding: 5px;
     border-radius: 50%;
 }
 

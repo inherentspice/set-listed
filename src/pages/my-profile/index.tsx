@@ -43,17 +43,24 @@ export default function BuildProfilePage() {
 
   return (
     <>
-     {profile && <div className="page-cont profile-page">
-        <ProfileHero userProfile={userId === profileid} profileCard={profile.profileCard} viewingUser={userId}/>
-        {userId === profileid && <ProfileAnalytics profileCard={profile.profileCard}/>}
-        {userId === profileid && <ProfileResources />}
-        <ProfileAbout userProfile={userId === profileid} about={profile.about}/>
-        <Featured userProfile={userId === profileid} user={profileid ? profileid : ""} featured={profile.featured}/>
-        <ProfileActivity userProfile={userId === profileid} profileCard={profile.profileCard} posts={profile.post} viewingUser={userId}/>
-        <ProfileExperience userProfile={userId === profileid} user={profileid ? profileid : ""} experience={profile.experience}/>
-        <ProfileSkills userProfile={userId === profileid} user={profileid ? profileid : ""} skills={profile.skill}/>
-        <ProfileAwards userProfile={userId === profileid} user={profileid ? profileid : ""} awards={profile.award}/>
-        <ProfilePotentialFriends />
+     {profile && <div className="page-cont">
+       <div className="profile-page">        
+        <div className="profile-page-left">
+          <ProfileHero userProfile={userId === profileid} profileCard={profile.profileCard} viewingUser={userId}/>
+          {userId === profileid && <ProfileAnalytics profileCard={profile.profileCard}/>}
+          {userId === profileid && <ProfileResources />}
+          <ProfileAbout userProfile={userId === profileid} about={profile.about}/>
+          <Featured userProfile={userId === profileid} user={profileid ? profileid : ""} featured={profile.featured}/>
+          <ProfileActivity userProfile={userId === profileid} profileCard={profile.profileCard} posts={profile.post} viewingUser={userId}/>
+          <ProfileExperience userProfile={userId === profileid} user={profileid ? profileid : ""} experience={profile.experience}/>
+          <ProfileSkills userProfile={userId === profileid} user={profileid ? profileid : ""} skills={profile.skill}/>
+          <ProfileAwards userProfile={userId === profileid} user={profileid ? profileid : ""} awards={profile.award}/>
+        </div>
+
+        <div className="profile-page-right">
+          <ProfilePotentialFriends />
+        </div>
+        </div>
     </div>}
     </>
   );

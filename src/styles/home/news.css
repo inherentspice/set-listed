@@ -1,7 +1,16 @@
 @import url("../../App.css");
 
 .home-news-cont {
-  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-news-cont>h2 {
+  background-color: var(--primary-light-color);
+  color: white;
+  border-radius: 8px 8px 0px 0px;
+  padding: .5rem;
+  margin: 0;
 }
 
 .news-list-cont {
@@ -9,6 +18,8 @@
   border-radius: 8px;
   padding: 0 8px;
 }
+
+
 
 .news-list-cont:hover {
   background-color: var(--button-hover-color);

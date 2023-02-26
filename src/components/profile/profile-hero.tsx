@@ -323,7 +323,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
 
   return (
     <div className="profile-hero-cont comp">
-      {props.userProfile && <img className="profile-hero-background-edit" src={Edit} onClick={() => handleEditBackgroundClick(profileCard.id)}/>}
+            {props.userProfile && <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-hero-background-edit" onClick={() => handleEditBackgroundClick(profileCard.id)}><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg>}
       <img className="profile-hero-background-img"
         src={profileCard.backgroundImage || "https://res.cloudinary.com/dhptcrsjc/image/upload/v1675955714/Set-Listed/default-background_wyziyb.png"}
         alt=""
@@ -356,7 +356,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
             </div>
             <div className='profile-hero-mutual-connections-names'><a href='./my-profile'>2 Mutual Connections: Rachel Loo and Denise Ferguson</a></div>
           </div>
-          <div className='profile-hero-message' onClick={() => handleMessageClick(profileCard.user, props.viewingUser)}>Message</div>
+          <div className='primary-button' onClick={() => handleMessageClick(profileCard.user, props.viewingUser)}>Message</div>
         </div>
         <div className="profile-hero-user-digital-footprint">
           <div>

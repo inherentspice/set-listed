@@ -1,8 +1,7 @@
 @import "../../App.css";
 
 .profile-activity-cont {
-    width: fit-content;
-    width: 50vw;
+    width: 100%;
 }
 
 .profile-activity-header{
@@ -223,4 +222,16 @@
       gap:0.25rem;
       align-items: center;
       border-left: solid 2px var(--grey-color-1);
+  }
+  
+  .post-edit {
+    background-color: var(--background-comp-color);
+    border: none;
+    color: var(--grey-color-1);
+    cursor: pointer;
+    font-size: smaller;
+  }
+  
+  .post-edit:hover {
+    color: var(--grey-color-2);
   }

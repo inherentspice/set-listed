@@ -5,6 +5,7 @@ import Add from "../../media/icons/add.png";
 import Edit from "../../media/icons/edit.png";
 import CancelButton from "../../media/icons/cancel.png";
 import ProfileService from "../../services/home/profile";
+import "../../styles/profiles/profile-skills.css";
 
 export default function ProfileSkills(props: {skills: SkillData[], user: string, userProfile: boolean}) {
 
