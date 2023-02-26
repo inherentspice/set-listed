@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import Edit from "../../media/icons/edit.png";
 import Add from "../../media/icons/add.png";
@@ -8,12 +8,20 @@ import CancelButton from "../../media/icons/cancel.png";
 import { ExperienceData } from "../../types/profile";
 import ProfileService from "../../services/home/profile";
 import ShowImage from "../../media/profile/openmic.png";
+import ErrorMessage from "../error-message";
 
 
 export default function ProfileExperience(props: {experience: ExperienceData[], user: string, userProfile: boolean}){
     const [expandedAddExperience, setExpandedAddExperience] = useState<boolean>(false);
     const [expandedEditExperience, setExpandedEditExperience] = useState<string>("");
+    const [err, setErr] = useState<boolean>(false);
     const [experience, setExperience] = useState(props.experience);
+
+    useEffect(() => {
+      setTimeout(() => {
+        setErr(false);
+      }, 5000);
+    }, [err]);
 
     function handleAddExperienceClick(): void{
         setExpandedAddExperience(true);
@@ -42,9 +50,6 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
       addExperience(title, venue, description, dateStart, dateEnd, location, props.user)
         .then(() => {
           console.log("experience added");
-          handleAddExerienceClose();
-        }).catch((err) => {
-          console.log(err);
         });
     }
 
@@ -71,8 +76,9 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
         const newExperienceState = experience;
         newExperienceState.push(newExperience.data.experience);
         setExperience(newExperienceState);
+        handleAddExerienceClose();
       } catch (err) {
-        console.log(err);
+        setErr(true);
       }
     }
 
@@ -90,9 +96,6 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
       addExperienceEdit(title, venue, description, dateStart, dateEnd, location, id, props.user)
         .then(() => {
           console.log("experience edited");
-          handleEditExerienceClose();
-        }).catch((err) => {
-          console.log(err);
         });
     }
 
@@ -121,8 +124,9 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
         const editedExperienceState = experience;
         editedExperienceState.splice(editedIndex, 1, editedExperience.data.experience);
         setExperience(editedExperienceState);
+        handleEditExerienceClose();
       } catch (err) {
-        console.log(err);
+        setErr(true);
       }
     }
 
@@ -136,21 +140,18 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
         deleteExperience(id)
           .then(() => {
             console.log("experience deleted");
-            handleEditExerienceClose();
-          }).catch((err) => {
-            console.log(err);
           });
       }
     }
 
     async function deleteExperience(id: string) {
       try {
-        const deletedConfirmation = await ProfileService.deleteExperience(id);
+        await ProfileService.deleteExperience(id);
         const deletedExperienceState = experience.filter(experienceItem => experienceItem.id != id);
         setExperience(deletedExperienceState);
-        console.log(deletedConfirmation);
+        handleEditExerienceClose();
       } catch (err) {
-        console.log(err);
+        setErr(true);
       }
     }
 
@@ -214,13 +215,14 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
                     <input placeholder="Ex: I host a monthly Drag Show Brunch." maxLength={2000} value={description} onChange={handleDescriptionChange}></input>
                   </label>
                 <div className="expanded-profile-overlay-submit">
-                    <button
-                      className="expanded-profile-overlay-submit-btn"
-                      type="submit"
-                      onClick={(e) => handleAddExperienceSubmit(e, title, description, venue, dateStart, dateEnd, location)}
-                    >Save</button>
+                  <button
+                    className="expanded-profile-overlay-submit-btn"
+                    type="submit"
+                    onClick={(e) => handleAddExperienceSubmit(e, title, description, venue, dateStart, dateEnd, location)}
+                  >Save</button>
                 </div>
-            </form>
+              </form>
+              {err && <ErrorMessage/>}
             </div>
           </>,
           document.body
@@ -236,7 +238,6 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
       const [dateEnd, setDateEnd] = useState<string>(expExperience.dateEnd ? expExperience.dateEnd.slice(0, 10) : "");
       const [location, setLocation] = useState<string>(expExperience.location ? expExperience.location : "");
 
-      console.log(expExperience);
       function handleTitleChange(e: React.ChangeEvent<HTMLInputElement>): void{
         setTitle(e.target.value);
       }
@@ -300,6 +301,7 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
                 >Delete</button>
               </div>
             </form>
+            {err && <ErrorMessage/>}
           </div>
         </>,
       document.body
