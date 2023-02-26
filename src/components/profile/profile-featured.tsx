@@ -1,4 +1,4 @@
-import React, { ReactPortal, useState } from "react";
+import React, { ReactPortal, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import Add from "../../media/icons/add.png";
 import Edit from "../../media/icons/edit.png";
@@ -8,17 +8,25 @@ import shortenText from "../../utilities/shorten-text";
 import "../../styles/profiles/profile-featured.css";
 import ProfileService from "../../services/home/profile";
 import { FeaturedData } from "../../types/profile";
+import ErrorMessage from "../error-message";
 
 
 export default function ProfileFeatured(props: {featured: FeaturedData[], user: string, userProfile: boolean}) {
 
   const [featureIndex, setFeatureIndex] = useState(0);
   const [expandedPost, setExpandedPost] = useState<null | string>(null);
+  const [err, setErr] = useState<boolean>(false);
   const [featured, setFeatured] = useState<FeaturedData[]>(props.featured);
 
   const [expandedAddFeatured, setExpandedAddFeatured] = useState<boolean>(false);
   const [expandedEditFeaturedOverview, setExpandedEditFeaturedOverview] = useState<boolean>(false);
   const [expandedEditFeaturedItem, setExpandedEditFeaturedItem] = useState<string>("");
+
+  useEffect(() => {
+    setTimeout(() => {
+      setErr(false);
+    }, 5000);
+  }, [err]);
 
   function handleAddFeaturedClick(): void{
     setExpandedAddFeatured(true);
@@ -48,14 +56,13 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
     addFeatured(suppImageUpload, description, title)
       .then(() => {
       console.log("feature added");
-      handleAddFeaturedClose();
     });
   }
 
   async function addFeatured(suppImageUpload: File | null, description: string, title: string) {
     const formData = new FormData();
     if (!(suppImageUpload && description && title)) {
-      console.log("missing content");
+      setErr(true);
       return;
     }
     formData.append("image", suppImageUpload);
@@ -66,8 +73,9 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
       const newSuppImage = await ProfileService.postFeatured(formData);
       const newFeatureds = featured.concat(newSuppImage.data.featured);
       setFeatured(newFeatureds);
+      handleAddFeaturedClose();
     } catch (err) {
-      console.log(err);
+      setErr(true);
     }
   }
 
@@ -80,14 +88,13 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
     addFeaturedImageEdit(image, id)
       .then(() => {
         console.log("featured image changed");
-        handleEditFeaturedItemClose();
       });
   }
 
   async function addFeaturedImageEdit(image: File | null, id: string) {
     const formData = new FormData();
     if (!image) {
-      console.log("missing content");
+      setErr(true);
       return;
     }
     formData.append("image", image);
@@ -101,8 +108,9 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
         }
       });
       setFeatured(updatedFeatured);
+      handleEditFeaturedItemClose();
     } catch (err) {
-      console.log(err);
+      setErr(true);
     }
   }
 
@@ -116,7 +124,6 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
     addFeaturedEdit(title, content, id)
       .then(() => {
         console.log("featured post edited");
-        handleEditFeaturedItemClose();
       });
   }
 
@@ -139,8 +146,9 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
         }
       });
       setFeatured(updatedFeatured);
+      handleEditFeaturedItemClose();
     } catch (err) {
-      console.log(err);
+      setErr(true);
     }
   }
 
@@ -154,7 +162,6 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
       deleteFeatured(id)
         .then(() => {
           console.log("featured deleted");
-          handleEditFeaturedClose();
         });
     }
   }
@@ -164,8 +171,9 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
       await ProfileService.deleteFeatured(id);
       const updatedFeatured = featured.filter((feature) => feature.id !== id);
       setFeatured(updatedFeatured);
+      handleEditFeaturedClose();
     } catch (err) {
-      console.log(err);
+      setErr(true);
     }
   }
 
@@ -210,6 +218,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
             </label>
             <button className="primary-button" type="submit" onClick={(e) => handleAddFeaturedSubmit(e, suppImageUpload, description, title)}>Upload New Featured Item</button>
           </form>
+          {err && <ErrorMessage/>}
         </div>
       </>,
       document.body
@@ -303,6 +312,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
             <button className="primary-button" type="submit" onClick={(e)=>handleEditFeaturedSubmit(e, title, description, featuredItem.id)}>Save Edited Feature Content</button>
 
           </form>
+          {err && <ErrorMessage/>}
         </div>
       </>,
       document.body

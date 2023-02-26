@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "../../styles/profiles/profile-activity.css";
 import Like from "../../media/icons/like.png";
@@ -13,13 +13,21 @@ import Visibility from "../../media/icons/visibility.png";
 import Comments from "../../media/icons/comments.png";
 import { ProfileCardData, PostData } from "../../types/profile";
 import PostService from "../../services/home/posts";
+import ErrorMessage from "../error-message";
 
 export default function ProfileActivity(props: {profileCard: ProfileCardData[], posts: PostData[], viewingUser: string, userProfile: boolean}) {
     const [expandedStartPost, setExpandedStartPost] = useState<string>("");
     const [expandedEditPost, setExpandedEditPost] = useState<string>("");
+    const [err, setErr] = useState<boolean>(false);
     const [posts, setPosts] = useState<PostData[]>(props.posts);
 
     const profileCard = props.profileCard[0];
+
+    useEffect(() => {
+      setTimeout(() => {
+        setErr(false);
+      }, 5000);
+    }, [err]);
 
     function handleStartPostClick(id: string): void{
         setExpandedStartPost(id);
@@ -45,7 +53,6 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
       addPost(content, profileCard.user)
         .then(() => {
           console.log("post added");
-          handleStartPostClose();
         });
     }
 
@@ -58,8 +65,9 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
         const newPost = await PostService.postPost(formData);
         const newPosts = posts.concat(newPost.data.post);
         setPosts(newPosts);
+        handleStartPostClose();
       } catch (err) {
-        console.log(err);
+        setErr(true);
       }
     }
 
@@ -72,7 +80,6 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
       addPostEdit(content, id)
         .then(() => {
           console.log("post edited");
-          handleEditPostClose();
         });
     }
 
@@ -90,8 +97,9 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
           }
         });
         setPosts(updatedPosts);
+        handleEditPostClose();
       } catch (err) {
-        console.log(err);
+        setErr(true);
       }
     }
 
@@ -115,7 +123,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
         const updatedPosts = posts.filter((post) => post.id !== id);
         setPosts(updatedPosts);
       } catch (err) {
-        console.log(err);
+        setErr(true);
       }
     }
 
@@ -191,6 +199,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
                   </div>
                 </div>
               </form>
+              {err && <ErrorMessage/>}
             </div>
           </>,
           document.body
@@ -247,6 +256,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
                   </div>
                 </div>
               </form>
+              {err && <ErrorMessage/>}
             </div>
           </>,
           document.body
@@ -286,6 +296,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
         <div className="profile-activity-show-all">Show all activity</div>
         {expandedStartPost && <ShowStartPost />}
         {expandedEditPost && <ShowEditPost />}
+        {err && <ErrorMessage/>}
       </div>
     );
 }

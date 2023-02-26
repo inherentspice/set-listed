@@ -1,17 +1,25 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ReactDOM from "react-dom";
 import { SkillData } from "../../types/profile";
 import Add from "../../media/icons/add.png";
 import Edit from "../../media/icons/edit.png";
 import CancelButton from "../../media/icons/cancel.png";
 import ProfileService from "../../services/home/profile";
+import ErrorMessage from "../error-message";
 import "../../styles/profiles/profile-skills.css";
 
 export default function ProfileSkills(props: {skills: SkillData[], user: string, userProfile: boolean}) {
 
   const [expandedAddSkill, setExpandedAddSkill] = useState<boolean>(false);
   const [expandedEditSkill, setExpandedEditSkill] = useState<boolean>(false);
+  const [err, setErr] = useState<boolean>(false);
   const [skills, setSkills] = useState(props.skills);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setErr(false);
+    }, 5000);
+  }, [err]);
 
   function handleAddSkillClick(): void{
     setExpandedAddSkill(true);
@@ -36,7 +44,6 @@ export default function ProfileSkills(props: {skills: SkillData[], user: string,
     addSkill(content, props.user)
       .then(() => {
         console.log("added skill");
-        handleAddSkillClose();
       });
   }
 
@@ -50,8 +57,9 @@ export default function ProfileSkills(props: {skills: SkillData[], user: string,
       const newSkills = skills;
       newSkills.push(newSkill.data.skill);
       setSkills(newSkills);
+      handleAddSkillClose();
     } catch (err) {
-      console.log(err);
+      setErr(true);
     }
   }
 
@@ -65,20 +73,17 @@ export default function ProfileSkills(props: {skills: SkillData[], user: string,
       deleteSkill(id)
         .then(() => {
           console.log("skill deleted");
-        }).catch((err) => {
-          console.log(err);
         });
     }
   }
 
   async function deleteSkill(id: string) {
     try {
-      const deletedConfirmation = await ProfileService.deleteSkill(id);
+      await ProfileService.deleteSkill(id);
       const deletedSkillsState = skills.filter(skill => skill.id != id);
       setSkills(deletedSkillsState);
-      console.log(deletedConfirmation);
     } catch (err) {
-      console.log(err);
+      setErr(true);
     }
   }
 
@@ -122,6 +127,7 @@ export default function ProfileSkills(props: {skills: SkillData[], user: string,
                     >Save</button>
             </div>
           </form>
+          {err && <ErrorMessage/>}
         </div>
       </>,
       document.body
@@ -150,6 +156,7 @@ export default function ProfileSkills(props: {skills: SkillData[], user: string,
             );
             })}
           </div>
+          {err && <ErrorMessage/>}
         </div>
       </>,
       document.body

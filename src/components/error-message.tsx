@@ -3,7 +3,7 @@ import "../styles/error-message.css";
 export default function ErrorMessage() {
   return (
     <div className="error-cont">
-      <p>Something went wrong.</p>
+      <p>You broke something. This isn't on us. Look inwards, then try again.</p>
     </div>
   );
 }

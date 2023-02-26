@@ -1,10 +1,11 @@
 import Add from "../../media/icons/add.png";
 import Edit from "../../media/icons/edit.png";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import CancelButton from "../../media/icons/cancel.png";
 import { AwardData } from "../../types/profile";
 import ProfileService from "../../services/home/profile";
+import ErrorMessage from "../error-message";
 import "../../styles/profiles/profile-awards.css";
 
 
@@ -12,7 +13,14 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string,
 
   const [expandedAddAwards, setExpandedAddAwards] = useState<boolean>(false);
   const [expandedEditAwards, setExpandedEditAwards] = useState<null | string>(null);
+  const [err, setErr] = useState<boolean>(false);
   const [awards, setAwards] = useState<AwardData[]>(props.awards);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setErr(false);
+    }, 5000);
+  }, [err])
 
   function handleAddAwardsClick(): void{
     setExpandedAddAwards(true);
@@ -36,7 +44,6 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string,
     addAward(content, props.user)
       .then(() => {
         console.log("award added");
-        handleAddAwardsClose();
       });
   }
 
@@ -49,9 +56,9 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string,
       const newAward = await ProfileService.postAward(formData);
       const newAwards = awards.concat(newAward.data.award);
       setAwards(newAwards);
-
+      handleAddAwardsClose();
     } catch (err) {
-      console.log(err);
+      setErr(true);
     }
   }
 
@@ -64,9 +71,6 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string,
     addAwardEdit(content, id)
       .then(() => {
         console.log("award edited");
-        handleEditAwardsClose();
-      }).catch((err) => {
-        console.log(err);
       });
   }
 
@@ -80,8 +84,9 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string,
       const editedAwards = awards;
       editedAwards.splice(editedIndex, 1, editedAward.data.award);
       setAwards(editedAwards);
+      handleEditAwardsClose();
     } catch (err) {
-      console.log(err);
+      setErr(true);
     }
   }
 
@@ -95,21 +100,18 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string,
       deleteAward(id)
         .then(() => {
           console.log("award deleted");
-          handleEditAwardsClose();
-        }).catch((err) => {
-          console.log(err);
         });
     }
   }
 
   async function deleteAward(id: string) {
     try {
-      const deletedConfirmation = await ProfileService.deleteAward(id);
-      console.log(deletedConfirmation);
+      await ProfileService.deleteAward(id);
       const deletedAwardsState = awards.filter(award => award.id != id);
       setAwards(deletedAwardsState);
+      handleEditAwardsClose();
     } catch (err) {
-      console.log(err);
+      setErr(true);
     }
   }
 
@@ -136,6 +138,7 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string,
               <button className="expanded-profile-overlay-submit-btn" type="submit" onClick={(e) => handleAddAwardSubmit(e, content)}>Save</button>
             </div>
           </form>
+          {err && <ErrorMessage/>}
         </div>
       </>,
       document.body
@@ -175,7 +178,7 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string,
               >Delete Award</button>
             </div>
           </form>
-
+          {err && <ErrorMessage/>}
         </div>
       </>,
       document.body
