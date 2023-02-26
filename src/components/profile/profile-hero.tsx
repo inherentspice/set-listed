@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ReactDOM from "react-dom";
 import RachelLoo from "../../media/home/rachel-profile-picture.png";
 import DeniseFerguson from "../../media/home/denise-profile-picture.png";
@@ -9,16 +9,22 @@ import { ProfileCardData } from "../../types/profile";
 import ProfileService from "../../services/home/profile";
 import { useNavigate } from "react-router-dom";
 import MessagingService from "../../services/home/messaging";
+import ErrorMessage from "../error-message";
 
 
 export default function ProfileHero(props: {profileCard: ProfileCardData[], userProfile: boolean, viewingUser: string}) {
   const [expandedEditProfile, setExpandedEditProfile] = useState<string>("");
   const [expandedEditBackground, setExpandedEditBackground] = useState<string>("");
   const [expandedEditProfilePic, setExpandedEditProfilePic] = useState<string>("");
+  const [err, setErr] = useState<boolean>(false);
   const [profileCard, setProfileCard] = useState<ProfileCardData>(props.profileCard[0]);
   const navigate = useNavigate();
 
-  // const profileCard = props.profileCard[0];
+  useEffect(() => {
+    setTimeout(() => {
+      setErr(false);
+    }, 5000);
+  }, [err]);
 
   function handleEditProfileClick(id: string): void{
     setExpandedEditProfile(id);
@@ -51,13 +57,12 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
     addBackground(imageUpload, profileCard.user)
       .then(() => {
         console.log("new background added");
-        handleEditBackgroundClose();
       });
   }
 
   async function addBackground(imageUpload: File | null, user: string) {
     if (!imageUpload) {
-      console.log("missing image file");
+      setErr(true);
       return;
     }
     const formData = new FormData();
@@ -65,8 +70,9 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
     try {
       const newImage = await ProfileService.editBackground(formData, user);
       setProfileCard(newImage.data.profileCard);
+      handleEditBackgroundClose();
     } catch (err) {
-      console.log(err);
+      setErr(true);
     }
   }
 
@@ -83,7 +89,6 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
       addHeroEdit(firstName, lastName, country, city, socials, tagline, profileCard.user)
         .then(() => {
           console.log("hero edited");
-          handleEditProfileClose();
         });
     }
 
@@ -107,8 +112,9 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
     try {
       const editedHero = await ProfileService.editHero(formData, user);
       setProfileCard(editedHero.data.profileCard);
+      handleEditProfileClose();
     } catch (err) {
-      console.log(err);
+      setErr(true);
     }
   }
 
@@ -120,13 +126,12 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
     addProfilePicEdit(imageUpload, profileCard.user)
       .then(() => {
         console.log("profile pic changed");
-        handleEditProfilePicClose();
       });
   }
 
   async function addProfilePicEdit(imageUpload: File | null, user: string) {
     if (!imageUpload) {
-      console.log("missing image file");
+      setErr(true);
       return;
     }
     const formData = new FormData();
@@ -134,8 +139,9 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
     try {
       const newImage = await ProfileService.editProfilePic(formData, user);
       setProfileCard(newImage.data.profileCard);
+      handleEditProfilePicClose();
     } catch (err) {
-      console.log(err);
+      setErr(true);
     }
   }
 
@@ -150,7 +156,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
       navigate("/messaging");
       return Promise.resolve();
     } catch (err) {
-      console.log(err);
+      setErr(true);
       return Promise.reject(err);
     }
   }
@@ -185,6 +191,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
             </form>
           </div>
           <button className="primary-button" type="submit" onClick={(e)=>handleEditBackgroundSubmit(e, imageUpload)}>Save New Background</button>
+          {err && <ErrorMessage/>}
         </div>
       </>,
       document.body
@@ -221,6 +228,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
             </form>
           </div>
           <button className="primary-button" type="submit" onClick={(e)=>handleEditProfilePicSubmit(e, imageUpload)}>Save New Profile Pic</button>
+          {err && <ErrorMessage/>}
         </div>
       </>,
       document.body
@@ -315,6 +323,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
                 >Save</button>
             </div>
           </form>
+          {err && <ErrorMessage/>}
         </div>
       </>,
       document.body
@@ -377,6 +386,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
       {expandedEditProfile && <ShowEditProfileHero />}
       {expandedEditBackground && <ShowEditBackgroundHero />}
       {expandedEditProfilePic && <ShowEditProfilePic />}
+      {err && <ErrorMessage/>}
     </div>
   );
 }
