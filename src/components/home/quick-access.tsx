@@ -5,7 +5,12 @@ import Event from "../../media/icons/event.png";
 import { FakeUserData } from "../../dummy-data/fake-users";
 import "../../styles/home/quick-access.css";
 
-export default function QuickAccess(){
+export default function QuickAccess(props: {loaded: boolean}){
+  if (!props.loaded) {
+    return (
+      <div className="quick-access-cont comp loading-quick loading"></div>
+    );
+  }
   return(
     <div className="quick-access-cont comp">
       <div className="quick-access-category-cont">

@@ -2,8 +2,13 @@ import React from "react";
 import convertDate from "../../utilities/convert-date";
 import "../../styles/home/news.css";
 
-export default function News() {
+export default function News(props: {loaded: boolean}) {
 
+  if (!props.loaded) {
+    return (
+      <div className="home-news-cont comp loading-news loading"></div>
+    )
+  }
   interface newsDataObject {
     title: string,
     posted: Date,

@@ -3,6 +3,11 @@ import Profile from "../../media/home/profile-picture.png";
 import "../../styles/home/advertisement.css";
 
 export default function Advertisement(props: {profileImg: string}) {
+  if (!props.profileImg) {
+    return (
+      <div className="home-ad-cont comp loading-ad loading"></div>
+    );
+  }
   return (
     <div className="home-ad-cont comp">
       <div className="ad-info-cont">
