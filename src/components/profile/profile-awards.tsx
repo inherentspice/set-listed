@@ -20,7 +20,7 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string,
     setTimeout(() => {
       setErr(false);
     }, 5000);
-  }, [err])
+  }, [err]);
 
   function handleAddAwardsClick(): void{
     setExpandedAddAwards(true);

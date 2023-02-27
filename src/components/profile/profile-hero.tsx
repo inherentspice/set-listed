@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import RachelLoo from "../../media/home/rachel-profile-picture.png";
 import DeniseFerguson from "../../media/home/denise-profile-picture.png";
 import "../../styles/profiles/profile-hero.css";
-import Edit from "../../media/icons/edit.png";
 import CancelButton from "../../media/icons/cancel.png";
 import { ProfileCardData } from "../../types/profile";
 import ProfileService from "../../services/home/profile";
@@ -12,13 +11,15 @@ import MessagingService from "../../services/home/messaging";
 import { IconContext } from "react-icons";
 import { SiTwitter, SiYoutube, SiInstagram, SiTiktok } from "react-icons/si";
 import ErrorMessage from "../error-message";
+import { Connections } from "../../types/my-network";
 
 
 
-export default function ProfileHero(props: {profileCard: ProfileCardData[], userProfile: boolean, viewingUser: string}) {
+export default function ProfileHero(props: {profileCard: ProfileCardData[], userProfile: boolean, viewingUser: string, connections: Connections}) {
   const [expandedEditProfile, setExpandedEditProfile] = useState<string>("");
   const [expandedEditBackground, setExpandedEditBackground] = useState<string>("");
   const [expandedEditProfilePic, setExpandedEditProfilePic] = useState<string>("");
+  const [connectionStatus, setConnectionStatus] = useState<string>("");
   const [err, setErr] = useState<boolean>(false);
   const [profileCard, setProfileCard] = useState<ProfileCardData>(props.profileCard[0]);
   const navigate = useNavigate();
@@ -28,6 +29,25 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
       setErr(false);
     }, 5000);
   }, [err]);
+
+  function determineConnectionState() {
+    const isFriend = props.connections.friends.filter((friend) => profileCard.user === friend).length > 0;
+    const friendRequestSent = props.connections.pending.filter((friend) => profileCard.user === friend).length > 0;
+    const isRequestingFriend = props.connections.waiting.filter((friend) => profileCard.user === friend).length > 0;
+    if (isFriend) {
+      setConnectionStatus("friend");
+    } else if (friendRequestSent) {
+      setConnectionStatus("Friend Request Pending");
+    } else if (isRequestingFriend) {
+      setConnectionStatus("Confirm Friend Request");
+    } else {
+      setConnectionStatus("Connect+");
+    }
+  }
+
+  useEffect(() => {
+    determineConnectionState();
+  }, []);
 
   function handleEditProfileClick(id: string): void{
     setExpandedEditProfile(id);
@@ -361,7 +381,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
 
   return (
     <div className="profile-hero-cont comp">
-            {props.userProfile && <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-hero-background-edit" onClick={() => handleEditBackgroundClick(profileCard.id)}><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg>}
+      {props.userProfile && <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-hero-background-edit" onClick={() => handleEditBackgroundClick(profileCard.id)}><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg>}
       <img className="profile-hero-background-img"
         src={profileCard.backgroundImage || "https://res.cloudinary.com/dhptcrsjc/image/upload/v1675955714/Set-Listed/default-background_wyziyb.png"}
         alt=""
@@ -371,10 +391,10 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
         className="profile-hero-profile-img profile-picture-large"
         src={profileCard.image}
         alt=""
-      /> 
+      />
       <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-hero-user-picture-edit" onClick={() => handleEditProfileClick(profileCard.id)}><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg>
       </div>
-      
+
       {props.userProfile && <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-hero-user-info-edit" onClick={() => handleEditProfileClick(profileCard.id)}><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg> }
       <div className="profile-hero-user-cont">
         <div className="profile-hero-user-info-cont">
@@ -398,6 +418,8 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
             <div className='profile-hero-mutual-connections-names'><a href='./my-profile'>2 Mutual Connections: Rachel Loo and Denise Ferguson</a></div>
           </div>
           <div className='primary-button' onClick={() => handleMessageClick(profileCard.user, props.viewingUser)}>Message</div>
+          {connectionStatus !== "friend" && <div className='primary-button' onClick={() => handleMessageClick(profileCard.user, props.viewingUser)}>{connectionStatus}</div>}
+
         </div>
         <div className="profile-hero-user-digital-footprint">
           <div>
