@@ -23,7 +23,7 @@ export default function ProfileResources() {
                     </div>
                 </div>
             </div>
-            <div className="profile-resources-show-all">Show all resources</div>
+            <div className="profile-resources-show-all">Show All Resources</div>
         </div>
     );
 }
