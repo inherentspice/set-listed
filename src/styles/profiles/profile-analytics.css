@@ -1,6 +1,12 @@
 .profile-analytics-cont {
     width: 100%;
     padding: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.profile-analytics-header {
+    font-size: 1.5rem;
 }
 
 .profile-analytics-items-cont{
