@@ -1,6 +1,6 @@
 .profile-analytics-cont {
     width: 100%;
-    padding: 15px;
+    padding: 5px 15px 15px 15px;
     display: flex;
     gap: 10px;
 }
@@ -13,6 +13,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
+    cursor: pointer;
 }
 
 .profile-analytics-item {
@@ -21,8 +22,15 @@
     gap: 0.5rem;
 }
 
+.profile-analytics-item:hover {
+    color: var(--primary-color);
+    fill: var(--primary-color);
+}
+
 .profile-analytics-item-img {
     height: 2rem;
+    color: inherit;
+    fill: inherit;
 }
 
 .profile-analytics-type {
