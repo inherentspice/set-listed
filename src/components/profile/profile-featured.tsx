@@ -362,15 +362,15 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
 
   return (
     <div className="profile-cont comp">
-      <div className="editable-comp-header">
+      <div className="featured-header">
         <h2>Featured</h2>
         <div className="profile-experience-header-buttons">
-          {props.userProfile && <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddFeaturedClick()} />}
-          {props.userProfile && <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditFeaturedClick()}/>}
+          {props.userProfile && <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-about-edit" onClick={() => handleAddFeaturedClick()}><path d="M450 856V606H200v-60h250V296h60v250h250v60H510v250h-60Z"/></svg>}
+          {props.userProfile && <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-about-edit" onClick={() => handleEditFeaturedClick()}><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z" /></svg>}
         </div>
       </div>
       <div className="featured-post-cont">
-        {featured
+        {featured.length <= 0 ? <p className="featured-no-featured-message">Feature your best content, videos, jokes, and more by clicking the add button about.</p> : featured
         .filter((featuredPost, index) => index >= featureIndex && index < featureIndex + 3)
         .map((featuredPost) => {
           return (
