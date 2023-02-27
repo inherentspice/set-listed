@@ -9,7 +9,10 @@ import { ProfileCardData } from "../../types/profile";
 import ProfileService from "../../services/home/profile";
 import { useNavigate } from "react-router-dom";
 import MessagingService from "../../services/home/messaging";
+import { IconContext } from "react-icons";
+import { SiTwitter, SiYoutube, SiInstagram, SiTiktok } from "react-icons/si";
 import ErrorMessage from "../error-message";
+
 
 
 export default function ProfileHero(props: {profileCard: ProfileCardData[], userProfile: boolean, viewingUser: string}) {
@@ -274,10 +277,11 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
         <div className="expanded-profile-overlay-cont" key={profileCard.id} onClick={() => handleEditProfileClose()}></div>
         <div className="expanded-profile-overlay">
           <div className="expanded-profile-overlay-header-cont">
-            <h2 className="edit-profile-hero-title">Edit Intro</h2>
-            <img className="edit-profile-hero-cancel" src={CancelButton} onClick={() => handleEditProfileClose()} />
+            <h1 className="edit-profile-hero-title">Edit Intro</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 96 960 960" width="35" className="edit-profile-cancel-button" onClick={() => handleEditProfileClose()}><path d="m330 768 150-150 150 150 42-42-150-150 150-150-42-42-150 150-150-150-42 42 150 150-150 150 42 42Zm150 208q-82 0-155-31.5t-127.5-86Q143 804 111.5 731T80 576q0-83 31.5-156t86-127Q252 239 325 207.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 82-31.5 155T763 858.5q-54 54.5-127 86T480 976Zm0-60q142 0 241-99.5T820 576q0-142-99-241t-241-99q-141 0-240.5 99T140 576q0 141 99.5 240.5T480 916Zm0-340Z"/></svg>
           </div>
           <form className="edit-profile-hero-form">
+            <h2>Basic Information</h2>
             <label className="edit-profile-hero-form-item">First Name
               <input type="text" value={firstName} onChange={handleFirstNameChange}></input>
             </label>
@@ -298,26 +302,51 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
               <input type="text" value={country} onChange={handleCountryChange}></input>
             </label>
 
-            <div>Social Media</div>
-            <label className="edit-profile-hero-form-item">Instagram
+            <h2>Social Media</h2>
+            <label className="edit-profile-hero-form-item">
+              <div className="edit-profile-social-label">
+              <IconContext.Provider value={{ size: "1rem"}}>
+                <SiInstagram/>
+              </IconContext.Provider>
+              <p>Instagram</p>
+              </div>
+
               <input type="text" value={socials[0] ? socials[0] : ""} onChange={(e) => handleSocialsChange(e, 0)}></input>
             </label>
 
-            <label className="edit-profile-hero-form-item">Youtube
+            <label className="edit-profile-hero-form-item">
+              <div className="edit-profile-social-label">
+              <IconContext.Provider value={{ size: "1rem"}}>
+                <SiYoutube/>
+              </IconContext.Provider>
+              <p>YouTube</p>
+              </div>
               <input type="text" value={socials[1] ? socials[1] : ""} onChange={(e) => handleSocialsChange(e, 1)}></input>
             </label>
 
-            <label className="edit-profile-hero-form-item">Tik Tok
+            <label className="edit-profile-hero-form-item">
+            <div className="edit-profile-social-label">
+              <IconContext.Provider value={{ size: "1rem"}}>
+                <SiTiktok/>
+              </IconContext.Provider>
+              <p>Tik Tok</p>
+              </div>
               <input type="text" value={socials[2] ? socials[2] : ""} onChange={(e) => handleSocialsChange(e, 2)}></input>
             </label>
 
-            <label className="edit-profile-hero-form-item">Twitter
+            <label className="edit-profile-hero-form-item">
+            <div className="edit-profile-social-label">
+              <IconContext.Provider value={{ size: "1rem"}}>
+                <SiTwitter/>
+              </IconContext.Provider>
+              <p>Twitter</p>
+              </div>
               <input type="text" value={socials[3] ? socials[3] : ""} onChange={(e) => handleSocialsChange(e, 3)}></input>
             </label>
 
             <div className="expanded-profile-overlay-submit">
                 <button
-                  className="expanded-profile-overlay-submit-btn"
+                  className="primary-button"
                   type="submit"
                   onClick={(e) => handleEditHeroSubmit(e, firstName, lastName, country, city, socials, tagline)}
                 >Save</button>
