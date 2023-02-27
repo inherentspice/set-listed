@@ -44,6 +44,20 @@
 
 /* buttons */
 
+.edit-profile-cancel-button {
+  height: 35px;
+  width: 35px;
+  cursor: pointer;
+  background-color: white;
+  fill: var(--primary-color);
+  border-radius: 50%;
+}
+
+.edit-profile-cancel-button:hover {
+  background-color: var(--primary-color);
+  fill: white;
+}
+
 .close-button {
   cursor: pointer;
   position: absolute;
@@ -161,8 +175,6 @@ h2 {
   align-items: center;
   justify-content: center;
   border-radius: 9px;
-  padding: 10px;
-  gap: 1rem;
 
 }
 
@@ -190,9 +202,13 @@ h2 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background-color: var(--primary-light-color);
+  color: white;
   width: 100%;
   align-items: center;
-  border-bottom: solid 2px var(--grey-color-1);
+  border-bottom: solid 2px var(--secondary-color);
+  border-radius: 8px 8px 0 0;
+  padding: 0 15px 0 15px;
   font-weight: bold;
 }
 
@@ -200,9 +216,11 @@ h2 {
   width: 100%;
   justify-content: center;
   display: flex;
+  background-color: var(--primary-light-color);
+  border-radius: 0 0 8px 8px;
   margin-top: 1rem;
   padding: 0.5rem;
-  border-top: 2px solid var(--grey-color-1);
+  border-top: 2px solid var(--secondary-color);
 }
 
 .expanded-profile-overlay-submit-btn {
