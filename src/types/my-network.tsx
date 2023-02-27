@@ -7,3 +7,11 @@ export interface RecommendedData {
     tagline: string,
     followers: number
 }
+
+export interface Connections {
+  id: string,
+  user: string,
+  friends: string[],
+  pending: string[],
+  waiting: string[]
+}

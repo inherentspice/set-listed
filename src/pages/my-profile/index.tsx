@@ -14,9 +14,12 @@ import ProfileService from "../../services/home/profile";
 import ProfileData from "../../types/profile";
 import { useUserId } from "../../context/userIdContext";
 import "./index.css";
+import ConnectionService from "../../services/home/connection";
+import { Connections } from "../../types/my-network";
 
 export default function BuildProfilePage() {
   const [profile, setProfile] = useState< ProfileData | undefined>(undefined);
+  const [connections, setConnections] = useState<Connections | null>(null);
   const { profileid } = useParams<string>();
   const { userId } = useUserId();
 
@@ -36,17 +39,30 @@ export default function BuildProfilePage() {
       }
     }
 
-    if (profileid) {
-      fetchProfile();
-    }
+    fetchProfile();
+
   }, [profileid, userId]);
+
+  useEffect(() => {
+    async function viewConnections() {
+      try {
+        const viewingUserConnections = await ConnectionService.getConnections(userId);
+        setConnections(viewingUserConnections.data.connection);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    if (userId !== profileid && userId && profileid && connections===null) {
+      viewConnections();
+    }
+  }, [profileid, userId, connections]);
 
   return (
     <>
      {profile && <div className="page-cont">
-       <div className="profile-page">        
+       <div className="profile-page">
         <div className="profile-page-left">
-          <ProfileHero userProfile={userId === profileid} profileCard={profile.profileCard} viewingUser={userId}/>
+          {connections && <ProfileHero userProfile={userId === profileid} profileCard={profile.profileCard} viewingUser={userId} connections={connections}/>}
           {userId === profileid && <ProfileAnalytics profileCard={profile.profileCard}/>}
           {userId === profileid && <ProfileResources />}
           <ProfileAbout userProfile={userId === profileid} about={profile.about}/>
