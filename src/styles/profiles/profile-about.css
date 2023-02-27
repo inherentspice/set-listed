@@ -2,13 +2,16 @@
 
 .profile-about-cont {
     width: 100%;
-    padding: 15px;
 }
 
 .profile-about-title-cont {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 5px 15px 5px 15px;
+    border-radius: 8px 8px 0 0;
+    color: white;
+    background-color: var(--primary-light-color);
 }
 
 .profile-about-title {
@@ -21,11 +24,16 @@
     width: 35px;
     padding: 5px;
     border-radius: 50%;
+    fill: white;
 }
 
 .profile-about-edit:hover {
     cursor: pointer;
-    background-color: lightgray;
+    background-color:var(--primary-color);
+}
+
+.profile-about-text {
+  padding: 5px 15px 15px 15px;
 }
 
 /* expanded edit about section */

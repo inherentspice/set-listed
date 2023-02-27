@@ -19,7 +19,7 @@
 
 .profile-hero-background-edit:hover {
     cursor: pointer;
-    background-color: var(--grey-color-0);
+    background-color: var(--primary-color);
 }
 
 .profile-hero-background-img {
@@ -70,7 +70,8 @@
 
 .profile-hero-user-info-edit:hover {
     cursor: pointer;
-    background-color: var(--grey-color-0);
+    background-color: var(--primary-color);
+    fill: white;
 }
 
 .profile-hero-user-cont {

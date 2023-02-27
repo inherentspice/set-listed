@@ -7,6 +7,10 @@
 .profile-resources-header {
     padding: 5px 0 5px 15px;
     font-size: 1.5rem;
+    background-color: var(--primary-light-color);
+    margin: 0;
+    border-radius: 8px 8px 0 0;
+    color: white;
 }
 
 .profile-resources-items-cont {
