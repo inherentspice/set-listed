@@ -1,9 +1,25 @@
+@import url("../../App.css");
+
 .profile-cont {
     width: 100%;
+  }
+
+  .featured-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 15px 5px 15px;
+    background-color: var(--primary-light-color);
+    border-radius: 8px 8px 0 0;
+    color: white;
+  }
+
+  .featured-header>h2 {
+    font-size: 1.5rem;
   }
   
   .featured-post-cont {
     display: flex;
+    min-height: 100px;
   }
   
   .featured-post {
