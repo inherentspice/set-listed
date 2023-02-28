@@ -1,7 +1,5 @@
 import React, { ReactPortal, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import Add from "../../media/icons/add.png";
-import Edit from "../../media/icons/edit.png";
 import ArrowForward from "../../media/icons/arrow-forward.png";
 import CancelButton from "../../media/icons/cancel.png";
 import shortenText from "../../utilities/shorten-text";
