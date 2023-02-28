@@ -62,7 +62,7 @@ export default function BuildProfilePage() {
      {profile && <div className="page-cont">
        <div className="profile-page">
         <div className="profile-page-left">
-          {<ProfileHero userProfile={userId === profileid} profileCard={profile.profileCard} viewingUser={userId} connections={connections}/>}
+          <ProfileHero userProfile={userId === profileid} profileCard={profile.profileCard} viewingUser={userId} connections={connections}/>
           {userId === profileid && <ProfileAnalytics profileCard={profile.profileCard}/>}
           {userId === profileid && <ProfileResources />}
           <ProfileAbout userProfile={userId === profileid} about={profile.about}/>
