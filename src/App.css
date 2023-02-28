@@ -87,6 +87,26 @@
   color: white;
 }
 
+.secondary-button {
+  display: flex;
+  border-radius: 124px;
+  border: 2px solid white;
+  color: white;
+  background-color: var(--primary-light-color);
+  width: fit-content;
+  text-align: center;
+  align-content: center;
+  padding: 5px 20px 5px 20px;
+  font-weight: 700;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.secondary-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
 .hidden-btn {
   background-color: inherit;
   border: none;

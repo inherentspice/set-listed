@@ -370,7 +370,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
         </div>
       </div>
       <div className="featured-post-cont">
-        {featured.length <= 0 ? <p className="featured-no-featured-message">Feature your best content, videos, jokes, and more by clicking the add button about.</p> : featured
+        {featured.length <= 0 ? <p className="featured-no-featured-message">Feature your best content, videos, jokes, and more by clicking the add button above.</p> : featured
         .filter((featuredPost, index) => index >= featureIndex && index < featureIndex + 3)
         .map((featuredPost) => {
           return (
