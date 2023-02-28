@@ -194,6 +194,16 @@ h2 {
 }
 
 /* Profile Page */
+.profile-section-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 5px 15px 5px 15px;
+  background-color: var(--primary-light-color);
+  border-radius: 8px 8px 0 0;
+}
+
+
 .expanded-profile-overlay-cont {
   position: fixed;
   top: 0;

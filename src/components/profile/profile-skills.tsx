@@ -165,7 +165,7 @@ export default function ProfileSkills(props: {skills: SkillData[], user: string,
 
   return (
     <div className="profile-cont comp">
-      <div className="editable-comp-header">
+      <div className="profile-section-header">
         <h2>Skills</h2>
         {props.userProfile && <div className="profile-experience-header-buttons">
           <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddSkillClick()} />
