@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import ConnectionService from "../../services/home/connection";
 import "../../styles/my-network/invitations.css";
 import { User } from "../../types/my-network";
 
-export default function NetworkInvitations(props: {pendingConnections: User[]}) {
+export default function NetworkInvitations(props: {pendingConnections: User[], user: string}) {
     const [showMore, setShowMore] = useState<boolean>(false);
     const [pending, setPending] = useState<User[]>(props.pendingConnections);
 
@@ -12,6 +13,42 @@ export default function NetworkInvitations(props: {pendingConnections: User[]}) 
 
     function handleShowLessClick(): void{
         setShowMore(false);
+    }
+
+    async function handleAcceptClick(
+      senderId: string,
+      id: string
+    ): Promise<void>{
+      try {
+        const formObject = {
+          senderId
+        };
+        await ConnectionService.acceptRequest(formObject, id);
+        const updatedPending = pending.filter((friend) => friend.id !== senderId);
+        setPending(updatedPending);
+        return Promise.resolve();
+      } catch (err) {
+        console.log(err);
+        return Promise.reject();
+      }
+    }
+
+    async function handleIgnoreClick(
+      senderId: string,
+      id: string
+    ): Promise<void>{
+      try {
+        const formObject = {
+          senderId
+        };
+        await ConnectionService.declineRequest(formObject, id);
+        const updatedPending = pending.filter((friend) => friend.id !== senderId);
+        setPending(updatedPending);
+        return Promise.resolve();
+      } catch (err) {
+        console.log(err);
+        return Promise.reject();
+      }
     }
 
     if (pending === undefined || pending.length === 0) {
@@ -35,8 +72,8 @@ export default function NetworkInvitations(props: {pendingConnections: User[]}) 
                   <div className="network-invitation-info">
                     <div className="network-invitation-name">{inviter.firstName + " " + inviter.lastName}</div>
                     <div className="network-invitation-btns">
-                      <button className="network-invitation-ignore-btn">Ignore</button>
-                      <button className="network-invitation-accept-btn">Accept</button>
+                      <button className="network-invitation-ignore-btn" onClick={() => handleIgnoreClick(inviter.id, props.user)}>Ignore</button>
+                      <button className="network-invitation-accept-btn" onClick={() => handleAcceptClick(inviter.id, props.user)}>Accept</button>
                     </div>
                   </div>
                 </div>
@@ -50,8 +87,8 @@ export default function NetworkInvitations(props: {pendingConnections: User[]}) 
                 <div className="network-invitation-info">
                   <div className="network-invitation-name">{inviter.firstName + " " + inviter.lastName}</div>
                   <div className="network-invitation-btns">
-                    <button className="network-invitation-ignore-btn">Ignore</button>
-                    <button className="network-invitation-accept-btn">Accept</button>
+                    <button className="network-invitation-ignore-btn" onClick={() => handleIgnoreClick(inviter.id, props.user)}>Ignore</button>
+                    <button className="network-invitation-accept-btn" onClick={() => handleAcceptClick(inviter.id, props.user)}>Accept</button>
                   </div>
                 </div>
               </div>

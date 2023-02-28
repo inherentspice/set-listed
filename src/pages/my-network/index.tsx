@@ -27,7 +27,7 @@ export default function MyNetwork() {
   return (
     <div>
       <NetworkManage />
-      {connections && <NetworkInvitations pendingConnections={connections?.waiting}/>}
+      {connections && <NetworkInvitations pendingConnections={connections?.waiting} user={userId}/>}
       <NetworkRecommended />
     </div>
   );
