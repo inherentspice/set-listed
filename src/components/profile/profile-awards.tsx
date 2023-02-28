@@ -187,14 +187,14 @@ export default function ProfileAwards(props: {awards: AwardData[], user: string,
 
   return (
     <div className="profile-cont comp">
-      <div className="editable-comp-header">
-        <h2>Awards & Achievements</h2>
+      <div className="profile-section-header">
+        <h2 className="awards-header-title">Awards & Achievements</h2>
         {props.userProfile && <div className="profile-experience-header-buttons">
-          <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddAwardsClick()} />
+          <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-section-header-button" onClick={() => handleAddAwardsClick()}><path d="M450 856V606H200v-60h250V296h60v250h250v60H510v250h-60Z"/></svg>
         </div>}
       </div>
       <div className="awards-cont">
-        {awards.map(award => {
+        {awards.length <=0 ? <p>You haven't added any awards yet.</p> : awards.map(award => {
           return (
           <div className="award-cont" key={award.id}>
             <h4>{award.content}</h4>

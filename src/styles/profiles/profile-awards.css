@@ -1,3 +1,11 @@
-.award-cont>h4 {
-  font-weight: 600;
+@import url("../../App.css");
+
+.awards-header-title {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.awards-cont {
+  border-top: solid 2px var(--grey-color-1);
+  padding: 5px 15px 5px 15px;
 }
