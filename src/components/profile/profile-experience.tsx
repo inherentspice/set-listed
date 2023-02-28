@@ -312,11 +312,11 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
         <div className="profile-experience-header">
           <div className="profile-experience-header-title">Experience</div>
           <div className="profile-experience-header-buttons">
-            {props.userProfile && <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddExperienceClick()} />}
+            {props.userProfile && <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-section-header-button" onClick={() => handleAddExperienceClick()}><path d="M450 856V606H200v-60h250V296h60v250h250v60H510v250h-60Z"/></svg>}
           </div>
         </div>
         <div className="profile-experience-items-cont">
-          {experience.map(item => {
+          {experience.length <=0 ? <p>You haven't posted any experience yet.</p> : experience.map(item => {
             return(
               <div className="profile-experience-item">
                 <img className="profile-experience-item-img" src={ShowImage} />
@@ -327,7 +327,7 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
                       <div className="profile-experience-item-venue">{item.venue}</div>
                     </div>
                     {props.userProfile && <div className="profile-experience-item-head-right">
-                      <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditExperienceClick(item.id)} />
+                      <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-section-body-button" onClick={() => handleEditExperienceClick(item.id)}><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg>
                     </div>}
                   </div>
                   <div className="profile-experience-item-duration-cont">
@@ -342,7 +342,7 @@ export default function ProfileExperience(props: {experience: ExperienceData[], 
             })}
           </div>
           <div className="profile-experience-show-all-experience">
-            Show all experience
+            Show All Experience
           </div>
         {expandedAddExperience && <ShowAddExperience />}
         {expandedEditExperience && <ShowEditExperience />}

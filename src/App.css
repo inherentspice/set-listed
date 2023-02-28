@@ -107,6 +107,31 @@
   color: white;
 }
 
+.profile-section-header-button {
+    height: 35px;
+    width: 35px;
+    padding: 5px;
+    border-radius: 50%;
+    fill: white;
+}
+
+.profile-section-header-button:hover {
+  cursor: pointer;
+  background-color:var(--primary-color);
+}
+
+.profile-section-body-button {
+  height: 35px;
+  width: 35px;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.profile-section-body-button:hover{
+  background-color: var(--primary-color);
+  fill: white;
+}
+
 .hidden-btn {
   background-color: inherit;
   border: none;
