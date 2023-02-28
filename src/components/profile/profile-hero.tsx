@@ -17,7 +17,7 @@ import ConnectionButton from "../network/connection-button";
 
 
 
-export default function ProfileHero(props: {profileCard: ProfileCardData[], userProfile: boolean, viewingUser: string, connections: Connections | null}) {
+export default function ProfileHero(props: {profileCard: ProfileCardData[], userProfile: boolean, viewingUser: string, connections: Connections | undefined}) {
   const [expandedEditProfile, setExpandedEditProfile] = useState<string>("");
   const [expandedEditBackground, setExpandedEditBackground] = useState<string>("");
   const [expandedEditProfilePic, setExpandedEditProfilePic] = useState<string>("");
@@ -33,13 +33,13 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
   }, [err]);
 
   function determineConnectionState() {
-    if (props.connections === null) {
+    if (props.connections === undefined) {
       setConnectionStatus("friend");
       return;
     }
-    const isFriend = props.connections.friends.filter((friend) => profileCard.user === friend).length > 0;
-    const friendRequestSent = props.connections.pending.filter((friend) => profileCard.user === friend).length > 0;
-    const isRequestingFriend = props.connections.waiting.filter((friend) => profileCard.user === friend).length > 0;
+    const isFriend = props.connections.friends.filter((friend) => profileCard.user === friend.id).length > 0;
+    const friendRequestSent = props.connections.pending.filter((friend) => profileCard.user === friend.id).length > 0;
+    const isRequestingFriend = props.connections.waiting.filter((friend) => profileCard.user === friend.id).length > 0;
     if (isFriend) {
       setConnectionStatus("friend");
     } else if (friendRequestSent) {
