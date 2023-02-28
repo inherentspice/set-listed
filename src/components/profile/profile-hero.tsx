@@ -15,7 +15,7 @@ import { Connections } from "../../types/my-network";
 
 
 
-export default function ProfileHero(props: {profileCard: ProfileCardData[], userProfile: boolean, viewingUser: string, connections: Connections}) {
+export default function ProfileHero(props: {profileCard: ProfileCardData[], userProfile: boolean, viewingUser: string, connections: Connections | null}) {
   const [expandedEditProfile, setExpandedEditProfile] = useState<string>("");
   const [expandedEditBackground, setExpandedEditBackground] = useState<string>("");
   const [expandedEditProfilePic, setExpandedEditProfilePic] = useState<string>("");
@@ -31,6 +31,10 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
   }, [err]);
 
   function determineConnectionState() {
+    if (props.connections === null) {
+      setConnectionStatus("friend");
+      return;
+    }
     const isFriend = props.connections.friends.filter((friend) => profileCard.user === friend).length > 0;
     const friendRequestSent = props.connections.pending.filter((friend) => profileCard.user === friend).length > 0;
     const isRequestingFriend = props.connections.waiting.filter((friend) => profileCard.user === friend).length > 0;
