@@ -132,6 +132,19 @@
   fill: white;
 }
 
+.profile-overlay-header-button {
+  height: 45px;
+  width: 45px;
+  padding: 1px;
+  border-radius: 50%;
+  fill: white;
+  cursor: pointer;
+}
+
+.profile-overlay-header-button:hover {
+  background-color: var(--primary-color);
+}
+
 .hidden-btn {
   background-color: inherit;
   border: none;
@@ -203,7 +216,6 @@ h2 {
   border-radius: 8px 8px 0 0;
 }
 
-
 .expanded-profile-overlay-cont {
   position: fixed;
   top: 0;
@@ -259,13 +271,17 @@ h2 {
   flex-direction: row;
   justify-content: space-between;
   background-color: var(--primary-light-color);
-  color: white;
   width: 100%;
   align-items: center;
-  border-bottom: solid 2px var(--secondary-color);
+  border-bottom: solid 2px var(--grey-color-1);
   border-radius: 8px 8px 0 0;
   padding: 0 15px 0 15px;
   font-weight: bold;
+}
+
+.expanded-profile-overlay-header-title {
+  font-size: 1.5rem;
+  color: white;
 }
 
 .expanded-profile-overlay-submit {
@@ -276,23 +292,5 @@ h2 {
   border-radius: 0 0 8px 8px;
   margin-top: 1rem;
   padding: 0.5rem;
-  border-top: 2px solid var(--secondary-color);
-}
-
-.expanded-profile-overlay-submit-btn {
-  color: var(--background-color);
-  background-color: var(--primary-color);
-  width: 6rem;
-  font-weight: bold;
-  text-align: center;
-  padding: 0.5rem;
-  border: 2px solid darkred;
-  border-radius: 1.5rem;
-}
-
-.expanded-profile-overlay-submit-btn:hover {
-  background-color: var(--primary-light-color);
-  color: darkred;
-  cursor: pointer;
-
+  border-top: 2px solid var(--grey-color-1);
 }
