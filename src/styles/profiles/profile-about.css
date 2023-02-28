@@ -32,8 +32,13 @@
     background-color:var(--primary-color);
 }
 
+.profile-about-text-cont {
+  border-top: 2px solid var(--grey-color-1);
+}
+
 .profile-about-text {
   padding: 5px 15px 15px 15px;
+  
 }
 
 /* expanded edit about section */

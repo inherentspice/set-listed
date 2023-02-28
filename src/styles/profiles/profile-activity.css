@@ -8,6 +8,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 5px 15px 5px 15px;
+    background-color: var(--primary-light-color);
+    border-radius: 8px 8px 0 0 ;
+    color: white;
 }
 
 .profile-activity-header-left {
@@ -17,41 +21,23 @@
 
 .profile-activity-header-title {
     font-weight: bold;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
 }
 
 .profile-activity-header-followers {
     font-size: 0.75rem;
-    color: var(--grey-color-1);
 }
 
-.profile-activity-start-post {
-    padding: .5rem;
-    font-weight: bold;
-    border: var(--primary-color) solid 2px;
-    background-color: var(--primary-color);
-    border-radius: 2rem;
-    color: white;
-}
-
-
-.profile-activity-start-post:hover {
-    cursor: pointer;
-    border: var(--primary-color) solid 2px;
-    color: var(--primary-color);
-    background-color: var(--primary-light-color);
-}
-
-.profile-activity-posts-cont {
-    padding-top: 0.5rem;
+.profile-activity-header-right {
+    display: flex;
+    align-items: center;
 }
 
 .profile-activity-post-item {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    gap: 10px;
+    padding: 5px 15px 5px 15px;
     border-top:  var(--grey-color-1) solid 2px;
 }
 
@@ -60,7 +46,7 @@
     flex-direction: row;
     gap: 0.25rem;
     font-size: 0.75rem;
-    color: var(--grey-color-1);
+    color: var(--primary-color);
 }
 
 .profile-activity-post-author {
@@ -101,14 +87,6 @@
     color: var(--grey-color-1);
 }
 
-.profile-activity-show-all {
-    text-align: center;
-    border-top: var(--grey-color-1) 2px solid;
-    padding: .25rem;
-    border-radius: 0 0 15px 15px;
-    font-weight: bold;
-}
-
 .profile-activity-post-likes {
     display: flex;
     flex-direction: row;
@@ -117,18 +95,30 @@
 }
 
 .profile-activity-post-like-img {
-    height: 1rem;
-    transition-property: height;
-    transition-duration: 0.5s;
+    height: 1.5rem;
+    width: 1.5rem;
+    fill: var(--primary-color);
+    transition: all 0.5s ease-in-out;
     border: var(--primary-color) 2px solid;
     border-radius: 50%;
     padding: 0.1rem;
 }
 
 .profile-activity-post-like-img:hover {
-    height: 1.5rem;
+    height: 2rem;
+    width: 2rem;
+    bottom: 0.5rem;
     cursor: pointer;
-    background-color: var(--primary-light-color);
+    background-color: var(--primary-color);
+    fill: white;
+}
+
+.profile-activity-show-all {
+    text-align: center;
+    border-top: var(--grey-color-1) 2px solid;
+    padding: 15px 15px 15px 15px;
+    border-radius: 0 0 8px 8px;
+    font-weight: bold;
 }
 
 .profile-activity-show-all:hover {

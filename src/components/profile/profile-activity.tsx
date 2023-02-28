@@ -271,7 +271,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
             <div className="profile-activity-header-followers">{profileCard.userProfileViews+" followers"}</div>
           </div>
           <div className="profile-activity-header-right">
-            {props.userProfile && <div className="profile-activity-start-post" onClick={() => handleStartPostClick(profileCard.id)}>Start a Post</div>}
+            {props.userProfile && <div className="secondary-button" onClick={() => handleStartPostClick(profileCard.id)}>Start a Post</div>}
           </div>
         </div>
         <div className="profile-activity-posts-cont">
@@ -284,7 +284,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
                 </div>
                 <p className="profile-activity-post-description">{item.content}</p>
                 <div className="profile-activity-post-likes">
-                  <img className="profile-activity-post-like-img" onClick={() => handleLikePostClick(item.id, props.viewingUser)} src={Like} />
+                  <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-activity-post-like-img" onClick={() => handleLikePostClick(item.id, props.viewingUser)}><path d="M716 936H272V424l278-288 39 31q6 5 9 14t3 22v10l-45 211h299q24 0 42 18t18 42v81.839q0 7.161 1.5 14.661T915 595L789 885q-8.878 21.25-29.595 36.125Q738.689 936 716 936Zm-384-60h397l126-299v-93H482l53-249-203 214v427Zm0-427v427-427Zm-60-25v60H139v392h133v60H79V424h193Z"/></svg>
                   <div className="profile-activity-post-like-count">{item.likes ? item.likes.length : 0}</div>
                   {props.userProfile && <button className="post-edit" onClick={() => handleEditPostClick(item.id)}>edit</button>}
                   {props.userProfile && <button className="post-edit" onClick={(e) => handleDeletePostClick(e, item.id)}>delete</button>}
@@ -293,7 +293,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
               );
             })}
         </div>
-        <div className="profile-activity-show-all">Show all activity</div>
+        <div className="profile-activity-show-all">Show All Activity</div>
         {expandedStartPost && <ShowStartPost />}
         {expandedEditPost && <ShowEditPost />}
         {err && <ErrorMessage/>}
