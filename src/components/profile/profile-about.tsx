@@ -78,7 +78,7 @@ export default function ProfileAbout(props: {about: AboutData[], userProfile: bo
                 onChange={handleContentChange}
               ></textarea>
               <div className="expanded-profile-overlay-submit">
-                <button className="primary-button" type="submit" onClick={(e) => handleAddAboutEditSubmit(e, content)}>Save</button>
+                <button className="secondary-button" type="submit" onClick={(e) => handleAddAboutEditSubmit(e, content)}>Save</button>
               </div>
             </form>
             {err && <ErrorMessage/>}

@@ -141,6 +141,7 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
 .profile-section-body-button:hover{
   background-color: var(--primary-color);
   fill: white;
@@ -277,7 +278,6 @@ h2 {
   gap: 1rem;
   padding: 1rem 10px 10px 10px;
   overflow-y: scroll;
-
 }
 
 .expanded-profile-overlay-header-cont {
