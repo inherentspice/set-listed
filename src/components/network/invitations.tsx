@@ -9,14 +9,14 @@ import Equal from "../../media/icons/equal.png";
 import "../../styles/my-network/invitations.css";
 
 export default function NetworkInvitations() {
-    const [showMore, setShowMore] = useState<null | string>(null);
+    const [showMore, setShowMore] = useState<boolean>(false);
 
-    function handleShowMoreClick(id: string): void{
-        setShowMore(id);
+    function handleShowMoreClick(): void{
+        setShowMore(true);
     }
 
     function handleShowLessClick(): void{
-        setShowMore(null);
+        setShowMore(false);
     }
 
 
@@ -74,7 +74,7 @@ export default function NetworkInvitations() {
                 sharedConnections: ["Ian Bobs", "Geo Genes"]
             }
         ]
-    ]
+    ];
 
     return(
         <div className="network-invitations-cont comp">
@@ -100,7 +100,7 @@ export default function NetworkInvitations() {
                                 <button className="network-invitation-accept-btn">Accept</button>
                             </div>
                         </div>
-    
+
                     );
                 })}
 
@@ -121,14 +121,14 @@ export default function NetworkInvitations() {
                                 <button className="network-invitation-accept-btn">Accept</button>
                             </div>
                         </div>
-    
+
                     );
                 })}
 
             </div>
-            {!showMore && <div className="network-invitation-show-more-less" onClick={() => handleShowMoreClick("abcd")}>Show More</div>}
+            {!showMore && <div className="network-invitation-show-more-less" onClick={() => handleShowMoreClick()}>Show More</div>}
             {showMore && <div className="network-invitation-show-more-less" onClick={() => handleShowLessClick()}>Show Less</div>}
 
         </div>
-    )
+    );
 }
