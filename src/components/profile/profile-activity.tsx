@@ -275,7 +275,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
           </div>
         </div>
         <div className="profile-activity-posts-cont">
-          {posts.length <=0 ? <p>You haven't posted any content yet you lazy bum.</p> : posts && posts.map(item => {
+          {posts.length <=0 ? <p>You haven't posted any content yet you lazy bum.</p> : posts && posts.slice(0).reverse().map(item => {
             return(
               <div className="profile-activity-post-item" key={item.id}>
                 <div className="profile-activity-post-info">
