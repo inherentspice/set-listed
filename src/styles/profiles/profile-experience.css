@@ -9,6 +9,10 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 5px 15px 5px 15px;
+    border-radius: 8px 8px 0 0 ;
+    color: white;
+    background-color: var(--primary-light-color);
 }
 
 .profile-experience-header-title {
