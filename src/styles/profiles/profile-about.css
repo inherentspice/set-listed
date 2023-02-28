@@ -26,11 +26,6 @@
 
 /* expanded edit about section */
 
-  .start-post-cancel:hover {
-    cursor: pointer;
-    background-color: var(--button-hover-color);
-    border-radius: 50%;
-  }
 
   .edit-profile-about-form {
     display: flex;
@@ -41,6 +36,9 @@
 
   .edit-profile-about-body {
     display: flex;
+    flex-direction: column;
+    gap: 5px;
     justify-content: center;
+    text-align: center;
     width: 100%
   }
