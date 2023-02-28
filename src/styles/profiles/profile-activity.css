@@ -4,16 +4,6 @@
     width: 100%;
 }
 
-.profile-activity-header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 5px 15px 5px 15px;
-    background-color: var(--primary-light-color);
-    border-radius: 8px 8px 0 0 ;
-    color: white;
-}
-
 .profile-activity-header-left {
     display: flex;
     flex-direction: column;
@@ -22,10 +12,12 @@
 .profile-activity-header-title {
     font-weight: bold;
     font-size: 1.5rem;
+    color: white;
 }
 
 .profile-activity-header-followers {
     font-size: 0.75rem;
+    color: white;
 }
 
 .profile-activity-header-right {

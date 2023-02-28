@@ -37,8 +37,8 @@
   .edit-profile-about-body {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    justify-content: center;
     text-align: center;
-    width: 100%
+    justify-content: center;
+    width: 100%;
+    padding-top: 10px;
   }

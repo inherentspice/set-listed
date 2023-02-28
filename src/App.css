@@ -87,6 +87,20 @@
   color: white;
 }
 
+.pending-button {
+  display: flex;
+  border-radius: 124px;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  background-color: var(--grey-color-0);
+  width: fit-content;
+  text-align: center;
+  align-content: center;
+  padding: 5px 20px 5px 20px;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
 .secondary-button {
   display: flex;
   border-radius: 124px;
@@ -127,17 +141,18 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
 .profile-section-body-button:hover{
   background-color: var(--primary-color);
   fill: white;
 }
 
-.profile-overlay-header-button{
-  height: 40px;
-  width: 40px;
+.profile-overlay-header-button {
+  height: 45px;
+  width: 45px;
   padding: 1px;
-  fill: white;
   border-radius: 50%;
+  fill: white;
   cursor: pointer;
 }
 
@@ -207,6 +222,15 @@ h2 {
 }
 
 /* Profile Page */
+.profile-section-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 5px 15px 5px 15px;
+  background-color: var(--primary-light-color);
+  border-radius: 8px 8px 0 0;
+}
+
 .expanded-profile-overlay-cont {
   position: fixed;
   top: 0;
@@ -254,7 +278,6 @@ h2 {
   gap: 1rem;
   padding: 1rem 10px 10px 10px;
   overflow-y: scroll;
-
 }
 
 .expanded-profile-overlay-header-cont {
@@ -262,7 +285,6 @@ h2 {
   flex-direction: row;
   justify-content: space-between;
   background-color: var(--primary-light-color);
-  color: white;
   width: 100%;
   align-items: center;
   border-bottom: solid 2px var(--grey-color-1);
@@ -273,6 +295,7 @@ h2 {
 
 .expanded-profile-overlay-header-title {
   font-size: 1.5rem;
+  color: white;
 }
 
 .expanded-profile-overlay-submit {
@@ -283,5 +306,5 @@ h2 {
   border-radius: 0 0 8px 8px;
   margin-top: 1rem;
   padding: 0.5rem;
-  border-top: 2px solid var(--secondary-color);
+  border-top: 2px solid var(--grey-color-1);
 }

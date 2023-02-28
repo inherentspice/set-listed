@@ -265,7 +265,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
 
     return(
       <div className="profile-activity-cont comp">
-        <div className="profile-activity-header">
+        <div className="profile-section-header">
           <div className="profile-activity-header-left">
             <div className="profile-activity-header-title">Activity</div>
             <div className="profile-activity-header-followers">{profileCard.userProfileViews+" followers"}</div>

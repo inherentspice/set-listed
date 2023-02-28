@@ -2,9 +2,19 @@
     display: flex;
     flex-direction: column;
   }
+
+  .skills-header-title {
+    font-size: 1.5rem;
+    color: white;
+  }
   
   .content-endorse-cont {
     display: flex;
     align-items: center;
     gap: 2rem;
+  }
+
+  .skills-cont {
+    padding: 5px 15px 5px 15px;
+    border-top: 2px solid var(--grey-color-1);
   }

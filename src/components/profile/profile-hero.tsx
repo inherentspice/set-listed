@@ -12,10 +12,12 @@ import { IconContext } from "react-icons";
 import { SiTwitter, SiYoutube, SiInstagram, SiTiktok } from "react-icons/si";
 import ErrorMessage from "../error-message";
 import { Connections } from "../../types/my-network";
+import ConnectionService from "../../services/home/connection";
+import ConnectionButton from "../network/connection-button";
 
 
 
-export default function ProfileHero(props: {profileCard: ProfileCardData[], userProfile: boolean, viewingUser: string, connections: Connections}) {
+export default function ProfileHero(props: {profileCard: ProfileCardData[], userProfile: boolean, viewingUser: string, connections: Connections | null}) {
   const [expandedEditProfile, setExpandedEditProfile] = useState<string>("");
   const [expandedEditBackground, setExpandedEditBackground] = useState<string>("");
   const [expandedEditProfilePic, setExpandedEditProfilePic] = useState<string>("");
@@ -31,15 +33,19 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
   }, [err]);
 
   function determineConnectionState() {
+    if (props.connections === null) {
+      setConnectionStatus("friend");
+      return;
+    }
     const isFriend = props.connections.friends.filter((friend) => profileCard.user === friend).length > 0;
     const friendRequestSent = props.connections.pending.filter((friend) => profileCard.user === friend).length > 0;
     const isRequestingFriend = props.connections.waiting.filter((friend) => profileCard.user === friend).length > 0;
     if (isFriend) {
       setConnectionStatus("friend");
     } else if (friendRequestSent) {
-      setConnectionStatus("Friend Request Pending");
+      setConnectionStatus("Pending");
     } else if (isRequestingFriend) {
-      setConnectionStatus("Confirm Friend Request");
+      setConnectionStatus("Confirm Request");
     } else {
       setConnectionStatus("Connect+");
     }
@@ -177,6 +183,23 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
       };
       await MessagingService.createRoom(formObject);
       navigate("/messaging");
+      return Promise.resolve();
+    } catch (err) {
+      setErr(true);
+      return Promise.reject(err);
+    }
+  }
+
+  async function handleConnectionClick(
+    user: string,
+    viewingUser: string
+  ): Promise<void>{
+    try {
+      const formObject = {
+        friendId: user
+      };
+      await ConnectionService.sendRequest(formObject, viewingUser);
+      setConnectionStatus("Friend Request Pending");
       return Promise.resolve();
     } catch (err) {
       setErr(true);
@@ -418,7 +441,8 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
             <div className='profile-hero-mutual-connections-names'><a href='./my-profile'>2 Mutual Connections: Rachel Loo and Denise Ferguson</a></div>
           </div>
           <div className='primary-button' onClick={() => handleMessageClick(profileCard.user, props.viewingUser)}>Message</div>
-          {connectionStatus !== "friend" && <div className='primary-button' onClick={() => handleMessageClick(profileCard.user, props.viewingUser)}>{connectionStatus}</div>}
+          {connectionStatus !== "friend" && <ConnectionButton connectionStatus={connectionStatus} user={profileCard.user} viewingUser={props.viewingUser} handleConnectionClick={handleConnectionClick}/>}
+
 
         </div>
         <div className="profile-hero-user-digital-footprint">
