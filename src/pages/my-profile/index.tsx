@@ -19,7 +19,7 @@ import { Connections } from "../../types/my-network";
 
 export default function BuildProfilePage() {
   const [profile, setProfile] = useState< ProfileData | undefined>(undefined);
-  const [connections, setConnections] = useState<Connections | null>(null);
+  const [connections, setConnections] = useState<Connections | undefined>(undefined);
   const { profileid } = useParams<string>();
   const { userId } = useUserId();
 
@@ -52,7 +52,7 @@ export default function BuildProfilePage() {
         console.log(err);
       }
     }
-    if (userId !== profileid && userId && profileid && connections===null) {
+    if (userId !== profileid && userId && profileid && connections===undefined) {
       viewConnections();
     }
   }, [profileid, userId, connections]);

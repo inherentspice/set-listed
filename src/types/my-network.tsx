@@ -8,10 +8,20 @@ export interface RecommendedData {
     followers: number
 }
 
+export interface User {
+  connection: string,
+  firstName: string,
+  lastName: string,
+  id: string,
+  profileCard: {
+    image: string
+  }
+}
+
 export interface Connections {
   id: string,
   user: string,
-  friends: string[],
-  pending: string[],
-  waiting: string[]
+  friends: User[],
+  pending: User[],
+  waiting: User[]
 }
