@@ -165,11 +165,11 @@ export default function ProfileSkills(props: {skills: SkillData[], user: string,
 
   return (
     <div className="profile-cont comp">
-      <div className="editable-comp-header">
+      <div className="featured-header">
         <h2>Skills</h2>
         {props.userProfile && <div className="profile-experience-header-buttons">
-          <img className="profile-experience-header-btn" src={Add} onClick={() => handleAddSkillClick()} />
-          <img className="profile-experience-header-btn" src={Edit} onClick={() => handleEditSkillClick()}/>
+          <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-section-header-button"  onClick={() => handleAddSkillClick()}><path d="M450 856V606H200v-60h250V296h60v250h250v60H510v250h-60Z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-section-header-button" onClick={() => handleEditSkillClick()}><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg>
         </div>}
       </div>
       <div className="skills-cont">
