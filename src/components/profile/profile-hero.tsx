@@ -448,16 +448,16 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
         <div className="profile-hero-user-digital-footprint">
           <div>
             {profileCard.socials && profileCard.socials.map(item => {
+              const socialMediaIndex = profileCard.socials.indexOf(item);
               return (
-                // <div className="profile-hero-user-digital-footprint-item" key={item.id} >
-                //   <img className="profile-hero-user-digital-footprint-img" src={item.img} alt=""/>
-                //   <div className="profile-hero-user-digital-footprint-username">{item.username}</div>
-                //   <img className="profile-her-user-digital-footprint-follower-img" src={Follower} alt="" />
-                //   <div className="profile-hero-user-digital-footprint-followers">{item.followers}</div>
-                // </div>
-                <p>{item}</p>
+                <div className="digital-footprint-item">
+                  <IconContext.Provider value={{ size: "1rem"}}>
+                    {item == null ? null : socialMediaIndex == 0 ? <SiInstagram/> : socialMediaIndex == 1 ? <SiYoutube/> : socialMediaIndex == 2 ? <SiTiktok/> : <SiTwitter/>}
+                  </IconContext.Provider>
+                  {item == null ? null : <p>{item}</p>}
+                </div>
               );
-            })}
+            })};
           </div>
         </div>
       </div>

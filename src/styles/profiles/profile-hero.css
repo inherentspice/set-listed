@@ -179,40 +179,19 @@
 .profile-hero-user-digital-footprint>div {
     display: flex;
     flex-direction: column;
+    justify-content: start;
     gap: 0.25rem;
-    padding: 1rem;
+    padding: 5px;
 }
 
-.profile-hero-user-digital-footprint-item {
-    display: grid;
-    grid-template-columns: 1fr 8fr 1fr 5fr;
+.digital-footprint-item {
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    gap: 0.5rem;
-    color: var(--grey-color-2);
-    padding: 0.5rem;
-    border-radius: 25px;
+    gap: 5px;
 }
 
 
-
-.profile-hero-user-digital-footprint-img {
-    max-height: 1.5rem;
-    max-width: 1.5rem;
-}
-
-.profile-hero-user-digital-footprint-username {
-    font-weight: bold;
-    font-size: .75;
-}
-
-.profile-her-user-digital-footprint-follower-img {
-    max-height: 1.5rem;
-}
-
-.profile-hero-user-digital-footprint-item:hover {
-    background-color: var(--button-hover-color);
-    cursor: pointer;
-}
 
 /* expanded edit profile */
 
