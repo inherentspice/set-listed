@@ -8,29 +8,33 @@ import Footer from "../../components/home/footer";
 import QuickAccess from "../../components/home/quick-access";
 import Feed from "../../components/home/feed";
 import { ProfileCardData, PostData } from "../../types/profile";
-import AuthService from "../../services/home/auth";
 import PostService from "../../services/home/posts";
 import ProfileService from "../../services/home/profile";
+import { useUserId } from "../../context/userIdContext";
 
 export default function Home() {
   const [profile, setProfile] = useState<ProfileCardData | undefined>(undefined);
   const [posts, setPosts] = useState<PostData[] | undefined>(undefined);
-  const [user, setUser] = useState<string>("");
+  const { userId } = useUserId();
+
 
   useEffect(() => {
-    (async function() {
+    async function getFeed() {
       try {
-        const userAuth = await AuthService.checkSession();
-        const getPosts = await PostService.getFeed(userAuth.data.user);
-        const getProfile = await ProfileService.getProfileCard(userAuth.data.user);
-        setUser(userAuth.data.user);
+        const getPosts = await PostService.getFeed(userId);
+        const getProfile = await ProfileService.getProfileCard(userId);
         setPosts(getPosts.data.posts);
         setProfile(getProfile.data.profileCard[0]);
       } catch (err) {
         console.log("error");
       }
-    }());
-  }, []);
+    }
+
+    if (userId) {
+      getFeed();
+    }
+
+  }, [userId]);
 
   if (!profile) {
     return (
@@ -41,10 +45,10 @@ export default function Home() {
             <QuickAccess loaded={false}/>
           </div>
           <div className="home-center">
-            <Post profileImg={""} user={user} />
+            <Post profileImg={""} user={userId} />
             <div className="home-feed">
               {posts && Array.from(posts).map(post => {
-                return <Feed viewingUser={user} post={post} key={post.id}/>;
+                return <Feed viewingUser={userId} post={post} key={post.id}/>;
               })}
             </div>
           </div>
@@ -69,14 +73,14 @@ export default function Home() {
           <QuickAccess loaded={true}/>
         </div>
         <div className="home-center">
-          {profile && <Post profileImg={profile.image} user={user}/>}
-          {!profile && <Post profileImg={""} user={user} />}
-          
+          {profile && <Post profileImg={profile.image} user={userId}/>}
+          {!profile && <Post profileImg={""} user={userId} />}
+
           <div className="home-center-divider"></div>
-          
+
           <div className="home-feed">
             {posts && Array.from(posts).map(post => {
-              return <Feed viewingUser={user} post={post} key={post.id}/>;
+              return <Feed viewingUser={userId} post={post} key={post.id}/>;
             })}
           </div>
         </div>
