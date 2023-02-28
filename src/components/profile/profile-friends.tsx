@@ -8,12 +8,17 @@ export default function ProfilePotentialFriends() {
       {UserConnections.map(user => {
         return (
           <div className="profile-info-cont">
-            <img src={user.img} alt="" className="profile-picture-small"></img>
-            <div className="profile-text-info-cont">
-              <p className="profile-name">{user.name}</p>
-              <p className="profile-tag">{user.tagLine}</p>
+            <div className="profile-info-top">
+              <img src={user.img} alt="" className="profile-picture-small"></img>
+              <div className="profile-text-info-cont">
+                <p className="profile-name">{user.name}</p>
+                <p className="profile-tag">{user.tagLine}</p>
+              </div>
+            </div>
+            <div className="profile-info-bottom">
               <button className="primary-button">Connect</button>
             </div>
+            
           </div>
         );
       })}
