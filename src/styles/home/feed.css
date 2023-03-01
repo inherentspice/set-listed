@@ -1,3 +1,63 @@
 .home-feed-cont {
     padding: 8px;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    min-height: 220px;
+}
+
+.home-feed-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.home-feed-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-feed-right-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+}
+
+.home-feed-chat-bubble {
+    position: absolute;
+    height: 180px;
+    width: 360px;
+    left: 90px;
+    top: 5px;
+}
+
+.home-feed-right-top>p {
+    width: 260px;
+}
+
+.profile-feed-info-cont {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px
+}
+
+.profile-feed-info-cont>p {
+    font-size: .75rem;
+}
+
+.profile-feed-name {
+    font-weight: bold;
+    border-right: 2px solid var(--primary-color);
+    padding-right: 5px
+}
+
+.profile-feed-tagline {
+    border-right: 2px solid var(--primary-color);
+    padding-right: 5px
 }
