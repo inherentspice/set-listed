@@ -1,3 +1,5 @@
+import { User } from "./my-network";
+
 export interface Room {
   participants: string[],
   messages: string[],
@@ -13,18 +15,11 @@ export interface ReducedProfileCard {
 }
 
 export interface Messages {
+  id: string,
   content: string,
-  createdAt: string
-  user: {
-    firstName: string,
-    lastName: string,
-    id: string
-  },
-  recipient: {
-    firstName: string,
-    lastName: string,
-    id: string
-  }
+  createdAt: string,
+  user: User,
+  recipient: User
 }
 
 export default interface RoomInfo {
