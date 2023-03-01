@@ -9,12 +9,33 @@
   }
   
   .content-endorse-cont {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    gap: 2rem;
   }
 
   .skills-cont {
     padding: 5px 15px 5px 15px;
     border-top: 2px solid var(--grey-color-1);
+    width: 100%;
   }
+
+/* expanded add skill overlay */
+
+.add-skill-form {
+  width: 100%;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-skill-form-item {
+  padding: 15px 15px 0px 15px;
+}
+
+.add-skill-form-item>select {
+  font-size: 1.25rem;
+  border: solid 2px var(--primary-color);
+  border-radius: 30px;
+  padding: 5px 15px 5px 15px;
+}
