@@ -457,7 +457,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
                   {item == null ? null : <p>{item}</p>}
                 </div>
               );
-            })};
+            })}
           </div>
         </div>
       </div>
