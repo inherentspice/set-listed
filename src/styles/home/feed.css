@@ -56,3 +56,8 @@
     border-right: 2px solid var(--primary-color);
     padding-right: 5px
 }
+
+.profile-feed-tagline {
+    border-right: 2px solid var(--primary-color);
+    padding-right: 5px
+}

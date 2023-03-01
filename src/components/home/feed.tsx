@@ -63,13 +63,13 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
         <div className="home-feed-right-top">
           <img src={ChatBubble} className="home-feed-chat-bubble" />
           <p>{props.post.content}</p>
-          <p className="profile-tag">{convertDate(props.post.createdAt)}</p>
         </div>
 
         <div className="home-feed-right-bottom">
           <div className="profile-feed-info-cont">
             <p className="profile-feed-name">{profile?.firstName} {profile?.lastName}</p>
             <p className="profile-feed-tagline">{profile?.tagline}</p>
+            <p className="profile-tag">{convertDate(props.post.createdAt)}</p>
           </div>
         </div>
       </div> 
