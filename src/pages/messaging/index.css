@@ -24,3 +24,17 @@
 .message-preview {
   color: var(--grey-color-1);
 }
+
+.message-cont {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.self-align {
+  justify-content: flex-start;
+}
+
+.recieve-align {
+  justify-content: flex-end;
+}

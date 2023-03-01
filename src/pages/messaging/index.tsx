@@ -61,14 +61,25 @@ function MessagingContent(props: {roomId: string, userId: string, friend: Reduce
     createMessage();
   };
 
+  console.log(messages);
+
   return (
     <div>
       <h1>Messaging</h1>
       <h2>Recipient: {`${props.friend.firstName} ${props.friend.lastName}`}</h2>
       <ul>
-        {messages.map((message, index) => (
-          <li key={index}>[{message.user.firstName} {message.user.lastName}]: {message.content}</li>
-        ))}
+        {messages.map((message, index) => {
+          let messageAlignment = "self-align";
+          if (message.user.id !== props.userId) {
+            messageAlignment = "recieve-align";
+          }
+          return (
+            <div className={`message-cont ${messageAlignment}`}>
+              <img className="profile-picture-small" src={message.user.profileCard.image}></img>
+              <li key={index}>[{message.user.firstName} {message.user.lastName}]: {message.content}</li>
+            </div>
+          );
+        })}
       </ul>
       <form onSubmit={(e) => handleSubmit(e)}>
         <input type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
