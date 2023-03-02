@@ -1,14 +1,14 @@
-export default function convertDateRange(start: Date, end: Date): string {
-    const dateDifference =  end.valueOf() - start.valueOf();
-    const years = Math.floor(dateDifference / (24*60*60*1000*365));
-    // if days === 0, return value in hours
-    if (!years) {
-        return `${Math.floor(dateDifference / (24 * 60 * 60 * 1000 * 30))}m`;
-    }
-    if (years==1) {
-        return `${years} year`;
-    }
+export default function convertDateRange(start: string, end: string): string {
 
-    // else return value in days
-    return `${years} years`;
+    const months: any = {"01":"Jan", "02": "Feb", "03": "Mar", "04":"Apr", "05":"May", "06":"Jun", "07":"Jul", "08":"Aug", "09":"Sep", "10":"Oct", "11":"Nov", "12":"Dec"};
+
+    const dateStartYears = start.slice(0,4);
+    const dateStartMonth = start.slice(5,7);
+    const dateEndYears =  end.slice(0, 4);
+    const dateEndMonth = end.slice(5, 7)
+    
+    return months[dateStartMonth] + " " + dateStartYears + " - " + months[dateEndMonth] + " " + dateEndYears;
+    
+    
+    
 }
