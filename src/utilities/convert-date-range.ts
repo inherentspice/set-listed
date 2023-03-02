@@ -4,10 +4,14 @@ export default function convertDateRange(start: string, end: string): string {
 
     const dateStartYears = start.slice(0,4);
     const dateStartMonth = start.slice(5,7);
+    const dateStartDay = start.slice(8,10);
     const dateEndYears =  end.slice(0, 4);
     const dateEndMonth = end.slice(5, 7)
+    const dateEndDay = end.slice(8,10);
     
-    return months[dateStartMonth] + " " + dateStartYears + " - " + months[dateEndMonth] + " " + dateEndYears;
+    return (dateStartYears == dateEndYears && dateStartMonth == dateEndMonth && dateStartDay == dateEndDay ? "Performed on " + months[dateEndMonth] + " " + dateEndDay + ", " + dateEndYears 
+    : dateStartYears == dateEndYears && dateStartMonth == dateEndMonth ? "Performed in " + months[dateEndMonth] + " " + dateEndYears 
+    : "Performed from " + months[dateStartMonth] + " " + dateStartYears + " until " + months[dateEndMonth] + " " + dateEndYears);
     
     
     
