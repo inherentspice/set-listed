@@ -309,3 +309,29 @@ h2 {
   padding: 0.5rem;
   border-top: 2px solid var(--grey-color-1);
 }
+
+.expanded-profile-overlay-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 15px 0 0 0;
+}
+
+.expanded-profile-overlay-form-item {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  text-align: right;
+  gap: 5px;
+  width: 80%;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.expanded-profile-overlay-form-item>input {
+  border: var(--primary-color) 2px solid;
+  padding: 5px 15px 5px 15px;
+  border-radius: 30px;
+}
