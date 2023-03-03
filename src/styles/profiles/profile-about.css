@@ -42,3 +42,14 @@
     width: 100%;
     padding-top: 10px;
   }
+
+  .edit-profile-about-explanation {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .edit-profile-about-text-area {
+    border: var(--primary-color) 2px solid;
+    border-radius: 8px;
+    padding: 5px;
+  }
