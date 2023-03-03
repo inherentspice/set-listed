@@ -8,4 +8,20 @@
 .awards-cont {
   border-top: solid 2px var(--grey-color-1);
   padding: 5px 15px 5px 15px;
+  
+}
+
+.award-cont {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* expanded overlay */
+
+.add-experience-form-item {
+  padding: 15px 15px 0px 15px;
+  text-align: right;
+  gap: 5px;
 }
