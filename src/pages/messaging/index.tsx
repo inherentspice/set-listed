@@ -148,7 +148,7 @@ export default function Messaging() {
           </div>
         ))}
         </div>}
-        {messageSearch && <SearchContacts/>}
+        {messageSearch && <SearchContacts userId={userId}/>}
       </div>
       <div className="messages-content-cont comp">
           {selectedRoom && socket ?
