@@ -41,11 +41,14 @@
     justify-content: center;
     width: 100%;
     padding-top: 10px;
+    background-color: var(--background-color);
+    border-radius: 0 0 8px 8px;
   }
 
   .edit-profile-about-explanation {
     font-size: 1.25rem;
     font-weight: bold;
+    color: var(--secondary-color)
   }
 
   .edit-profile-about-text-area {
