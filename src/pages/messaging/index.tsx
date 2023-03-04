@@ -4,6 +4,9 @@ import RoomInfo, { ReducedProfileCard, Messages } from "../../types/messaging";
 import MessagingService from "../../services/home/messaging";
 import "./index.css";
 import io, { Socket } from "socket.io-client";
+import { BiMessageSquareAdd } from "react-icons/bi";
+import { IconContext } from "react-icons";
+import SearchContacts from "../../components/messaging/search-contact";
 
 
 function MessagingContent(props: {roomId: string, userId: string, friend: ReducedProfileCard, friendId: string, socket: Socket}) {
@@ -94,6 +97,7 @@ export default function Messaging() {
   const [selectedRoom, setSelectedRoom] = useState<string>("");
   const { userId } = useUserId();
   const [socket, setSocket] = useState<Socket | null>(null);
+  const [messageSearch, setMessageSearch] = useState<boolean>(false);
 
   useEffect(() => {
     const newSocket = io("http://localhost:8080");
@@ -118,22 +122,35 @@ export default function Messaging() {
     }
   }, [userId]);
 
+  function handleMessageSearchClick(): void{
+    setMessageSearch(!messageSearch);
+  }
+
   return (
-    <main>
-      <h2>Talking Shop</h2>
-      <div className="messages-select-content-cont">
-      {rooms && <div className="user-messages-cont">
-        {rooms.map((room) => (
-          <div key={room.room.id} className="user-message-cont comp" onClick={() => setSelectedRoom(room.room.id)}>
-            <img src={room.profileCard.image} alt="" className="profile-picture-small"/>
-            <div className="profile-text-info-cont">
-              <p className="profile-name">{room.profileCard.firstName} {room.profileCard.lastName}</p>
-            </div>
-            {room.messages.length ? <p className="message-preview">{room.messages[0].user.firstName}: {room.messages[0].content}</p> : <p className="message-preview">Start a conversation!</p>}
+    <main className="messages-cont">
+      <div className="messages-select-cont">
+        <div className="messages-select-header">
+          <h2>Talking Shop</h2>
+          <div onClick={() => handleMessageSearchClick()}>
+            <IconContext.Provider value={{ size: "1.5rem", className: "message-search-icon"}}>
+              <BiMessageSquareAdd/>
+            </IconContext.Provider>
+          </div>
+        </div>
+        {rooms && !messageSearch && <div className="user-messages-cont">
+          {rooms.map((room) => (
+            <div key={room.room.id} className="user-message-cont comp" onClick={() => setSelectedRoom(room.room.id)}>
+              <img src={room.profileCard.image} alt="" className="profile-picture-small"/>
+              <div className="profile-text-info-cont">
+                <p className="profile-name">{room.profileCard.firstName} {room.profileCard.lastName}</p>
+              </div>
+              {room.messages.length ? <p className="message-preview">{room.messages[0].user.firstName}: {room.messages[0].content}</p> : <p className="message-preview">Start a conversation!</p>}
           </div>
         ))}
         </div>}
-        <div className="messages-content-cont comp">
+        {messageSearch && <SearchContacts/>}
+      </div>
+      <div className="messages-content-cont comp">
           {selectedRoom && socket ?
           <MessagingContent
             roomId={selectedRoom}
@@ -143,7 +160,6 @@ export default function Messaging() {
             socket={socket}
         />
         : <p>Select a chat to see messages</p>}
-        </div>
       </div>
     </main>
   );

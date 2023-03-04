@@ -9,16 +9,15 @@
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-  width: 20%;
 }
 
 .user-message-cont {
-  width: 75%;
   padding: 1rem;
+  width: 90%;
 }
 
 .messages-content-cont {
-  width: 80%;
+  width: 70%;
 }
 
 .message-preview {
@@ -38,3 +37,30 @@
 .recieve-align {
   justify-content: flex-end;
 }
+
+.messages-select-cont {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+.messages-cont {
+  display: flex;
+  min-height: 90vh;
+}
+
+.messages-select-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.message-search-icon {
+  cursor: pointer;
+}
+
+.message-search-icon:hover {
+  color: var(--primary-color);
+}
+
+/* search-contact */
