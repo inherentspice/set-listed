@@ -8,7 +8,6 @@
 .awards-cont {
   border-top: solid 2px var(--grey-color-1);
   padding: 5px 15px 5px 15px;
-  
 }
 
 .award-cont {
@@ -19,9 +18,3 @@
 }
 
 /* expanded overlay */
-
-.add-experience-form-item {
-  padding: 15px 15px 0px 15px;
-  text-align: right;
-  gap: 5px;
-}
