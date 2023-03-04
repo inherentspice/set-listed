@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "../../styles/profiles/profile-activity.css";
-import Like from "../../media/icons/like.png";
 import convertDate from "../../utilities/convert-date";
 import CancelButton from "../../media/icons/cancel.png";
 import Emoji from "../../media/icons/emoji.png";
@@ -167,7 +166,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
             <form className="start-post-user-form">
                 <div className="start-post-user-cont">
                   <img className="profile-picture-small" src={profileCard.image} />
-                  <img src={Visibility}/>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="add-post-visibility-img"><path d="M480.118 726Q551 726 600.5 676.382q49.5-49.617 49.5-120.5Q650 485 600.382 435.5q-49.617-49.5-120.5-49.5Q409 386 359.5 435.618q-49.5 49.617-49.5 120.5Q310 627 359.618 676.5q49.617 49.5 120.5 49.5Zm-.353-58Q433 668 400.5 635.265q-32.5-32.736-32.5-79.5Q368 509 400.735 476.5q32.736-32.5 79.5-32.5Q527 444 559.5 476.735q32.5 32.736 32.5 79.5Q592 603 559.265 635.5q-32.736 32.5-79.5 32.5ZM480 856q-146 0-264-83T40 556q58-134 176-217t264-83q146 0 264 83t176 217q-58 134-176 217t-264 83Zm0-300Zm-.169 240Q601 796 702.5 730.5 804 665 857 556q-53-109-154.331-174.5-101.332-65.5-222.5-65.5Q359 316 257.5 381.5 156 447 102 556q54 109 155.331 174.5 101.332 65.5 222.5 65.5Z"/></svg>
                   <select className="start-post-visibility">
                       <option value="public">Public</option>
                       <option value="connections">Connections Only</option>
@@ -178,7 +177,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
                 <textarea className="start-post-textarea" placeholder="What is on your mind?" rows={10} value={content} onChange={handleContentChange}/>
                 <div className="start-post-emoji-hashtag-cont">
                   <button className="hidden-btn" title="Add Emoji"><img className="start-post-add-emoji" src={Emoji}></img></button>
-                  <div className="start-post-add-hashtag">Add Hashtag</div>
+                  <button className="hidden-btn start-post-add-hashtag" title="Add Hashtag">Add Hashtag</button>
                 </div>
                 <div className="start-post-foot">
                   <div className="start-post-foot-multimedia-cont">
@@ -188,14 +187,14 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
                     <button className="hidden-btn" title="Add Poll"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="start-post-foot-multimedia-item"><path d="M160 896V456h140v440H160Zm250 0V256h140v640H410Zm250 0V616h140v280H660Z"/></svg></button>
                   </div>
                   <div className="start-post-foot-submit-cont">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48"><path d="M80 776V218q0-14 13-28t27-14h519q15 0 28 13.5t13 28.5v356q0 14-13 28t-28 14H240L80 776Zm201 40q-14 0-27.5-14T240 774v-98h500V336h100q14 0 27 14t13 29v596L721 816H281Zm339-580H140v395l75-75h405V236Zm-480 0v395-395Z"/></svg>
-                    <select>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="start-post-foot-img"><path d="M80 776V218q0-14 13-28t27-14h519q15 0 28 13.5t13 28.5v356q0 14-13 28t-28 14H240L80 776Zm201 40q-14 0-27.5-14T240 774v-98h500V336h100q14 0 27 14t13 29v596L721 816H281Zm339-580H140v395l75-75h405V236Zm-480 0v395-395Z"/></svg>
+                    <select >
                       <option value="public">Public</option>
                       <option value="connections">Connections</option>
                       <option value="innercircle">Inner Circle</option>
                       <option value="noone">Disable</option>
                     </select>
-                    <button type="submit" onClick={(e) => {handleAddPostSubmit(e, content);}}>Post</button>
+                    <button type="submit" onClick={(e) => {handleAddPostSubmit(e, content);}} className="secondary-button">Post</button>
                   </div>
                 </div>
               </form>
