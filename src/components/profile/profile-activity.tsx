@@ -176,7 +176,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
                 </div>
                 <textarea className="start-post-textarea" placeholder="What is on your mind?" rows={10} value={content} onChange={handleContentChange}/>
                 <div className="start-post-emoji-hashtag-cont">
-                  <button className="hidden-btn" title="Add Emoji"><img className="start-post-add-emoji" src={Emoji}></img></button>
+                  <button className="hidden-btn" title="Add Emoji"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="start-post-add-emoji"><path d="M480 795q66 0 121.5-35.5T682 663H278q26 61 81 96.5T480 795ZM302 523l45-45 45 45 36-36-81-81-81 81 36 36Zm267 0 45-45 45 45 36-36-81-81-81 81 36 36Zm-89 453q-83 0-156-31.5T197 859q-54-54-85.5-127T80 576q0-83 31.5-156T197 293q54-54 127-85.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 83-31.5 156T763 859q-54 54-127 85.5T480 976Zm0-400Zm0 340q142.375 0 241.188-98.812Q820 718.375 820 576t-98.812-241.188Q622.375 236 480 236t-241.188 98.812Q140 433.625 140 576t98.812 241.188Q337.625 916 480 916Z"/></svg></button>
                   <button className="hidden-btn start-post-add-hashtag" title="Add Hashtag">Add Hashtag</button>
                 </div>
                 <div className="start-post-foot">
@@ -218,12 +218,12 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
           <div className="expanded-profile-overlay">
             <div className="expanded-profile-overlay-header-cont">
               <h2 className="expanded-profile-overlay-header-title">Edit Your Post Below</h2>
-              <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditPostClose()} />
+              <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-overlay-header-button" onClick={() => handleEditPostClose()}><path d="m330 768 150-150 150 150 42-42-150-150 150-150-42-42-150 150-150-150-42 42 150 150-150 150 42 42Zm150 208q-82 0-155-31.5t-127.5-86Q143 804 111.5 731T80 576q0-83 31.5-156t86-127Q252 239 325 207.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 82-31.5 155T763 858.5q-54 54.5-127 86T480 976Zm0-60q142 0 241-99.5T820 576q0-142-99-241t-241-99q-141 0-240.5 99T140 576q0 141 99.5 240.5T480 916Zm0-340Z"/></svg>
             </div>
             <form className="start-post-user-form">
                 <div className="start-post-user-cont">
                   <img className="profile-picture-small" src={profileCard.image} />
-                  <img src={Visibility}/>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="add-post-visibility-img"><path d="M480.118 726Q551 726 600.5 676.382q49.5-49.617 49.5-120.5Q650 485 600.382 435.5q-49.617-49.5-120.5-49.5Q409 386 359.5 435.618q-49.5 49.617-49.5 120.5Q310 627 359.618 676.5q49.617 49.5 120.5 49.5Zm-.353-58Q433 668 400.5 635.265q-32.5-32.736-32.5-79.5Q368 509 400.735 476.5q32.736-32.5 79.5-32.5Q527 444 559.5 476.735q32.5 32.736 32.5 79.5Q592 603 559.265 635.5q-32.736 32.5-79.5 32.5ZM480 856q-146 0-264-83T40 556q58-134 176-217t264-83q146 0 264 83t176 217q-58 134-176 217t-264 83Zm0-300Zm-.169 240Q601 796 702.5 730.5 804 665 857 556q-53-109-154.331-174.5-101.332-65.5-222.5-65.5Q359 316 257.5 381.5 156 447 102 556q54 109 155.331 174.5 101.332 65.5 222.5 65.5Z"/></svg>
                   <select className="start-post-visibility">
                       <option value="public">Public</option>
                       <option value="connections">Connections Only</option>
@@ -233,25 +233,25 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
                 </div>
                 <textarea className="start-post-textarea" rows={10} value={content} onChange={handleContentChange}/>
                 <div className="start-post-emoji-hashtag-cont">
-                  <button className="hidden-btn" title="Add Emoji"><img className="start-post-add-emoji" src={Emoji}></img></button>
-                  <div className="start-post-add-hashtag">Add Hashtag</div>
+                  <button className="hidden-btn" title="Add Emoji"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="start-post-add-emoji"><path d="M480 795q66 0 121.5-35.5T682 663H278q26 61 81 96.5T480 795ZM302 523l45-45 45 45 36-36-81-81-81 81 36 36Zm267 0 45-45 45 45 36-36-81-81-81 81 36 36Zm-89 453q-83 0-156-31.5T197 859q-54-54-85.5-127T80 576q0-83 31.5-156T197 293q54-54 127-85.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 83-31.5 156T763 859q-54 54-127 85.5T480 976Zm0-400Zm0 340q142.375 0 241.188-98.812Q820 718.375 820 576t-98.812-241.188Q622.375 236 480 236t-241.188 98.812Q140 433.625 140 576t98.812 241.188Q337.625 916 480 916Z"/></svg></button>
+                  <button className="hidden-btn start-post-add-hashtag" title="Add Hashtag">Add Hashtag</button>
                 </div>
                 <div className="start-post-foot">
                   <div className="start-post-foot-multimedia-cont">
-                    <button className="hidden-btn" title="Add Picture"><img className="start-post-foot-multimedia-item" src={Picture} /></button>
-                    <button className="hidden-btn" title="Add Video"><img className="start-post-foot-multimedia-item" src={Video} /></button>
-                    <button className="hidden-btn" title="Add Document"><img className="start-post-foot-multimedia-item" src={Document} /></button>
-                    <button className="hidden-btn" title="Add Poll"><img className="start-post-foot-multimedia-item" src={Chart} /></button>
+                    <button className="hidden-btn" title="Add Picture"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="start-post-foot-multimedia-item"><path d="M180 936q-24 0-42-18t-18-42V276q0-24 18-42t42-18h600q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm0-60h600V276H180v600Zm56-97h489L578 583 446 754l-93-127-117 152Zm-56 97V276v600Z"/></svg></button>
+                    <button className="hidden-btn" title="Add Video"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="start-post-foot-multimedia-item"><path d="m140 256 74 152h130l-74-152h89l74 152h130l-74-152h89l74 152h130l-74-152h112q24 0 42 18t18 42v520q0 24-18 42t-42 18H140q-24 0-42-18t-18-42V316q0-24 18-42t42-18Zm0 212v368h680V468H140Zm0 0v368-368Z"/></svg></button>
+                    <button className="hidden-btn" title="Add Document"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="start-post-foot-multimedia-item"><path d="M319 806h322v-60H319v60Zm0-170h322v-60H319v60Zm-99 340q-24 0-42-18t-18-42V236q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554V236H220v680h520V422H551ZM220 236v186-186 680-680Z"/></svg></button>
+                    <button className="hidden-btn" title="Add Poll"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="start-post-foot-multimedia-item"><path d="M160 896V456h140v440H160Zm250 0V256h140v640H410Zm250 0V616h140v280H660Z"/></svg></button>
                   </div>
                   <div className="start-post-foot-submit-cont">
-                    <img src={Comments}/>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="start-post-foot-img"><path d="M80 776V218q0-14 13-28t27-14h519q15 0 28 13.5t13 28.5v356q0 14-13 28t-28 14H240L80 776Zm201 40q-14 0-27.5-14T240 774v-98h500V336h100q14 0 27 14t13 29v596L721 816H281Zm339-580H140v395l75-75h405V236Zm-480 0v395-395Z"/></svg>
                     <select>
                       <option value="public">Public</option>
                       <option value="connections">Connections</option>
                       <option value="innercircle">Inner Circle</option>
                       <option value="noone">Disable</option>
                     </select>
-                    <button type="submit" onClick={(e) => {handleEditPostSubmit(e, content, selectedPost.id);}}>Save Edits</button>
+                    <button className="secondary-button" type="submit" onClick={(e) => {handleEditPostSubmit(e, content, selectedPost.id);}}>Save</button>
                   </div>
                 </div>
               </form>

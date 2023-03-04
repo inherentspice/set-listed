@@ -175,12 +175,15 @@
   }
 
   .start-post-add-emoji {
-      height: 2rem;
+      height: 35px;
+      width: 35px;
+      fill: var(--secondary-color);
   }
 
   .start-post-add-emoji:hover {
       cursor: pointer;
-      background-color: var(--grey-color-1);
+      background-color: var(--primary-color);
+      fill: white;
       border-radius: 50%;
   }
 
