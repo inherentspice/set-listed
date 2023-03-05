@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AuthService from "../../services/home/auth";
 import SignUp from "../../components/login/signup";
 import { useUserId } from "../../context/userIdContext";
-
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 
 export default function Login() {
@@ -11,6 +11,8 @@ export default function Login() {
   const [error, setError] = useState<string>("");
   const [signUp, setSignUp] = useState<boolean>(false);
   const { userId, setUserId } = useUserId();
+  const navigate = useNavigate();
+
 
 
   function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -32,14 +34,13 @@ export default function Login() {
 
     AuthService.login(userObject)
       .then(response => {
-        setUserId(response.data.user);
+        setUserId(response.data.user)
+        navigate("/")
       })
       .catch(error => {
         setError(error.response.data.error);
       });
   }
-
-  console.log(userId);
 
   if (signUp) {
     return (
