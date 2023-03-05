@@ -6,6 +6,10 @@ const getConnections = (id: string) => {
   return axios.get(`${baseUrl}/getConnections/${id}`);
 };
 
+const getFilteredConnections = (searchParams: string, id: string) => {
+  return axios.get(`${baseUrl}/getFilteredConnections/${id}/${searchParams}`);
+};
+
 const sendRequest = (formObject: {friendId: string}, id: string) => {
   return axios.put(`${baseUrl}/sendRequest/${id}`, formObject);
 };
@@ -24,6 +28,7 @@ const deleteFriend = (formObject: {friendId: string}, id: string) => {
 
 const ConnectionService = {
   getConnections,
+  getFilteredConnections,
   sendRequest,
   acceptRequest,
   declineRequest,
