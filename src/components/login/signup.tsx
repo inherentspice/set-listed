@@ -56,7 +56,7 @@ export default function SignUp(props: {logIn: Dispatch<SetStateAction<boolean>>}
 
     AuthService.signup(userObject)
       .then(response => {
-        console.log(response);
+        props.logIn(false);
       })
       .catch(error => {
         setError(error.response.data.error);
