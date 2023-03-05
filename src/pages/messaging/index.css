@@ -64,3 +64,6 @@
 }
 
 /* search-contact */
+.message-search-result {
+  cursor: pointer;
+}
