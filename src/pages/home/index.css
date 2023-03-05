@@ -73,6 +73,38 @@
   animation: changeColor 5s infinite;
 }
 
+.add-comment-cont {
+  width: 100%;
+}
+
+.post-cont {
+  display: flex;
+  border-bottom: 2px solid var(--grey-color-0);
+  padding: 1rem 0;
+}
+
+.add-comment-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.start-comment-area {
+  font-size: 14px;
+  font-weight: 500;
+  color: #212121;
+  border: 1px solid #212121;
+  background-color: var(--background-comp-color);
+  border-radius: 22px;
+  width: 100%;
+  height: 40px;
+  padding: 8px 12px;
+  text-align: start;
+}
+
+.comment-button {
+  max-width: fit-content;
+}
 @keyframes changeColor {
   0% {
     background-color: var(--grey-color-1);

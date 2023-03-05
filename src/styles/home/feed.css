@@ -1,7 +1,5 @@
 .home-feed-cont {
     padding: 8px;
-    display: grid;
-    grid-template-columns: 1fr 5fr;
     min-height: 220px;
 }
 
