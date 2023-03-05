@@ -14,7 +14,8 @@ export interface User {
   lastName: string,
   id: string,
   profileCard: {
-    image: string
+    image: string,
+    tagline: string
   }
 }
 
