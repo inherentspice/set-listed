@@ -173,13 +173,14 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
                       <option value="innercircle">Inner Circle Only</option>
                       <option value="private">Only Me</option>
                   </select>
+
                   <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="add-post-visibility-img"><path d="M80 776V218q0-14 13-28t27-14h519q15 0 28 13.5t13 28.5v356q0 14-13 28t-28 14H240L80 776Zm201 40q-14 0-27.5-14T240 774v-98h500V336h100q14 0 27 14t13 29v596L721 816H281Zm339-580H140v395l75-75h405V236Zm-480 0v395-395Z"/></svg>
-                    <select >
-                      <option value="public">Public</option>
-                      <option value="connections">Connections</option>
-                      <option value="innercircle">Inner Circle</option>
-                      <option value="noone">Disable</option>
-                    </select>
+                  <select >
+                    <option value="public">Public</option>
+                    <option value="connections">Connections</option>
+                    <option value="innercircle">Inner Circle</option>
+                    <option value="noone">Disable</option>
+                  </select>
 
                 </div>
                 <textarea className="start-post-textarea" placeholder="What is on your mind?" rows={10} value={content} onChange={handleContentChange} maxLength={140}/>
@@ -224,30 +225,23 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
                       <option value="innercircle">Inner Circle Only</option>
                       <option value="private">Only Me</option>
                   </select>
-                </div>
-                <textarea className="start-post-textarea" rows={10} value={content} onChange={handleContentChange}/>
-                <div className="start-post-emoji-hashtag-cont">
-                  <button className="hidden-btn" title="Add Emoji"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="start-post-add-emoji"><path d="M480 795q66 0 121.5-35.5T682 663H278q26 61 81 96.5T480 795ZM302 523l45-45 45 45 36-36-81-81-81 81 36 36Zm267 0 45-45 45 45 36-36-81-81-81 81 36 36Zm-89 453q-83 0-156-31.5T197 859q-54-54-85.5-127T80 576q0-83 31.5-156T197 293q54-54 127-85.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 83-31.5 156T763 859q-54 54-127 85.5T480 976Zm0-400Zm0 340q142.375 0 241.188-98.812Q820 718.375 820 576t-98.812-241.188Q622.375 236 480 236t-241.188 98.812Q140 433.625 140 576t98.812 241.188Q337.625 916 480 916Z"/></svg></button>
-                  <button className="hidden-btn start-post-add-hashtag" title="Add Hashtag">Add Hashtag</button>
-                </div>
-                <div className="start-post-foot">
-                  <div className="start-post-foot-multimedia-cont">
-                    <button className="hidden-btn" title="Add Picture"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="start-post-foot-multimedia-item"><path d="M180 936q-24 0-42-18t-18-42V276q0-24 18-42t42-18h600q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm0-60h600V276H180v600Zm56-97h489L578 583 446 754l-93-127-117 152Zm-56 97V276v600Z"/></svg></button>
-                    <button className="hidden-btn" title="Add Video"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="start-post-foot-multimedia-item"><path d="m140 256 74 152h130l-74-152h89l74 152h130l-74-152h89l74 152h130l-74-152h112q24 0 42 18t18 42v520q0 24-18 42t-42 18H140q-24 0-42-18t-18-42V316q0-24 18-42t42-18Zm0 212v368h680V468H140Zm0 0v368-368Z"/></svg></button>
-                    <button className="hidden-btn" title="Add Document"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="start-post-foot-multimedia-item"><path d="M319 806h322v-60H319v60Zm0-170h322v-60H319v60Zm-99 340q-24 0-42-18t-18-42V236q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554V236H220v680h520V422H551ZM220 236v186-186 680-680Z"/></svg></button>
-                    <button className="hidden-btn" title="Add Poll"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="start-post-foot-multimedia-item"><path d="M160 896V456h140v440H160Zm250 0V256h140v640H410Zm250 0V616h140v280H660Z"/></svg></button>
-                  </div>
-                  <div className="start-post-foot-submit-cont">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="start-post-foot-img"><path d="M80 776V218q0-14 13-28t27-14h519q15 0 28 13.5t13 28.5v356q0 14-13 28t-28 14H240L80 776Zm201 40q-14 0-27.5-14T240 774v-98h500V336h100q14 0 27 14t13 29v596L721 816H281Zm339-580H140v395l75-75h405V236Zm-480 0v395-395Z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="add-post-visibility-img"><path d="M80 776V218q0-14 13-28t27-14h519q15 0 28 13.5t13 28.5v356q0 14-13 28t-28 14H240L80 776Zm201 40q-14 0-27.5-14T240 774v-98h500V336h100q14 0 27 14t13 29v596L721 816H281Zm339-580H140v395l75-75h405V236Zm-480 0v395-395Z"/></svg>
                     <select>
                       <option value="public">Public</option>
                       <option value="connections">Connections</option>
                       <option value="innercircle">Inner Circle</option>
                       <option value="noone">Disable</option>
                     </select>
+                </div>
+                <textarea className="start-post-textarea" rows={10} value={content} onChange={handleContentChange} maxLength={140}/>
+                <div className="start-post-emoji-hashtag-cont">
+                  <button className="hidden-btn" title="Add Emoji"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="start-post-add-emoji"><path d="M480 795q66 0 121.5-35.5T682 663H278q26 61 81 96.5T480 795ZM302 523l45-45 45 45 36-36-81-81-81 81 36 36Zm267 0 45-45 45 45 36-36-81-81-81 81 36 36Zm-89 453q-83 0-156-31.5T197 859q-54-54-85.5-127T80 576q0-83 31.5-156T197 293q54-54 127-85.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 83-31.5 156T763 859q-54 54-127 85.5T480 976Zm0-400Zm0 340q142.375 0 241.188-98.812Q820 718.375 820 576t-98.812-241.188Q622.375 236 480 236t-241.188 98.812Q140 433.625 140 576t98.812 241.188Q337.625 916 480 916Z"/></svg></button>
+                  <button className="hidden-btn start-post-add-hashtag" title="Add Hashtag">Add Hashtag</button>
+                  <div>Character Limit: {content.length}/140</div>
+                </div>
+                  <div className="expanded-profile-overlay-submit">
                     <button className="secondary-button" type="submit" onClick={(e) => {handleEditPostSubmit(e, content, selectedPost.id);}}>Save</button>
                   </div>
-                </div>
               </form>
               {err && <ErrorMessage/>}
             </div>
@@ -268,7 +262,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
           </div>
         </div>
         <div className="profile-activity-posts-cont">
-          {posts.length <=0 ? <p>You haven't posted any content yet you lazy bum.</p> : posts && posts.slice(0).reverse().map(item => {
+          {posts.length <=0 ? <p>You haven't posted any content yet you lazy bum.</p> : posts && posts.map(item => {
             return(
               <div className="profile-activity-post-item" key={item.id}>
                 <div className="profile-activity-post-info">
