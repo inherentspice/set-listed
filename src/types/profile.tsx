@@ -96,6 +96,16 @@ export interface SkillDataSend {
   content: string,
 }
 
+export interface CommentData {
+  content: string,
+  likes: string[],
+  user: string,
+  post: string,
+  createdAt: string,
+  id: string
+
+}
+
 export default interface ProfileData {
   about: AboutData[],
   award: AwardData[],

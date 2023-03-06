@@ -7,9 +7,17 @@ const getFeed = (id: string) => {
   return axios.get(`/feed/${id}`);
 };
 
+const getComments = (id: string) => {
+  return axios.get(`${baseUrl}/comment/${id}`);
+};
+
 const postPost = (formObject: PostDataSend) => {
   return axios.post(`${baseUrl}/post`, formObject);
 };
+
+const postComment = (formObject: {user: string, content: string, post: string}) => {
+  return axios.post(`${baseUrl}/comment`, formObject);
+}
 
 const editPost = (formObject: {content: string}, id: string) => {
   return axios.put(`${baseUrl}/post/${id}`, formObject);
@@ -25,7 +33,9 @@ const deletePost = (id: string) => {
 
 const PostService = {
   getFeed,
+  getComments,
   postPost,
+  postComment,
   editPost,
   deletePost,
   modifyPostLikes

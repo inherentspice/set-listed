@@ -75,6 +75,9 @@
 
 .add-comment-cont {
   width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
 }
 
 .post-cont {
@@ -86,7 +89,8 @@
 .add-comment-form {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  gap: 0.5rem;
+  width: 100%;
 }
 
 .start-comment-area {
@@ -104,6 +108,12 @@
 
 .comment-button {
   max-width: fit-content;
+}
+
+.comment-text {
+  background-color: var(--grey-color-0);
+  width: 80%;
+  padding: 1rem;
 }
 @keyframes changeColor {
   0% {

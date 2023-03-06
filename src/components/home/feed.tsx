@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import ProfileService from "../../services/home/profile";
 import PostService from "../../services/home/posts";
-import { PostData, ProfileCardData } from "../../types/profile";
+import { CommentData, PostData, ProfileCardData } from "../../types/profile";
 import convertDate from "../../utilities/convert-date";
 import Like from "../../media/icons/like.png";
 import "../../styles/home/feed.css";
-import ChatBubble from "../../media/icons/chat-bubble.png";
+import { AiOutlineEnter } from "react-icons/ai";
+import { IconContext } from "react-icons";
 
 
 export default function Feed(props: {post: PostData, viewingUser: string}) {
 
   const [profile, setProfile] = useState<ProfileCardData | undefined>(undefined);
   const [comment, setComment] = useState<string>("");
+  const [existingComments, setExistingComments] = useState<CommentData[] | null>(null);
+
 
   useEffect(() => {
     (async function() {
@@ -23,6 +26,17 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
       }
   }());
   }, [props.post.user]);
+
+  useEffect(() => {
+    (async function() {
+      try {
+        const postComments = await PostService.getComments(props.post.id);
+        setExistingComments(postComments.data.comments);
+      } catch (err) {
+        console.log(err);
+      }
+    }());
+  }, []);
 
   function handleLikePostClick(id: string, viewingUser: string) {
     likePost(id, viewingUser)
@@ -46,14 +60,26 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
     }
   }
 
-  function handleCommentChange(e: React.ChangeEvent<HTMLTextAreaElement>): void{
+  function handleCommentChange(e: React.ChangeEvent<HTMLInputElement>): void{
     setComment(e.target.value);
   }
 
-  function handleAddCommentSubmit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, comment: string) {
+  async function handleAddCommentSubmit(e: React.MouseEvent<HTMLDivElement, MouseEvent>, comment: string): Promise<void>{
     e.preventDefault();
 
-    console.log(comment);
+    const formObject = {
+      user: props.viewingUser,
+      content: comment,
+      post: props.post.id
+    }
+    try {
+      const addComment = await PostService.postComment(formObject);
+      const updatedComments = existingComments ? existingComments.concat(addComment.data.comment) : [addComment.data.comment];
+      setExistingComments(updatedComments);
+      setComment("");
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -88,10 +114,29 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
           <div className="profile-activity-post-like-count">{props.post.likes ? props.post.likes.length : 0}</div>
         </div>
         <form className="add-comment-form">
-          <textarea className="start-comment-area" value={comment} onChange={handleCommentChange} />
-          <button className="primary-button comment-button" type="submit" onClick={(e) => handleAddCommentSubmit(e, comment)}>Comment</button>
+          <input type="text" className="start-comment-area" value={comment} onChange={handleCommentChange} />
+          {/* <button className="primary-button comment-button" type="submit" onClick={(e) => handleAddCommentSubmit(e, comment)}>Comment</button> */}
+          <div onClick={(e) => handleAddCommentSubmit(e, comment)}>
+            <IconContext.Provider value={{ size: "1.5rem", className: "message-search-icon"}}>
+              <AiOutlineEnter/>
+            </IconContext.Provider>
+          </div>
         </form>
       </div>
+      {existingComments !== null && existingComments.length > 0 && <div className="comment-display">
+        {existingComments.map((comm, index) => {
+          if (index < 3) {
+            return (
+              <div>
+                <div>
+                  <p className="comment-text">{comm.content}</p>
+                </div>
+
+              </div>
+            )
+          }
+        })}
+      </div>}
     </div>
   );
 }
