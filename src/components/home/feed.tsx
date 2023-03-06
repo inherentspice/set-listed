@@ -20,18 +20,7 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
     (async function() {
       try {
         const postUserProfile = await ProfileService.getProfileCard(props.post.user);
-        setPostProfile(postUserProfile.data.profileCard[0]);
-      } catch (err) {
-        console.log(err);
-      }
-  }());
-  }, [props.post.user]);
-
-  useEffect(() => {
-    (async function() {
-      try {
-        const user = await ProfileService.getProfileCard(props.viewingUser);
-        setUserProfile(user.data.profileCard[0]);
+        setProfile(postUserProfile.data.profileCard[0]);
       } catch (err) {
         console.log(err);
       }
