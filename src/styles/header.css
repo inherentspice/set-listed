@@ -15,7 +15,7 @@
     display: flex;
     padding: 0 2rem 0 2rem;
     align-items: center;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     max-width: 70rem;
     cursor: pointer;
     
@@ -70,10 +70,11 @@
     outline: none;
 }
 
+
+
 .header-nav-right {
     display: flex;
     align-items: center;
-    padding: 0 1rem 0 1rem;
     text-align: center;
     gap: 1rem;
     border-left: solid var(--secondary-color) 1px;
@@ -82,14 +83,16 @@
 
 .header-nav-btns {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     text-align: center;
+    justify-items: end;
 }
 
 .header-nav-btn {
     font-size: 1rem;
     text-decoration: none;
     padding: .25rem;
+    width: 90px;
     color: white;
     font-weight: bold;
     cursor: pointer;
