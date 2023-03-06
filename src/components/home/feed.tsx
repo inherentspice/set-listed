@@ -19,8 +19,19 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
   useEffect(() => {
     (async function() {
       try {
-        const userProfile = await ProfileService.getProfileCard(props.post.user);
-        setProfile(userProfile.data.profileCard[0]);
+        const postUserProfile = await ProfileService.getProfileCard(props.post.user);
+        setPostProfile(postUserProfile.data.profileCard[0]);
+      } catch (err) {
+        console.log(err);
+      }
+  }());
+  }, [props.post.user]);
+
+  useEffect(() => {
+    (async function() {
+      try {
+        const user = await ProfileService.getProfileCard(props.viewingUser);
+        setUserProfile(user.data.profileCard[0]);
       } catch (err) {
         console.log(err);
       }
@@ -106,8 +117,6 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
               : <></>}
           </a>
         </div>
-
-
         <div className="home-feed-right">
           <div className="home-feed-right-top">
             <p>{props.post.content}</p>
