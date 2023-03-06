@@ -10,13 +10,25 @@ import ChatBubble from "../../media/icons/chat-bubble.png";
 
 export default function Feed(props: {post: PostData, viewingUser: string}) {
 
-  const [profile, setProfile] = useState<ProfileCardData | undefined>(undefined);
+  const [postProfile, setPostProfile] = useState<ProfileCardData | undefined>(undefined);
+  const [userProfile, setUserProfile] = useState<ProfileCardData | undefined>(undefined);
 
   useEffect(() => {
     (async function() {
       try {
-        const userProfile = await ProfileService.getProfileCard(props.post.user);
-        setProfile(userProfile.data.profileCard[0]);
+        const postUserProfile = await ProfileService.getProfileCard(props.post.user);
+        setPostProfile(postUserProfile.data.profileCard[0]);
+      } catch (err) {
+        console.log(err);
+      }
+  }());
+  }, [props.post.user]);
+
+  useEffect(() => {
+    (async function() {
+      try {
+        const user = await ProfileService.getProfileCard(props.viewingUser);
+        setUserProfile(user.data.profileCard[0]);
       } catch (err) {
         console.log(err);
       }
@@ -47,14 +59,15 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
 
   return (
     <div className="home-feed-cont comp">
+      <div className="home-feed-main-cont">
       <div className="home-feed-left">
         <div className="profile-activity-post-likes">
           <img className="profile-activity-post-like-img" onClick={() => handleLikePostClick(props.post.id, props.viewingUser)} src={Like} />
           <div className="profile-activity-post-like-count">{props.post.likes ? props.post.likes.length : 0}</div>
         </div>
         <a href={`/user/${props.post.user}`}>
-          {profile?.image ?
-            <img src={profile.image} alt="" className="profile-picture-medium"/>
+          {postProfile?.image ?
+            <img src={postProfile.image} alt="" className="profile-picture-medium"/>
             : <></>}
         </a>
       </div>
@@ -67,12 +80,23 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
 
         <div className="home-feed-right-bottom">
           <div className="profile-feed-info-cont">
-            <p className="profile-feed-name">{profile?.firstName} {profile?.lastName}</p>
-            <p className="profile-feed-tagline">{profile?.tagline}</p>
+            <p className="profile-feed-name">{postProfile?.firstName} {postProfile?.lastName}</p>
+            <p className="profile-feed-tagline">{postProfile?.tagline}</p>
             <p className="profile-tag">{convertDate(props.post.createdAt)}</p>
           </div>
         </div>
       </div> 
+
+      </div>
+
+      <div className="home-feed-comment-conts">
+        <div className="user-comment-cont">
+          <img src={userProfile?.image} className="profile-picture-small" />
+          <textarea/>
+          <button className="heckle-button">Heckle</button>
+        </div>
+        <div className="home-feed-comments">comments here</div>
+      </div>
     </div>
   );
 }
