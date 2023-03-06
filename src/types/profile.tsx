@@ -1,3 +1,5 @@
+import { User } from "./my-network";
+
 export interface AboutData {
   user: string,
   id: string,
@@ -94,6 +96,16 @@ export interface SkillData {
 export interface SkillDataSend {
   user: string,
   content: string,
+}
+
+export interface CommentData {
+  content: string,
+  likes: string[],
+  user: User,
+  post: string,
+  createdAt: string,
+  id: string
+
 }
 
 export default interface ProfileData {
