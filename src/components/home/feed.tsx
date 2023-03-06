@@ -38,23 +38,13 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
     }());
   }, []);
 
-  function handleLikePostClick(id: string, viewingUser: string) {
-    likePost(id, viewingUser)
-      .then(() => {
-        console.log("post liked!");
-      }).catch((err) => {
-        console.log(err);
-      });
-  }
-
-  async function likePost(id: string, viewingUser: string) {
+  async function handleLikePostClick(id: string, viewingUser: string) {
     try {
       const formObject = {
         user: viewingUser
       };
       const updatedLikes = await PostService.modifyPostLikes(formObject, id);
       console.log(updatedLikes);
-
     } catch (err) {
       console.log(err);
     }
@@ -65,8 +55,18 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
       const formObject = {
         user: userId
       };
-      const updatedCommentLikes = await PostService.modifyCommentLikes(formObject, commentId);
-      console.log(updatedCommentLikes);
+      await PostService.modifyCommentLikes(formObject, commentId);
+      if (existingComments) {
+        const initialCommentInfo = existingComments.filter((comm) => comm.id === commentId);
+        const isLiking = initialCommentInfo[0].likes.indexOf(userId);
+        isLiking === -1 ?
+          initialCommentInfo[0].likes.push(userId) :
+          initialCommentInfo[0].likes.splice(isLiking, 1);
+        const updatedLikesArray = existingComments
+          .filter((comm) => comm.id !== commentId)
+          .concat(initialCommentInfo);
+        setExistingComments(updatedLikesArray)
+        }
     } catch (err) {
       console.log(err);
     }
