@@ -27,6 +27,10 @@ const modifyPostLikes = (formObject: {user: string}, id: string) => {
   return axios.put(`${baseUrl}/post/likes/${id}`, formObject);
 };
 
+const modifyCommentLikes = (formObject: {user: string}, id: string) => {
+  return axios.put(`${baseUrl}/comment/likes/${id}`, formObject);
+};
+
 const deletePost = (id: string) => {
   return axios.delete(`${baseUrl}/post/${id}`);
 };
@@ -38,7 +42,8 @@ const PostService = {
   postComment,
   editPost,
   deletePost,
-  modifyPostLikes
+  modifyPostLikes,
+  modifyCommentLikes
 };
 
 export default PostService;

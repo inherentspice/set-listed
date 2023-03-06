@@ -78,11 +78,12 @@
   display: flex;
   gap: 0.5rem;
   padding: 1rem;
+  border-bottom: 5px solid var(--grey-color-0);
 }
 
 .post-cont {
   display: flex;
-  border-bottom: 2px solid var(--grey-color-0);
+  border-bottom: 5px solid var(--grey-color-0);
   padding: 1rem 0;
 }
 
@@ -110,10 +111,28 @@
   max-width: fit-content;
 }
 
-.comment-text {
+.comment-user-info {
   background-color: var(--grey-color-0);
-  width: 80%;
   padding: 1rem;
+  align-self: center;
+  border-radius: 9px;
+  width: 80%;
+}
+
+.comment-info-cont {
+  width: 100%;
+  border-bottom: none;
+  gap: 1rem;
+  align-items: center;
+}
+
+.comment-cont {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-likes {
+  align-self: flex-end;
 }
 @keyframes changeColor {
   0% {

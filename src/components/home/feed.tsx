@@ -60,6 +60,18 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
     }
   }
 
+  async function handleLikeCommentClick(commentId: string, userId: string) {
+    try {
+      const formObject = {
+        user: userId
+      };
+      const updatedCommentLikes = await PostService.modifyCommentLikes(formObject, commentId);
+      console.log(updatedCommentLikes);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   function handleCommentChange(e: React.ChangeEvent<HTMLInputElement>): void{
     setComment(e.target.value);
   }
@@ -81,6 +93,8 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
       console.log(err);
     }
   }
+
+  console.log(existingComments)
 
   return (
     <div className="home-feed-cont comp">
@@ -115,7 +129,6 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
         </div>
         <form className="add-comment-form">
           <input type="text" className="start-comment-area" value={comment} onChange={handleCommentChange} />
-          {/* <button className="primary-button comment-button" type="submit" onClick={(e) => handleAddCommentSubmit(e, comment)}>Comment</button> */}
           <div onClick={(e) => handleAddCommentSubmit(e, comment)}>
             <IconContext.Provider value={{ size: "1.5rem", className: "message-search-icon"}}>
               <AiOutlineEnter/>
@@ -125,13 +138,26 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
       </div>
       {existingComments !== null && existingComments.length > 0 && <div className="comment-display">
         {existingComments.map((comm, index) => {
-          if (index < 3) {
+          if (index < 4) {
             return (
-              <div>
-                <div>
-                  <p className="comment-text">{comm.content}</p>
+              <div className="comment-cont">
+                <div className="post-cont comment-info-cont">
+                  <a href={`/user/${comm.user.id}`}>
+                    <img className="profile-picture-small" src={comm.user.profileCard.image} alt=""/>
+                  </a>
+                  <div className="comment-user-info">
+                    <div className="profile-feed-info-cont">
+                      <p className="profile-feed-name">{comm.user.firstName} {comm.user.lastName}</p>
+                      <p className="profile-feed-tagline">{comm.user.profileCard.tagline}</p>
+                      <p className="profile-tag">{convertDate(comm.createdAt)}</p>
+                    </div>
+                    <p className="comment-text">{comm.content}</p>
+                  </div>
                 </div>
-
+                <div className="profile-activity-post-likes comment-likes">
+                  <img className="profile-activity-post-like-img" onClick={() => handleLikeCommentClick(comm.id, props.viewingUser)} src={Like} />
+                  <div className="profile-activity-post-like-count">{comm.likes ? comm.likes.length : 0}</div>
+                </div>
               </div>
             )
           }
