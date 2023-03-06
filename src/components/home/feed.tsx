@@ -94,8 +94,18 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
     }
   }
 
-  console.log(existingComments)
-
+  async function handleDeleteCommentClick(commentId: string) {
+    const confirmDelete = confirm("Click OK if you actually want to delete this");
+    if (confirmDelete) {
+      try {
+        await PostService.deleteComment(commentId);
+        const updatedComments = existingComments ? existingComments.filter((comm) => comm.id !== commentId) : [];
+        setExistingComments(updatedComments);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
   return (
     <div className="home-feed-cont comp">
       <div className="post-cont">
@@ -157,6 +167,8 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
                 <div className="profile-activity-post-likes comment-likes">
                   <img className="profile-activity-post-like-img" onClick={() => handleLikeCommentClick(comm.id, props.viewingUser)} src={Like} />
                   <div className="profile-activity-post-like-count">{comm.likes ? comm.likes.length : 0}</div>
+                  {comm.user.id === props.viewingUser &&
+                    <button className="post-edit" onClick={() => handleDeleteCommentClick(comm.id)}>delete</button>}
                 </div>
               </div>
             )

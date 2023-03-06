@@ -35,6 +35,10 @@ const deletePost = (id: string) => {
   return axios.delete(`${baseUrl}/post/${id}`);
 };
 
+const deleteComment = (id: string) => {
+  return axios.delete(`${baseUrl}/comment/${id}`);
+};
+
 const PostService = {
   getFeed,
   getComments,
@@ -42,6 +46,7 @@ const PostService = {
   postComment,
   editPost,
   deletePost,
+  deleteComment,
   modifyPostLikes,
   modifyCommentLikes
 };
