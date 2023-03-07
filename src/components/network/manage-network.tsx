@@ -12,17 +12,24 @@ import { useNavigate } from "react-router-dom";
 import MessagingService from "../../services/home/messaging";
 
 
-export default function NetworkManage(props: {friends: User[], userId: string}) {
+export default function NetworkManage(props: {friends: User[] | undefined, userId: string}) {
   const [expandedConnections, setExpandedConnections] = useState<boolean>(false);
 
   function handleViewConnections(): void{
-    setExpandedConnections(!expandedConnections);
+    if (props.friends) {
+      setExpandedConnections(!expandedConnections);
+    }
   }
 
   function ShowExpandedConnections() {
+
     const [search, setSearch] = useState<string>("");
-    const [searchResults, setSearchResults] = useState<User[]>(props.friends);
+    const [searchResults, setSearchResults] = useState<User[] | undefined>(props.friends);
     const navigate = useNavigate();
+
+    if (!searchResults) {
+      return <></>;
+    }
 
     function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>): void{
       setSearch(e.target.value);
