@@ -195,36 +195,10 @@
 
 /* expanded edit profile */
 
-  .edit-profile-hero-form {
+  .edit-profile-hero-background {
+    padding: 15px 0 0 0;
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    padding: 10px 0 0 0;
-    width: 100%;
-    align-items: center;
-    background-color: var(--background-color);
-    border-radius: 0 0 8px 8px;
-    color: var(--secondary-color);
-    font-weight: bold;
-  }
-
-  .edit-profile-hero-form-item {
-    display: grid;
-    grid-template-columns: 1fr 5fr;
-    width: 85%;
-    gap: 10px;
-  }
-
-  .edit-profile-social-label {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 10px;
-      height: 1rem;
-  }
-
-  .edit-profile-hero-background {
-    display: flex;
     gap: 2rem;
   }
   
@@ -236,7 +210,27 @@
   .edit-profile-hero-background>form {
     align-self: center;
   }
+
+  .edit-profile-hero-pic {
+    padding: 15px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
   
   .edit-profile-hero-pic>img {
     max-width: 500px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    border: 6px solid var(--primary-color)
+  }
+
+  .profile-image-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hidden-image-input {
+    display: none;
   }
