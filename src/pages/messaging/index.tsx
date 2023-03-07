@@ -12,6 +12,7 @@ import SearchContacts from "../../components/messaging/search-contact";
 function MessagingContent(props: {roomId: string, userId: string, friend: ReducedProfileCard, friendId: string, socket: Socket}) {
   const [messages, setMessages] = useState<Messages[]>([]);
   const [newMessage, setNewMessage] = useState<string>("");
+  const [messageDisplayIndex, setMessageDisplayIndex] = useState<number>(10);
   const { socket } = props;
 
   const createMessage = async () => {
@@ -64,26 +65,34 @@ function MessagingContent(props: {roomId: string, userId: string, friend: Reduce
     createMessage();
   };
 
-  console.log(messages);
+  function handleLoadMoreMessages(): void{
+    setMessageDisplayIndex((prev) => prev += 10);
+  }
+
 
   return (
-    <div>
+    <div className="message-info-cont">
       <h1>Messaging</h1>
       <h2>Recipient: {`${props.friend.firstName} ${props.friend.lastName}`}</h2>
-      <ul>
-        {messages.map((message, index) => {
-          let messageAlignment = "self-align";
-          if (message.user.id !== props.userId) {
-            messageAlignment = "recieve-align";
-          }
-          return (
-            <div className={`message-cont ${messageAlignment}`}>
-              <img className="profile-picture-small" src={message.user.profileCard.image}></img>
-              <li key={index}>[{message.user.firstName} {message.user.lastName}]: {message.content}</li>
-            </div>
-          );
-        })}
-      </ul>
+      <div className="message-display">
+        <ul>
+          {messages.length > messageDisplayIndex && <button className="post-edit" onClick={() => handleLoadMoreMessages()}>See more messages...</button>}
+          {messages.map((message, index) => {
+            if (index > messages.length - messageDisplayIndex) {
+              let messageAlignment = "self-align";
+              if (message.user.id !== props.userId) {
+                messageAlignment = "recieve-align";
+              }
+              return (
+                <div className={`message-cont ${messageAlignment}`}>
+                  <img className="profile-picture-small" src={message.user.profileCard.image}></img>
+                  <li key={index}>[{message.user.firstName} {message.user.lastName}]: {message.content}</li>
+                </div>
+              );
+            }
+          })}
+        </ul>
+      </div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <input type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
         <button type="submit">Send</button>
