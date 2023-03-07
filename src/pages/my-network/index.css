@@ -1,0 +1,19 @@
+.network-cont {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  padding: 2rem;
+  background-color: var(--background-color);
+  min-height: 95vh;
+  grid-template-rows: 1fr 1fr;
+}
+
+.manage-network-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.profile-card-cont {
+  justify-self: center;
+}

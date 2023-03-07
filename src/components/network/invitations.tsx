@@ -3,9 +3,9 @@ import ConnectionService from "../../services/home/connection";
 import "../../styles/my-network/invitations.css";
 import { User } from "../../types/my-network";
 
-export default function NetworkInvitations(props: {pendingConnections: User[], user: string}) {
+export default function NetworkInvitations(props: {pendingConnections: User[] | undefined, user: string}) {
     const [showMore, setShowMore] = useState<boolean>(false);
-    const [pending, setPending] = useState<User[]>(props.pendingConnections);
+    const [pending, setPending] = useState<User[] | undefined>(props.pendingConnections);
 
     function handleShowMoreClick(): void{
         setShowMore(true);
@@ -23,10 +23,12 @@ export default function NetworkInvitations(props: {pendingConnections: User[], u
         const formObject = {
           senderId
         };
-        await ConnectionService.acceptRequest(formObject, id);
-        const updatedPending = pending.filter((friend) => friend.id !== senderId);
-        setPending(updatedPending);
-        return Promise.resolve();
+        if (pending) {
+          await ConnectionService.acceptRequest(formObject, id);
+          const updatedPending = pending.filter((friend) => friend.id !== senderId);
+          setPending(updatedPending);
+          return Promise.resolve();
+        }
       } catch (err) {
         console.log(err);
         return Promise.reject();
@@ -41,18 +43,30 @@ export default function NetworkInvitations(props: {pendingConnections: User[], u
         const formObject = {
           senderId
         };
-        await ConnectionService.declineRequest(formObject, id);
-        const updatedPending = pending.filter((friend) => friend.id !== senderId);
-        setPending(updatedPending);
-        return Promise.resolve();
+        if (pending) {
+          await ConnectionService.declineRequest(formObject, id);
+          const updatedPending = pending.filter((friend) => friend.id !== senderId);
+          setPending(updatedPending);
+          return Promise.resolve();
+        }
       } catch (err) {
         console.log(err);
         return Promise.reject();
       }
     }
 
-    if (pending === undefined || pending.length === 0) {
-      return <></>;
+    if (pending === undefined) {
+      return (
+        <div className="network-invitations-cont comp">
+          <div className="network-invitation-header">
+            <h2>Invitations</h2>
+            <button className="network-invitation-header-button">See All</button>
+          </div>
+          <div className="network-invitation-items-cont">
+            <p>No pending connection requests...</p>
+          </div>
+        </div>
+      );
     }
 
     return(

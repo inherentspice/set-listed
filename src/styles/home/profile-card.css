@@ -1,8 +1,4 @@
 @import url("../../App.css");
-/* 
-.profile-card-cont {
-  
-} */
 
 .profile-card-user-cont {
   display: flex;
@@ -97,4 +93,3 @@
   padding: 1rem;
   text-align: left;
 }
-
