@@ -15,6 +15,7 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
   const [post, setPost] = useState<PostData>(props.post);
   const [comment, setComment] = useState<string>("");
   const [existingComments, setExistingComments] = useState<CommentData[] | null>(null);
+  const [viewCommentIndex, setViewCommentIndex] = useState<number>(3);
 
 
   useEffect(() => {
@@ -114,7 +115,7 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
     }
   }
 
-  async function handleDeleteCommentClick(commentId: string) {
+  async function handleDeleteCommentClick(commentId: string): Promise<void>{
     const confirmDelete = confirm("Click OK if you actually want to delete this");
     if (confirmDelete) {
       try {
@@ -124,6 +125,12 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
       } catch (err) {
         console.log(err);
       }
+    }
+  }
+
+  function handleLoadMoreComments(): void{
+    if (existingComments) {
+      setViewCommentIndex(existingComments.length);
     }
   }
 
@@ -167,7 +174,7 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
       </div>
       {existingComments !== null && existingComments.length > 0 && <div className="comment-display">
         {existingComments.map((comm, index) => {
-          if (index < 4) {
+          if (index < viewCommentIndex) {
             return (
               <div className="comment-cont">
                 <div className="post-cont comment-info-cont">
@@ -193,6 +200,7 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
             )
           }
         })}
+        {existingComments.length > viewCommentIndex && <button className="post-edit" onClick={() => handleLoadMoreComments()}>Load more comments...</button>}
       </div>}
     </div>
   );
