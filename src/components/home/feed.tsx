@@ -12,6 +12,7 @@ import { IconContext } from "react-icons";
 export default function Feed(props: {post: PostData, viewingUser: string}) {
 
   const [profile, setProfile] = useState<ProfileCardData | undefined>(undefined);
+  const [post, setPost] = useState<PostData>(props.post);
   const [comment, setComment] = useState<string>("");
   const [existingComments, setExistingComments] = useState<CommentData[] | null>(null);
 
@@ -19,18 +20,18 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
   useEffect(() => {
     (async function() {
       try {
-        const postUserProfile = await ProfileService.getProfileCard(props.post.user);
+        const postUserProfile = await ProfileService.getProfileCard(post.user);
         setProfile(postUserProfile.data.profileCard[0]);
       } catch (err) {
         console.log(err);
       }
   }());
-  }, [props.post.user]);
+  }, [post.user]);
 
   useEffect(() => {
     (async function() {
       try {
-        const postComments = await PostService.getComments(props.post.id);
+        const postComments = await PostService.getComments(post.id);
         setExistingComments(postComments.data.comments);
       } catch (err) {
         console.log(err);
@@ -38,13 +39,32 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
     }());
   }, []);
 
+  useEffect(() => {
+    if (existingComments) {
+      const sortedComments = existingComments.sort((a, b) => {
+        return b.likes.length - a.likes.length;
+      });
+      setExistingComments(sortedComments);
+    }
+  }, [existingComments])
+
   async function handleLikePostClick(id: string, viewingUser: string) {
     try {
+      console.log("here");
       const formObject = {
         user: viewingUser
       };
-      const updatedLikes = await PostService.modifyPostLikes(formObject, id);
-      console.log(updatedLikes);
+      await PostService.modifyPostLikes(formObject, id);
+      const isLiked = post.likes.indexOf(viewingUser);
+      if (isLiked !== -1) {
+        const updatedPost = {...post};
+        updatedPost.likes.splice(isLiked, 1);
+        setPost(updatedPost);
+      } else {
+        const updatedPost = {...post};
+        updatedPost.likes.push(viewingUser);
+        setPost(updatedPost);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -82,7 +102,7 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
     const formObject = {
       user: props.viewingUser,
       content: comment,
-      post: props.post.id
+      post: post.id
     }
     try {
       const addComment = await PostService.postComment(formObject);
@@ -106,11 +126,12 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
       }
     }
   }
+
   return (
     <div className="home-feed-cont comp">
       <div className="post-cont">
         <div className="home-feed-left">
-          <a href={`/user/${props.post.user}`}>
+          <a href={`/user/${post.user}`}>
             {profile?.image ?
               <img src={profile.image} alt="" className="profile-picture-medium"/>
               : <></>}
@@ -118,22 +139,22 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
         </div>
         <div className="home-feed-right">
           <div className="home-feed-right-top">
-            <p>{props.post.content}</p>
+            <p>{post.content}</p>
           </div>
 
           <div className="home-feed-right-bottom">
             <div className="profile-feed-info-cont">
               <p className="profile-feed-name">{profile?.firstName} {profile?.lastName}</p>
               <p className="profile-feed-tagline">{profile?.tagline}</p>
-              <p className="profile-tag">{convertDate(props.post.createdAt)}</p>
+              <p className="profile-tag">{convertDate(post.createdAt)}</p>
             </div>
           </div>
         </div>
       </div>
       <div className="add-comment-cont">
         <div className="profile-activity-post-likes">
-          <img className="profile-activity-post-like-img" onClick={() => handleLikePostClick(props.post.id, props.viewingUser)} src={Like} />
-          <div className="profile-activity-post-like-count">{props.post.likes ? props.post.likes.length : 0}</div>
+          <img className="profile-activity-post-like-img" onClick={() => handleLikePostClick(post.id, props.viewingUser)} src={Like} />
+          <div className="profile-activity-post-like-count">{post.likes ? post.likes.length : 0}</div>
         </div>
         <form className="add-comment-form">
           <input type="text" className="start-comment-area" value={comment} onChange={handleCommentChange} />
