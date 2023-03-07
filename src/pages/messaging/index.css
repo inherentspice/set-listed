@@ -19,6 +19,7 @@
 .messages-content-cont {
   width: 70%;
   max-height: 90vh;
+  margin: 1rem;
 }
 
 .message-preview {
@@ -50,6 +51,7 @@
 .messages-cont {
   display: flex;
   min-height: 90vh;
+  background-color: var(--background-color);
 }
 
 .messages-select-header {

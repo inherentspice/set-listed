@@ -7,6 +7,7 @@ import io, { Socket } from "socket.io-client";
 import { BiMessageSquareAdd } from "react-icons/bi";
 import { IconContext } from "react-icons";
 import SearchContacts from "../../components/messaging/search-contact";
+import shortenText from "../../utilities/shorten-text";
 
 
 function MessagingContent(props: {roomId: string, userId: string, friend: ReducedProfileCard, friendId: string, socket: Socket}) {
@@ -153,7 +154,7 @@ export default function Messaging() {
               <div className="profile-text-info-cont">
                 <p className="profile-name">{room.profileCard.firstName} {room.profileCard.lastName}</p>
               </div>
-              {room.messages.length ? <p className="message-preview">{room.messages[0].user.firstName}: {room.messages[0].content}</p> : <p className="message-preview">Start a conversation!</p>}
+              {room.messages.length ? <p className="message-preview">{room.messages[0].user.firstName}: {shortenText(room.messages[0].content, 50)}</p> : <p className="message-preview">Start a conversation!</p>}
           </div>
         ))}
         </div>}
