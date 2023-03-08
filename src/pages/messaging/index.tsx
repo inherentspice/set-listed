@@ -94,9 +94,9 @@ function MessagingContent(props: {roomId: string, userId: string, friend: Reduce
           })}
         </ul>
       </div>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form className="message-form" onSubmit={(e) => handleSubmit(e)}>
         <input type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} />
-        <button type="submit">Send</button>
+        <button className="message-button" type="submit">Send</button>
       </form>
     </div>
   );
