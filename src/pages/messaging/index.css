@@ -32,10 +32,15 @@
   gap: 1rem;
 }
 
+.message-cont>li {
+  padding: 0 1rem;
+}
+
 .self-align {
   justify-content: flex-start;
   background-color: #d5e4ff;
 }
+
 
 .recieve-align {
   justify-content: flex-end;
@@ -75,10 +80,29 @@
 
 .message-display>ul {
   height:fit-content;
+  margin-right: 1rem;
 }
 
 .message-info-cont {
   max-height: 100%;
+}
+
+.message-form {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.message-form>input {
+  width: 80%;
+  border-radius: 9px;
+}
+.message-button {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 9px;
 }
 /* search-contact */
 .message-search-result {
