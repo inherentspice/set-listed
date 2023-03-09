@@ -198,8 +198,8 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
         <div className="expanded-profile-overlay-cont" onClick={() => handleAddFeaturedClose()} ></div>
         <div className="expanded-profile-overlay">
           <div className="expanded-profile-overlay-header-cont">
-            <h2 className="expanded-edit-about-title">Add to Your Featured Section</h2>
-            <img className="start-post-cancel" src={CancelButton} onClick={() => handleAddFeaturedClose()} />
+            <h2 className="expanded-profile-overlay-header-title">Add to Your Featured Section</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-overlay-header-button" onClick={() => handleAddFeaturedClose()}><path d="m330 768 150-150 150 150 42-42-150-150 150-150-42-42-150 150-150-150-42 42 150 150-150 150 42 42Zm150 208q-82 0-155-31.5t-127.5-86Q143 804 111.5 731T80 576q0-83 31.5-156t86-127Q252 239 325 207.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 82-31.5 155T763 858.5q-54 54.5-127 86T480 976Zm0-60q142 0 241-99.5T820 576q0-142-99-241t-241-99q-141 0-240.5 99T140 576q0 141 99.5 240.5T480 916Zm0-340Z"/></svg>
           </div>
           <form className="start-post-user-form">
             <label className="profile-add-label">
@@ -207,14 +207,15 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
               <input type="text" value={title} onChange={handleTitleChange} />
             </label>
             <label className="profile-add-label">
-              Description:
-              <textarea className="profile-add-textarea" placeholder="" value={description} rows={10} onChange={handleDescriptionChange} />
+              <textarea className="profile-add-textarea" placeholder="Give a brief description here.." value={description} rows={10} cols={60} onChange={handleDescriptionChange} />
             </label>
-            <label className="profile-add-label">
-              Add Supplementary Image:
-              <input className="upload-image-input" type="file" onChange={handleSuppImageChange} />
+            <label className="primary-button">
+              Add Supplementary Image
+              <input className="hidden-image-input" type="file" onChange={handleSuppImageChange} />
             </label>
-            <button className="primary-button" type="submit" onClick={(e) => handleAddFeaturedSubmit(e, suppImageUpload, description, title)}>Upload New Featured Item</button>
+            <div className="expanded-profile-overlay-submit">
+              <button className="secondary-button" type="submit" onClick={(e) => handleAddFeaturedSubmit(e, suppImageUpload, description, title)}>Upload New Featured Item</button>
+            </div>
           </form>
           {err && <ErrorMessage/>}
         </div>
