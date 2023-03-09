@@ -30,20 +30,28 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin: 0.5rem 0;
 }
 
 .message-cont>li {
-  padding: 0 1rem;
+  padding: 1rem;
+  border-radius: 60px;
 }
 
 .self-align {
   justify-content: flex-start;
-  background-color: #d5e4ff;
 }
 
 
 .recieve-align {
   justify-content: flex-end;
+}
+
+.self-align>li {
+  background-color: #d5e4ff;
+}
+
+.recieve-align>li {
   background-color: #d7fff2;
 }
 
