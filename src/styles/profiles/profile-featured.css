@@ -53,6 +53,8 @@
     opacity: 80%;
     cursor: pointer;
   }
+
+  /* expanded overlay */
   
   .expanded-post-cont {
     position: fixed;
@@ -98,7 +100,39 @@
   .expanded-text {
     padding: 12px;
   }
-  
+
+/* add new post overlay */
+
+.start-post-user-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 0 0 0;
+}
+
+.profile-add-label {
+  font-size: 1.25rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.profile-add-label>input {
+  border: 2px var(--primary-color) solid;
+  border-radius: 1rem;
+  padding: 5px 15px 5px 15px;
+}
+
+
+.profile-add-textarea {
+  border: var(--primary-color) solid 2px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/* edit post overlay */
+
 .edit-featured-cont {
     display: flex;
     flex-direction: column;
