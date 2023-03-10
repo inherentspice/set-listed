@@ -19,7 +19,8 @@
   }
   
   .featured-post {
-    max-width: 180px;
+    max-width: 240px;
+    height: 380px;
     border: 2px solid var(--grey-color-0);
     padding: 16px;
     margin: 8px;
