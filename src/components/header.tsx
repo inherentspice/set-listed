@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import "../styles/header.css";
 import Search from "../media/icons/search.png";
 import AuthService from "../services/home/auth";
 import { useUserId } from "../context/userIdContext";
 import ProfileService from "../services/home/profile";
+import HeaderSearch from "./header-search";
 
 export default function Header() {
   const { userId, setUserId } = useUserId();
   const [ profile, setProfile] = useState<string>("");
+  const [ searchStart, setSearchStart ] = useState<boolean>(false);
+  const [ search, setSearch ] = useState<string>("");
 
   useEffect(() => {
     (async function(){
@@ -22,6 +25,14 @@ export default function Header() {
     AuthService.logout();
   }
 
+  function handleSearch(): void {
+    setSearchStart(!searchStart);
+  }
+
+  function handleSearchChange(e: ChangeEvent<HTMLInputElement>): void {
+    setSearch(e.target.value);
+  }
+
   return(
     <div className="header">
       <div className="header-cont">
@@ -30,7 +41,8 @@ export default function Header() {
             <a href="../"><div className="header-cont-logo">SL</div></a>
             <div className="header-cont-search">
               <img src={Search} alt=""/>
-              <input placeholder='Search'></input>
+              <input placeholder='Search' value={search} onFocus={() => handleSearch()} onChange={(e) => handleSearchChange(e)}/>
+              {searchStart && <HeaderSearch search={search} setSearch={setSearch}/>}
             </div>
           </div>
 
@@ -44,7 +56,7 @@ export default function Header() {
             <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="header-nav-img"><path d="M0 816v-53q0-39.464 42-63.232T150.398 676q12.158 0 23.38.5T196 678.727q-8 17.273-12 34.842-4 17.57-4 37.431v65H0Zm240 0v-65q0-65 66.5-105T480 606q108 0 174 40t66 105v65H240Zm540 0v-65q0-19.861-3.5-37.431Q773 696 765 678.727q11-1.727 22.171-2.227 11.172-.5 22.829-.5 67.5 0 108.75 23.768T960 763v53H780ZM479.8 666Q400 666 350 690q-50 24-50 61v5h360v-6q0-36-49.5-60t-130.7-24Zm-330.233-20Q121 646 100.5 625.438 80 604.875 80 576q0-29 20.562-49.5Q121.125 506 150 506q29 0 49.5 20.5t20.5 49.933Q220 605 199.5 625.5T149.567 646Zm660 0Q781 646 760.5 625.438 740 604.875 740 576q0-29 20.562-49.5Q781.125 506 810 506q29 0 49.5 20.5t20.5 49.933Q880 605 859.5 625.5T809.567 646ZM480 576q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600 456q0 50-34.5 85T480 576Zm.351-180Q455 396 437.5 413.149t-17.5 42.5Q420 481 437.351 498.5t43 17.5Q506 516 523 498.649t17-43Q540 430 522.851 413t-42.5-17ZM480 756Zm0-300Z"/></svg>
               <div className="header-nav-btn-name">My Network</div>
             </a>
-            
+
             {/* The gigs section is a work in progress */}
             {/* <a href='/gigs' className="header-nav-btn">
               <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="header-nav-img"><path d="M140 936q-24 0-42-18t-18-42V396q0-24 18-42t42-18h180V236q0-24 18-42t42-18h200q24 0 42 18t18 42v100h180q24 0 42 18t18 42v480q0 24-18 42t-42 18H140Zm0-60h680V396H140v480Zm240-540h200V236H380v100ZM140 876V396v480Z"/></svg>

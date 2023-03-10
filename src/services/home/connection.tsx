@@ -6,8 +6,8 @@ const getConnections = (id: string) => {
   return axios.get(`${baseUrl}/getConnections/${id}`);
 };
 
-const getFilteredConnections = (searchParams: string, id: string) => {
-  return axios.get(`${baseUrl}/getFilteredConnections/${id}/${searchParams}`);
+const getFilteredConnections = (searchParams: string) => {
+  return axios.get(`${baseUrl}/getFilteredConnections/${searchParams}`);
 };
 
 const sendRequest = (formObject: {friendId: string}, id: string) => {
