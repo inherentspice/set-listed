@@ -285,32 +285,39 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
         <div className="expanded-profile-overlay-cont" onClick={() => handleEditFeaturedItemClose()}></div>
         <div className="expanded-profile-overlay-overflow">
           <div className="expanded-profile-overlay-header-cont">
-            <h2 className="expanded-edit-about-title">Edit Your Spotlight Section</h2>
+            <h2 className="expanded-profile-overlay-header-title">Edit Your Spotlight Section</h2>
             <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditFeaturedItemClose()} />
           </div>
-          <div className="edit-profile-hero-pic">
-            {imageUpload ? (
-              <img src={URL.createObjectURL(imageUpload)} alt="" />
-            ) : (
-              <img src={featuredItem.image || ""} alt=""></img>
-            )}
-            <form className="edit-profile-hero-form">
-              <label className="profile-add-label">
-                <input className="upload-image-input" type="file" onChange={handleImageChange}></input>
-              </label>
-            </form>
-            <button className="primary-button" type="submit" onClick={(e)=>handleEditFeaturedPicSubmit(e, imageUpload, featuredItem.id)}>Save New Spotlight Image</button>
-          </div>
-          <form className="edit-profile-hero-form">
-            <label className="edit-profile-hero-form-item">Title:
-              <input type="text" value={title} onChange={handleTitleChange}></input>
-            </label>
-            <label className="edit-profile-hero-form-item">Description:
-              <textarea value={description} onChange={handleDescriptionChange}></textarea>
-            </label>
-            <button className="primary-button" type="submit" onClick={(e)=>handleEditFeaturedSubmit(e, title, description, featuredItem.id)}>Save Edited Spotlight Content</button>
+          <div className="edit-featured-item-body">
+            <div className="edit-featured-item-picture">
+              {imageUpload ? (
+                <img src={URL.createObjectURL(imageUpload)} alt="" />
+              ) : (
+                <img src={featuredItem.image || ""} alt=""></img>
+              )}
+              <div className="edit-feature-item-picture-buttons">
+                <form className="edit-feature-item-form">
+                  <label className="primary-button">
+                    <input className="hidden-image-input" type="file" onChange={handleImageChange}></input>
+                    Upload
+                  </label>
+                </form>
+                <button className="primary-button" type="submit" onClick={(e)=>handleEditFeaturedPicSubmit(e, imageUpload, featuredItem.id)}>Save</button>
+              </div>
+            </div>
 
-          </form>
+            <form className="edit-feature-item-form-content">
+              <label className="expanded-feature-item-form-title">
+                <input type="text" value={title} onChange={handleTitleChange}></input>
+              </label>
+              <label className="expanded-feature-item-form-textarea">
+                <textarea className="featured-post-textarea" value={description} onChange={handleDescriptionChange} rows={16}></textarea>
+              </label>
+              <button className="primary-button" type="submit" onClick={(e)=>handleEditFeaturedSubmit(e, title, description, featuredItem.id)}>Save Edited Spotlight Content</button>
+
+            </form>
+          </div>
+          
           {err && <ErrorMessage/>}
         </div>
       </>,
