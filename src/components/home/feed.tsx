@@ -178,23 +178,29 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
             return (
               <div className="comment-cont">
                 <div className="post-cont comment-info-cont">
-                  <a href={`/user/${comm.user.id}`}>
-                    <img className="profile-picture-small" src={comm.user.profileCard.image} alt=""/>
-                  </a>
                   <div className="comment-user-info">
                     <div className="profile-feed-info-cont">
-                      <p className="profile-feed-name">{comm.user.firstName} {comm.user.lastName}</p>
-                      <p className="profile-feed-tagline">{comm.user.profileCard.tagline}</p>
-                      <p className="profile-tag">{convertDate(comm.createdAt)}</p>
+                      <a href={`/user/${comm.user.id}`}>
+                        <img className="profile-picture-small" src={comm.user.profileCard.image} alt=""/>
+                      </a>
+                      <div className="profile-feed-comment-info">
+                        <div className="profile-feed-name">{comm.user.firstName} {comm.user.lastName}</div>
+                        <div className="profile-feed-tagline">{comm.user.profileCard.tagline}</div>
+                      </div>
                     </div>
                     <p className="comment-text">{comm.content}</p>
+                    <div className="comment-footer">
+                      <div className="profile-activity-post-likes comment-likes">
+                        <img className="profile-activity-post-like-img" onClick={() => handleLikeCommentClick(comm.id, props.viewingUser)} src={Like} />
+                        <div className="profile-activity-post-like-count">{comm.likes ? comm.likes.length : 0}</div>
+                        {comm.user.id === props.viewingUser && <button className="post-edit" onClick={() => handleDeleteCommentClick(comm.id)}>delete</button>}
+                      </div>
+
+                      <p className="profile-tag">{convertDate(comm.createdAt)}</p>
+                    </div>
+
                   </div>
-                </div>
-                <div className="profile-activity-post-likes comment-likes">
-                  <img className="profile-activity-post-like-img" onClick={() => handleLikeCommentClick(comm.id, props.viewingUser)} src={Like} />
-                  <div className="profile-activity-post-like-count">{comm.likes ? comm.likes.length : 0}</div>
-                  {comm.user.id === props.viewingUser &&
-                    <button className="post-edit" onClick={() => handleDeleteCommentClick(comm.id)}>delete</button>}
+                  
                 </div>
               </div>
             )
