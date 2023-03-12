@@ -55,7 +55,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
+    width: 100%;
     gap: 5px
 }
 
@@ -65,12 +66,10 @@
 
 .profile-feed-name {
     font-weight: bold;
-    border-right: 2px solid var(--primary-color);
     padding-right: 5px;
 }
 
 .profile-feed-tagline {
-    border-right: 2px solid var(--primary-color);
     padding-right: 5px
 }
 
@@ -82,41 +81,79 @@
     color: var(--grey-color-1)
 }
 
-.home-feed-comment-conts {
+.add-comment-cont {
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-bottom: 5px solid var(--grey-color-0);
+  }
+  
+  .post-cont {
+    display: flex;
+    justify-content: center;
+    border-bottom: 5px solid var(--grey-color-0);
+    padding: 15px;
+  }
+  
+  .add-comment-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  
+  .start-comment-area {
+    font-size: 14px;
+    font-weight: 500;
+    color: #212121;
+    border: 1px solid var(--primary-color);
+    background-color: var(--background-comp-color);
+    border-radius: 22px;
+    width: 100%;
+    height: 40px;
+    padding: 8px 12px;
+    text-align: start;
+  }
+  
+  .comment-button {
+    max-width: fit-content;
+  }
+
+  .comment-cont {
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
+    width: 100%;
+    align-content: center;
+  }
 
-.user-comment-cont {
+  .comment-info-cont {
+    width: 100%;
+    border-bottom: none;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .comment-user-info {
+    background-color: var(--grey-color-0);
+    padding: 1rem;
     display: flex;
-    align-items: center;
-    padding: 5px;
-    border-top: 2px solid var(--grey-color-0);
-    height: 3rem;
-}
+    flex-direction: column;
+    border-radius: 9px;
+    width: 90%;
+  }
 
-.user-comment-cont>textarea {
-    width: 320px;
-    padding-left:1rem;
-    border-radius: 2rem 0 0 2rem;
-    border: 2px solid var(--primary-color);
-    border-right: none;
-    height: 100%;
+  .comment-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: -1rem;
 }
-
-
-.heckle-button {
-    border: 2px solid var(--primary-color);
-    background-color: white;
-    font-weight: bold;
-    color: var(--secondary-color);
-    height: 100%;
-    border-radius: 0 2rem 2rem 0;
-    cursor: pointer;
-}
-
-.heckle-button:hover {
-    background-color: var(--primary-color);
-    color: white;
-}
+  
+  @keyframes changeColor {
+    0% {
+      background-color: var(--grey-color-1);
+    }
+    100% {
+      background-color: var(--background-comp-color);
+    }
+  }
