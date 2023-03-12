@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import RachelLoo from "../../media/home/rachel-profile-picture.png";
 import DeniseFerguson from "../../media/home/denise-profile-picture.png";
 import "../../styles/profiles/profile-hero.css";
-import CancelButton from "../../media/icons/cancel.png";
 import { ProfileCardData } from "../../types/profile";
 import ProfileService from "../../services/home/profile";
 import { useNavigate } from "react-router-dom";
@@ -333,23 +332,28 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
           </div>
           <form className="edit-profile-hero-form">
             <h2>Basic Information</h2>
-            <label className="edit-profile-hero-form-item">First Name
+            <label className="edit-profile-hero-form-item">
+              <p>First Name</p>
               <input type="text" value={firstName} onChange={handleFirstNameChange}></input>
             </label>
 
-            <label className="edit-profile-hero-form-item">Last Name
+            <label className="edit-profile-hero-form-item">
+              <p>Last Name</p>
               <input type="text" value={lastName} onChange={handleLastNameChange}></input>
             </label>
 
-            <label className="edit-profile-hero-form-item">Tagline
+            <label className="edit-profile-hero-form-item">
+              <p>Tagline</p>
               <input type="text" value={tagline} onChange={handleTaglineChange} maxLength={50}></input>
             </label>
 
-            <label className="edit-profile-hero-form-item">City
+            <label className="edit-profile-hero-form-item">
+              <p>City</p>
               <input type="text" value={city} onChange={handleCityChange}></input>
             </label>
 
-            <label className="edit-profile-hero-form-item">Country
+            <label className="edit-profile-hero-form-item">
+              <p>Country</p>
               <input type="text" value={country} onChange={handleCountryChange}></input>
             </label>
 

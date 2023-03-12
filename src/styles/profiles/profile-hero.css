@@ -234,3 +234,35 @@
   .hidden-image-input {
     display: none;
   }
+
+  .edit-profile-hero-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .edit-profile-hero-form-item {
+      display: flex;
+      align-items: center;
+  }
+
+  .edit-profile-hero-form-item>p {
+      width: 120px;
+  }
+
+  .edit-profile-hero-form-item>input {
+      height: 2rem;
+      border: 2px solid var(--primary-color);
+      padding: 0 15px 0 15px;
+      border-radius: 15px;
+      width:300px;
+  }
+
+  .edit-profile-social-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-items: left;
+      width: 120px;
+  }
