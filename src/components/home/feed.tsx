@@ -137,25 +137,25 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
   return (
     <div className="home-feed-cont comp">
       <div className="post-cont">
-        <div className="home-feed-left">
-          <a href={`/user/${post.user}`}>
-            {profile?.image ?
-              <img src={profile.image} alt="" className="profile-picture-medium"/>
-              : <></>}
-          </a>
-        </div>
-        <div className="home-feed-right">
-          <div className="home-feed-right-top">
-            <p>{post.content}</p>
-          </div>
-
-          <div className="home-feed-right-bottom">
-            <div className="profile-feed-info-cont">
-              <p className="profile-feed-name">{profile?.firstName} {profile?.lastName}</p>
-              <p className="profile-feed-tagline">{profile?.tagline}</p>
-              <p className="profile-tag">{convertDate(post.createdAt)}</p>
+        <div className="home-feed-content">
+        <div className="home-feed-top">
+            <div className="home-feed-left">
+              <a href={`/user/${post.user}`}>
+                {profile?.image ?
+                  <img src={profile.image} alt="" className="profile-picture-small"/>
+                  : <></>}
+              </a>
+            </div>
+            <div className="profile-feed-post-info">
+              <div className="profile-feed-post-name">{profile?.firstName} {profile?.lastName}</div>
+              <div className="profile-feed-post-tagline">{profile?.tagline}</div>
             </div>
           </div>
+          <div className="home-feed-bottom">
+            <p>{"''"+post.content+"''"}</p>
+          </div>
+          <div className="profile-feed-post-date">{convertDate(post?.createdAt)}</div>
+
         </div>
       </div>
       <div className="add-comment-cont">
