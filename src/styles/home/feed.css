@@ -3,38 +3,52 @@
     min-height: 220px;
 }
 
-.home-feed-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.home-feed-right {
+.home-feed-content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    width: 100%
 }
 
-.home-feed-right-top {
+.home-feed-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.home-feed-bottom {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     height: 100%;
+    width: 100%;
 }
 
-.home-feed-chat-bubble {
-    position: absolute;
-    height: 180px;
-    width: 360px;
-    left: 90px;
-    top: 5px;
+.home-feed-bottom>p {
+    width: 80%;
+    border-radius: 8px;
+    padding: 5px;
 }
 
-.home-feed-right-top>p {
-    width: 260px;
+.profile-feed-post-info {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+}
+
+.profile-feed-post-name {
+    font-weight: bold;
+}
+
+.profile-feed-post-tagline{
+    font-size: .75rem;
 }
 
 .profile-feed-info-cont {
@@ -52,12 +66,20 @@
 .profile-feed-name {
     font-weight: bold;
     border-right: 2px solid var(--primary-color);
-    padding-right: 5px
+    padding-right: 5px;
 }
 
 .profile-feed-tagline {
     border-right: 2px solid var(--primary-color);
     padding-right: 5px
+}
+
+.profile-feed-post-date{
+    font-size: .75rem;
+    width:100%;
+    text-align: right;
+    padding: 0 15px 0 0;
+    color: var(--grey-color-1)
 }
 
 .home-feed-comment-conts {
