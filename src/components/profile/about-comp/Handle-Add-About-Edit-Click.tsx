@@ -5,7 +5,6 @@ export async function handleAddAboutEditClick(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     content: string,
     user: string,
-    // need to pass these babies as props
     setAbout: any,
     handleExpandEditAboutToggle: any,
     setErr: any
