@@ -6,7 +6,7 @@ import Advertisement from "../../components/home/advertisement";
 import ProfileCard from "../../components/home/profile-card";
 import Footer from "../../components/home/footer";
 import QuickAccess from "../../components/home/quick-access";
-import Feed from "../../components/home/feed";
+import Feed from "../../components/home/feed/feed";
 import { ProfileCardData, PostData } from "../../types/profile";
 import PostService from "../../services/home/posts";
 import ProfileService from "../../services/home/profile";

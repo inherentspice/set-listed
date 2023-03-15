@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
-import ProfileService from "../../services/home/profile";
-import PostService from "../../services/home/posts";
-import { CommentData, PostData, ProfileCardData } from "../../types/profile";
-import convertDate from "../../utilities/convert-date";
-import Like from "../../media/icons/like.png";
-import "../../styles/home/feed.css";
+import ProfileService from "../../../services/home/profile";
+import PostService from "../../../services/home/posts";
+import { CommentData, PostData, ProfileCardData } from "../../../types/profile";
+import convertDate from "../../../utilities/convert-date";
+import Like from "../../../media/icons/like.png";
+import "../../../styles/home/feed.css";
 import { AiOutlineEnter } from "react-icons/ai";
 import { IconContext } from "react-icons";
+import handleLikePostClick from "./like-post";
+import handleLikeCommentClick from "./like-comment";
+import handleAddCommentSubmit from "./add-comment";
+import handleDeleteCommentClick from "./delete-comment";
 
 
 export default function Feed(props: {post: PostData, viewingUser: string}) {
@@ -49,83 +53,8 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
     }
   }, [existingComments])
 
-  async function handleLikePostClick(id: string, viewingUser: string) {
-    try {
-      console.log("here");
-      const formObject = {
-        user: viewingUser
-      };
-      await PostService.modifyPostLikes(formObject, id);
-      const isLiked = post.likes.indexOf(viewingUser);
-      if (isLiked !== -1) {
-        const updatedPost = {...post};
-        updatedPost.likes.splice(isLiked, 1);
-        setPost(updatedPost);
-      } else {
-        const updatedPost = {...post};
-        updatedPost.likes.push(viewingUser);
-        setPost(updatedPost);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  async function handleLikeCommentClick(commentId: string, userId: string) {
-    try {
-      const formObject = {
-        user: userId
-      };
-      await PostService.modifyCommentLikes(formObject, commentId);
-      if (existingComments) {
-        const initialCommentInfo = existingComments.filter((comm) => comm.id === commentId);
-        const isLiking = initialCommentInfo[0].likes.indexOf(userId);
-        isLiking === -1 ?
-          initialCommentInfo[0].likes.push(userId) :
-          initialCommentInfo[0].likes.splice(isLiking, 1);
-        const updatedLikesArray = existingComments
-          .filter((comm) => comm.id !== commentId)
-          .concat(initialCommentInfo);
-        setExistingComments(updatedLikesArray)
-        }
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   function handleCommentChange(e: React.ChangeEvent<HTMLInputElement>): void{
     setComment(e.target.value);
-  }
-
-  async function handleAddCommentSubmit(e: React.MouseEvent<HTMLDivElement, MouseEvent>, comment: string): Promise<void>{
-    e.preventDefault();
-
-    const formObject = {
-      user: props.viewingUser,
-      content: comment,
-      post: post.id
-    }
-    try {
-      const addComment = await PostService.postComment(formObject);
-      const updatedComments = existingComments ? existingComments.concat(addComment.data.comment) : [addComment.data.comment];
-      setExistingComments(updatedComments);
-      setComment("");
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  async function handleDeleteCommentClick(commentId: string): Promise<void>{
-    const confirmDelete = confirm("Click OK if you actually want to delete this");
-    if (confirmDelete) {
-      try {
-        await PostService.deleteComment(commentId);
-        const updatedComments = existingComments ? existingComments.filter((comm) => comm.id !== commentId) : [];
-        setExistingComments(updatedComments);
-      } catch (err) {
-        console.log(err);
-      }
-    }
   }
 
   function handleLoadMoreComments(): void{
@@ -147,25 +76,27 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
               </a>
             </div>
             <div className="profile-feed-post-info">
-              <div className="profile-feed-post-name">{profile?.firstName} {profile?.lastName}</div>
-              <div className="profile-feed-post-tagline">{profile?.tagline}</div>
+              <p className="profile-feed-post-name">{profile?.firstName} {profile?.lastName}</p>
+              <p className="profile-feed-post-tagline">{profile?.tagline}</p>
             </div>
           </div>
           <div className="home-feed-bottom">
-            <p>{"''"+post.content+"''"}</p>
+            <p>{post.content}</p>
           </div>
-          <div className="profile-feed-post-date">{convertDate(post?.createdAt)}</div>
-
+          <p className="profile-feed-post-date">{convertDate(post?.createdAt)}</p>
         </div>
       </div>
       <div className="add-comment-cont">
         <div className="profile-activity-post-likes">
-          <img className="profile-activity-post-like-img" onClick={() => handleLikePostClick(post.id, props.viewingUser)} src={Like} />
-          <div className="profile-activity-post-like-count">{post.likes ? post.likes.length : 0}</div>
+          <img
+            className="profile-activity-post-like-img"
+            onClick={() => handleLikePostClick(post.id, props.viewingUser, post, setPost)}
+            src={Like} />
+          <p className="profile-activity-post-like-count">{post.likes ? post.likes.length : 0}</p>
         </div>
         <form className="add-comment-form">
           <input type="text" className="start-comment-area" value={comment} onChange={handleCommentChange} />
-          <div onClick={(e) => handleAddCommentSubmit(e, comment)}>
+          <div onClick={(e) => handleAddCommentSubmit(e, comment, props.viewingUser, post.id, existingComments, setExistingComments, setComment)}>
             <IconContext.Provider value={{ size: "1.5rem", className: "message-search-icon"}}>
               <AiOutlineEnter/>
             </IconContext.Provider>
@@ -184,23 +115,29 @@ export default function Feed(props: {post: PostData, viewingUser: string}) {
                         <img className="profile-picture-small" src={comm.user.profileCard.image} alt=""/>
                       </a>
                       <div className="profile-feed-comment-info">
-                        <div className="profile-feed-name">{comm.user.firstName} {comm.user.lastName}</div>
-                        <div className="profile-feed-tagline">{comm.user.profileCard.tagline}</div>
+                        <p className="profile-feed-name">{comm.user.firstName} {comm.user.lastName}</p>
+                        <p className="profile-feed-post-tagline">{comm.user.profileCard.tagline}</p>
                       </div>
                     </div>
                     <p className="comment-text">{comm.content}</p>
                     <div className="comment-footer">
                       <div className="profile-activity-post-likes comment-likes">
-                        <img className="profile-activity-post-like-img" onClick={() => handleLikeCommentClick(comm.id, props.viewingUser)} src={Like} />
-                        <div className="profile-activity-post-like-count">{comm.likes ? comm.likes.length : 0}</div>
-                        {comm.user.id === props.viewingUser && <button className="post-edit" onClick={() => handleDeleteCommentClick(comm.id)}>delete</button>}
+                        <img
+                          className="profile-activity-post-like-img"
+                          onClick={() => handleLikeCommentClick(comm.id, props.viewingUser, existingComments, setExistingComments)}
+                          src={Like}
+                        />
+                        <p className="profile-activity-post-like-count">{comm.likes ? comm.likes.length : 0}</p>
+                        {comm.user.id === props.viewingUser &&
+                          <button
+                            className="post-edit"
+                            onClick={() => handleDeleteCommentClick(comm.id, existingComments, setExistingComments)}
+                          >delete</button>}
                       </div>
 
                       <p className="profile-tag">{convertDate(comm.createdAt)}</p>
                     </div>
-
                   </div>
-                  
                 </div>
               </div>
             )
