@@ -243,15 +243,15 @@
     border-radius: 30px;
     padding: 5px 15px 5px 15px;
   }
-  
+
   .post-edit {
-    background-color: var(--background-comp-color);
+    background-color: inherit;
     border: none;
     color: var(--grey-color-1);
     cursor: pointer;
     font-size: smaller;
   }
-  
+
   .post-edit:hover {
     color: var(--grey-color-2);
   }
