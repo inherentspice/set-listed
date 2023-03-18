@@ -8,6 +8,7 @@ import ErrorMessage from "../../error-message";
 import ShowStartPost from "./Show-Start-Post";
 import ShowEditPost from "./Show-Edit-Post";
 import handleDeletePostClick from "./Handle-Delete-Post-Click";
+import handleLikePostClick from "./Handle-Like-Post-Click";
 
 export default function ProfileActivity(props: {profileCard: ProfileCardData[], posts: PostData[], viewingUser: string, userProfile: boolean}) {
     const [expandedStartPost, setExpandedStartPost] = useState<boolean>(false);
@@ -31,28 +32,6 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
         setExpandedEditPost(expandedEditPost == "" ? id : "");
     }
 
-    function handleLikePostClick(id: string, viewingUser: string) {
-      likePost(id, viewingUser)
-        .then(() => {
-          console.log("post liked!");
-        }).catch((err) => {
-          console.log(err);
-        });
-    }
-
-    async function likePost(id: string, viewingUser: string) {
-      try {
-        const formObject = {
-          user: viewingUser
-        };
-        const updatedLikes = await PostService.modifyPostLikes(formObject, id);
-        console.log(updatedLikes);
-
-      } catch (err) {
-        console.log(err);
-      }
-    }
-
     return(
       <div className="profile-activity-cont comp">
         <div className="profile-section-header">
@@ -74,7 +53,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
                 </div>
                 <p className="profile-activity-post-description">{item.content}</p>
                 <div className="profile-activity-post-likes">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-activity-post-like-img" onClick={() => handleLikePostClick(item.id, props.viewingUser)}><path d="M716 936H272V424l278-288 39 31q6 5 9 14t3 22v10l-45 211h299q24 0 42 18t18 42v81.839q0 7.161 1.5 14.661T915 595L789 885q-8.878 21.25-29.595 36.125Q738.689 936 716 936Zm-384-60h397l126-299v-93H482l53-249-203 214v427Zm0-427v427-427Zm-60-25v60H139v392h133v60H79V424h193Z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-activity-post-like-img" onClick={() => handleLikePostClick(item.id, props.viewingUser, setErr)}><path d="M716 936H272V424l278-288 39 31q6 5 9 14t3 22v10l-45 211h299q24 0 42 18t18 42v81.839q0 7.161 1.5 14.661T915 595L789 885q-8.878 21.25-29.595 36.125Q738.689 936 716 936Zm-384-60h397l126-299v-93H482l53-249-203 214v427Zm0-427v427-427Zm-60-25v60H139v392h133v60H79V424h193Z"/></svg>
                   <div className="profile-activity-post-like-count">{item.likes ? item.likes.length : 0}</div>
                   {props.userProfile && <button className="post-edit" onClick={() => handleEditPostToggle(item.id)}>edit</button>}
                   {props.userProfile && <button className="post-edit" onClick={(e) => handleDeletePostClick(e, item.id, props.posts,  setPosts, setErr)}>delete</button>}

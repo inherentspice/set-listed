@@ -5,7 +5,6 @@ import handleEditPostSubmit from "./Handle-Edit-Post-Submit";
 
 export default function ShowEditPost(props: {profileCard: any, posts: any, expandedEditPost: any, handleEditPostToggle:any, err: boolean, setPosts: any, setErr: any}
     ) {
-    // i need to set the post id with a new function //
   const selectedPost = props.posts.filter((post:any) => post.id === props.expandedEditPost)[0];
   const [content, setContent] = useState<string>(selectedPost.content);
 

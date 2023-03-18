@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import ErrorMessage from "../../error-message";
 import handleAddPostSubmit from "./Handle-Add-Post-Submit";
 
-
 export default function ShowStartPost(props: {profileCard: any, handleStartPostToggle: any, err: boolean, posts: any, setPosts: any, setErr:any}
 ) {
     const [content, setContent] = useState<string>("");
