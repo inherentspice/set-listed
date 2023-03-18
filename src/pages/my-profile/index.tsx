@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProfileHero from "../../components/profile/profile-hero";
 import ProfileAbout from "../../components/profile/about-comp/about";
 import Featured from "../../components/profile/profile-featured";
-import ProfileActivity from "../../components/profile/profile-activity";
+import ProfileActivity from "../../components/profile/activity-comp/activity";
 import ProfileExperience from "../../components/profile/profile-experience";
 import ProfileAwards from "../../components/profile/profile-awards";
 import ProfilePotentialFriends from "../../components/profile/profile-friends";

@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import ReactDOM from "react-dom";
 import ErrorMessage from "../../error-message";
+import handleAddPostSubmit from "./Handle-Add-Post-Submit";
 
 
-export default function ShowStartPost(props: {profileCard: any, handleStartPostToggle: any, handleAddPostSubmit: any, err: boolean}
+export default function ShowStartPost(props: {profileCard: any, handleStartPostToggle: any, err: boolean, posts: any, setPosts: any, setErr:any}
 ) {
     const [content, setContent] = useState<string>("");
 
@@ -46,7 +47,7 @@ export default function ShowStartPost(props: {profileCard: any, handleStartPostT
                 <div>Character Limit: {content.length}/140</div>
               </div>
               <div className="expanded-profile-overlay-submit">
-                <button type="submit" onClick={(e) => {props.handleAddPostSubmit(e, content);}} className="secondary-button">Post</button>
+                <button type="submit" onClick={(e) => {handleAddPostSubmit(e, content, props.profileCard.id, props.posts, props.setPosts, props.handleStartPostToggle, props.setErr);}} className="secondary-button">Post</button>
               </div>
             </form>
             {props.err && <ErrorMessage/>}
