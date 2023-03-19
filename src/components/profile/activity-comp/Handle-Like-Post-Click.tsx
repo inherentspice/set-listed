@@ -12,5 +12,6 @@ export default async function handleLikePostClick(
       
     } catch(err) {
       setErr(true)
+      return Promise.reject();
     }
   }

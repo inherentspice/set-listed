@@ -17,6 +17,7 @@ export default async function handleDeletePostClick(
         }
     } catch(err) {
         setErr(true)
+        return Promise.reject();
     }
     
   }

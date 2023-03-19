@@ -19,6 +19,7 @@ export default async function handleAddPostSubmit(
 
     } catch(err) {
         setErr(true);
+        return Promise.reject();
     }
     
   }
