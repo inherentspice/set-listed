@@ -13,6 +13,8 @@ import ErrorMessage from "../../error-message";
 import { Connections } from "../../../types/my-network";
 import ConnectionService from "../../../services/home/connection";
 import ConnectionButton from "../../network/connection-button";
+import ShowEditHeroBackground from "./Show-Edit-Hero-Background";
+import ShowEditProfilePicture from "./Show-Edit-Profile-Picture";
 
 
 
@@ -54,32 +56,19 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
     determineConnectionState();
   }, []);
 
-  function handleEditProfileClick(id: string): void{
-    setExpandedEditProfile(id);
+  function handleEditProfileToggle(id: string): void{
+    setExpandedEditProfile(expandedEditProfile == "" ? id : "");
   }
 
-  function handleEditProfileClose(): void{
-    setExpandedEditProfile("");
+  function handleEditBackgroundToggle(id: string): void{
+    setExpandedEditBackground(expandedEditBackground == "" ? id : "");
   }
 
-  function handleEditBackgroundClick(id: string): void{
-    setExpandedEditBackground(id);
-  }
-
-  function handleEditBackgroundClose(): void{
-    setExpandedEditBackground("");
-  }
-
-  function handleEditProfilePicClick(id: string): void{
+  function handleEditProfilePictureToggle(id: string): void{
     if (props.userProfile) {
-      setExpandedEditProfilePic(id);
-      // I do not know why the edit profile hero info keeps opening when edit profile pic opens but it does. Programming is dumb. Thats why I put this line of code here. Because coding is dumb
-      handleEditProfileClose();
+      setExpandedEditProfilePic(expandedEditProfilePic == "" ? id : "");
+      handleEditProfileToggle("");
     }
-  }
-
-  function handleEditProfilePicClose(): void{
-    setExpandedEditProfilePic("");
   }
 
   async function handleEditBackgroundSubmit(
@@ -96,7 +85,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
               formData.append("image", imageUpload);
               const newImage = await ProfileService.editBackground(formData, profileCard.user);
               setProfileCard(newImage.data.profileCard);
-              handleEditBackgroundClose();
+              handleEditBackgroundToggle("");
         } catch(err) {
             setErr(true)
             return Promise.reject();
@@ -124,7 +113,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
             };
             const editedHero = await ProfileService.editHero(formData, profileCard.user);
             setProfileCard(editedHero.data.profileCard);
-            handleEditProfileClose();
+            handleEditProfileToggle("");
         } catch(err) {
             setErr(true)
             return Promise.reject();
@@ -145,7 +134,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
         formData.append("image", imageUpload);
         const newImage = await ProfileService.editProfilePic(formData, profileCard.user);
         setProfileCard(newImage.data.profileCard);
-        handleEditProfilePicClose();
+        handleEditProfilePictureToggle("");
       } catch(err) {
           setErr(true)
           return Promise.reject();
@@ -185,85 +174,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
     }
   }
 
-  function ShowEditBackgroundHero() {
-    const [imageUpload, setImageUpload] = useState<File | null>(null);
 
-    function handleImageChange(e: React.ChangeEvent<HTMLInputElement>): void{
-      if (e.target.files){
-        setImageUpload(e.target.files[0]);
-      }
-    }
-
-    return ReactDOM.createPortal(
-      <>
-        <div className="expanded-profile-overlay-cont" key={profileCard.id} onClick={() => handleEditBackgroundClose()}></div>
-        <div className="expanded-profile-overlay">
-          <div className="expanded-profile-overlay-header-cont">
-            <h2 className="expanded-profile-overlay-header-title">Edit Background Image</h2>
-            <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 96 960 960" width="35" className="profile-overlay-header-button" onClick={() => handleEditBackgroundClose()}><path d="m330 768 150-150 150 150 42-42-150-150 150-150-42-42-150 150-150-150-42 42 150 150-150 150 42 42Zm150 208q-82 0-155-31.5t-127.5-86Q143 804 111.5 731T80 576q0-83 31.5-156t86-127Q252 239 325 207.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 82-31.5 155T763 858.5q-54 54.5-127 86T480 976Zm0-60q142 0 241-99.5T820 576q0-142-99-241t-241-99q-141 0-240.5 99T140 576q0 141 99.5 240.5T480 916Zm0-340Z"/></svg>
-          </div>
-          <div className="edit-profile-hero-background">
-            {imageUpload ? (
-              <img src={URL.createObjectURL(imageUpload)} alt="" />
-            ) : (
-              <img src={profileCard.backgroundImage || "https://res.cloudinary.com/dhptcrsjc/image/upload/v1675955714/Set-Listed/default-background_wyziyb.png"} alt=""></img>
-            )}
-            <form className="edit-profile-hero-form">
-              <label className="primary-button">
-                <input className="hidden-image-input" type="file" onChange={handleImageChange}></input>
-                Choose File
-              </label>
-            </form>
-          </div>
-          <div className="expanded-profile-overlay-submit">
-            <button className="secondary-button" type="submit" onClick={(e)=>handleEditBackgroundSubmit(e, imageUpload)}>Save New Background</button>
-          </div>
-          {err && <ErrorMessage/>}
-        </div>
-      </>,
-      document.body
-    );
-  }
-
-  function ShowEditProfilePic() {
-    const [imageUpload, setImageUpload] = useState<File | null>(null);
-
-    function handleImageChange(e: React.ChangeEvent<HTMLInputElement>): void{
-      if (e.target.files){
-        setImageUpload(e.target.files[0]);
-      }
-    }
-
-    return ReactDOM.createPortal(
-      <>
-        <div className="expanded-profile-overlay-cont" key={profileCard.id} onClick={() => handleEditProfilePicClose()}></div>
-        <div className="expanded-profile-overlay">
-          <div className="expanded-profile-overlay-header-cont">
-            <h2 className="expanded-profile-overlay-header-title">Edit Profile Image</h2>
-            <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 96 960 960" width="35" className="profile-overlay-header-button" onClick={() => handleEditProfilePicClose()}><path d="m330 768 150-150 150 150 42-42-150-150 150-150-42-42-150 150-150-150-42 42 150 150-150 150 42 42Zm150 208q-82 0-155-31.5t-127.5-86Q143 804 111.5 731T80 576q0-83 31.5-156t86-127Q252 239 325 207.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 82-31.5 155T763 858.5q-54 54.5-127 86T480 976Zm0-60q142 0 241-99.5T820 576q0-142-99-241t-241-99q-141 0-240.5 99T140 576q0 141 99.5 240.5T480 916Zm0-340Z"/></svg>
-          </div>
-          <div className="edit-profile-hero-pic">
-            {imageUpload ? (
-              <img src={URL.createObjectURL(imageUpload)} alt="" />
-            ) : (
-              <img src={profileCard.image || "https://res.cloudinary.com/dhptcrsjc/image/upload/v1674789718/Set-Listed/empty-profile-pic_b2hrxu.png"} alt=""></img>
-            )}
-            <form className="profile-image-form">
-              <label className="primary-button">
-                <input className="hidden-image-input" type="file" onChange={handleImageChange}></input>
-                Choose File
-              </label>
-            </form>
-          </div>
-          <div className="expanded-profile-overlay-submit">
-            <button className="secondary-button" type="submit" onClick={(e)=>handleEditProfilePicSubmit(e, imageUpload)}>Save New Profile Pic</button>
-          </div>
-          {err && <ErrorMessage/>}
-        </div>
-      </>,
-      document.body
-    );
-  }
 
   function ShowEditProfileHero() {
     const [firstName, setFirstName] = useState<string>(profileCard.firstName || "");
@@ -301,11 +212,11 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
 
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-profile-overlay-cont" key={profileCard.id} onClick={() => handleEditProfileClose()}></div>
+        <div className="expanded-profile-overlay-cont" key={profileCard.id} onClick={() => handleEditProfileToggle("")}></div>
         <div className="expanded-profile-overlay">
           <div className="expanded-profile-overlay-header-cont">
             <h1 className="expanded-profile-overlay-header-title">Edit Your Info</h1>
-            <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 96 960 960" width="35" className="profile-overlay-header-button" onClick={() => handleEditProfileClose()}><path d="m330 768 150-150 150 150 42-42-150-150 150-150-42-42-150 150-150-150-42 42 150 150-150 150 42 42Zm150 208q-82 0-155-31.5t-127.5-86Q143 804 111.5 731T80 576q0-83 31.5-156t86-127Q252 239 325 207.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 82-31.5 155T763 858.5q-54 54.5-127 86T480 976Zm0-60q142 0 241-99.5T820 576q0-142-99-241t-241-99q-141 0-240.5 99T140 576q0 141 99.5 240.5T480 916Zm0-340Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 96 960 960" width="35" className="profile-overlay-header-button" onClick={() => handleEditProfileToggle("")}><path d="m330 768 150-150 150 150 42-42-150-150 150-150-42-42-150 150-150-150-42 42 150 150-150 150 42 42Zm150 208q-82 0-155-31.5t-127.5-86Q143 804 111.5 731T80 576q0-83 31.5-156t86-127Q252 239 325 207.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 82-31.5 155T763 858.5q-54 54.5-127 86T480 976Zm0-60q142 0 241-99.5T820 576q0-142-99-241t-241-99q-141 0-240.5 99T140 576q0 141 99.5 240.5T480 916Zm0-340Z"/></svg>
           </div>
           <form className="edit-profile-hero-form">
             <h2>Basic Information</h2>
@@ -393,21 +304,21 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
 
   return (
     <div className="profile-hero-cont comp">
-      {props.userProfile && <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-hero-background-edit" onClick={() => handleEditBackgroundClick(profileCard.id)}><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg>}
+      {props.userProfile && <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-hero-background-edit" onClick={() => handleEditBackgroundToggle(profileCard.id)}><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg>}
       <img className="profile-hero-background-img"
         src={profileCard.backgroundImage || "https://res.cloudinary.com/dhptcrsjc/image/upload/v1675955714/Set-Listed/default-background_wyziyb.png"}
         alt=""
       />
-      <div className="profile-hero-profile-img-cont profile-picture-large" onClick={() => handleEditProfilePicClick(profileCard.id)}>
+      <div className="profile-hero-profile-img-cont profile-picture-large" onClick={() => handleEditProfilePictureToggle(profileCard.id)}>
       <img
         className="profile-hero-profile-img profile-picture-large"
         src={profileCard.image}
         alt=""
       />
-      <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-hero-user-picture-edit" onClick={() => handleEditProfileClick(profileCard.id)}><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-hero-user-picture-edit" onClick={() => handleEditProfileToggle(profileCard.id)}><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg>
       </div>
 
-      {props.userProfile && <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-hero-user-info-edit" onClick={() => handleEditProfileClick(profileCard.id)}><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg> }
+      {props.userProfile && <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-hero-user-info-edit" onClick={() => handleEditProfileToggle(profileCard.id)}><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg> }
       <div className="profile-hero-user-cont">
         <div className="profile-hero-user-info-cont">
           <div className="profile-hero-user-name-cont">
@@ -452,8 +363,8 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
       </div>
       <div>
         {expandedEditProfile && <ShowEditProfileHero />}
-        {expandedEditBackground && <ShowEditBackgroundHero />}
-        {expandedEditProfilePic && <ShowEditProfilePic />}
+        {expandedEditBackground && <ShowEditHeroBackground profileCard={profileCard} handleEditBackgroundToggle={handleEditBackgroundToggle} handleEditBackgroundSubmit={handleEditBackgroundSubmit} err={err} />}
+        {expandedEditProfilePic && <ShowEditProfilePicture profileCard={profileCard} handleEditProfilePictureTogge={handleEditProfilePictureToggle} handleEditProfilePicSubmit={handleEditProfilePicSubmit} err={err}/>}
         {err && <ErrorMessage/>}
       </div>
       
