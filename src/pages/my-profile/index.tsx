@@ -4,7 +4,7 @@ import ProfileAbout from "../../components/profile/about-comp/about";
 import Featured from "../../components/profile/profile-featured";
 import ProfileActivity from "../../components/profile/activity-comp/activity";
 import ProfileExperience from "../../components/profile/profile-experience";
-import ProfileAwards from "../../components/profile/profile-awards";
+import ProfileAwards from "../../components/profile/awards-comp/awards";
 import ProfilePotentialFriends from "../../components/profile/profile-friends";
 import ProfileSkills from "../../components/profile/profile-skills";
 import ProfileAnalytics from "../../components/profile/profile-analytics";
