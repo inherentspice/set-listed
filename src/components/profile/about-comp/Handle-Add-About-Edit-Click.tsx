@@ -18,6 +18,5 @@ export async function handleAddAboutEditClick(
     } catch (err) {
         setErr(true);
         return Promise.reject();
-        console.log(err);
     }
   }

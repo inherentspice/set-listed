@@ -27,6 +27,5 @@ export default async function handleEditPostSubmit(
     } catch(err) {
       setErr(true);
       return Promise.reject();
-      console.log(err);
     }
   }
