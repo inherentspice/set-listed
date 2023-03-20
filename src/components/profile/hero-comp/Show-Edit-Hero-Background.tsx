@@ -1,12 +1,14 @@
 import React, {useState} from "react";
 import ErrorMessage from "../../error-message";
 import ReactDOM from "react-dom";
+import HandleEditBackgroundSubmit from "./Handle-Edit-Background-Submit";
 
 export default function ShowEditHeroBackground(
     profileCard: any,
     handleEditBackgroundToggle: any,
-    handleEditBackgroundSubmit: any,
-    err: boolean
+    err: boolean,
+    setProfileCard: any,
+    setErr: any
 ) {
     const [imageUpload, setImageUpload] = useState<File | null>(null);
 
@@ -38,7 +40,7 @@ export default function ShowEditHeroBackground(
             </form>
           </div>
           <div className="expanded-profile-overlay-submit">
-            <button className="secondary-button" type="submit" onClick={(e)=>handleEditBackgroundSubmit(e, imageUpload)}>Save New Background</button>
+            <button className="secondary-button" type="submit" onClick={(e)=>HandleEditBackgroundSubmit(e, imageUpload, profileCard, setProfileCard, handleEditBackgroundToggle, setErr)}>Save New Background</button>
           </div>
           {err && <ErrorMessage/>}
         </div>
