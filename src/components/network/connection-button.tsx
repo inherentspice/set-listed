@@ -1,10 +1,15 @@
+import handleConnectionClick from "./Handle-Connection-Click";
 
-type HandleConnectionClickType = (user: string, viewingUser: string) => Promise<void>;
-
-export default function ConnectionButton(props: {connectionStatus: string, user: string, viewingUser: string, handleConnectionClick: HandleConnectionClickType}) {
+export default function ConnectionButton(props: {
+  connectionStatus: string, 
+  user: string, 
+  viewingUser: string,
+  setConnectionStatus: any,
+  setErr: any
+}) {
   if (props.connectionStatus==="Connect+") {
     return (
-      <button className='primary-button' onClick={() => props.handleConnectionClick(props.user, props.viewingUser)}>{props.connectionStatus}</button>
+      <button className='primary-button' onClick={() =>handleConnectionClick(props.user, props.viewingUser, props.setConnectionStatus, props.setErr)}>{props.connectionStatus}</button>
     );
   } else {
     return (

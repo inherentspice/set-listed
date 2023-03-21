@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ProfileHero from "../../components/profile/profile-hero";
+import ProfileHero from "../../components/profile/hero-comp/hero";
 import ProfileAbout from "../../components/profile/about-comp/about";
 import Featured from "../../components/profile/profile-featured";
 import ProfileActivity from "../../components/profile/activity-comp/activity";
