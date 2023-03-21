@@ -1,12 +1,14 @@
 import React, {useState} from "react";
 import ReactDOM from "react-dom";
 import ErrorMessage from "../../error-message";
+import handleEditProfilePictureSubmit from "./Handle-Edit-Profile-Picture-Submit";
 
 export default function ShowEditProfilePicture(
     profileCard: any,
     handleEditProfilePictureToggle: any,
-    handleEditProfilePicSubmit: any,
-    err: any
+    err: any,
+    setErr: any,
+    setProfileCard: any
 ) {
     const [imageUpload, setImageUpload] = useState<File | null>(null);
 
@@ -38,7 +40,7 @@ export default function ShowEditProfilePicture(
             </form>
           </div>
           <div className="expanded-profile-overlay-submit">
-            <button className="secondary-button" type="submit" onClick={(e)=>handleEditProfilePicSubmit(e, imageUpload)}>Save New Profile Pic</button>
+            <button className="secondary-button" type="submit" onClick={(e)=>handleEditProfilePictureSubmit(e, imageUpload, setErr, profileCard, setProfileCard, handleEditProfilePictureToggle)}>Save New Profile Pic</button>
           </div>
           {err && <ErrorMessage/>}
         </div>
