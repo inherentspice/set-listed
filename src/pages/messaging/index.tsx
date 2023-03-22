@@ -110,7 +110,8 @@ export default function Messaging() {
   const [messageSearch, setMessageSearch] = useState<boolean>(false);
 
   useEffect(() => {
-    const newSocket = io("http://localhost:8080");
+    const backendURL = process.env.NODE_ENV === "production" ? "https://setlisted.fly.dev" : "http://localhost:8080";
+    const newSocket = io(backendURL);
     setSocket(newSocket);
 
     return () => {

@@ -1,13 +1,13 @@
 import ProfileService from "../../../services/home/profile";
 
-export default async function HandleEditProfilePictureSubmit(
+export default async function handleEditProfilePictureSubmit(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     imageUpload: File | null,
     setErr: any,
     profileCard: any,
     setProfileCard: any,
     handleEditProfilePictureToggle: any
-  ): Promise<void> {
+): Promise<void> {
       try{
         e.preventDefault();
         if (!imageUpload) {

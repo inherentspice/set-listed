@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from "react";
+import { useNavigate } from "react-router-dom";
+import MessagingService from "../../../services/home/messaging";
 import RachelLoo from "../../../media/home/rachel-profile-picture.png";
 import DeniseFerguson from "../../../media/home/denise-profile-picture.png";
 import "../../../styles/profiles/profile-hero.css";
@@ -11,7 +13,6 @@ import ConnectionButton from "../../network/connection-button";
 import ShowEditHeroBackground from "./Show-Edit-Hero-Background";
 import ShowEditProfilePicture from "./Show-Edit-Profile-Picture";
 import ShowEditProfileHeroInformation from "./Show-Edit-Hero-Information";
-import HandleMessageClick from "./Handle-Message-Click";
 import determineConnectionState from "./Determine-Connection-Status";
 
 
@@ -23,14 +24,15 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
   const [connectionStatus, setConnectionStatus] = useState<string>("");
   const [err, setErr] = useState<boolean>(false);
   const [profileCard, setProfileCard] = useState<ProfileCardData>(props.profileCard[0]);
-  
+
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     setTimeout(() => {
       setErr(false);
     }, 5000);
   }, [err]);
-
 
 
   useEffect(() => {
@@ -49,6 +51,24 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
     if (props.userProfile) {
       setExpandedEditProfilePic(expandedEditProfilePic == "" ? id : "");
       handleEditProfileToggle("");
+    }
+  }
+
+  async function handleMessageClick(
+    profileUser: string,
+    viewingUser: string,
+  ): Promise<void>{
+    try {
+      const formObject = {
+        userId: viewingUser,
+        friendId: profileUser
+      };
+      await MessagingService.createRoom(formObject);
+      navigate("/messaging");
+      return Promise.resolve();
+    } catch (err) {
+      setErr(true);
+      return Promise.reject(err);
     }
   }
 
@@ -90,7 +110,7 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
             </div>
             <div className='profile-hero-mutual-connections-names'><a href='./my-profile'>2 Mutual Connections: Rachel Loo and Denise Ferguson</a></div>
           </div>
-          <div className='primary-button' onClick={() => HandleMessageClick(profileCard.user, props.viewingUser, setErr)}>Message</div>
+          <div className='primary-button' onClick={() => handleMessageClick(profileCard.user, props.viewingUser)}>Message</div>
           {connectionStatus !== "friend" && <ConnectionButton connectionStatus={connectionStatus} user={profileCard.user} viewingUser={props.viewingUser} setConnectionStatus={setConnectionStatus} setErr={setErr} />}
 
 
@@ -112,12 +132,12 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
         </div>
       </div>
       <div>
-        {expandedEditProfile && <ShowEditProfileHeroInformation profileCard={profileCard} handleEditProfileToggle={handleEditProfileToggle} err={err} />}
+        {expandedEditProfile && <ShowEditProfileHeroInformation profileCard={profileCard} handleEditProfileToggle={handleEditProfileToggle} err={err} setProfileCard={setProfileCard} setErr={setErr}/>}
         {expandedEditBackground && <ShowEditHeroBackground profileCard={profileCard} setProfileCard={setProfileCard} handleEditBackgroundToggle={handleEditBackgroundToggle} err={err} setErr={setErr} />}
-        {expandedEditProfilePic && <ShowEditProfilePicture profileCard={profileCard} handleEditProfilePictureTogge={handleEditProfilePictureToggle} err={err} setErr={setErr} setProfileCard={setProfileCard} />}
+        {expandedEditProfilePic && <ShowEditProfilePicture profileCard={profileCard} handleEditProfilePictureToggle={handleEditProfilePictureToggle} err={err} setErr={setErr} setProfileCard={setProfileCard} />}
         {err && <ErrorMessage/>}
       </div>
-      
+
     </div>
   );
 }
