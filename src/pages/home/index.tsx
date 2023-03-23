@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Post from "../../components/home/post";
+import Post from "../../components/home/post/post";
 import "./index.css";
 import News from "../../components/home/news";
 import Advertisement from "../../components/home/advertisement";

@@ -21,7 +21,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="company-details-cont">
-        <div className="header-cont-logo">SL</div>
+        <p className="header-cont-logo">SL</p>
         <p>setListed Corp 2023</p>
       </div>
     </div>
