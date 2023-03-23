@@ -1,14 +1,15 @@
-import React, {useState} from "react";
+import React, {Dispatch, SetStateAction, useState} from "react";
 import ReactDOM from "react-dom";
+import { ProfileCardData } from "../../../types/profile";
 import ErrorMessage from "../../error-message";
-import handleEditProfilePictureSubmit from "./Handle-Edit-Profile-Picture-Submit";
+import handleEditProfilePictureSubmit from "./handle-edit-profile-picture-submit";
 
 export default function ShowEditProfilePicture(props: {
-    profileCard: any,
-    handleEditProfilePictureToggle: any,
-    err: any,
-    setErr: any,
-    setProfileCard: any
+    profileCard: ProfileCardData,
+    handleEditProfilePictureToggle: (id: string) => void,
+    err: boolean,
+    setErr: Dispatch<SetStateAction<boolean>>,
+    setProfileCard: Dispatch<SetStateAction<ProfileCardData>>
 }) {
     const [imageUpload, setImageUpload] = useState<File | null>(null);
 

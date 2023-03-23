@@ -1,12 +1,14 @@
+import { Dispatch, SetStateAction } from "react";
 import ProfileService from "../../../services/home/profile";
+import { ProfileCardData } from "../../../types/profile";
 
 export default async function handleEditProfilePictureSubmit(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     imageUpload: File | null,
-    setErr: any,
-    profileCard: any,
-    setProfileCard: any,
-    handleEditProfilePictureToggle: any
+    setErr: Dispatch<SetStateAction<boolean>>,
+    profileCard: ProfileCardData,
+    setProfileCard: Dispatch<SetStateAction<ProfileCardData>>,
+    handleEditProfilePictureToggle: (id: string) => void
 ): Promise<void> {
       try{
         e.preventDefault();

@@ -1,16 +1,17 @@
-import React, {useState} from "react";
+import React, {Dispatch, SetStateAction, useState} from "react";
 import ReactDOM from "react-dom";
 import ErrorMessage from "../../error-message";
 import { IconContext } from "react-icons";
 import { SiTwitter, SiYoutube, SiInstagram, SiTiktok } from "react-icons/si";
-import HandleEditHeroInformationSubmit from "./Handle-Edit-Hero-Information-Submit";
+import HandleEditHeroInformationSubmit from "./handle-edit-hero-information-submit";
+import { ProfileCardData } from "../../../types/profile";
 
 export default function ShowEditProfileHeroInformation(props: {
-    profileCard: any,
-    handleEditProfileToggle: any,
-    err: any,
-    setProfileCard: any,
-    setErr: any,
+    profileCard: ProfileCardData,
+    handleEditProfileToggle: (id: string) => void,
+    err: boolean,
+    setProfileCard: Dispatch<SetStateAction<ProfileCardData>>,
+    setErr: Dispatch<SetStateAction<boolean>>,
 
 }) {
     const [firstName, setFirstName] = useState<string>(props.profileCard.firstName || "");

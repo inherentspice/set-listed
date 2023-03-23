@@ -1,4 +1,6 @@
+import { Dispatch, SetStateAction } from "react";
 import ProfileService from "../../../services/home/profile";
+import { ProfileCardData } from "../../../types/profile";
 
 export default async function HandleEditHeroInformationSubmit(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -8,14 +10,14 @@ export default async function HandleEditHeroInformationSubmit(
     city: string,
     socials: string[],
     tagline: string,
-    profileCard: any,
-    setProfileCard: any,
-    handleEditProfileToggle: any,
-    setErr: any
+    profileCard: ProfileCardData,
+    setProfileCard: Dispatch<SetStateAction<ProfileCardData>>,
+    handleEditProfileToggle: (id: string) => void,
+    setErr: Dispatch<SetStateAction<boolean>>
     ): Promise<void> {
         try{
             e.preventDefault();
-            const formData = { 
+            const formData = {
                 firstName,
                 lastName,
                 country,

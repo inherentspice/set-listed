@@ -10,10 +10,10 @@ import { SiTwitter, SiYoutube, SiInstagram, SiTiktok } from "react-icons/si";
 import ErrorMessage from "../../error-message";
 import { Connections } from "../../../types/my-network";
 import ConnectionButton from "../../network/connection-button";
-import ShowEditHeroBackground from "./Show-Edit-Hero-Background";
-import ShowEditProfilePicture from "./Show-Edit-Profile-Picture";
-import ShowEditProfileHeroInformation from "./Show-Edit-Hero-Information";
-import determineConnectionState from "./Determine-Connection-Status";
+import ShowEditHeroBackground from "./show-edit-hero-background";
+import ShowEditProfilePicture from "./show-edit-profile-picture";
+import ShowEditProfileHeroInformation from "./show-edit-hero-information";
+import determineConnectionState from "./determine-connection-status";
 
 
 

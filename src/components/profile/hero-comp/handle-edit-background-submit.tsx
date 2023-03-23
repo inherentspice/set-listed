@@ -1,12 +1,14 @@
+import { Dispatch, SetStateAction } from "react";
 import ProfileService from "../../../services/home/profile";
+import { ProfileCardData } from "../../../types/profile";
 
 export default async function HandleEditBackgroundSubmit(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>, 
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     imageUpload: File | null,
-    profileCard: any,
-    setProfileCard: any,
-    handleEditBackgroundToggle: any,
-    setErr: any
+    profileCard: ProfileCardData,
+    setProfileCard: Dispatch<SetStateAction<ProfileCardData>>,
+    handleEditBackgroundToggle: (id: string) => void,
+    setErr: Dispatch<SetStateAction<boolean>>
   ): Promise<void> {
       try{
           e.preventDefault();

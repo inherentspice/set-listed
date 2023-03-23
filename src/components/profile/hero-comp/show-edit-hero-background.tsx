@@ -1,14 +1,15 @@
-import React, {useState} from "react";
+import React, {Dispatch, SetStateAction, useState} from "react";
 import ErrorMessage from "../../error-message";
 import ReactDOM from "react-dom";
-import HandleEditBackgroundSubmit from "./Handle-Edit-Background-Submit";
+import HandleEditBackgroundSubmit from "./handle-edit-background-submit";
+import { ProfileCardData } from "../../../types/profile";
 
 export default function ShowEditHeroBackground(props: {
-    profileCard: any,
-    handleEditBackgroundToggle: any,
+    profileCard: ProfileCardData,
+    handleEditBackgroundToggle: (id: string) => void,
     err: boolean,
-    setProfileCard: any,
-    setErr: any
+    setProfileCard: Dispatch<SetStateAction<ProfileCardData>>,
+    setErr: Dispatch<SetStateAction<boolean>>
 }) {
     const [imageUpload, setImageUpload] = useState<File | null>(null);
 
