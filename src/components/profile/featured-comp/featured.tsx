@@ -34,63 +34,51 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
     setExpandedEditFeaturedOverview(!expandedEditFeaturedOverview);
   }
 
-  function handleEditFeaturedItemClick(id: string): void{
+  function handleEditFeaturedItemToggle(id: string): void{
     setExpandedEditFeaturedOverview(false);
-    setExpandedEditFeaturedItem(id);
+    setExpandedEditFeaturedItem(expandedEditFeaturedItem == "" ? id : "");
   }
 
-  function handleEditFeaturedItemClose(): void{
-    setExpandedEditFeaturedItem("");
-  }
-
-  function handleAddFeaturedSubmit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, suppImageUpload: File | null, description: string, title: string): void{
-    e.preventDefault();
-    addFeatured(suppImageUpload, description, title)
-      .then(() => {
-      console.log("feature added");
-    });
-  }
-
-  async function addFeatured(suppImageUpload: File | null, description: string, title: string) {
-    const formData = new FormData();
-    if (!(suppImageUpload && description && title)) {
-      setErr(true);
-      return;
+  async function handleAddFeaturedSubmit(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>, 
+    suppImageUpload: File | null, 
+    description: string, 
+    title: string
+    ): Promise<void> {
+      try{
+        e.preventDefault();
+        const formData = new FormData();
+        if (!(suppImageUpload && description && title)) {
+          setErr(true);
+          return;
+        }
+        formData.append("image", suppImageUpload);
+        formData.append("content", description);
+        formData.append("title", title);
+        formData.append("user", props.user);
+        const newSuppImage = await ProfileService.postFeatured(formData);
+        const newFeatureds = featured.concat(newSuppImage.data.featured);
+        setFeatured(newFeatureds);
+        handleAddFeaturedToggle(); 
+      } catch(err) {
+        setErr(true)
+        return Promise.reject(err);
+      }
     }
-    formData.append("image", suppImageUpload);
-    formData.append("content", description);
-    formData.append("title", title);
-    formData.append("user", props.user);
-    try {
-      const newSuppImage = await ProfileService.postFeatured(formData);
-      const newFeatureds = featured.concat(newSuppImage.data.featured);
-      setFeatured(newFeatureds);
-      handleAddFeaturedToggle();
-    } catch (err) {
-      setErr(true);
-    }
-  }
 
-  function handleEditFeaturedPicSubmit(
+  async function handleEditFeaturedPicSubmit(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     image: File | null,
     id: string
-  ) {
-    e.preventDefault();
-    addFeaturedImageEdit(image, id)
-      .then(() => {
-        console.log("featured image changed");
-      });
-  }
-
-  async function addFeaturedImageEdit(image: File | null, id: string) {
-    const formData = new FormData();
-    if (!image) {
-      setErr(true);
-      return;
-    }
-    formData.append("image", image);
+  ): Promise<void> {
     try {
+      e.preventDefault();
+      const formData = new FormData();
+      if (!image) {
+        setErr(true);
+        return;
+      }
+      formData.append("image", image);
       const editedImage = await ProfileService.editFeaturedImage(formData, id);
       const updatedFeatured = featured.map((feature) => {
         if (feature.id === editedImage.data.featured.id) {
@@ -100,35 +88,25 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
         }
       });
       setFeatured(updatedFeatured);
-      handleEditFeaturedItemClose();
-    } catch (err) {
+      handleEditFeaturedItemToggle("");
+    } catch(err) {
       setErr(true);
+      return Promise.reject(err);
     }
   }
-
-  function handleEditFeaturedSubmit(
+    
+  async function handleEditFeaturedSubmit(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     title: string,
     content: string,
     id: string
-  ) {
-    e.preventDefault();
-    addFeaturedEdit(title, content, id)
-      .then(() => {
-        console.log("featured post edited");
-      });
-  }
-
-  async function addFeaturedEdit(
-    title: string,
-    content: string,
-    id: string
-  ) {
-    const formData = {
-      title,
-      content,
-    };
+  ): Promise<void> {
     try {
+      e.preventDefault();
+      const formData = {
+        title,
+        content,
+      };
       const editedFeaturedItem = await ProfileService.editFeatured(formData, id);
       const updatedFeatured = featured.map((feature) => {
         if (feature.id === editedFeaturedItem.data.featured.id) {
@@ -138,36 +116,33 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
         }
       });
       setFeatured(updatedFeatured);
-      handleEditFeaturedItemClose();
-    } catch (err) {
+      handleEditFeaturedItemToggle("");
+
+    } catch(err) {
       setErr(true);
+      return Promise.reject(err);
     }
   }
 
-  function handleDeleteFeaturedItemClick(
+  async function handleDeleteFeaturedItemClick(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     id: string
-  ) {
-    e.preventDefault();
-    const confirmDelete = confirm("Click OK if you actually want to delete this");
-    if (confirmDelete) {
-      deleteFeatured(id)
-        .then(() => {
-          console.log("featured deleted");
-        });
+  ): Promise<void> {
+    try{
+      e.preventDefault();
+      const confirmDelete = confirm("Click OK if you actually want to delete this");
+      if (confirmDelete) {
+        await ProfileService.deleteFeatured(id);
+        const updatedFeatured = featured.filter((feature) => feature.id !== id);
+        setFeatured(updatedFeatured);
+        handleEditFeaturedToggle();
+      }  
+    } catch(err) {
+      setErr(true);
+      return Promise.reject(err);
     }
   }
 
-  async function deleteFeatured(id: string) {
-    try {
-      await ProfileService.deleteFeatured(id);
-      const updatedFeatured = featured.filter((feature) => feature.id !== id);
-      setFeatured(updatedFeatured);
-      handleEditFeaturedToggle();
-    } catch (err) {
-      setErr(true);
-    }
-  }
 
   function ShowAddFeatured() {
     const [title, setTitle] = useState<string>("");
@@ -242,7 +217,7 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
                   </div>
                   <div className="remove-featured-item">
                     <button className="secondary-button" onClick={(e) => handleDeleteFeaturedItemClick(e, featuredPost.id)}>Remove</button>
-                    <button className="secondary-button" onClick={() => handleEditFeaturedItemClick(featuredPost.id)}>Edit Item</button>
+                    <button className="secondary-button" onClick={() => handleEditFeaturedItemToggle(featuredPost.id)}>Edit Item</button>
                   </div>
                 </div>
               );
@@ -276,11 +251,11 @@ export default function ProfileFeatured(props: {featured: FeaturedData[], user: 
 
     return ReactDOM.createPortal(
       <>
-        <div className="expanded-profile-overlay-cont" onClick={() => handleEditFeaturedItemClose()}></div>
+        <div className="expanded-profile-overlay-cont" onClick={() => handleEditFeaturedItemToggle("")}></div>
         <div className="expanded-profile-overlay-overflow">
           <div className="expanded-profile-overlay-header-cont">
             <h2 className="expanded-profile-overlay-header-title">Edit Your Spotlight Section</h2>
-            <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditFeaturedItemClose()} />
+            <img className="start-post-cancel" src={CancelButton} onClick={() => handleEditFeaturedItemToggle("")} />
           </div>
           <div className="edit-featured-item-body">
             <div className="edit-featured-item-picture">
