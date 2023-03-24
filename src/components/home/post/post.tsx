@@ -15,20 +15,6 @@ export default function Post(props: {profileImg: string, user: string}) {
     setExpandedStartPost("");
   }
 
-  function handleAddPostSubmit(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    content: string
-  ) {
-    e.preventDefault();
-    addPost(content, props.user)
-      .then(() => {
-        console.log("post added");
-        handleStartPostClose();
-      }).catch((err) => {
-        console.log(err);
-      });
-  }
-
   async function addPost(content: string, user: string): Promise<void>{
     const formData = {
       content,
@@ -65,7 +51,7 @@ export default function Post(props: {profileImg: string, user: string}) {
         user={props.user}
         profileImg={props.profileImg}
         handleStartPostClose={handleStartPostClose}
-        handleAddPostSubmit={handleAddPostSubmit}
+        handleAddPostSubmit={addPost}
       />}
     </div>
   );

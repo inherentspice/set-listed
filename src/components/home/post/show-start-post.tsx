@@ -9,7 +9,7 @@ export default function ShowStartPost(props:
     user: string,
     profileImg: string,
     handleStartPostClose: () => void,
-    handleAddPostSubmit: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, content: string) => void
+    handleAddPostSubmit: (content: string, user: string) => void
 
   }) {
   const [content, setContent] = useState<string>("");
@@ -53,7 +53,7 @@ export default function ShowStartPost(props:
               <div>Character Limit: {content.length}/140</div>
             </div>
             <div className="expanded-profile-overlay-submit">
-              <button type="submit" onClick={(e) => {props.handleAddPostSubmit(e, content);}} className="secondary-button">Post</button>
+              <button type="submit" onClick={(e) => {props.handleAddPostSubmit(content, props.user);}} className="secondary-button">Post</button>
             </div>
           </form>
         </div>
