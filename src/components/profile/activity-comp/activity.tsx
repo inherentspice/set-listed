@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
 import "../../../styles/profiles/profile-activity.css";
 import convertDate from "../../../utilities/convert-date";
 import { ProfileCardData, PostData } from "../../../types/profile";
-import PostService from "../../../services/home/posts";
 import ErrorMessage from "../../error-message";
 import ShowStartPost from "./Show-Start-Post";
 import ShowEditPost from "./Show-Edit-Post";
@@ -63,8 +61,8 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
             })}
         </div>
         <div className="profile-activity-show-all">Show All Activity</div>
-        {expandedStartPost && <ShowStartPost profileCard={props.profileCard} handleStartPostToggle={handleStartPostToggle} err={err} posts={posts} setPosts={setPosts} setErr={setErr}/>}
-        {expandedEditPost && <ShowEditPost profileCard={props.profileCard} posts={posts} expandedEditPost={expandedEditPost} handleEditPostToggle={handleEditPostToggle} err={err} setErr={setErr} setPosts={setPosts}/>}
+        {expandedStartPost && <ShowStartPost profileCard={profileCard} handleStartPostToggle={handleStartPostToggle} err={err} posts={posts} setPosts={setPosts} setErr={setErr}/>}
+        {expandedEditPost && <ShowEditPost profileCard={profileCard} posts={posts} expandedEditPost={expandedEditPost} handleEditPostToggle={handleEditPostToggle} err={err} setErr={setErr} setPosts={setPosts}/>}
         {err && <ErrorMessage/>}
       </div>
     );

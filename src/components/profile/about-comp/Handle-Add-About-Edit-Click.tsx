@@ -1,13 +1,15 @@
+import { Dispatch, SetStateAction } from "react";
 import ProfileService from "../../../services/home/profile";
+import { AboutData } from "../../../types/profile";
 
 
 export async function handleAddAboutEditClick(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     content: string,
     user: string,
-    setAbout: any,
-    handleExpandEditAboutToggle: any,
-    setErr: any
+    setAbout: Dispatch<SetStateAction<AboutData>>,
+    handleExpandEditAboutToggle: () => void,
+    setErr: Dispatch<SetStateAction<boolean>>
   ): Promise<void> {
     try{
         e.preventDefault();

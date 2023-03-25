@@ -1,13 +1,15 @@
+import { Dispatch, SetStateAction } from "react";
 import ProfileService from "../../../services/home/profile";
+import { AwardData } from "../../../types/profile";
 
 export default async function handleAddAwardSubmit(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     content: string,
     user: string,
-    awards: any,
-    setAwards: any,
-    handleAddAwardsToggle: any,
-    setErr: any
+    awards: AwardData[],
+    setAwards: Dispatch<SetStateAction<AwardData[]>>,
+    handleAddAwardsToggle: () => void,
+    setErr: Dispatch<SetStateAction<boolean>>
   ): Promise<void>{
     try{
         e.preventDefault();
@@ -18,5 +20,5 @@ export default async function handleAddAwardSubmit(
         handleAddAwardsToggle();
     } catch(err){
         setErr(true);
-    }  
+    }
   }
