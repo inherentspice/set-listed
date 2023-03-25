@@ -1,11 +1,13 @@
+import { Dispatch, SetStateAction } from "react";
 import PostService from "../../../services/home/posts";
+import { PostData } from "../../../types/profile";
 
 export default async function handleDeletePostClick(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     id: string,
-    posts: any,
-    setPosts: any,
-    setErr: any
+    posts: PostData[],
+    setPosts: Dispatch<SetStateAction<PostData[]>>,
+    setErr: Dispatch<SetStateAction<boolean>>
   ): Promise<void> {
     try{
         e.preventDefault();
@@ -13,11 +15,11 @@ export default async function handleDeletePostClick(
         if (confirmDelete) {
             await PostService.deletePost(id);
             const updatedPosts = posts.filter((post:any) => post.id !== id);
-            setPosts(updatedPosts);      
+            setPosts(updatedPosts);
         }
     } catch(err) {
         setErr(true)
         return Promise.reject();
     }
-    
+
   }

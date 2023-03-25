@@ -1,9 +1,17 @@
-import React, {useState} from "react";
+import React, {Dispatch, SetStateAction, useState} from "react";
 import ReactDOM from "react-dom";
+import { AwardData } from "../../../types/profile";
 import ErrorMessage from "../../error-message";
 import handleAddAwardSubmit from "./Handle-Add-Award-Submit";
 
-export default function ShowAddAwards(props: {handleAddAwardsToggle: any, err: any, user:any, awards: any, setAwards: any, setErr: any}) {
+export default function ShowAddAwards(props: {
+  handleAddAwardsToggle: () => void,
+  err: boolean,
+  user: string,
+  awards: AwardData[],
+  setAwards: Dispatch<SetStateAction<AwardData[]>>,
+  setErr: Dispatch<SetStateAction<boolean>>
+}) {
     const [content, setContent] = useState<string>("");
 
     function handleContentChange(e: React.ChangeEvent<HTMLInputElement>): void{

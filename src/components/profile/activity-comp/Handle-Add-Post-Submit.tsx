@@ -1,13 +1,15 @@
+import { Dispatch, SetStateAction } from "react";
 import PostService from "../../../services/home/posts";
+import { PostData } from "../../../types/profile";
 
 export default async function handleAddPostSubmit(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     content: string,
     user: string,
-    posts: any,
-    setPosts: any,
-    handleStartPostToggle: any,
-    setErr: any
+    posts: PostData[],
+    setPosts: Dispatch<SetStateAction<PostData[]>>,
+    handleStartPostToggle: () => void,
+    setErr: Dispatch<SetStateAction<boolean>>
   ): Promise<void> {
     try {
         e.preventDefault();
@@ -21,5 +23,5 @@ export default async function handleAddPostSubmit(
         setErr(true);
         return Promise.reject();
     }
-    
+
   }

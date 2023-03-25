@@ -1,10 +1,18 @@
-import React, {useState} from "react";
+import React, {Dispatch, SetStateAction, useState} from "react";
 import ReactDOM from "react-dom";
+import { PostData, ProfileCardData } from "../../../types/profile";
 import ErrorMessage from "../../error-message";
 import handleEditPostSubmit from "./Handle-Edit-Post-Submit";
 
-export default function ShowEditPost(props: {profileCard: any, posts: any, expandedEditPost: any, handleEditPostToggle:any, err: boolean, setPosts: any, setErr: any}
-    ) {
+export default function ShowEditPost(props: {
+  profileCard: ProfileCardData,
+  posts: PostData[],
+  expandedEditPost: string,
+  handleEditPostToggle: (id: string) => void,
+  err: boolean,
+  setPosts: Dispatch<SetStateAction<PostData[]>>,
+  setErr: Dispatch<SetStateAction<boolean>>
+}) {
   const selectedPost = props.posts.filter((post:any) => post.id === props.expandedEditPost)[0];
   const [content, setContent] = useState<string>(selectedPost.content);
 
@@ -42,10 +50,10 @@ export default function ShowEditPost(props: {profileCard: any, posts: any, expan
             <div className="start-post-emoji-hashtag-cont">
               <button className="hidden-btn" title="Add Emoji"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="start-post-add-emoji"><path d="M480 795q66 0 121.5-35.5T682 663H278q26 61 81 96.5T480 795ZM302 523l45-45 45 45 36-36-81-81-81 81 36 36Zm267 0 45-45 45 45 36-36-81-81-81 81 36 36Zm-89 453q-83 0-156-31.5T197 859q-54-54-85.5-127T80 576q0-83 31.5-156T197 293q54-54 127-85.5T480 176q83 0 156 31.5T763 293q54 54 85.5 127T880 576q0 83-31.5 156T763 859q-54 54-127 85.5T480 976Zm0-400Zm0 340q142.375 0 241.188-98.812Q820 718.375 820 576t-98.812-241.188Q622.375 236 480 236t-241.188 98.812Q140 433.625 140 576t98.812 241.188Q337.625 916 480 916Z"/></svg></button>
               <button className="hidden-btn start-post-add-hashtag" title="Add Hashtag">Add Hashtag</button>
-              <div>Character Limit: {content.length}/140</div>
+              <p>Character Limit: {content.length}/140</p>
             </div>
               <div className="expanded-profile-overlay-submit">
-                <button className="secondary-button" type="submit" onClick={(e) => {handleEditPostSubmit(e, content, selectedPost.id, props.posts, props.setPosts, props.handleEditPostToggle, props.setErr);}}>Save</button>
+                <button className="secondary-button" type="submit" onClick={(e) => handleEditPostSubmit(e, content, selectedPost.id, props.posts, props.setPosts, props.handleEditPostToggle, props.setErr)}>Save</button>
               </div>
           </form>
           {props.err && <ErrorMessage/>}

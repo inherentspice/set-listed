@@ -8,7 +8,7 @@ import ShowEditAwards from "./Show-Edit-Awards";
 export default function ProfileAwards(props: {awards: AwardData[], user: string, userProfile: boolean}) {
 
   const [expandedAddAwards, setExpandedAddAwards] = useState<boolean>(false);
-  const [expandedEditAwards, setExpandedEditAwards] = useState<null | string>(null);
+  const [expandedEditAwards, setExpandedEditAwards] = useState<string | null>(null);
   const [err, setErr] = useState<boolean>(false);
   const [awards, setAwards] = useState<AwardData[]>(props.awards);
 

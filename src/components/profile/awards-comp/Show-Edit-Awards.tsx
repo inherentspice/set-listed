@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {Dispatch, SetStateAction, useState} from "react";
 import ErrorMessage from "../../error-message";
 import ReactDOM from "react-dom";
 import { AwardData } from "../../../types/profile";
@@ -6,7 +6,14 @@ import handleEditAwardSubmit from "./Handle-Edit-Award-Submit";
 import handleDeleteAwardSubmit from "./Handle-Delete-Award-Submit";
 
 
-export default function ShowEditAwards(props: {awards:any, expandedEditAwards: any, handleEditAwardsToggle: any, err:boolean, setAwards:any, setErr:any}) {
+export default function ShowEditAwards(props: {
+  awards: AwardData[],
+  expandedEditAwards: string | null,
+  handleEditAwardsToggle: (id: string) => void,
+  err: boolean,
+  setAwards: Dispatch<SetStateAction<AwardData[]>>,
+  setErr: Dispatch<SetStateAction<boolean>>
+}) {
     const expAward = props.awards.filter((award:any) => award.id === props.expandedEditAwards)[0];
     const [content, setContent] = useState<string>(expAward.content);
 
