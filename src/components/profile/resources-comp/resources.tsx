@@ -1,7 +1,7 @@
 import React from "react";
-import Network from "../../media/icons/my-network.png";
-import Creator from "../../media/icons/creator.png";
-import "../../styles/profiles/profile-resources.css";
+import Network from "../../../media/icons/my-network.png";
+import Creator from "../../../media/icons/creator.png";
+import "../../../styles/profiles/profile-resources.css";
 
 export default function ProfileResources() {
     return(
@@ -11,19 +11,19 @@ export default function ProfileResources() {
                 <div className="profile-resources-item">
                     <img className="profile-resources-item-img" src={Creator} />
                     <div className="profile-resources-info-cont">
-                        <div className="profile-resources-item-type">Creator Mode</div>
-                        <div className="profile-resources-item-description">Get discovered, showcase your content, and more.</div>
+                        <p className="profile-resources-item-type">Creator Mode</p>
+                        <p className="profile-resources-item-description">Get discovered, showcase your content, and more.</p>
                     </div>
                 </div>
                 <div className="profile-resources-item">
                     <img className="profile-resources-item-img" src={Network}/>
                     <div className="profile-resources-info-cont">
-                        <div className="profile-resources-item-type">My network</div>
-                        <div className="profile-resources-item-description">Manage your connections and interests.</div>
+                        <p className="profile-resources-item-type">My network</p>
+                        <p className="profile-resources-item-description">Manage your connections and interests.</p>
                     </div>
                 </div>
             </div>
-            <div className="profile-resources-show-all">Show All Resources</div>
+            <button className="hidden-btn"><div className="profile-resources-show-all">Show All Resources </div></button>
         </div>
     );
 }
