@@ -60,7 +60,7 @@ export default function ProfileActivity(props: {profileCard: ProfileCardData[], 
               );
             })}
         </div>
-        <div className="profile-activity-show-all">Show All Activity</div>
+        <button className="hidden-btn"><div className="profile-activity-show-all">Show All Activity</div></button>
         {expandedStartPost && <ShowStartPost profileCard={profileCard} handleStartPostToggle={handleStartPostToggle} err={err} posts={posts} setPosts={setPosts} setErr={setErr}/>}
         {expandedEditPost && <ShowEditPost profileCard={profileCard} posts={posts} expandedEditPost={expandedEditPost} handleEditPostToggle={handleEditPostToggle} err={err} setErr={setErr} setPosts={setPosts}/>}
         {err && <ErrorMessage/>}

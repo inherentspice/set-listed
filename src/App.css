@@ -172,7 +172,10 @@ p {
 
 .hidden-btn {
   background-color: inherit;
+  border-radius: inherit;
   border: none;
+  margin: 0;
+  padding: 0;
 }
 
 
