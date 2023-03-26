@@ -3,7 +3,7 @@ import ProfileHero from "../../components/profile/hero-comp/hero";
 import ProfileAbout from "../../components/profile/about-comp/about";
 import Featured from "../../components/profile/featured-comp/featured";
 import ProfileActivity from "../../components/profile/activity-comp/activity";
-import ProfileExperience from "../../components/profile/profile-experience";
+import ProfileExperience from "../../components/profile/experience-comp/experience";
 import ProfileAwards from "../../components/profile/awards-comp/awards";
 import ProfilePotentialFriends from "../../components/profile/profile-friends";
 import ProfileSkills from "../../components/profile/profile-skills";
