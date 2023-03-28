@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { User } from "../types/my-network";
-import ConnectionService from "../services/home/connection";
+import { User } from "../../types/my-network";
+import ConnectionService from "../../services/home/connection";
 
 export default function HeaderSearch(props: {search: string, setSearch: Dispatch<SetStateAction<string>>}) {
 
@@ -12,11 +12,7 @@ export default function HeaderSearch(props: {search: string, setSearch: Dispatch
       const ConnectionMatches = await ConnectionService.getFilteredConnections(props.search);
       setSearchResults(ConnectionMatches.data.connection);
     }
-    if (props.search) {
-      getSearchResults();
-    } else {
-      setSearchResults(null);
-    }
+    props.search ? getSearchResults() : setSearchResults(null);
   }, [props.search])
 
   return (
@@ -25,12 +21,14 @@ export default function HeaderSearch(props: {search: string, setSearch: Dispatch
         {searchResults &&
         searchResults.map((user) => {
           return (
-          <div className="network-connection search-connections">
-            <img className="profile-picture-medium" src={user.profileCard.image}/>
-            <div className="name-tag-connection">
-              <h3>{user.firstName} {user.lastName}</h3>
-            </div>
-          </div>
+            <a href={`/user/${user.id}`}>
+              <div className="network-connection search-connections">
+                <img className="profile-picture-medium" src={user.profileCard.image}/>
+                <div className="name-tag-connection">
+                  <h3>{user.firstName} {user.lastName}</h3>
+                </div>
+              </div>
+            </a>
           )
       })}
       {!searchResults && <p>No users found...</p>}

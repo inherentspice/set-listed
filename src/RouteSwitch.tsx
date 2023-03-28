@@ -6,7 +6,7 @@ import Messaging from "./pages/messaging";
 import MyNetwork from "./pages/my-network";
 import BuildProfilePage from "./pages/my-profile";
 import Notifications from "./pages/notifications";
-import Header from "./components/header";
+import Header from "./components/header/header";
 import RequireAuth from "./components/require-auth";
 import Login from "./pages/login";
 import { UserIdProvider } from "./context/userIdContext";
