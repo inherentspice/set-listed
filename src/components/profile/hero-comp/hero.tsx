@@ -14,6 +14,7 @@ import ShowEditHeroBackground from "./show-edit-hero-background";
 import ShowEditProfilePicture from "./show-edit-profile-picture";
 import ShowEditProfileHeroInformation from "./show-edit-hero-information";
 import determineConnectionState from "./determine-connection-status";
+import { profile } from "console";
 
 
 
@@ -117,17 +118,10 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
         </div>
         <div className="profile-hero-user-digital-footprint">
           <div>
-            {profileCard.socials && profileCard.socials.map(item => {
-              const socialMediaIndex = profileCard.socials.indexOf(item);
-              return (
-                <div className="digital-footprint-item">
-                  <IconContext.Provider value={{ size: "1rem"}}>
-                    {item == null ? null : socialMediaIndex == 0 ? <SiInstagram/> : socialMediaIndex == 1 ? <SiYoutube/> : socialMediaIndex == 2 ? <SiTiktok/> : <SiTwitter/>}
-                  </IconContext.Provider>
-                  {item == null ? null : <p>{item}</p>}
-                </div>
-              );
-            })}
+            {!profileCard.socials[0] ? "": <div className="digital-footprint-item"><IconContext.Provider value={{ size: "1rem"}}><SiInstagram/><p>{profileCard.socials[0]}</p></IconContext.Provider></div>}
+            {!profileCard.socials[1] ? "": <div className="digital-footprint-item"><IconContext.Provider value={{ size: "1rem"}}><SiYoutube/><p>{profileCard.socials[1]}</p></IconContext.Provider></div>}
+            {!profileCard.socials[2] ? "": <div className="digital-footprint-item"><IconContext.Provider value={{ size: "1rem"}}><SiTiktok/><p>{profileCard.socials[2]}</p></IconContext.Provider></div>}
+            {!profileCard.socials[3] ? "": <div className="digital-footprint-item"><IconContext.Provider value={{ size: "1rem"}}><SiTwitter/><p>{profileCard.socials[3]}</p></IconContext.Provider></div>}
           </div>
         </div>
       </div>
