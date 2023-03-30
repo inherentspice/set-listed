@@ -14,7 +14,6 @@ import ShowEditHeroBackground from "./show-edit-hero-background";
 import ShowEditProfilePicture from "./show-edit-profile-picture";
 import ShowEditProfileHeroInformation from "./show-edit-hero-information";
 import determineConnectionState from "./determine-connection-status";
-import { profile } from "console";
 
 
 

@@ -34,8 +34,8 @@ export default function Login() {
 
     AuthService.login(userObject)
       .then(response => {
-        setUserId(response.data.user)
-        navigate("/")
+        setUserId(response.data.user);
+        navigate("/");
       })
       .catch(error => {
         setError(error.response.data.error);
