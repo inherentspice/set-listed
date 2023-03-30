@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import NetworkManage from "../../components/network/manage-network";
+import NetworkManage from "../../components/network/manage/manage-network";
 import NetworkInvitations from "../../components/network/invitations";
 import NetworkRecommended from "../../components/network/recommended";
 import ConnectionService from "../../services/home/connection";
