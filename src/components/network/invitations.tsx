@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ConnectionService from "../../services/home/connection";
 import "../../styles/my-network/invitations.css";
 import { User } from "../../types/my-network";
+import { handleAcceptClick, handleIgnoreClick } from "./handle-clicks";
 
 export default function NetworkInvitations(props: {pendingConnections: User[] | undefined, user: string}) {
     const [showMore, setShowMore] = useState<boolean>(false);
@@ -13,46 +13,6 @@ export default function NetworkInvitations(props: {pendingConnections: User[] | 
 
     function handleShowLessClick(): void{
         setShowMore(false);
-    }
-
-    async function handleAcceptClick(
-      senderId: string,
-      id: string
-    ): Promise<void>{
-      try {
-        const formObject = {
-          senderId
-        };
-        if (pending) {
-          await ConnectionService.acceptRequest(formObject, id);
-          const updatedPending = pending.filter((friend) => friend.id !== senderId);
-          setPending(updatedPending);
-          return Promise.resolve();
-        }
-      } catch (err) {
-        console.log(err);
-        return Promise.reject();
-      }
-    }
-
-    async function handleIgnoreClick(
-      senderId: string,
-      id: string
-    ): Promise<void>{
-      try {
-        const formObject = {
-          senderId
-        };
-        if (pending) {
-          await ConnectionService.declineRequest(formObject, id);
-          const updatedPending = pending.filter((friend) => friend.id !== senderId);
-          setPending(updatedPending);
-          return Promise.resolve();
-        }
-      } catch (err) {
-        console.log(err);
-        return Promise.reject();
-      }
     }
 
     if (pending === undefined) {
@@ -84,10 +44,10 @@ export default function NetworkInvitations(props: {pendingConnections: User[] | 
                     <img className="profile-picture-medium" src={inviter.profileCard.image} />
                   </a>
                   <div className="network-invitation-info">
-                    <div className="network-invitation-name">{inviter.firstName + " " + inviter.lastName}</div>
+                    <p className="network-invitation-name">{inviter.firstName + " " + inviter.lastName}</p>
                     <div className="network-invitation-btns">
-                      <button className="network-invitation-ignore-btn" onClick={() => handleIgnoreClick(inviter.id, props.user)}>Ignore</button>
-                      <button className="network-invitation-accept-btn" onClick={() => handleAcceptClick(inviter.id, props.user)}>Accept</button>
+                      <button className="network-invitation-ignore-btn" onClick={() => handleIgnoreClick(inviter.id, props.user, pending, setPending)}>Ignore</button>
+                      <button className="network-invitation-accept-btn" onClick={() => handleAcceptClick(inviter.id, props.user, pending, setPending)}>Accept</button>
                     </div>
                   </div>
                 </div>
@@ -99,10 +59,10 @@ export default function NetworkInvitations(props: {pendingConnections: User[] | 
               <div className="network-invitation-item" key={inviter.id}>
                 <img className="profile-picture-medium" src={inviter.profileCard.image} />
                 <div className="network-invitation-info">
-                  <div className="network-invitation-name">{inviter.firstName + " " + inviter.lastName}</div>
+                  <p className="network-invitation-name">{inviter.firstName + " " + inviter.lastName}</p>
                   <div className="network-invitation-btns">
-                    <button className="network-invitation-ignore-btn" onClick={() => handleIgnoreClick(inviter.id, props.user)}>Ignore</button>
-                    <button className="network-invitation-accept-btn" onClick={() => handleAcceptClick(inviter.id, props.user)}>Accept</button>
+                    <button className="network-invitation-ignore-btn" onClick={() => handleIgnoreClick(inviter.id, props.user, pending, setPending)}>Ignore</button>
+                    <button className="network-invitation-accept-btn" onClick={() => handleAcceptClick(inviter.id, props.user, pending, setPending)}>Accept</button>
                   </div>
                 </div>
               </div>

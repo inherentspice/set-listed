@@ -1,11 +1,12 @@
+import { Dispatch, SetStateAction } from "react";
 import ConnectionService from "../../services/home/connection";
 
 
 export default async function handleConnectionClick(
     user: string,
     viewingUser: string,
-    setConnectionStatus: any,
-    setErr: any
+    setConnectionStatus: Dispatch<SetStateAction<string>>,
+    setErr: Dispatch<SetStateAction<boolean>>
   ): Promise<void>{
     try {
       const formObject = {

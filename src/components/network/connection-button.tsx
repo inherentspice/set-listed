@@ -1,11 +1,12 @@
-import handleConnectionClick from "./Handle-Connection-Click";
+import { Dispatch, SetStateAction } from "react";
+import handleConnectionClick from "./handle-connection-click";
 
 export default function ConnectionButton(props: {
-  connectionStatus: string, 
-  user: string, 
+  connectionStatus: string,
+  user: string,
   viewingUser: string,
-  setConnectionStatus: any,
-  setErr: any
+  setConnectionStatus: Dispatch<SetStateAction<string>>,
+  setErr: Dispatch<SetStateAction<boolean>>
 }) {
   if (props.connectionStatus==="Connect+") {
     return (
