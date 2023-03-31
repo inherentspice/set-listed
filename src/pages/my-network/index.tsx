@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NetworkManage from "../../components/network/manage/manage-network";
 import NetworkInvitations from "../../components/network/invitations";
-import NetworkRecommended from "../../components/network/recommended";
 import ConnectionService from "../../services/home/connection";
 import { Connections } from "../../types/my-network";
 import { useUserId } from "../../context/userIdContext";

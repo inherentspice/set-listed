@@ -12,7 +12,7 @@ export default function determineConnectionState(
       setConnectionStatus("friend");
       return;
     }
-    const profile = profileCard[0]
+    const profile = profileCard[0];
     const isFriend = connections.friends.filter((friend) => profile.user === friend.id).length > 0;
     const friendRequestSent = connections.pending.filter((friend) => profile.user === friend.id).length > 0;
     const isRequestingFriend = connections.waiting.filter((friend) => profile.user === friend.id).length > 0;
