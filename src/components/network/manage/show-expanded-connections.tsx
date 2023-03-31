@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
 import MessagingService from "../../../services/home/messaging";
 import { User } from "../../../types/my-network";
+import handleSearchChange from "./search-change";
 
 export default function ShowExpandedConnections(props: {
   friends: User[] | undefined,
@@ -16,19 +17,6 @@ export default function ShowExpandedConnections(props: {
 
   if (!searchResults) {
     return <></>;
-  }
-
-  function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>): void{
-    setSearch(e.target.value);
-    if (props.friends) {
-      const filteredConnections = props.friends.filter((friend) => {
-        const name = `${friend.firstName} ${friend.lastName}`.toLowerCase();
-        if (name.indexOf(e.target.value.toLowerCase()) >= 0) {
-          return friend;
-        }
-      });
-      setSearchResults(filteredConnections);
-    }
   }
 
   async function handleMessageClick(userId: string, friendId: string): Promise<void>{
@@ -57,7 +45,7 @@ export default function ShowExpandedConnections(props: {
       <form className="start-post-user-form">
         <label className="profile-add-label">
           Search:
-          <input type="text" value={search} onChange={handleSearchChange} />
+          <input type="text" value={search} onChange={(e) => handleSearchChange(e, props.friends, setSearch, setSearchResults)} />
         </label>
       </form>
       <div className="network-connection-cont">
