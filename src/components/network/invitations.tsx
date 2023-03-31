@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/my-network/invitations.css";
 import { User } from "../../types/my-network";
 import { handleAcceptClick, handleIgnoreClick } from "./handle-clicks";
@@ -15,19 +15,9 @@ export default function NetworkInvitations(props: {pendingConnections: User[] | 
         setShowMore(false);
     }
 
-    if (pending === undefined) {
-      return (
-        <div className="network-invitations-cont comp">
-          <div className="network-invitation-header">
-            <h2>Invitations</h2>
-            <button className="network-invitation-header-button">See All</button>
-          </div>
-          <div className="network-invitation-items-cont">
-            <p>No pending connection requests...</p>
-          </div>
-        </div>
-      );
-    }
+    useEffect(() => {
+      setPending(props.pendingConnections);
+    }, [props.pendingConnections]);
 
     return(
       <div className="network-invitations-cont comp">
@@ -36,7 +26,8 @@ export default function NetworkInvitations(props: {pendingConnections: User[] | 
           <button className="network-invitation-header-button">See All</button>
         </div>
         <div className="network-invitation-items-cont">
-          {!showMore && pending.map((inviter, index) => {
+          {pending === undefined || pending.length === 0 && <p>No pending connection requests</p>}
+          {pending !== undefined && !showMore && pending.map((inviter, index) => {
             if (index < 2) {
               return (
                 <div className="network-invitation-item" key={inviter.id}>
@@ -54,7 +45,7 @@ export default function NetworkInvitations(props: {pendingConnections: User[] | 
               );
             }
           })}
-          {showMore && pending.map((inviter) => {
+          {pending !== undefined && showMore && pending.map((inviter) => {
             return (
               <div className="network-invitation-item" key={inviter.id}>
                 <img className="profile-picture-medium" src={inviter.profileCard.image} />
@@ -69,8 +60,8 @@ export default function NetworkInvitations(props: {pendingConnections: User[] | 
             );
           })}
           </div>
-          {pending.length > 3 && !showMore && <div className="network-invitation-show-more-less" onClick={() => handleShowMoreClick()}>Show More</div>}
-          {pending.length > 3 && showMore && <div className="network-invitation-show-more-less" onClick={() => handleShowLessClick()}>Show Less</div>}
+          {pending !== undefined && pending.length > 3 && !showMore && <div className="network-invitation-show-more-less" onClick={() => handleShowMoreClick()}>Show More</div>}
+          {pending !== undefined && pending.length > 3 && showMore && <div className="network-invitation-show-more-less" onClick={() => handleShowLessClick()}>Show Less</div>}
         </div>
     );
 }
