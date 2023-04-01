@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
 import MessagingService from "../../../services/home/messaging";
-import ConnectionService from "../../../services/home/connection";
 import { User } from "../../../types/my-network";
 import handleSearchChange from "./search-change";
+import handleDeleteContact from "./handle-delete-contact";
 
 export default function ShowExpandedConnections(props: {
   friends: User[] | undefined,
@@ -35,21 +35,6 @@ export default function ShowExpandedConnections(props: {
     }
   }
 
-  async function handleDeleteContact(userId: string, friendId: string): Promise<void>{
-    const confirmDelete = confirm("Click OK if you actually want to delete this");
-    if (confirmDelete) {
-      try {
-        const formObject = {
-          friendId
-        };
-        await ConnectionService.deleteFriend(formObject, userId);
-        setFriends(prevFriends => prevFriends?.filter(friend => friend.id !== friendId));
-      } catch (err) {
-        return Promise.reject(err);
-      }
-    }
-  }
-
   return ReactDOM.createPortal(
     <>
       <div className="expanded-profile-overlay-cont" onClick={() => props.handleViewConnections()}></div>
@@ -72,7 +57,7 @@ export default function ShowExpandedConnections(props: {
                 </div>
                 <div className="button-cont">
                   <button className='primary-button' onClick={() => handleMessageClick(props.userId, friend.id)}>Message</button>
-                  <button className="primary-button" onClick={() => handleDeleteContact(props.userId, friend.id)}>Delete Friend</button>
+                  <button className="primary-button" onClick={() => handleDeleteContact(props.userId, friend.id, setFriends)}>Delete Friend</button>
                 </div>
               </div>
             );
