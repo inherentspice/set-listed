@@ -80,29 +80,29 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
         alt=""
       />
       <div className="profile-hero-profile-img-cont profile-picture-large" onClick={() => handleEditProfilePictureToggle(profileCard.id)}>
-      <img
-        className="profile-hero-profile-img profile-picture-large"
-        src={profileCard.image}
-        alt=""
-      />
-      <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-hero-user-picture-edit" onClick={() => handleEditProfileToggle(profileCard.id)}><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg>
+        <img
+          className="profile-hero-profile-img profile-picture-large"
+          src={profileCard.image}
+          alt=""
+        />
+        <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-hero-user-picture-edit" onClick={() => handleEditProfileToggle(profileCard.id)}><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg>
       </div>
 
       {props.userProfile && <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="profile-hero-user-info-edit" onClick={() => handleEditProfileToggle(profileCard.id)}><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg> }
       <div className="profile-hero-user-cont">
         <div className="profile-hero-user-info-cont">
           <div className="profile-hero-user-name-cont">
-            <div className="profile-hero-user-name">{profileCard.firstName+" "+ profileCard.lastName}</div>
+            <p className="profile-hero-user-name">{profileCard.firstName+" "+ profileCard.lastName}</p>
             <div className="profile-hero-divide"></div>
           </div>
-          <div className='profile-hero-tagline'>{profileCard.tagline}</div>
+          <p className='profile-hero-tagline'>{profileCard.tagline}</p>
           <div className='profile-hero-contact-cont'>
-            <div className='profile-hero-location'>{`
+            <p className='profile-hero-location'>{`
               ${profileCard.city ? profileCard.city : "Nowhere"},
-              ${profileCard.country ? profileCard.country : "Antartica"}`}</div>
-            <div className='profile-hero-contact'>Contact Info</div>
+              ${profileCard.country ? profileCard.country : "Antartica"}`}</p>
+            <p className='profile-hero-contact'>Contact Info</p>
           </div>
-          <div className='profile-hero-connections'>500+ connections</div>
+          <p className='profile-hero-connections'>500+ connections</p>
           <div className='profile-hero-mutual-connections-cont'>
             <div className='profile-hero-mutual-connections-imgs'>
               <img className="profile-hero-mutual-connection-img" alt="pic" src={RachelLoo} />
