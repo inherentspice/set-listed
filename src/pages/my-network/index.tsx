@@ -4,7 +4,7 @@ import NetworkInvitations from "../../components/network/invitations";
 import ConnectionService from "../../services/home/connection";
 import { Connections } from "../../types/my-network";
 import { useUserId } from "../../context/userIdContext";
-import ProfileCard from "../../components/home/profile-card";
+import ProfileCard from "../../components/home/profile-card/profile-card";
 import ProfileService from "../../services/home/profile";
 import { ProfileCardData } from "../../types/profile";
 import "./index.css";

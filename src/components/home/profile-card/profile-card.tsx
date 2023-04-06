@@ -1,6 +1,6 @@
 import React from "react";
-import { ProfileCardData } from "../../types/profile";
-import "../../styles/home/profile-card.css";
+import { ProfileCardData } from "../../../types/profile";
+import "../../../styles/home/profile-card.css";
 
 export default function ProfileCard(props: {profile: ProfileCardData | null}){
   if (!props.profile) {
@@ -19,26 +19,26 @@ export default function ProfileCard(props: {profile: ProfileCardData | null}){
         </div>
 
         <div className='profile-card-user-info-cont'>
-          <div className='profile-card-user-name'>{props.profile.firstName+" " + props.profile.lastName}</div>
-          <div className='profile-card-user-tagline'>{props.profile.tagline}</div>
+          <p className='profile-card-user-name'>{props.profile.firstName+" " + props.profile.lastName}</p>
+          <p className='profile-card-user-tagline'>{props.profile.tagline}</p>
         </div>
       </div>
 
       <div className='profile-card-interaction-stats-cont'>
         <div className='profile-card-interaction-stats-item'>
-          <div className='profile-card-interaction-stat-name'>Who&apos;s viewed your profile</div>
-          <div className='profile-card-interaction-stat'>{props.profile.userProfileViews}</div>
+          <p className='profile-card-interaction-stat-name'>Who&apos;s viewed your profile</p>
+          <p className='profile-card-interaction-stat'>{props.profile.userProfileViews}</p>
         </div>
 
         <div className='profile-card-interaction-stats-item'>
-          <div className='profile-card-interaction-stat-name'>Impressions of your post</div>
-          <div className='profile-card-interaction-stat'>{props.profile.userPostImpressions}</div>
+          <p className='profile-card-interaction-stat-name'>Impressions of your post</p>
+          <p className='profile-card-interaction-stat'>{props.profile.userPostImpressions}</p>
         </div>
       </div>
 
       <div className='profile-card-ad-cont'>
-        <div>Access exclusive tool and insights</div>
-        <div>Try Premium for Free Brokie</div>
+        <p>Access exclusive tool and insights</p>
+        <p>Try Premium for Free Brokie</p>
       </div>
     </div>
   );

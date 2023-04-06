@@ -3,7 +3,7 @@ import Post from "../../components/home/post/post";
 import "./index.css";
 import News from "../../components/home/news";
 import Advertisement from "../../components/home/advertisement";
-import ProfileCard from "../../components/home/profile-card";
+import ProfileCard from "../../components/home/profile-card/profile-card";
 import Footer from "../../components/home/footer";
 import QuickAccess from "../../components/home/quick-access";
 import Feed from "../../components/home/feed/feed";
