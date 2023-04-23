@@ -56,3 +56,9 @@
     border-radius: 8px;
     padding: 5px;
   }
+
+  @media all and (max-width: 430px) {
+    .profile-about-cont {
+    width: 100vw;
+    }
+  }
