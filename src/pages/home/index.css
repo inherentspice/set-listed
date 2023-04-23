@@ -72,3 +72,81 @@
   background-color: var(--primary-color);
   animation: changeColor 5s infinite;
 }
+
+
+@media all and (max-width: 430px) {
+  .home {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+    column-gap: 1.5rem;
+    row-gap: 0.5rem;
+    width: 70rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+  
+  .home-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .home-center {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .home-center-divider {
+    height: 10px;
+    width: 400px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+  }
+  
+  .home-feed {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+  
+  .home-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .loading-ad {
+    width: 357px;
+    height: 289px;
+  }
+  
+  .loading-post {
+    width: 476px;
+    height: 148px;
+  }
+  
+  .loading-profile-card {
+    width: 238px;
+    height: 311px;
+  }
+  
+  .loading-quick {
+    width: 238px;
+    height: 242px !important;
+  }
+  
+  .loading-news {
+    width: 357px;
+    height: 183px !important;
+  }
+  
+  .loading {
+    background-color: var(--primary-color);
+    animation: changeColor 5s infinite;
+  }
+  
+}
