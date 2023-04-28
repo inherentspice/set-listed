@@ -35,3 +35,10 @@
   align-items: flex-end;
   gap: 0.2rem;
 }
+
+@media all and (max-width: 430px) {
+  .network-manage-cont {
+    width: 100%;
+    align-items: center;
+  }
+}
