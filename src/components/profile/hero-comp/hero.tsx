@@ -110,11 +110,12 @@ export default function ProfileHero(props: {profileCard: ProfileCardData[], user
             </div>
             <div className='profile-hero-mutual-connections-names'><a href='./my-profile'>2 Mutual Connections: Rachel Loo and Denise Ferguson</a></div>
           </div>
-          <div className='primary-button' onClick={() => handleMessageClick(profileCard.user, props.viewingUser)}>Message</div>
-          {connectionStatus !== "friend" && <ConnectionButton connectionStatus={connectionStatus} user={profileCard.user} viewingUser={props.viewingUser} setConnectionStatus={setConnectionStatus} setErr={setErr} />}
-
-
+          <div className="profile-hero-interaction-buttons">
+            <div className='primary-button' onClick={() => handleMessageClick(profileCard.user, props.viewingUser)}>Message</div>
+            {connectionStatus !== "friend" && <ConnectionButton connectionStatus={connectionStatus} user={profileCard.user} viewingUser={props.viewingUser} setConnectionStatus={setConnectionStatus} setErr={setErr} />}
+          </div>
         </div>
+
         <div className="profile-hero-user-digital-footprint">
           <div>
             {!profileCard.socials[0] ? "": <div className="digital-footprint-item"><IconContext.Provider value={{ size: "1rem"}}><SiInstagram/><p>{profileCard.socials[0]}</p></IconContext.Provider></div>}

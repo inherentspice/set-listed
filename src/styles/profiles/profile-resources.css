@@ -61,3 +61,10 @@
     color: white;
     cursor: pointer;
 }
+
+@media all and (max-width: 430px) {
+    .profile-resources-cont {
+        width: 100vw;
+    }
+        
+}

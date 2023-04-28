@@ -15,15 +15,16 @@
     display: flex;
     padding: 0 2rem 0 2rem;
     align-items: center;
-    /* justify-content: space-evenly; */
     max-width: 70rem;
+    width: 100%;
+    justify-content: space-between;
 
 }
 
 .header-nav-left {
     display: flex;
     justify-content: space-between;
-    width: 60rem;
+    width: 20rem;
 }
 
 .header-nav-search {
@@ -70,20 +71,8 @@
     outline: none;
 }
 
-
-
-.header-nav-right {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    gap: 1rem;
-    border-left: solid var(--secondary-color) 1px;
-
-}
-
 .header-nav-btns {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
     text-align: center;
     justify-items: end;
 }
@@ -164,18 +153,16 @@
 
 /* mobile */
 
-@media all and (max-width: 480px) {
+@media all and (max-width: 430px) {
     .header {
         display: flex;
         justify-content: center;
-        width: 100%;
+        width: 100vw;
+        height: 100vh;
         border-bottom: solid var(--secondary-color) 1px;
-        background-color: var(--primary-light-color);
+        background-color: unset;
         position: fixed;
-        height: 10vh;
-        margin-bottom: -10vh;
-        top:unset;
-        bottom: 10vh;
+        top: 0;
         z-index: 2;
     }
     
@@ -183,11 +170,22 @@
         display: flex;
         padding: 0 2rem 0 2rem;
         align-items: center;
+        max-width: 70rem;
+        width: 100%;
+        justify-content: space-between;
+    
     }
+    
     .header-nav-left {
         display: flex;
-        justify-content: space-between;
-        width: auto;
+        justify-content: center;
+        width: 20rem;
+        position: absolute;
+        top: 0;
+        background-color: var(--primary-light-color);
+        width: 100vw;
+        left: 0;
+        height: 3rem;
     }
     
     .header-nav-search {
@@ -215,7 +213,7 @@
         background-color: var(--background-color);
         align-items: center;
         height: 2rem;
-        width: 8rem;
+        width: 15rem;
         padding: 0 1rem 0 1rem;
         border-radius: .25rem;
         position: relative;
@@ -230,31 +228,33 @@
         background-color: unset;
         border: none;
         color: var(--secondary-color);
-        width: 8rem;
+        width: 14rem;
         outline: none;
     }
-        
-    .header-nav-right {
+
+    .header-nav-middle {
+        background-color: var(--primary-light-color);
+        width: 100vw;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        height: 3rem;
         display: flex;
         align-items: center;
-        text-align: center;
-        gap: .5rem;
-        border-left: solid var(--secondary-color) 1px;
-    
+        justify-content: center;
     }
     
     .header-nav-btns {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        text-align: center;
-        justify-items: end;
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
     }
     
     .header-nav-btn {
-        font-size: .5rem;
+        font-size: 1rem;
         text-decoration: none;
         padding: .25rem;
-        width: auto;
+        width: unset;
         color: white;
         font-weight: bold;
         cursor: pointer;
@@ -265,16 +265,17 @@
     }
     
     .header-nav-img {
-        height: 2rem;
+        height: 1.75rem;
         fill: white;
     }
     
     .header-nav-btn-name {
         display: none;
+        font-size: .75rem;
     }
     
     .header-nav-profile-pic {
-        height: 2rem;
+        height: 1.75rem;
         border-radius: 50%;
     }
     
@@ -286,11 +287,42 @@
         justify-content: center;
         padding: 0.25rem;
         cursor: pointer;
-        width: auto;
     }
     
     .header-nav-menu>img {
         height: 1.5rem;
+    }
+    
+    /* header search */
+    
+    .header-search-results {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      background-color: var(--grey-color-0);
+      border: 1px solid var(--grey-color-0);
+      border-radius: 0 0 9px 9px;
+      box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14),
+                  0 2px 1px -1px rgba(0,0,0,0.12),
+                  0 1px 3px 0 rgba(0,0,0,0.2);
+      width: 240px;
+      z-index: 1;
+      top: 100%;
+      left: 0;
+      cursor:auto;
+      gap: 0.2rem;
+    }
+    
+    .search-connections {
+      border-bottom: 1px solid var(--grey-color-1);
+      cursor: pointer;
+      padding: 5px 10px;
+      gap: 10px;
+    }
+    
+    .search-connections:last-child {
+        border-bottom: none;
     }
     
 }

@@ -121,3 +121,10 @@
     cursor: pointer;
     background-color: var(--primary-light-color);
 }
+
+@media all and (max-width: 430px) {
+    .network-invitations-cont {
+        width: 100%;
+        padding: 8px;
+    }
+}

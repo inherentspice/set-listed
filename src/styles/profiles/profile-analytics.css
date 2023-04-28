@@ -45,3 +45,20 @@
 .profile-analytics-description {
     font-size: 0.75rem;
 }
+
+@media all and (max-width: 430px) {
+    .profile-analytics-cont {
+        width: 100vw;
+        display: flex;
+        gap: 10px;
+    }
+        
+    .profile-analytics-items-cont{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        cursor: pointer;
+        padding: 5px 15px 15px 15px;
+    }
+        
+}

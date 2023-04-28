@@ -237,3 +237,47 @@
   border: 2px solid var(--primary-color);
   border-radius: 8px;
 }
+
+@media all and (max-width: 430px) {
+  .profile-cont {
+    width: 100vw;
+  }
+
+  .featured-post-cont {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .featured-post {
+    max-width: unset;
+    width: 350px;
+    max-height: 400px;
+    height: fit-content;
+    text-align: center;
+  }
+
+  .featured-post>h4 {
+    margin: 0;
+  }
+  
+  .featured-post>p {
+    margin: 0;
+  }
+  .featured-post>img {
+    height: 250px;
+    width: auto;
+  }
+  
+  .arrow-button {
+    max-height: 2.25rem;
+    position: absolute;
+    right: 1px;
+    background-color: var(--grey-color-0);
+    border-radius: 124px;
+    opacity: 80%;
+    cursor: pointer;
+  }
+
+
+
+}

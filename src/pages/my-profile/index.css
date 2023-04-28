@@ -13,3 +13,12 @@
   align-items: center;
   gap: 10px;
 }
+
+@media all and (max-width: 430px) {
+  .profile-page {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+}

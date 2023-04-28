@@ -45,7 +45,9 @@ export default function Header() {
               {searchStart && <HeaderSearch search={search} setSearch={setSearch}/>}
             </div>
           </div>
+        </div>
 
+        <div className="header-nav-middle">
           <div className="header-nav-btns">
             <a href='/' className="header-nav-btn">
             <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="header-nav-img"><path d="M220 876h150V626h220v250h150V486L480 291 220 486v390Zm-60 60V456l320-240 320 240v480H530V686H430v250H160Zm320-353Z"/></svg>
@@ -76,13 +78,11 @@ export default function Header() {
             </a> */}
 
             {userId && <a href={`/user/${userId}`} className="header-nav-btn">
-              <img className='header-nav-profile-pic' src={profile} alt=""/>
+              <img className='header-nav-img' src={profile} alt=""/>
               <p className="header-nav-btn-name">My Page</p>
             </a>}
-          </div>
-        </div>
+          
 
-        <div className="header-nav-right">
           {/* The services section is a work in progress */}
           {/* <a href='/services' className="header-nav-btn">
             <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="header-nav-img"><path d="M679 590 466 377l213-213 213 213-213 213Zm-559-72V217h301v301H120Zm418 418V635h301v301H538Zm-418 0V635h301v301H120Zm60-478h181V277H180v181Zm502 51 129-129-129-129-129 129 129 129Zm-84 367h181V695H598v181Zm-418 0h181V695H180v181Zm181-418Zm192-78ZM361 695Zm237 0Z"/></svg>
@@ -92,6 +92,7 @@ export default function Header() {
             <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="header-nav-img"><path d="M180 936q-24 0-42-18t-18-42V276q0-24 18-42t42-18h291v60H180v600h291v60H180Zm486-185-43-43 102-102H375v-60h348L621 444l43-43 176 176-174 174Z"/></svg>
             <p className="header-nav-btn-name">Logout</p>
           </a>
+          </div>
         </div>
       </div>
     </div>
