@@ -117,3 +117,136 @@
 .message-search-result {
   cursor: pointer;
 }
+
+@media all and (max-width: 430px) {
+  .messages-select-content-cont {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .user-messages-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: .5rem 0 0 0;
+  }
+  
+  .user-message-cont {
+    padding: 0rem;
+    height: 25vw;
+    width: 25vw;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .messages-content-cont {
+    width: 90%;
+    padding: 1rem;
+    height: 65vh;
+    margin: 1rem;
+  }
+  
+  .message-preview {
+    display: none;
+  }
+  
+  .message-cont {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0.5rem 0;
+  }
+  
+  .message-cont>li {
+    padding: 1rem;
+    border-radius: 60px;
+  }
+  
+  .self-align {
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+  }
+  
+  
+  .recieve-align {
+    justify-content: flex-start;
+  }
+  
+  .self-align>li {
+    background-color: #d5e4ff;
+  }
+  
+  .recieve-align>li {
+    background-color: #d7fff2;
+  }
+  
+  .messages-select-cont {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+  }
+  
+  .messages-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--background-color);
+  }
+  
+  .messages-select-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .message-search-icon {
+    cursor: pointer;
+  }
+  
+  .message-search-icon:hover {
+    color: var(--primary-color);
+  }
+  
+  .message-display {
+    overflow-y: scroll;
+    max-height: 80%;
+  }
+  
+  .message-display>ul {
+    height:fit-content;
+    margin-right: 1rem;
+  }
+  
+  .message-info-cont {
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .message-form {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .message-form>input {
+    width: 80%;
+    border-radius: 9px;
+  }
+  .message-button {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 9px;
+  }
+  /* search-contact */
+  .message-search-result {
+    cursor: pointer;
+  }
+}
