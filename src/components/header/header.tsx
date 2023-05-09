@@ -34,12 +34,12 @@ export default function Header() {
   }
 
   return(
-    <div className="header flex flex-row w-screen justify-center">
-      <div className="header-cont flex flex-row bg-purple-500 w-9/12">
+    <div className="header flex flex-row w-screen justify-center bg-purple-500">
+      <div className="header-cont flex flex-row bg-purple-900 w-9/12 p-2">
         <div className="header-nav-left">
-          <div className='header-nav-search'>
-            <a href="../"><div className="header-cont-logo">SL</div></a>
-            <div className="header-cont-search">
+          <div className='header-nav-search flex flex-row'>
+            <a href="../"><div className="header-cont-logo text-yellow-700 font-bold text-3xl p-2 bg-gray-800 rounded-lg">SL</div></a>
+            <div className="header-cont-search flex flex-row">
               <img src={Search} alt=""/>
               <input placeholder='Search' value={search} onFocus={() => handleSearch()} onChange={(e) => handleSearchChange(e)}/>
               {searchStart && <HeaderSearch search={search} setSearch={setSearch}/>}
@@ -47,8 +47,8 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="header-nav-middle">
-          <div className="header-nav-btns">
+        <div className="header-nav-middle flex flex-row">
+          <div className="header-nav-btns flex flex-row">
             <a href='/' className="header-nav-btn">
             <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48" className="header-nav-img"><path d="M220 876h150V626h220v250h150V486L480 291 220 486v390Zm-60 60V456l320-240 320 240v480H530V686H430v250H160Zm320-353Z"/></svg>
               <p className="header-nav-btn-name">Home</p>
