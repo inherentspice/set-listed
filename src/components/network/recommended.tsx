@@ -1,6 +1,6 @@
 import React from "react";
 import FollowRecommendation from "./follow-recommendation";
-import "../../styles/my-network/recommended.css";
+// import "../../styles/my-network/recommended.css";
 import { RecommendedData } from "../../dummy-data/recommended";
 
 export default function NetworkRecommended() {

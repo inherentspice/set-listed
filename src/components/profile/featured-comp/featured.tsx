@@ -2,7 +2,7 @@ import React, { ReactPortal, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import ArrowForward from "../../../media/icons/arrow-forward.png";
 import shortenText from "../../../utilities/shorten-text";
-import "../../../styles/profiles/profile-featured.css";
+// import "../../../styles/profiles/profile-featured.css";
 import ProfileService from "../../../services/home/profile";
 import { FeaturedData } from "../../../types/profile";
 import ErrorMessage from "../../error-message";

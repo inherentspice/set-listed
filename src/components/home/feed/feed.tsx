@@ -4,7 +4,7 @@ import PostService from "../../../services/home/posts";
 import { CommentData, PostData, ProfileCardData } from "../../../types/profile";
 import convertDate from "../../../utilities/convert-date";
 import Like from "../../../media/icons/like.png";
-import "../../../styles/home/feed.css";
+// import "../../../styles/home/feed.css";
 import { AiOutlineEnter } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import handleLikePostClick from "./like-post";

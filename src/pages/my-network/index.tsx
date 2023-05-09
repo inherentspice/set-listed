@@ -7,7 +7,7 @@ import { useUserId } from "../../context/userIdContext";
 import ProfileCard from "../../components/home/profile-card/profile-card";
 import ProfileService from "../../services/home/profile";
 import { ProfileCardData } from "../../types/profile";
-import "./index.css";
+// import "./index.css";
 
 export default function MyNetwork() {
   const [connections, setConnections] = useState<Connections | undefined>(undefined);

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import PostService from "../../../services/home/posts";
 import ShowStartPost from "./show-start-post";
-
-import "../../../styles/home/post.css";
+// import "../../../styles/home/post.css";
 
 export default function Post(props: {profileImg: string, user: string}) {
   const [expandedStartPost, setExpandedStartPost] = useState<string>("");

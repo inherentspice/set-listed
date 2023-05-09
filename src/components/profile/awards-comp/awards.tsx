@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AwardData } from "../../../types/profile";
-import "../../../styles/profiles/profile-awards.css";
+// import "../../../styles/profiles/profile-awards.css";
 import ShowAddAwards from "./Show-Add-Awards";
 import ShowEditAwards from "./Show-Edit-Awards";
 

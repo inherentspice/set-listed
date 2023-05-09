@@ -3,7 +3,7 @@ import AuthService from "../../services/home/auth";
 import SignUp from "../../components/login/signup";
 import { useUserId } from "../../context/userIdContext";
 import { useNavigate } from "react-router-dom";
-import "./index.css";
+// import "./index.css";
 
 export default function Login() {
   const [email, setEmail] = useState<string>("");

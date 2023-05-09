@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom";
 import ProfileService from "../../services/home/profile";
 import ProfileData from "../../types/profile";
 import { useUserId } from "../../context/userIdContext";
-import "./index.css";
+// import "./index.css";
 import ConnectionService from "../../services/home/connection";
 import { Connections } from "../../types/my-network";
 

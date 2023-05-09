@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/profiles/profile-analytics.css";
+// import "../../styles/profiles/profile-analytics.css";
 import { ProfileCardData } from "../../types/profile";
 
 export default function ProfileAnalytics(props: {profileCard: ProfileCardData[]}) {

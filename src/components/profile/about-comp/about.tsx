@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../../../styles/profiles/profile-about.css";
+// import "../../../styles/profiles/profile-about.css";
 import { AboutData } from "../../../types/profile";
 import ShowEditAbout from "./Show-Edit-About";
 

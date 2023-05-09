@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import "../../styles/header.css";
+// import "../../styles/header.css";
 import Search from "../../media/icons/search.png";
 import AuthService from "../../services/home/auth";
 import { useUserId } from "../../context/userIdContext";
@@ -34,8 +34,8 @@ export default function Header() {
   }
 
   return(
-    <div className="header">
-      <div className="header-cont">
+    <div className="header flex flex-row w-screen justify-center">
+      <div className="header-cont flex flex-row bg-purple-500 w-9/12">
         <div className="header-nav-left">
           <div className='header-nav-search'>
             <a href="../"><div className="header-cont-logo">SL</div></a>

@@ -1,6 +1,6 @@
 import React from "react";
 import newsData from "../../dummy-data/news";
-import "../../styles/home/news.css";
+// import "../../styles/home/news.css";
 
 export default function News(props: {loaded: boolean}) {
 

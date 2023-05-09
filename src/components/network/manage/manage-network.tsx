@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import MyNetwork from "../../../media/icons/my-network.png";
-import "../../../styles/my-network/manage-network.css";
+// import "../../../styles/my-network/manage-network.css";
 import { User } from "../../../types/my-network";
 import ShowExpandedConnections from "./show-expanded-connections";
 

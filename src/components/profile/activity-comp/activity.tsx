@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../../../styles/profiles/profile-activity.css";
+// import "../../../styles/profiles/profile-activity.css";
 import convertDate from "../../../utilities/convert-date";
 import { ProfileCardData, PostData } from "../../../types/profile";
 import ErrorMessage from "../../error-message";

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { SkillData } from "../../../types/profile";
-import "../../../styles/profiles/profile-skills.css";
+// import "../../../styles/profiles/profile-skills.css";
 import ShowAddSkill from "./Show-Add-Skill";
 import ShowEditSkill from "./show-edit-skill";
 

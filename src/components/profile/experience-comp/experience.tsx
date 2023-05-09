@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../../../styles/profiles/profile-experience.css";
+// import "../../../styles/profiles/profile-experience.css";
 import convertDateRange from "../../../utilities/convert-date-range";
 import { ExperienceData } from "../../../types/profile";
 import ShowImage from "../../../media/profile/openmic.png";

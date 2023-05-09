@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Post from "../../components/home/post/post";
-import "./index.css";
+// import "./index.css";
 import News from "../../components/home/news";
 import Advertisement from "../../components/home/advertisement";
 import ProfileCard from "../../components/home/profile-card/profile-card";

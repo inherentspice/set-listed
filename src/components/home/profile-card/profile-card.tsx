@@ -1,6 +1,6 @@
 import React from "react";
 import { ProfileCardData } from "../../../types/profile";
-import "../../../styles/home/profile-card.css";
+// import "../../../styles/home/profile-card.css";
 
 export default function ProfileCard(props: {profile: ProfileCardData | null}){
   if (!props.profile) {

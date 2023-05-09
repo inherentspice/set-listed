@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import MessagingService from "../../../services/home/messaging";
 import RachelLoo from "../../../media/home/rachel-profile-picture.png";
 import DeniseFerguson from "../../../media/home/denise-profile-picture.png";
-import "../../../styles/profiles/profile-hero.css";
+// import "../../../styles/profiles/profile-hero.css";
 import { ProfileCardData } from "../../../types/profile";
 import { IconContext } from "react-icons";
 import { SiTwitter, SiYoutube, SiInstagram, SiTiktok } from "react-icons/si";

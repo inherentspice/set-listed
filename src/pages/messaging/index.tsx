@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useUserId } from "../../context/userIdContext";
 import RoomInfo from "../../types/messaging";
 import MessagingService from "../../services/home/messaging";
-import "./index.css";
+// import "./index.css";
 import io, { Socket } from "socket.io-client";
 import { BiMessageSquareAdd } from "react-icons/bi";
 import { IconContext } from "react-icons";

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../../styles/my-network/invitations.css";
+// import "../../styles/my-network/invitations.css";
 import { User } from "../../types/my-network";
 import { handleAcceptClick, handleIgnoreClick } from "./handle-clicks";
 
