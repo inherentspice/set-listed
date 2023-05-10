@@ -17,13 +17,13 @@ export default function HeaderSearch(props: {search: string, setSearch: Dispatch
 
   return (
     <>
-      <div className="header-search-results">
+      <div className="header-search-results absolute bg-white mt-8 w-auto">
         {searchResults &&
         searchResults.map((user) => {
           return (
             <a href={`/user/${user.id}`}>
               <div className="network-connection search-connections">
-                <img className="profile-picture-medium" src={user.profileCard.image}/>
+                <img className="profile-picture-medium h-16" src={user.profileCard.image}/>
                 <div className="name-tag-connection">
                   <h3>{user.firstName} {user.lastName}</h3>
                 </div>
